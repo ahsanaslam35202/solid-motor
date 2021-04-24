@@ -27,10 +27,6 @@ function App() {
         <Route exact path="/login" component={Login}></Route>
         <Route exact path="/carDetails" component={CarDetail}></Route>
         <Route exact path="/thankyou" component={Thankyou}></Route>
-        <Switch>
-          {/* <Route path="/sell" component={PreQualified} /> */}
-          {/* <Route path="/" component={Home} /> */}
-        </Switch>
         <Footer />
       </div>
     </Router>
