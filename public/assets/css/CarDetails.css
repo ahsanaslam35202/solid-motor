@@ -1,0 +1,248 @@
+.car-header-container {
+  height: 550px;
+  background: #ffffff;
+  border-radius: 12px;
+  position: relative;
+  margin: 0px;
+  margin-right: 8%;
+  margin-left: 8%;
+  margin-top: 50px;
+}
+
+.car-header-info-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.car-name {
+  font-size: 48px;
+  font-weight: 700;
+  color: #00bbff;
+}
+
+.miles-driven {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.details-heading {
+  font-size: 42px;
+  font-weight: 700;
+}
+
+.details-tab-container {
+  width: 70%;
+}
+
+.tab-link {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.tab-details-container {
+  width: 100%;
+  background: #ffffff;
+  padding: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-top: 40px;
+  padding-bottom: 20px;
+  border-radius: 5px;
+}
+
+.details-card {
+  padding: 15px;
+  background: #dfedf2;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+.details-card-heading {
+  font-size: 14px;
+  font-weight: 700;
+  display: inline;
+}
+
+.details-card-para {
+  display: inline;
+  font-size: 12px;
+  padding-left: 10px;
+}
+
+.equipment-heading {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.car-finance-summary-container {
+  display: flex;
+  padding-right: 5%;
+  padding-left: 5%;
+}
+
+.car-finance-container {
+  width: 60%;
+  padding: 15px;
+}
+
+.tabs-link {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.tab-info-container {
+  padding: 20px;
+  background: white;
+}
+
+#finance-select select {
+  height: 50px;
+  width: 100%;
+  border-radius: 5px;
+  margin-left: 0px;
+  padding-left: 10px;
+  background: #f1f7f9;
+  border-color: #8f8f8f;
+  padding-right: 0px;
+}
+
+.range-input {
+  min-width: 100% !important;
+  height: 5px;
+  background: #00bbff;
+  color: #00bbff;
+}
+
+.range-heading {
+  font-size: 14px;
+  color: #00bbff;
+  font-weight: 700;
+}
+
+.range-number-input {
+  width: 110px;
+  height: 36px;
+  background: #f1f7f9;
+  border-radius: 5px;
+  border-width: 1px;
+  border-color: #00bbff;
+}
+
+.apply-card {
+  padding: 30px;
+  background: #c2efff;
+  border-radius: 12px;
+  border: 1px solid #dddddd;
+  height: 220px;
+}
+
+.apply-card-heading {
+  font-size: 16px;
+  font-weight: 700;
+  color: #00bbff;
+}
+
+.apply-card-para {
+  font-size: 14px;
+}
+
+.apply-card-button {
+  height: 50px;
+  width: 100%;
+  background: #00bbff;
+  border-style: none;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.summary-conatiner {
+  width: 40%;
+  padding: 15px;
+}
+
+.summary-card {
+  padding: 30px;
+  background: #00bbff;
+  border-radius: 12px;
+}
+
+.summary-header {
+  background: #f1f7f9;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.summary-header-heading {
+  font-size: 36px;
+  font-weight: 700;
+  color: #00bbff;
+}
+
+.summary-header-sub-heading {
+  font-size: 20px;
+  color: #00bbff;
+}
+
+.summary-card-price-detail {
+  padding: 10px;
+}
+
+.summary-car-price {
+  padding: 20px;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-top: 1px solid #f1f7f9;
+  border-bottom: 1px solid #ffffff;
+}
+
+.summary-button {
+  height: 60px;
+  width: 100%;
+  background: #ffffff;
+  color: #00bbff;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 8px;
+}
+
+.summary-conatiner p {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 0px;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .details-tab-container {
+    width: 100%;
+  }
+
+  .summary-conatiner {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .car-finance-container {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .car-finance-summary-container {
+    display: block;
+  }
+  .summary-header-heading {
+    font-size: 24px;
+    font-weight: 700;
+    color: #00bbff;
+  }
+
+  .summary-header-sub-heading {
+    font-size: 16px;
+    color: #00bbff;
+  }
+}

@@ -1,0 +1,119 @@
+.account-header-container {
+  margin-top: 100px;
+  padding-right: 15%;
+  padding-left: 15%;
+}
+
+.sign-in-container {
+  background: url("../../assets/img/account.png") center / cover;
+  padding-bottom: 100px;
+  padding-right: 50px;
+  padding-left: 50px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  padding-top: 100px;
+}
+
+.sign-in-button {
+  min-height: 60px;
+  min-width: 240px;
+  background: rgba(0, 187, 255, 0.54);
+  border-width: 0px;
+  margin-top: 50px;
+}
+
+.tab-number-container {
+  width: 30px;
+  background: #00bbff;
+  border-radius: 20px;
+  height: 30px;
+}
+
+.tab-number-container-2 {
+  width: 30px;
+  background: #8f8f8f;
+  border-radius: 20px;
+  height: 30px;
+}
+.tab-number {
+  color: #ffffff;
+  font-size: 20px;
+  padding: 0;
+  height: 40px;
+  padding-top: 4px;
+  width: 40px;
+}
+
+.tab-number-heading {
+  font-size: 16px;
+  font-weight: 700;
+  padding: 0px;
+  padding-top: 7px;
+  padding-left: 10px;
+}
+.tab-number-heading-2 {
+  font-size: 16px;
+  font-weight: 700;
+  padding: 0px;
+  padding-top: 7px;
+  padding-left: 10px;
+  color: #5c5c5c !important;
+}
+
+input {
+  width: 100%;
+  height: 50px !important;
+  border: 1px #272727;
+  margin-top: 10px;
+}
+
+select {
+  width: 100%;
+  height: 50px !important;
+  border: 1px #272727;
+  margin-top: 10px;
+}
+
+.prev {
+  width: 100%;
+  height: 50px;
+  background-color: #5c5c5c;
+  margin-top: 10px;
+}
+.next {
+  width: 100%;
+  height: 50px;
+  background-color: #00bbff;
+  margin-top: 10px;
+}
+.prev:hover {
+  background-color: rgb(134, 221, 255);
+}
+.next:hover {
+  background-color: rgb(134, 221, 255);
+}
+
+h5 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #00bbff;
+}
+
+#regForm {
+  width: 90% !important;
+  height: auto !important;
+  padding-bottom: 80px;
+}
+@media only screen and (max-width: 768px) {
+  .header-container {
+    margin-top: 100px;
+    padding-right: 5%;
+    padding-left: 5%;
+  }
+  #regForm {
+    margin-top: 50px;
+    width: 100% !important;
+    height: auto !important;
+    padding-bottom: 80px;
+  }
+}

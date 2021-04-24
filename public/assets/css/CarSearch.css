@@ -1,0 +1,187 @@
+.car-searchbar-container {
+  padding-right: 5%;
+  padding-left: 5%;
+  padding-top: 60px;
+}
+
+.car-searchbar {
+  height: 60px;
+  background: #f2f5f8;
+  border-radius: 5px;
+  border: 1px solid grey;
+  width: 100%;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.cars-row-container {
+  margin-right: 0px;
+  padding-right: 5%;
+  padding-left: 5%;
+  margin-top: 100px;
+}
+
+.car-card-container {
+  padding: 10px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.car-card {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 10px;
+  min-height: 330px;
+  padding-bottom: 0px;
+}
+
+.car-card-img-container {
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.car-card-info-container {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.car-card-info-header {
+  margin-top: 20px;
+}
+
+.car-card-title {
+  width: 70%;
+}
+
+.car-card-title-heading {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f2021;
+}
+
+.car-card-sub-title {
+  margin-bottom: 0px;
+}
+
+.car-card-price-div {
+  width: 30%;
+}
+
+.car-price {
+  font-size: 18px;
+  font-weight: 700;
+  color: #00bbff;
+}
+
+.car-card-sub-header {
+  margin-top: 10px;
+}
+
+.car-card-sub-info-div {
+  width: 50%;
+}
+
+.car-card-sub-info {
+  margin-bottom: 0px;
+  font-size: 14px;
+}
+
+.car-guide-heading {
+  font-size: 48px;
+  font-weight: 700;
+  color: #00bbff;
+}
+
+.car-guide-para {
+  padding-right: 15%;
+  padding-left: 15%;
+}
+
+.car-guide-subsection-info {
+  padding-top: 130px;
+  padding-bottom: 100px;
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+.car-guide-img {
+  width: 100%;
+  background: url("../../assets/img/car%20guide.png") center / cover no-repeat;
+}
+
+.features-odd-container {
+  width: 80%;
+  height: auto;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 60px;
+}
+
+.features-img-container {
+  width: 90px;
+  height: 90px;
+  border-radius: 12px;
+  background: #00bbff;
+  min-height: 90px;
+  min-width: 90px;
+}
+
+.features-img {
+  width: 46px;
+}
+
+.features-info-container {
+  padding-left: 20px;
+}
+
+.features-heading {
+  font-size: 16px;
+  color: #00bbff;
+  font-weight: 700;
+}
+
+.features-para {
+  font-size: 14px;
+  margin-bottom: 0px;
+}
+
+.features-even-container {
+  width: 80%;
+  height: auto;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 60px;
+  margin-left: 10%;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .features-even-container {
+    margin-left: 0px;
+    width: 100%;
+  }
+  .features-odd-container {
+    margin-left: 0px;
+    width: 100%;
+  }
+  .car-guide-subsection-info {
+    padding-top: 130px;
+    padding-bottom: 100px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .car-guide-para {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .car-guide-img {
+    width: 100%;
+    height: 70vh;
+    background: url("../../assets/img/car%20guide.png") center / cover no-repeat;
+  }
+}
