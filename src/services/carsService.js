@@ -7,3 +7,7 @@ const apiEndPoint = apiURL + "/cars";
 export function getCars() {
   return http.get(apiEndPoint);
 }
+
+export function getCar(carId) {
+  return http.get(apiEndPoint + "/" + carId);
+}

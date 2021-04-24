@@ -2,7 +2,7 @@ var { validateUserLogin } = require("../models/User");
 
 function validateUserLoginMW(req, res, next) {
   console.log("In validate");
-  let user = validateUserLogin(req.body);
+  let user = validateUserLogin(req.body.value);
   console.log(user);
   if (user.error) {
     let test = "";

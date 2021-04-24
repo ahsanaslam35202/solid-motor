@@ -28,6 +28,9 @@ const CarSearch = () => {
         <div id="car-row" className="row mt-0">
           {cars.map((item, index) => (
             <CarCard
+              key={index}
+              id={item._id}
+              car={item}
               make={item.make}
               name={item.name}
               model={item.model}

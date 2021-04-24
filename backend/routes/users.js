@@ -39,13 +39,17 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", validateUserLoginMW, async (req, res) => {
+  console.log(req.body);
   let userData = await User.findOne({
-    email: req.body.email,
+    email: req.body.email.value,
   });
   if (!userData)
     return res.status(400).send("Sorry, user with this email not found.");
 
-  let password = await bcrypt.compare(req.body.password, userData.password);
+  let password = await bcrypt.compare(
+    req.body.password.value,
+    userData.password
+  );
   if (!password) return res.status(400).send("Wrong password");
   console.log(userData.fname);
 

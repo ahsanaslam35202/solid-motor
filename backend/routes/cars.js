@@ -8,6 +8,13 @@ router.get("/", async (req, res) => {
   res.send(cars);
 });
 
+router.get("/:id", async (req, res) => {
+  console.log(req.params.id);
+  const cars = await Car.findOne({ _id: req.params.id });
+  console.log(cars);
+  res.send(cars);
+});
+
 router.post("/", async (req, res) => {
   let car = new Car({
     make: req.body.make,
