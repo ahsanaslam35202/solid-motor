@@ -52,7 +52,7 @@ const navbar = () => {
                   className="fa fa-user main-color login-icon"
                   style={{ padding: "0px 5px 0px 5px" }}
                 />
-                Login
+                Logout
               </a>
             </li>
           </ul>

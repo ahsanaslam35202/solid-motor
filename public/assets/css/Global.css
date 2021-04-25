@@ -67,6 +67,10 @@ body{
   background: rgba(241, 247, 249, 0) !important;
 }
 
+.nav-link:hover .login-icon {
+  color: #252525;
+}
+
 .h1-black {
   font-size: 36px;
   font-weight: 700;
