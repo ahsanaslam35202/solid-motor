@@ -24,6 +24,377 @@ const CarSearch = () => {
           placeholder="Search Cars"
         />
       </div>
+
+      {/* Search Filter */}
+
+      <div style={{ paddingRight: "5%", paddingLeft: "5%" }}>
+        <div
+          style={{
+            marginTop: "50px",
+            padding: "10px",
+            background: "#c2efff",
+            borderRadius: "8px",
+          }}
+        >
+          <nav className="navbar navbar-light navbar-expand-md car-filter-container search-bar-container">
+            <div className="container-fluid">
+              <button
+                data-toggle="collapse"
+                className="navbar-toggler"
+                data-target="#navcol-1"
+              >
+                <span className="sr-only">Toggle navigation</span>
+                <span className="navbar-toggler-icon" />
+              </button>
+              <div
+                className="collapse navbar-collapse"
+                id="navcol-1"
+                style={{ margin: "0px" }}
+              >
+                <ul className="navbar-nav nav-div-container">
+                  <li className="nav-item dropdown drop-bar">
+                    <a
+                      className="dropdown-toggle nav-link text-center"
+                      aria-expanded="false"
+                      data-toggle="dropdown"
+                      href="#"
+                    >
+                      Car Price{" "}
+                    </a>
+                    <div className="dropdown-menu wd-400">
+                      <div className="dropdown-container">
+                        <div className="row">
+                          <div className="col-md-6">
+                            <div className="price-card">
+                              <div
+                                className="d-flex w-100"
+                                style={{
+                                  justifyContent: "space-between",
+                                  marginBottom: "10px",
+                                }}
+                              >
+                                <h1
+                                  className="w-50 price-card-heading"
+                                  style={{ marginTop: "5px" }}
+                                >
+                                  Downpayment
+                                </h1>
+                                <input
+                                  type="number"
+                                  className="price-card-price-input"
+                                />
+                              </div>
+                              <input
+                                type="range"
+                                className="price-card-range"
+                              />
+                              <h1 className="price-card-heading">
+                                Solid Motors Car Finance
+                              </h1>
+                              <p className="price-card-para">
+                                Answer a few questions about your car and get an
+                                instant value. This only takes 2 minutes.
+                              </p>
+                              <button
+                                className="btn btn-primary apply-card-button"
+                                type="button"
+                              >
+                                Loan Calculator
+                              </button>
+                            </div>
+                          </div>
+                          <div className="col">
+                            <div className="price-card">
+                              <div
+                                className="d-flex w-100"
+                                style={{
+                                  justifyContent: "space-between",
+                                  marginBottom: "10px",
+                                }}
+                              >
+                                <h1
+                                  className="w-50 price-card-heading"
+                                  style={{ marginTop: "5px" }}
+                                >
+                                  Car Price
+                                </h1>
+                                <input
+                                  type="number"
+                                  className="price-card-price-input"
+                                />
+                              </div>
+                              <input
+                                type="range"
+                                className="price-card-range"
+                              />
+                              <h1 className="price-card-heading">
+                                Solid Motors Trade in Offer
+                              </h1>
+                              <p className="price-card-para">
+                                Answer a few questions about your car and get an
+                                instant value. This only takes 2 minutes.
+                              </p>
+                              <button
+                                className="btn btn-primary apply-card-button"
+                                type="button"
+                              >
+                                Trade In Your Car
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li className="nav-item dropdown drop-bar">
+                    <a
+                      className="dropdown-toggle nav-link text-center"
+                      aria-expanded="false"
+                      data-toggle="dropdown"
+                      href="#"
+                    >
+                      Make / Model
+                    </a>
+                    <div className="dropdown-menu wd-400">
+                      <div className="make-model-container">
+                        <div className="drop-car-make-model">
+                          <a href="#">Toyota</a>
+                        </div>
+                        <div className="drop-car-make-model">
+                          <a href="#">Audi</a>
+                        </div>
+                        <div className="drop-car-make-model">
+                          <a href="#">Nissan</a>
+                        </div>
+                        <div className="drop-car-make-model">
+                          <a href="#">Mercedes</a>
+                        </div>
+                        <div className="drop-car-make-model">
+                          <a href="#">Honda</a>
+                        </div>
+                        <div className="drop-car-make-model">
+                          <a href="#">Kia</a>
+                        </div>
+                        <div className="drop-car-make-model">
+                          <a href="#">MG</a>
+                        </div>
+                        <div className="drop-car-make-model">
+                          <a href="#">BMW</a>
+                        </div>
+                        <div className="drop-car-make-model">
+                          <a href="#">Dodge</a>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li className="nav-item dropdown drop-bar">
+                    <a
+                      className="dropdown-toggle nav-link text-center"
+                      aria-expanded="false"
+                      data-toggle="dropdown"
+                      href="#"
+                    >
+                      Body Type
+                    </a>
+                    <div className="dropdown-menu wd-400">
+                      <div
+                        id="search-bar-cars"
+                        className="make-model-container"
+                      >
+                        <div className="drop-car-make-model">
+                          <img src="assets/img/suv1.png" />
+                          <a href="#">SUV</a>
+                        </div>
+                        <div className="drop-car-make-model">
+                          <img src="assets/img/sedan.png" />
+                          <a href="#">Sedan</a>
+                        </div>
+                        <div className="drop-car-make-model">
+                          <img src="assets/img/hatchback.png" />
+                          <a href="#">Hatchback</a>
+                        </div>
+                        <div className="drop-car-make-model">
+                          <img src="assets/img/convertible.png" />
+                          <a href="#">Convertible</a>
+                        </div>
+                        <div className="drop-car-make-model">
+                          <img src="assets/img/coupe.png" />
+                          <a href="#">Coupe</a>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li className="nav-item dropdown drop-bar">
+                    <a
+                      className="dropdown-toggle nav-link text-center"
+                      aria-expanded="false"
+                      data-toggle="dropdown"
+                      href="#"
+                    >
+                      Year &amp; Milage&nbsp;
+                    </a>
+                    <div className="dropdown-menu wd-300">
+                      <div style={{ padding: "15px" }}>
+                        <div className="row">
+                          <div className="col-md-6">
+                            <div className="price-card">
+                              <div
+                                className="d-flex w-100"
+                                style={{
+                                  justifyContent: "space-between",
+                                  marginBottom: "10px",
+                                }}
+                              >
+                                <h1
+                                  className="w-50 price-card-heading"
+                                  style={{ marginTop: "5px" }}
+                                >
+                                  Year
+                                </h1>
+                              </div>
+                              <input
+                                type="range"
+                                className="price-card-range"
+                              />
+                            </div>
+                          </div>
+                          <div className="col">
+                            <div className="price-card">
+                              <div
+                                className="d-flex w-100"
+                                style={{
+                                  justifyContent: "space-between",
+                                  marginBottom: "10px",
+                                }}
+                              >
+                                <h1
+                                  className="w-50 price-card-heading"
+                                  style={{ marginTop: "5px" }}
+                                >
+                                  Milage
+                                </h1>
+                                <input
+                                  type="number"
+                                  style={{
+                                    marginTop: "3px",
+                                    marginBottom: "-10px",
+                                  }}
+                                  className="price-card-price-input"
+                                />
+                              </div>
+                              <input
+                                type="range"
+                                className="price-card-range"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li className="nav-item dropdown drop-bar">
+                    <a
+                      className="dropdown-toggle nav-link text-center"
+                      aria-expanded="false"
+                      data-toggle="dropdown"
+                      href="#"
+                    >
+                      Features
+                    </a>
+                    <div className="dropdown-menu wd-220">
+                      <div className="make-model-container">
+                        <h1 className="price-card-heading w-100">
+                          Transmission
+                        </h1>
+                        <div className="drop-car-make-model">
+                          <a href="#">Manual</a>
+                        </div>
+                        <div className="drop-car-make-model">
+                          <a href="#">Automatic</a>
+                        </div>
+                        <h1 className="price-card-heading w-100">
+                          Drive Train
+                        </h1>
+                        <div className="drop-car-make-model">
+                          <a href="#">FWD</a>
+                        </div>
+                        <div className="drop-car-make-model">
+                          <a href="#">AWD</a>
+                        </div>
+                        <div className="drop-car-make-model">
+                          <a href="#">RWD</a>
+                        </div>
+                        <h1 className="price-card-heading w-100">
+                          &nbsp;Engine Type
+                        </h1>
+                        <div className="drop-car-make-model">
+                          <a href="#">2 cylinder</a>
+                        </div>
+                        <div className="drop-car-make-model">
+                          <a href="#">4 cylinder</a>
+                        </div>
+                        <div className="drop-car-make-model">
+                          <a href="#">6 cylinder</a>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li className="nav-item dropdown drop-bar">
+                    <a
+                      className="dropdown-toggle nav-link text-center"
+                      aria-expanded="false"
+                      data-toggle="dropdown"
+                      href="#"
+                    >
+                      More{" "}
+                    </a>
+                    <div className="dropdown-menu wd-minus-220">
+                      <div
+                        style={{
+                          padding: "20px",
+                          display: "flex",
+                          flexWrap: "wrap",
+                        }}
+                      >
+                        <h1 className="price-card-heading w-100">Color</h1>
+                        <div
+                          className="drop-car-make-model"
+                          style={{ background: "var(--warning)" }}
+                        >
+                          <a href="#">Yellow</a>
+                        </div>
+                        <div
+                          className="drop-car-make-model"
+                          style={{ background: "var(--gray-dark)" }}
+                        >
+                          <a href="#" style={{ color: "var(--light)" }}>
+                            Black
+                          </a>
+                        </div>
+                        <h1 className="price-card-heading w-100">Fuel Type</h1>
+                        <div className="drop-car-make-model">
+                          <a href="#">GAS</a>
+                        </div>
+                        <div className="drop-car-make-model">
+                          <a href="#">Hybrid</a>
+                        </div>
+                        <div className="drop-car-make-model">
+                          <a href="#">RWD</a>
+                        </div>
+                        <div className="drop-car-make-model">
+                          <a href="#">Electric</a>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+
+      {/*    END Filter */}
       <div className="cars-row-container">
         <div id="car-row" className="row mt-0">
           {cars.map((item, index) => (
