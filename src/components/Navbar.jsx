@@ -1,6 +1,7 @@
 import React from "react";
+import { isLoggedin, logout } from "../services/userService";
 
-const navbar = () => {
+const Navbar = () => {
   return (
     <nav className="navbar navbar-light navbar-expand-md navigation-clean navbar">
       <div className="container">
@@ -42,19 +43,39 @@ const navbar = () => {
                 Trade
               </a>
             </li>
-            <li className="nav-item">
-              <a
-                className="nav-link main-color"
-                href="#"
-                style={{ fontWeight: 700, color: "#0cbdff" }}
-              >
-                <i
-                  className="fa fa-user main-color login-icon"
-                  style={{ padding: "0px 5px 0px 5px" }}
-                />
-                Login
-              </a>
-            </li>
+            {isLoggedin ? (
+              <li className="nav-item">
+                <a
+                  className="nav-link main-color"
+                  href="login"
+                  style={{ fontWeight: 700, color: "#0cbdff" }}
+                >
+                  <i
+                    className="fa fa-user main-color login-icon"
+                    style={{ padding: "0px 5px 0px 5px" }}
+                  />
+                  Login
+                </a>
+              </li>
+            ) : (
+              <li className="nav-item">
+                <a
+                  className="nav-link main-color"
+                  onClick={logout}
+                  style={{
+                    fontWeight: 700,
+                    color: "#0cbdff",
+                    cursor: "pointer",
+                  }}
+                >
+                  <i
+                    className="fa fa-user main-color login-icon"
+                    style={{ padding: "0px 5px 0px 5px" }}
+                  />
+                  Logout
+                </a>
+              </li>
+            )}
           </ul>
         </div>
       </div>
@@ -62,4 +83,4 @@ const navbar = () => {
   );
 };
 
-export default navbar;
+export default Navbar;

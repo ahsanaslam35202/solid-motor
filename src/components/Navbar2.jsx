@@ -1,6 +1,7 @@
 import React from "react";
+import { logout } from "../services/userService";
 
-const navbar = () => {
+const Navbar2 = (props) => {
   return (
     <nav className="navbar navbar-light navbar-expand-md navigation-clean navbar">
       <div className="container">
@@ -45,8 +46,8 @@ const navbar = () => {
             <li className="nav-item">
               <a
                 className="nav-link main-color"
-                href="#"
-                style={{ fontWeight: 700, color: "#0cbdff" }}
+                onClick={props.handleLogout}
+                style={{ fontWeight: 700, color: "#0cbdff", cursor: "pointer" }}
               >
                 <i
                   className="fa fa-user main-color login-icon"
@@ -62,4 +63,4 @@ const navbar = () => {
   );
 };
 
-export default navbar;
+export default Navbar2;

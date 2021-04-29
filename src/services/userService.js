@@ -25,10 +25,8 @@ export function userLogin(data) {
 
 export function isLoggedin() {
   if (localStorage.getItem("token")) {
-    console.log("Yes");
     return true;
   } else {
-    console.log("No");
     return false;
   }
 }
