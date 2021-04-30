@@ -14,9 +14,11 @@ var preQualified = () => {
                 ipsum suspendisse ultrices gravida. Risus commodo viverra
                 maecenas accumsan lacus vel facilisis.
               </p>
-              <button className="btn btn-primary main-button" type="button">
-                <strong>Get Pre Qualitied</strong>
-              </button>
+              <a href="./loan calculator">
+                <button className="btn btn-primary main-button" type="button">
+                  <strong>Get Pre Qualitied</strong>
+                </button>
+              </a>
             </div>
           </div>
           <div className="col-md-6 header-img mobile-mt-50">
@@ -110,7 +112,7 @@ var preQualified = () => {
           </div>
         </div>
       </div>
-      <div className="mt-200">
+      <div className="mt-200" id="faq">
         <div className="container">
           <div className="row">
             <div className="col-md-12">

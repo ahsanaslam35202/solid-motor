@@ -47,7 +47,7 @@ input[type="text"] {
   border-color: #1f2021;
 }
 
-select {
+.loan-page select {
   height: 60px !important;
   border-color: #1f2021 !important;
 }

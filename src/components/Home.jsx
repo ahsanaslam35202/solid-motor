@@ -12,21 +12,25 @@ const Home = () => {
         </p>
         <div className="row mt-0">
           <div className="col-md-6 d-flex justify-content-end mobile-flex-center">
-            <button
-              className="btn btn-primary header-button-main"
-              type="button"
-            >
-              <strong>Get Pre Qualitied</strong>
-            </button>
+            <a href="./pre-qualified">
+              <button
+                className="btn btn-primary header-button-main"
+                type="button"
+              >
+                <strong>Get Pre Qualitied</strong>
+              </button>
+            </a>
           </div>
           <div className="col-md-6 d-flex justify-content-start mobile-flex-center">
-            <button
-              className="btn btn-primary header-button-white"
-              type="button"
-            >
-              <strong>Search Vehicles</strong>
-              <br />
-            </button>
+            <a href="./search cars">
+              <button
+                className="btn btn-primary header-button-white"
+                type="button"
+              >
+                <strong>Search Vehicles</strong>
+                <br />
+              </button>
+            </a>
           </div>
         </div>
       </header>
@@ -144,9 +148,11 @@ const Home = () => {
                 <br />
               </p>
               <div className="w-100 mt-80 mobile-flex-center">
-                <button className="btn btn-primary main-button" type="button">
-                  <strong>Get Pre Qualitied</strong>
-                </button>
+                <a href="./pre-qualified">
+                  <button className="btn btn-primary main-button" type="button">
+                    <strong>Get Pre Qualitied</strong>
+                  </button>
+                </a>
               </div>
             </div>
             <div className="col-md-6">
@@ -199,9 +205,11 @@ const Home = () => {
                 eiusmod tempor incididunt ut labore et&nbsp;
               </p>
               <div className="w-100 d-flex justify-content-center mt-80">
-                <button className="btn btn-primary main-button" type="button">
-                  <strong>Get Pre Qualitied</strong>
-                </button>
+                <a href="./search cars">
+                  <button className="btn btn-primary main-button" type="button">
+                    <strong>Search Cars</strong>
+                  </button>
+                </a>
               </div>
             </div>
           </div>
@@ -228,7 +236,7 @@ const Home = () => {
                   />
                 </div>
               </div>
-              <h1 className="w-100 text-center why-us-card-heading">
+              <h1 className="w-100 text-center home-why-us-card-heading">
                 7 Day Test to Own
               </h1>
               <p className="text-center home-why-us-card-para">
@@ -312,9 +320,11 @@ const Home = () => {
             </div>
             <div className="col-md-6">
               <div className="w-100 d-flex justify-content-end mobile-flex-center">
-                <button className="btn btn-primary main-button" type="button">
-                  <strong>Get Pre Qualitied</strong>
-                </button>
+                <a href="./loan calculator">
+                  <button className="btn btn-primary main-button" type="button">
+                    <strong>Get Financial Assistance</strong>
+                  </button>
+                </a>
               </div>
             </div>
           </div>

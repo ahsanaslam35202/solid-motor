@@ -103,7 +103,7 @@ const LoanCalculator = () => {
 
   return (
     <div>
-      <header className="header-container">
+      <header className="header-container loan-page">
         <div className="container">
           <div className="row mt-0">
             <div className="col-md-6">

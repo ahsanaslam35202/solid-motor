@@ -24,6 +24,7 @@ const Login = () => {
                 <strong>Do Not Have An Account?&nbsp;</strong>
               </h1>
               <div className="d-flex justify-content-center">
+                <a href="./signup"></a>
                 <button
                   className="btn btn-primary sign-in-button"
                   type="button"

@@ -67,10 +67,23 @@ input {
   margin-top: 10px;
 }
 
-select {
+.signup-select select {
   width: 100%;
   height: 50px !important;
-  border: 1px #272727;
+  border-color: #1f2021 !important;
+  margin-top: 10px;
+}
+
+input[type="date"] {
+  width: 100%;
+  height: 50px !important;
+  border-color: #1f2021 !important;
+  margin-top: 10px;
+}
+input[type="password"] {
+  width: 100%;
+  height: 50px !important;
+  border-color: #1f2021 !important;
   margin-top: 10px;
 }
 
@@ -102,7 +115,7 @@ h5 {
 #regForm {
   width: 90% !important;
   height: auto !important;
-  padding-bottom: 80px;
+  padding-bottom: 100px !important;
 }
 @media only screen and (max-width: 768px) {
   .header-container {

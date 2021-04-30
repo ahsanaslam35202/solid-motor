@@ -1,0 +1,49 @@
+[{
+  "_id": {
+    "$oid": "60620ee2125add4c0ff90908"
+  },
+  "firstName": "Uzair",
+  "middleName": "Uzii",
+  "lastName": "Ahmad",
+  "suffix": "Mr",
+  "annualIncome": 1000000,
+  "homeAddress": "St # 47",
+  "email": "uzairahmad227848@gmail.com",
+  "phoneNumber": "03124006780",
+  "password": "$2a$10$4gYwHDvhq0DHsjZJ251AVe1PWelsWADsHQCxgp9wrNxSWQPGJrwdq",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "607ad1b682fc6855c72bb5e1"
+  },
+  "firstName": "Ahsan",
+  "middleName": "Ahsan",
+  "lastName": "Aslam",
+  "suffix": "Mr",
+  "dateOfBirth": {
+    "$date": "1998-07-18T00:00:00Z"
+  },
+  "annualIncome": 2000000,
+  "homeAddress": "5-Y-7 Main Road",
+  "email": "ahsan@gmail.com",
+  "phoneNumber": "033512436417",
+  "password": "$2a$10$bRclljVWYYrLfFQBdRp2B.m/LmYF1WVm/x5WAKzMbL0AYCsTJ5DaW",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6082c1219730778812861eb0"
+  },
+  "firstName": "Zubair",
+  "middleName": "Zubi",
+  "lastName": "Ahmad",
+  "suffix": "Mr",
+  "dateOfBirth": {
+    "$date": "2002-03-12T00:00:00Z"
+  },
+  "annualIncome": 2000000,
+  "homeAddress": "St# 47",
+  "email": "zubairshums01@gmail.com",
+  "phoneNumber": "03035331525",
+  "password": "$2a$10$cRBjyvvyitBp5Mfgvyjg9uv/RzYEfdfHh8jfDyB8abb48jsZnlWf2",
+  "__v": 0
+}]

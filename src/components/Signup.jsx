@@ -91,9 +91,10 @@ const Signup = () => {
                   </div>
                 </div>
                 <div className="col-md-6">
-                  <div className="form-group">
+                  <div className="form-group signup-select">
                     <select
                       className="form-control"
+                      style={{ height: "50px" }}
                       value={suffix.value}
                       onChange={(e) => {
                         setSuffix({ value: e.target.value });
@@ -246,12 +247,14 @@ const Signup = () => {
                 <strong>Already have an Account?&nbsp;</strong>
               </h1>
               <div className="d-flex justify-content-center">
-                <button
-                  className="btn btn-primary sign-in-button"
-                  type="button"
-                >
-                  Button
-                </button>
+                <a href="./login">
+                  <button
+                    className="btn btn-primary sign-in-button"
+                    type="button"
+                  >
+                    Login
+                  </button>
+                </a>
               </div>
             </div>
           </div>

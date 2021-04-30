@@ -1,0 +1,297 @@
+[{
+  "_id": {
+    "$oid": "607ad752f6201f5ab759c2fb"
+  },
+  "images": [
+    "ab1.jpg",
+    "ab2.jpg"
+  ],
+  "extendedFeatures": [
+    "F1",
+    "F2"
+  ],
+  "make": "Toyota",
+  "name": "Corolla",
+  "model": "Xli",
+  "fuel": "Petrol",
+  "milesDriven": 12000,
+  "body": "SUV",
+  "modelYear": 2015,
+  "exteriorColor": "White",
+  "interiorColor": "Brown",
+  "engineType": "4 Cylinder",
+  "transmission": "Manual",
+  "doors": 4,
+  "numberOfKeys": 1,
+  "vin": 6427,
+  "stock": 3,
+  "vehicleId": 3547,
+  "mpg": 13,
+  "downPayment": 1400000,
+  "monthlyPayment": 100000,
+  "price": 5000000,
+  "shippingCharges": 10000,
+  "taxAndRegistrationCharges": 2000,
+  "dealerFees": 2000,
+  "__v": 0,
+  "numberOfMonths": 36
+},{
+  "_id": {
+    "$oid": "6083257bdc998b8b493b88c6"
+  },
+  "images": [
+    "bc1.jpg",
+    "bc2.jpg"
+  ],
+  "extendedFeatures": [
+    "F1",
+    "F2"
+  ],
+  "make": "Honda",
+  "name": "Civic",
+  "model": "Turbo",
+  "fuel": "Petrol",
+  "milesDriven": 15200,
+  "body": "SUV",
+  "modelYear": 2019,
+  "exteriorColor": "Pearl White",
+  "interiorColor": "Skin",
+  "engineType": "6 Cylinder",
+  "transmission": "Auto",
+  "doors": 4,
+  "numberOfKeys": 1,
+  "vin": 6342,
+  "stock": 98,
+  "vehicleId": 3437,
+  "mpg": 16,
+  "downPayment": 170000,
+  "monthlyPayment": 100000,
+  "price": 5300000,
+  "shippingCharges": 10000,
+  "taxAndRegistrationCharges": 2000,
+  "dealerFees": 2000,
+  "__v": 0,
+  "numberOfMonths": 36
+},{
+  "_id": {
+    "$oid": "608326c1dc998b8b493b88c7"
+  },
+  "images": [
+    "ab1.jpg",
+    "ab2.jpg"
+  ],
+  "extendedFeatures": [
+    "F1",
+    "F2"
+  ],
+  "make": "Toyota",
+  "name": "Corolla",
+  "model": "Xli",
+  "fuel": "Petrol",
+  "milesDriven": 12000,
+  "body": "SUV",
+  "modelYear": 2015,
+  "exteriorColor": "White",
+  "interiorColor": "Brown",
+  "engineType": "4 Cylinder",
+  "transmission": "Manual",
+  "doors": 4,
+  "numberOfKeys": 1,
+  "vin": 6427,
+  "stock": 3,
+  "vehicleId": 3547,
+  "mpg": 13,
+  "downPayment": 1400000,
+  "monthlyPayment": 100000,
+  "price": 5000000,
+  "shippingCharges": 10000,
+  "taxAndRegistrationCharges": 2000,
+  "dealerFees": 2000,
+  "__v": 0,
+  "numberOfMonths": 36
+},{
+  "_id": {
+    "$oid": "608326e5dc998b8b493b88c8"
+  },
+  "images": [
+    "bc1.jpg",
+    "bc2.jpg"
+  ],
+  "extendedFeatures": [
+    "F1",
+    "F2"
+  ],
+  "make": "Honda",
+  "name": "Civic",
+  "model": "Turbo",
+  "fuel": "Petrol",
+  "milesDriven": 15200,
+  "body": "SUV",
+  "modelYear": 2019,
+  "exteriorColor": "Pearl White",
+  "interiorColor": "Skin",
+  "engineType": "6 Cylinder",
+  "transmission": "Auto",
+  "doors": 4,
+  "numberOfKeys": 1,
+  "vin": 6342,
+  "stock": 98,
+  "vehicleId": 3437,
+  "mpg": 16,
+  "downPayment": 170000,
+  "monthlyPayment": 100000,
+  "price": 5300000,
+  "shippingCharges": 10000,
+  "taxAndRegistrationCharges": 2000,
+  "dealerFees": 2000,
+  "__v": 0,
+  "numberOfMonths": 36
+},{
+  "_id": {
+    "$oid": "60832708dc998b8b493b88c9"
+  },
+  "images": [
+    "bc1.jpg",
+    "bc2.jpg"
+  ],
+  "extendedFeatures": [
+    "F1",
+    "F2"
+  ],
+  "make": "Honda",
+  "name": "Civic",
+  "model": "Turbo",
+  "fuel": "Petrol",
+  "milesDriven": 15200,
+  "body": "SUV",
+  "modelYear": 2019,
+  "exteriorColor": "Pearl White",
+  "interiorColor": "Skin",
+  "engineType": "6 Cylinder",
+  "transmission": "Auto",
+  "doors": 4,
+  "numberOfKeys": 1,
+  "vin": 6342,
+  "stock": 98,
+  "vehicleId": 3437,
+  "mpg": 16,
+  "downPayment": 170000,
+  "monthlyPayment": 100000,
+  "price": 5300000,
+  "shippingCharges": 10000,
+  "taxAndRegistrationCharges": 2000,
+  "dealerFees": 2000,
+  "__v": 0,
+  "numberOfMonths": 36
+},{
+  "_id": {
+    "$oid": "60832718dc998b8b493b88ca"
+  },
+  "images": [
+    "ab1.jpg",
+    "ab2.jpg"
+  ],
+  "extendedFeatures": [
+    "F1",
+    "F2"
+  ],
+  "make": "Toyota",
+  "name": "Corolla",
+  "model": "Xli",
+  "fuel": "Petrol",
+  "milesDriven": 12000,
+  "body": "SUV",
+  "modelYear": 2015,
+  "exteriorColor": "White",
+  "interiorColor": "Brown",
+  "engineType": "4 Cylinder",
+  "transmission": "Manual",
+  "doors": 4,
+  "numberOfKeys": 1,
+  "vin": 6427,
+  "stock": 3,
+  "vehicleId": 3547,
+  "mpg": 13,
+  "downPayment": 1400000,
+  "monthlyPayment": 100000,
+  "price": 5000000,
+  "shippingCharges": 10000,
+  "taxAndRegistrationCharges": 2000,
+  "dealerFees": 2000,
+  "__v": 0,
+  "numberOfMonths": 36
+},{
+  "_id": {
+    "$oid": "60832732dc998b8b493b88cb"
+  },
+  "images": [
+    "bc1.jpg",
+    "bc2.jpg"
+  ],
+  "extendedFeatures": [
+    "F1",
+    "F2"
+  ],
+  "make": "Honda",
+  "name": "Civic",
+  "model": "Turbo",
+  "fuel": "Petrol",
+  "milesDriven": 15200,
+  "body": "SUV",
+  "modelYear": 2019,
+  "exteriorColor": "Pearl White",
+  "interiorColor": "Skin",
+  "engineType": "6 Cylinder",
+  "transmission": "Auto",
+  "doors": 4,
+  "numberOfKeys": 1,
+  "vin": 6342,
+  "stock": 98,
+  "vehicleId": 3437,
+  "mpg": 16,
+  "downPayment": 170000,
+  "monthlyPayment": 100000,
+  "price": 5300000,
+  "shippingCharges": 10000,
+  "taxAndRegistrationCharges": 2000,
+  "dealerFees": 2000,
+  "__v": 0,
+  "numberOfMonths": 36
+},{
+  "_id": {
+    "$oid": "60832744dc998b8b493b88cc"
+  },
+  "images": [
+    "bc1.jpg",
+    "bc2.jpg"
+  ],
+  "extendedFeatures": [
+    "F1",
+    "F2"
+  ],
+  "make": "Honda",
+  "name": "Civic",
+  "model": "Turbo",
+  "fuel": "Petrol",
+  "milesDriven": 15200,
+  "body": "SUV",
+  "modelYear": 2019,
+  "exteriorColor": "Pearl White",
+  "interiorColor": "Skin",
+  "engineType": "6 Cylinder",
+  "transmission": "Auto",
+  "doors": 4,
+  "numberOfKeys": 1,
+  "vin": 6342,
+  "stock": 98,
+  "vehicleId": 3437,
+  "mpg": 16,
+  "downPayment": 170000,
+  "monthlyPayment": 100000,
+  "price": 5300000,
+  "shippingCharges": 10000,
+  "taxAndRegistrationCharges": 2000,
+  "dealerFees": 2000,
+  "__v": 0,
+  "numberOfMonths": 36
+}]
