@@ -12,12 +12,15 @@ import CarDetail from "./components/CarDetail";
 import Login from "./components/Login";
 import Thankyou from "./components/Thankyou";
 import LoanCalculator from "./components/LoanCalculator";
+import { isLoggedin } from "./services/userService";
+import Navbar2 from "./components/Navbar2";
+import Dashboard from "./components/Admin/Dashboard";
 
 function App() {
   return (
     <Router>
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
         <Route exact path="/" component={Home}></Route>
         <Route exact path="/loan calculator" component={LoanCalculator}></Route>
         <Route exact path="/sell" component={PreQualified}></Route>
@@ -30,7 +33,7 @@ function App() {
         <Route exact path="/carDetails" component={CarDetail}></Route>
         <Route exact path="/thankyou" component={Thankyou}></Route>
         <Route exact path="/car" component={CarDetail}></Route>
-        <Footer />
+        <Route exact path="/adminDashboard" component={Dashboard}></Route>
       </div>
     </Router>
   );

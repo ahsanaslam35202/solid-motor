@@ -1,7 +1,8 @@
 import React from "react";
+import { Redirect } from "react-router";
 import { userLogin, userSignup } from "./../services/userService";
 
-const Login = () => {
+const Login = (props) => {
   const [email, setEmail] = React.useState({ value: "", error: "" });
   const [password, setPassword] = React.useState({ value: "", error: "" });
 
@@ -10,7 +11,7 @@ const Login = () => {
       email,
       password,
     }).then(() => {
-      console.log("Login");
+      props.history.push("/");
     });
   };
 

@@ -15,6 +15,7 @@
   margin: 10px;
   background-color: #c2efff;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .dropdown-menu a {
