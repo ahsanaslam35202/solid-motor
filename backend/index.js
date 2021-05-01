@@ -5,10 +5,12 @@ const app = express();
 
 const users = require("./routes/users");
 const cars = require("./routes/cars");
+const sellTrades = require("./routes/sellTrades");
 app.use(cors());
 app.use(express.json());
 app.use("/api/users", users);
 app.use("/api/cars", cars);
+app.use("/api/sellTrades", sellTrades);
 
 mongoose
   .connect("mongodb://localhost/SolidMotors", {
