@@ -19,16 +19,16 @@ const Footer = () => {
             <div className="col-md-2 col-sm-6">
               <h1 className="footer-link-heading">NAVIGATION</h1>
               <div className="mt-30">
-                <a className="w-100 d-block" href="#">
+                <a className="w-100 d-block" href="./">
                   Home
                 </a>
-                <a className="w-100 d-block" href="#">
+                <a className="w-100 d-block" href="./about-us">
                   About Us
                 </a>
-                <a className="w-100 d-block" href="#">
+                <a className="w-100 d-block" href="./sell-trade car">
                   Sell Car
                 </a>
-                <a className="w-100 d-block" href="#">
+                <a className="w-100 d-block" href="./sell-trade car">
                   Trade Car
                 </a>
               </div>
@@ -36,10 +36,10 @@ const Footer = () => {
             <div className="col-md-2 col-sm-6">
               <h1 className="footer-link-heading">CONTACT US</h1>
               <div className="mt-30">
-                <a className="w-100 d-block" href="#">
+                <a className="w-100 d-block" href="./pre-qualified">
                   FAQs
                 </a>
-                <a className="w-100 d-block" href="#">
+                <a className="w-100 d-block" href="./pre-qualified">
                   Contact us
                 </a>
               </div>

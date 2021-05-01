@@ -47,7 +47,11 @@
   border-color: #1f2021;
 }
 
+<<<<<<< HEAD
 .select {
+=======
+.loan-page select {
+>>>>>>> a151e77eb7fb085180b22b9ddeee8d97abe48e19
   height: 60px !important;
   border-color: #1f2021 !important;
 }

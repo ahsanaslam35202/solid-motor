@@ -105,9 +105,10 @@ const Signup = () => {
                   </div>
                 </div>
                 <div className="col-md-6">
-                  <div className="form-group">
+                  <div className="form-group signup-select">
                     <select
                       className="form-control input"
+                      style={{ height: "50px" }}
                       value={suffix.value}
                       onChange={(e) => {
                         setSuffix({ value: e.target.value });
