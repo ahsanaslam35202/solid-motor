@@ -15,6 +15,7 @@ import LoanCalculator from "./components/LoanCalculator";
 import { isLoggedin } from "./services/userService";
 import Navbar2 from "./components/Navbar2";
 import Dashboard from "./components/Admin/Dashboard";
+import AddCar from "./components/Admin/AddCar";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route exact path="/thankyou" component={Thankyou}></Route>
         <Route exact path="/car" component={CarDetail}></Route>
         <Route exact path="/adminDashboard" component={Dashboard}></Route>
+        <Route exact path="/addCar" component={AddCar}></Route>
       </div>
     </Router>
   );

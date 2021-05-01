@@ -7,11 +7,14 @@ import {
   ListItemIcon,
   Divider,
   Hidden,
+  Collapse,
 } from "@material-ui/core";
 import DashboardRoundedIcon from "@material-ui/icons/DashboardRounded";
 import BusinessRoundedIcon from "@material-ui/icons/BusinessRounded";
+import LibraryAddRoundedIcon from "@material-ui/icons/LibraryAddRounded";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
+import { ExpandLess, ExpandMore } from "@material-ui/icons";
 
 const drawerWidth = 240;
 
@@ -35,70 +38,45 @@ const Drawer = (props) => {
   const classes = useStyles();
   const theme = useTheme();
   const { window } = props;
-  // const [officeOpen, setOfficeOpen] = React.useState(false);
+  const [carOpen, setCarOpen] = React.useState(false);
 
-  // const handleOfficesClick = () => {
-  //   setOfficeOpen(!officeOpen);
-  // };
+  const handleOfficesClick = () => {
+    setCarOpen(!carOpen);
+  };
 
   const drawer = (
     <>
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        <ListItem button component={Link} to="/dashboard">
+        <ListItem button component={Link} to="/adminDashboard">
           <ListItemIcon>
             <DashboardRoundedIcon />
           </ListItemIcon>
           <ListItemText primary="Dashboard" />
         </ListItem>
-        <ListItem button component={Link} to="/offices">
+        <ListItem button onClick={handleOfficesClick}>
           <ListItemIcon>
             <BusinessRoundedIcon />
           </ListItemIcon>
-          <ListItemText primary="Offices" />
+          <ListItemText primary="Cars" />
+          {carOpen ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
-        <ListItem button component={Link} to="/realtors">
-          <ListItemIcon>
-            <BusinessRoundedIcon />
-          </ListItemIcon>
-          <ListItemText primary="Realtors" />
-        </ListItem>
-        <ListItem button component={Link} to="/productGroups">
-          <ListItemIcon>
-            <BusinessRoundedIcon />
-          </ListItemIcon>
-          <ListItemText primary="Product Groups" />
-        </ListItem>
-        <ListItem button component={Link} to="/products">
-          <ListItemIcon>
-            <BusinessRoundedIcon />
-          </ListItemIcon>
-          <ListItemText primary="Products" />
-        </ListItem>
-        <ListItem button component={Link} to="/packages">
-          <ListItemIcon>
-            <BusinessRoundedIcon />
-          </ListItemIcon>
-          <ListItemText primary="Packages" />
-        </ListItem>
-        {/* <ListItem button onClick={handleOfficesClick}>
-          <ListItemIcon>
-            <BusinessRoundedIcon />
-          </ListItemIcon>
-          <ListItemText primary="Offices" />
-          {officeOpen ? <ExpandLess /> : <ExpandMore />}
-        </ListItem>
-        <Collapse in={officeOpen} timeout="auto" unmountOnExit>
+        <Collapse in={carOpen} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItem button className={classes.nested}>
+            <ListItem
+              button
+              className={classes.nested}
+              component={Link}
+              to="/addCar"
+            >
               <ListItemIcon>
                 <LibraryAddRoundedIcon />
               </ListItemIcon>
-              <ListItemText primary="Add Office" />
+              <ListItemText primary="Add Car" />
             </ListItem>
           </List>
-        </Collapse> */}
+        </Collapse>
       </List>
       <Divider />
     </>

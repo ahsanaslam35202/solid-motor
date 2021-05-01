@@ -42,12 +42,12 @@
   width: 100%;
 }
 
-input[type="text"] {
+.input[type="text"] {
   height: 60px;
   border-color: #1f2021;
 }
 
-select {
+.select {
   height: 60px !important;
   border-color: #1f2021 !important;
 }

@@ -10,7 +10,7 @@
   margin: 0px;
 }
 
-.mt-15{
+.mt-15 {
   margin-top: 15px;
 }
 
@@ -50,7 +50,7 @@
   margin-top: 180px;
 }
 
-.mb-300{
+.mb-300 {
   margin-bottom: 300px;
 }
 
@@ -58,8 +58,9 @@
   margin-top: 200px;
 }
 
-body{
-  background: #f1f7f9; font-family: Poppins, sans-serif"
+body {
+  background: #f1f7f9;
+  font-family: Poppins, sans-serif;
 }
 
 .navbar {
@@ -161,24 +162,23 @@ body{
   color: #f3fcff;
 }
 
-
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
   .mobile-text-center {
     text-align: center;
   }
-  .mobile-flex-center{
+  .mobile-flex-center {
     display: flex;
     justify-content: center !important;
   }
   .mobile-mt-50 {
     margin-top: 50px;
   }
-  .footer-about-para{
+  .footer-about-para {
     text-align: center;
     padding: 10px !important;
   }
-  .footer-about img{
+  .footer-about img {
     margin-left: 50%;
     transform: translateX(-50%);
   }
@@ -188,7 +188,7 @@ body{
   .footer-link-heading {
     margin-top: 30px;
   }
-  .navbar-brand{
+  .navbar-brand {
     width: 50% !important;
   }
 }
