@@ -37,6 +37,7 @@ var carSchema = mongoose.Schema({
   extendedFeatures: [String],
   downPayment: Number,
   monthlyPayment: Number,
+  numberOfMonths: Number,
   price: Number,
   shippingCharges: Number,
   taxAndRegistrationCharges: Number,

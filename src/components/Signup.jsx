@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { isLoggedin, logout, userSignup } from "./../services/userService";
+import Footer from "./Footer";
 import Navbar from "./Navbar";
 import Navbar2 from "./Navbar2";
 
@@ -62,7 +64,7 @@ const Signup = () => {
                 <div className="col-md-6">
                   <div className="form-group">
                     <input
-                      className="form-control"
+                      className="form-control input"
                       type="text"
                       placeholder="First Name"
                       value={firstName.value}
@@ -76,7 +78,7 @@ const Signup = () => {
                 <div className="col-md-6">
                   <div className="form-group">
                     <input
-                      className="form-control"
+                      className="form-control input"
                       type="text"
                       placeholder="Middle Name"
                       value={middleName.value}
@@ -91,7 +93,7 @@ const Signup = () => {
                 <div className="col-md-6">
                   <div className="form-group">
                     <input
-                      className="form-control"
+                      className="form-control input"
                       type="text"
                       placeholder="Last Name"
                       value={lastName.value}
@@ -105,7 +107,7 @@ const Signup = () => {
                 <div className="col-md-6">
                   <div className="form-group signup-select">
                     <select
-                      className="form-control"
+                      className="form-control input"
                       style={{ height: "50px" }}
                       value={suffix.value}
                       onChange={(e) => {
@@ -125,7 +127,7 @@ const Signup = () => {
                 <div className="col-md-6">
                   <div className="form-group">
                     <input
-                      className="form-control"
+                      className="form-control input"
                       type="date"
                       placeholder="Date Of Birth"
                       value={dateOfBirth.value}
@@ -138,7 +140,7 @@ const Signup = () => {
                 <div className="col-md-6">
                   <div className="form-group">
                     <input
-                      className="form-control"
+                      className="form-control input"
                       type="text"
                       placeholder="Annual Income"
                       value={annualIncome.value}
@@ -154,7 +156,7 @@ const Signup = () => {
                 <div className="col-md-12">
                   <div className="form-group">
                     <input
-                      className="form-control"
+                      className="form-control input"
                       type="text"
                       placeholder="Home Address"
                       value={address.value}
@@ -179,7 +181,7 @@ const Signup = () => {
             </p>
             <div className="form-group mt-30">
               <input
-                className="form-control"
+                className="form-control input"
                 type="text"
                 placeholder="Email"
                 value={email.value}
@@ -191,7 +193,7 @@ const Signup = () => {
             </div>
             <div className="form-group">
               <input
-                className="form-control"
+                className="form-control input"
                 type="password"
                 placeholder="Password"
                 value={password.value}
@@ -203,7 +205,7 @@ const Signup = () => {
             </div>
             <div className="form-group">
               <input
-                className="form-control"
+                className="form-control input"
                 type="text"
                 placeholder="Phone Number"
                 value={phoneNumber.value}
@@ -261,12 +263,14 @@ const Signup = () => {
                   <strong>Already have an Account?&nbsp;</strong>
                 </h1>
                 <div className="d-flex justify-content-center">
-                  <button
-                    className="btn btn-primary sign-in-button"
-                    type="button"
-                  >
-                    Button
-                  </button>
+                  <Link to="/login">
+                    <button
+                      className="btn btn-primary sign-in-button"
+                      type="button"
+                    >
+                      Login
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -355,6 +359,7 @@ const Signup = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

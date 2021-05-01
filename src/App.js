@@ -16,6 +16,7 @@ import { isLoggedin } from "./services/userService";
 import Navbar2 from "./components/Navbar2";
 import Dashboard from "./components/Admin/Dashboard";
 import SellRequest from "./components/SellRequest";
+import AddCar from "./components/Admin/AddCar";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route exact path="/car" component={CarDetail}></Route>
         <Route exact path="/adminDashboard" component={Dashboard}></Route>
         <Route exact path="/sellrequest" component={SellRequest}></Route>
+        <Route exact path="/addCar" component={AddCar}></Route>
       </div>
     </Router>
   );

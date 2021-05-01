@@ -174,7 +174,7 @@ const LoanCalculator = () => {
                           <div className="form-group mt-30">
                             <label>Cost of car I want</label>
                             <input
-                              className="form-control"
+                              className="form-control input"
                               type="number"
                               name=""
                               // value="10000"
@@ -193,12 +193,10 @@ const LoanCalculator = () => {
                                 setCreditScore(e.target.value);
                                 monthlyPaymentUpdate();
                               }}
-                              className="form-control"
+                              className="form-control select"
                             >
                               <optgroup label="This is a group">
-                                <option value={780} selected>
-                                  Excellent: 780
-                                </option>
+                                <option value={780}>Excellent: 780</option>
                                 <option value={680}>Good: 680</option>
                                 <option value={630}>Average: 680</option>
                                 <option value={588}>Below Average: 588</option>
@@ -212,12 +210,10 @@ const LoanCalculator = () => {
                                 setMonths(e.target.value);
                                 monthlyPaymentUpdate();
                               }}
-                              className="form-control"
+                              className="form-control select"
                             >
                               <optgroup label="This is a group">
-                                <option value={72} selected>
-                                  72 Months
-                                </option>
+                                <option value={72}>72 Months</option>
                                 <option value={60}>60 Months</option>
                                 <option value={48}>48 Months</option>
                                 <option value={36}>38 Months</option>
@@ -227,7 +223,7 @@ const LoanCalculator = () => {
                           <div className="form-group">
                             <label>What is your Down payment ?</label>
                             <input
-                              className="form-control"
+                              className="form-control  input"
                               type="number"
                               name="name"
                               min="500"
@@ -257,7 +253,7 @@ const LoanCalculator = () => {
                           <div className="form-group mt-30">
                             <label>Estimated Monthly payment</label>
                             <input
-                              className="form-control"
+                              className="form-control  input"
                               type="number"
                               name="name"
                               min="100"
@@ -275,12 +271,10 @@ const LoanCalculator = () => {
                                 setCreditScore(e.target.value);
                                 totalAffordPrice();
                               }}
-                              className="form-control"
+                              className="form-control select"
                             >
                               <optgroup label="This is a group">
-                                <option value={780} selected>
-                                  Excellent: 780
-                                </option>
+                                <option value={780}>Excellent: 780</option>
                                 <option value={680}>Good: 680</option>
                                 <option value={630}>Average: 680</option>
                                 <option value={588}>Below Average: 588</option>
@@ -294,12 +288,10 @@ const LoanCalculator = () => {
                                 setMonths(e.target.value);
                                 totalAffordPrice();
                               }}
-                              className="form-control"
+                              className="form-control select"
                             >
                               <optgroup label="This is a group">
-                                <option value={72} selected>
-                                  72 Months
-                                </option>
+                                <option value={72}>72 Months</option>
                                 <option value={60}>60 Months</option>
                                 <option value={48}>48 Months</option>
                                 <option value={36}>38 Months</option>
@@ -309,7 +301,7 @@ const LoanCalculator = () => {
                           <div className="form-group">
                             <label>What is your Down payment ?</label>
                             <input
-                              className="form-control"
+                              className="form-control  input"
                               type="number"
                               name="name"
                               min="500"
