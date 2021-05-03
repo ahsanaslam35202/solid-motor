@@ -15,3 +15,7 @@ export function getCar(carId) {
 export function addCar(carInput) {
   return http.post(apiEndPoint, carInput.car);
 }
+
+export function deleteCar(carId) {
+  return http.delete(apiEndPoint + "/" + carId);
+}

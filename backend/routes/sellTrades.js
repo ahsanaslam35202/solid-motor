@@ -15,6 +15,13 @@ router.get("/:id", async (req, res) => {
   res.send(sellTrade);
 });
 
+router.get("/getTradeIn/:id", async (req, res) => {
+  const tradeIn = await SellTrade.findOne({ userId: req.params.id }).select({
+    estimatedPrice: 1,
+  });
+  res.send(tradeIn);
+});
+
 router.post("/", async (req, res) => {
   let sellTrade = new SellTrade({
     sellOrTrade: req.body.sellOrTrade,
@@ -29,6 +36,7 @@ router.post("/", async (req, res) => {
     extendedFeatures: req.body.extendedFeatures,
     carHistory: req.body.carHistory,
     estimatedPrice: req.body.estimatedPrice,
+    userId: req.body.userId,
   });
 
   sellTrade = await sellTrade

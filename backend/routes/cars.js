@@ -119,9 +119,7 @@ router.put("/:id", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   const car = await Car.findByIdAndDelete(req.params.id);
-
   if (!car) return res.status(404).send("Car not found");
-
   res.send(car);
 });
 

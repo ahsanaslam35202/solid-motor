@@ -46,7 +46,7 @@ export function getloggedinuser() {
     const jwt = localStorage.getItem("token");
     return jwtDecode(jwt);
   } catch (ex) {
-    console.log("bbb");
+    console.log(ex);
     return null;
   }
 }

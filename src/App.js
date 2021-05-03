@@ -27,7 +27,6 @@ function App() {
   return (
     <Router>
       <div>
-        {/* <Navbar /> */}
         <Route exact path="/" component={Home}></Route>
         <Route exact path="/loan calculator" component={LoanCalculator}></Route>
         <Route exact path="/sell" component={PreQualified}></Route>

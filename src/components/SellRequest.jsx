@@ -1,6 +1,6 @@
 import React from "react";
 import Footer from "./Footer";
-import { isLoggedin, logout } from "../services/userService";
+import { getloggedinuser, isLoggedin, logout } from "../services/userService";
 import { postSellTrade } from "../services/sellTradeService";
 
 import Navbar from "./Navbar";
@@ -20,6 +20,8 @@ const SellRequest = () => {
 
   const submitCarSell = async (e) => {
     console.log("Function called");
+    const user = getloggedinuser();
+    const userId = user._id;
     await postSellTrade({
       sellOrTrade,
       vinNumber,
@@ -33,6 +35,7 @@ const SellRequest = () => {
       extendedFeatures,
       carHistory,
       estimatedPrice,
+      userId,
     }).then(() => {
       console.log("Request Send Successfully !");
     });

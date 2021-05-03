@@ -11,13 +11,13 @@ import {
   IconButton,
   Typography,
 } from "@material-ui/core";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import ShareIcon from "@material-ui/icons/Share";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import TopBar from "../Common/TopBar";
 import ToolBar from "../Common/ToolBar";
 import Drawer from "../Common/Drawer";
-import { getCars } from "../../services/carsService";
+import { deleteCar, getCars } from "../../services/carsService";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -66,6 +66,12 @@ const ViewCars = () => {
     getCarsData();
   }, []);
 
+  const handleDelete = async (carId) => {
+    await deleteCar(carId).then(() => {
+      getCarsData();
+    });
+  };
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -106,10 +112,15 @@ const ViewCars = () => {
                 </CardContent>
                 <CardActions disableSpacing>
                   <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
+                    <EditIcon />
                   </IconButton>
-                  <IconButton aria-label="share">
-                    <ShareIcon />
+                  <IconButton
+                    onClick={() => {
+                      handleDelete(car._id);
+                    }}
+                    aria-label="share"
+                  >
+                    <DeleteIcon />
                   </IconButton>
                 </CardActions>
               </Card>

@@ -2,10 +2,12 @@ import React from "react";
 import { getCar, getCars } from "../services/carsService";
 import CarCard from "./CarCard";
 import { Link, Redirect } from "react-router-dom";
-import { isLoggedin, logout } from "../services/userService";
+import { getloggedinuser, isLoggedin, logout } from "../services/userService";
 import Navbar2 from "./Navbar2";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import { getTradeIn } from "../services/sellTradeService";
+import { addBuyRequest } from "../services/buyRequestsService";
 
 function useForceUpdate() {
   const [value, setValue] = React.useState(0); // integer state
@@ -23,15 +25,29 @@ const CarDetail = (props) => {
   const [downPayment, setDownPayment] = React.useState(0);
   const [carPrice, setCarPrice] = React.useState(0);
   const [numberOfMonths, setNumberOfMonths] = React.useState(0);
+  const [creditScore, setCreditScore] = React.useState(780);
+  const [annualIncome, setAnnualIncome] = React.useState(30000);
+  const [tradeInCredit, setTradeInCredit] = React.useState(0);
   const { car } = props.location.state;
+
   const getCarsData = async () => {
     const { data } = await getCars();
     const cars = [...data];
     setCars(cars);
   };
 
+  const getTradeInCredit = async () => {
+    const user = getloggedinuser();
+    const userId = user._id;
+    const { data } = await getTradeIn(userId);
+    setTradeInCredit(data.estimatedPrice);
+  };
+
   React.useEffect(() => {
     getCarsData();
+  }, []);
+  React.useEffect(() => {
+    getTradeInCredit();
   }, []);
   React.useEffect(() => {
     setCarPrice(car.price);
@@ -52,8 +68,22 @@ const CarDetail = (props) => {
     setMonthlyPayment(e.target.value);
     setDownPayment(carPrice - e.target.value * numberOfMonths);
   };
-  const handleRequestSubmit = () => {
-    console.log("Redirect");
+  const handleRequestSubmit = async (e) => {
+    e.preventDefault();
+    const user = getloggedinuser();
+    const userId = user._id;
+    const carId = car._id;
+    await addBuyRequest({
+      carId,
+      userId,
+      downPayment,
+      monthlyPayment,
+      numberOfMonths,
+      creditScore,
+      annualIncome,
+    }).then(() => {
+      console.log("Request Send Successfully !");
+    });
   };
 
   return (
@@ -307,13 +337,13 @@ const CarDetail = (props) => {
                           {/* <label>Annual Income?</label> */}
                           <select>
                             <optgroup label="Your Annual Income">
-                              <option value={12}>$30,000+</option>
-                              <option value={13}>$40,000+</option>
-                              <option value={14}>$50,000+</option>
-                              <option value={15}>$60,000+</option>
-                              <option value={16}>$80,000+</option>
-                              <option value={17}>$120,000+</option>
-                              <option value={18}>$150,000+</option>
+                              <option value={30000}>$30,000+</option>
+                              <option value={40000}>$40,000+</option>
+                              <option value={50000}>$50,000+</option>
+                              <option value={60000}>$60,000+</option>
+                              <option value={80000}>$80,000+</option>
+                              <option value={120000}>$120,000+</option>
+                              <option value={150000}>$150,000+</option>
                             </optgroup>
                           </select>
                         </div>
@@ -465,14 +495,16 @@ const CarDetail = (props) => {
               <div className="summary-card">
                 <div className="d-flex justify-content-center summary-header">
                   <div className="w-50">
-                    <h1 className="summary-header-heading">$321</h1>
+                    <h1 className="summary-header-heading">
+                      ${monthlyPayment}
+                    </h1>
                     <h1 className="summary-header-sub-heading">
                       Estimated Monthly Payment
                     </h1>
                   </div>
                   <div className="d-flex justify-content-end w-50">
                     <div>
-                      <h1 className="summary-header-heading">$32,000</h1>
+                      <h1 className="summary-header-heading">${downPayment}</h1>
                       <h1 className="summary-header-sub-heading">Cash Down</h1>
                     </div>
                   </div>
@@ -522,7 +554,7 @@ const CarDetail = (props) => {
                     <p>TRADE-IN CREDIT</p>
                   </div>
                   <div className="d-flex justify-content-end w-40">
-                    <p>$35,000</p>
+                    <p>${tradeInCredit}</p>
                   </div>
                 </div>
                 <div className="d-flex summary-card-price-detail">
@@ -538,17 +570,26 @@ const CarDetail = (props) => {
                     <p>ESTIMATED AMOUNT FINANCED</p>
                   </div>
                   <div className="d-flex justify-content-end w-40">
-                    <p>$35,000</p>
+                    <p>
+                      $
+                      {car.price +
+                        car.shippingCharges +
+                        car.taxAndRegistrationCharges +
+                        car.dealerFees +
+                        car.downPayment -
+                        tradeInCredit}
+                    </p>
                   </div>
                 </div>
-                <Link
-                  to="thankyou"
+                <button
                   className="btn btn-primary summary-button"
                   type="button"
-                  // onClick={handleRequestSubmit}
+                  onClick={(e) => {
+                    handleRequestSubmit(e);
+                  }}
                 >
                   GET STARTED
-                </Link>
+                </button>
               </div>
             </div>
           </div>
