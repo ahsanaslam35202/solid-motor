@@ -21,6 +21,7 @@ const SellRequest = () => {
   const submitCarSell = async (e) => {
     console.log("Function called");
     await postSellTrade({
+      sellOrTrade,
       vinNumber,
       carMakeModel,
       carModelYear,
@@ -31,11 +32,13 @@ const SellRequest = () => {
       driveTrain,
       extendedFeatures,
       carHistory,
+      estimatedPrice,
     }).then(() => {
       console.log("Request Send Successfully !");
     });
   };
 
+  const [sellOrTrade, setSellOrTrade] = React.useState("Trade");
   const [vinNumber, setVinNumber] = React.useState("");
   const [carMakeModel, setCarMakeModel] = React.useState("");
   const [carModelYear, setCarModelYear] = React.useState();
@@ -48,6 +51,7 @@ const SellRequest = () => {
 
   const [extendedFeatures, setExtendedFeatures] = React.useState("");
   const [carHistory, setCarHistory] = React.useState("");
+  const [estimatedPrice, setEstimatedPrice] = React.useState(0);
 
   return (
     <>
@@ -92,6 +96,23 @@ const SellRequest = () => {
             <div className="row mt-0">
               <div className="col-md-6">
                 <div className="form-group">
+                  <label className="sell-request-label">Selling Or Trade</label>
+
+                  <select
+                    className="sell-request-input"
+                    onChange={(e) => {
+                      setSellOrTrade(e.target.value);
+                    }}
+                  >
+                    <optgroup label="Choose Option">
+                      <option value={"Sell"}>Trade</option>
+                      <option value={"Trade"}>Sell</option>
+                    </optgroup>
+                  </select>
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="form-group">
                   <label className="sell-request-label">Vin Number</label>
                   <input
                     className="form-control sell-request-input"
@@ -121,9 +142,7 @@ const SellRequest = () => {
                   />
                 </div>
               </div>
-            </div>
 
-            <div className="row mt-0">
               <div className="col-md-6">
                 <div className="form-group">
                   <label className="sell-request-label">Car Model Year</label>
@@ -138,7 +157,9 @@ const SellRequest = () => {
                   />
                 </div>
               </div>
+            </div>
 
+            <div className="row mt-0">
               <div className="col-md-6">
                 <div className="form-group">
                   <label className="sell-request-label">Driven Miles</label>

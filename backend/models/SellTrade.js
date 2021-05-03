@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Joi = require("joi");
 
 var sellTradeSchema = mongoose.Schema({
+  sellOrTrade: String,
   vinNumber: String,
   carMakeModel: String,
   carModelYear: String,
@@ -12,6 +13,7 @@ var sellTradeSchema = mongoose.Schema({
   driveTrain: String,
   extendedFeatures: String,
   carHistory: String,
+  estimatedPrice: Number,
 });
 
 var SellTrade = mongoose.model("SellTrade", sellTradeSchema);

@@ -7,3 +7,11 @@ const apiEndPoint = apiURL + "/sellTrades";
 export function postSellTrade(data) {
   return http.post(apiEndPoint, data);
 }
+
+export function getSellTrade(data) {
+  return http.get(apiEndPoint, data);
+}
+
+export function putSellTrade(_id, estimatedPrice) {
+  return http.put(apiEndPoint + "/" + _id, { estimatedPrice });
+}
