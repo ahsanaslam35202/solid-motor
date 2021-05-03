@@ -17,6 +17,9 @@ import Navbar2 from "./components/Navbar2";
 import Dashboard from "./components/Admin/Dashboard";
 import SellRequest from "./components/SellRequest";
 import AddCar from "./components/Admin/AddCar";
+import TradeSellAdmin from "./components/Admin/TradeSellAdmin";
+import SellTradeDetails from "./components/Admin/SellTradeDetails";
+import BuyCarDetails from "./components/Admin/BuyCarDetails";
 
 function App() {
   return (
@@ -38,6 +41,13 @@ function App() {
         <Route exact path="/adminDashboard" component={Dashboard}></Route>
         <Route exact path="/sellrequest" component={SellRequest}></Route>
         <Route exact path="/addCar" component={AddCar}></Route>
+        <Route exact path="/TradeSellAdmin" component={TradeSellAdmin}></Route>
+        <Route exact path="/buy car details" component={BuyCarDetails}></Route>
+        <Route
+          exact
+          path="/sellTradeDetails"
+          component={SellTradeDetails}
+        ></Route>
       </div>
     </Router>
   );

@@ -55,6 +55,12 @@ const Drawer = (props) => {
           </ListItemIcon>
           <ListItemText primary="Dashboard" />
         </ListItem>
+        <ListItem button component={Link} to="/TradeSellAdmin">
+          <ListItemIcon>
+            <DashboardRoundedIcon />
+          </ListItemIcon>
+          <ListItemText primary="Trade/Sell Requests" />
+        </ListItem>
         <ListItem button onClick={handleOfficesClick}>
           <ListItemIcon>
             <BusinessRoundedIcon />

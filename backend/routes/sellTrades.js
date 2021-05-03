@@ -17,6 +17,7 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   let sellTrade = new SellTrade({
+    sellOrTrade: req.body.sellOrTrade,
     vinNumber: req.body.vinNumber,
     carMakeModel: req.body.carMakeModel,
     carModelYear: req.body.carModelYear,
@@ -27,6 +28,7 @@ router.post("/", async (req, res) => {
     driveTrain: req.body.driveTrain,
     extendedFeatures: req.body.extendedFeatures,
     carHistory: req.body.carHistory,
+    estimatedPrice: req.body.estimatedPrice,
   });
 
   sellTrade = await sellTrade
@@ -40,19 +42,10 @@ router.post("/", async (req, res) => {
 });
 
 router.put("/:id", async (req, res) => {
-  const car = await Car.updateOne(
+  const sellTrade = await SellTrade.updateOne(
     { _id: req.params.id },
     {
-      vinNumber: req.body.vinNumber,
-      carMakeModel: req.body.carMakeModel,
-      carModelYear: req.body.carModelYear,
-      drivenMiles: req.body.drivenMiles,
-      fuelType: req.body.fuelType,
-      engineType: req.body.engineType,
-      transmission: req.body.transmission,
-      driveTrain: req.body.driveTrain,
-      extendedFeatures: req.body.extendedFeatures,
-      carHistory: req.body.carHistory,
+      estimatedPrice: req.body.estimatedPrice,
     },
     { new: true }
   );
