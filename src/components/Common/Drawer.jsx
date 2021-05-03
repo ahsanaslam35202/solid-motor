@@ -81,6 +81,17 @@ const Drawer = (props) => {
               </ListItemIcon>
               <ListItemText primary="Add Car" />
             </ListItem>
+            <ListItem
+              button
+              className={classes.nested}
+              component={Link}
+              to="/viewCars"
+            >
+              <ListItemIcon>
+                <LibraryAddRoundedIcon />
+              </ListItemIcon>
+              <ListItemText primary="View Cars" />
+            </ListItem>
           </List>
         </Collapse>
       </List>
