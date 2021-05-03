@@ -117,6 +117,15 @@ const BuyCarDetails = (props) => {
               </Grid>
 
               <Grid item md={4}>
+                <DisplayCard title={"Buyer Name"} value={"Name"} />
+              </Grid>
+              <Grid item md={4}>
+                <DisplayCard title={"Buyer Phone Number"} value={"Name"} />
+              </Grid>
+              <Grid item md={4}>
+                <DisplayCard title={"Buyer Email Number"} value={"Name"} />
+              </Grid>
+              <Grid item md={4}>
                 <DisplayCard title={"Loan Term"} value={"Name"} />
               </Grid>
               <Grid item md={4}>
