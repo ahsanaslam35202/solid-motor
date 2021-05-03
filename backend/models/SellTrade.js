@@ -14,6 +14,7 @@ var sellTradeSchema = mongoose.Schema({
   extendedFeatures: String,
   carHistory: String,
   estimatedPrice: Number,
+  userId: mongoose.Types.ObjectId,
 });
 
 var SellTrade = mongoose.model("SellTrade", sellTradeSchema);

@@ -1,5 +1,6 @@
 import React from "react";
 import { isLoggedin, logout } from "../services/userService";
+import Footer from "./Footer";
 import Navbar from "./Navbar";
 import Navbar2 from "./Navbar2";
 
@@ -416,6 +417,7 @@ const Home = (props) => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
