@@ -17,6 +17,7 @@ import Navbar2 from "./components/Navbar2";
 import Dashboard from "./components/Admin/Dashboard";
 import SellRequest from "./components/SellRequest";
 import AddCar from "./components/Admin/AddCar";
+import ViewCars from "./components/Admin/ViewCars";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
         <Route exact path="/adminDashboard" component={Dashboard}></Route>
         <Route exact path="/sellrequest" component={SellRequest}></Route>
         <Route exact path="/addCar" component={AddCar}></Route>
+        <Route exact path="/viewCars" component={ViewCars}></Route>
       </div>
     </Router>
   );

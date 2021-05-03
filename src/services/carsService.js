@@ -11,3 +11,7 @@ export function getCars() {
 export function getCar(carId) {
   return http.get(apiEndPoint + "/" + carId);
 }
+
+export function addCar(carInput) {
+  return http.post(apiEndPoint, carInput.car);
+}

@@ -15,7 +15,9 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
+import { DropzoneArea } from "material-ui-dropzone";
 import React from "react";
+import { addCar } from "../../services/carsService";
 import Drawer from "../Common/Drawer";
 import ToolBar from "../Common/ToolBar";
 import TopBar from "../Common/TopBar";
@@ -43,6 +45,10 @@ const useStyles = makeStyles((theme) => ({
   },
   chipMargin: {
     marginRight: theme.spacing(1),
+  },
+  submitButton: {
+    float: "right",
+    margin: "20px 0px",
   },
 }));
 
@@ -91,6 +97,7 @@ const AddCar = (props) => {
     error: "",
   });
   const [extendedFeatures, setExtendedFeatures] = React.useState([]);
+  const [images, setImages] = React.useState([]);
   const [downPayment, setDownPayment] = React.useState({
     value: "",
     error: "",
@@ -119,6 +126,46 @@ const AddCar = (props) => {
     features.push(extendedFeature.value);
     setExtendedFeatures(features);
     setExtendedFeature({ value: "", error: "" });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const car = {
+      make,
+      model,
+      name,
+      fuel,
+      milesDriven,
+      body,
+      modelYear,
+      exteriorColor,
+      interiorColor,
+      engineType,
+      engineCapacity,
+      transmission,
+      driveTrain,
+      doors,
+      numberOfKeys,
+      vin,
+      stock,
+      vehicleId,
+      mpg,
+      extendedFeatures,
+      // images,
+      price,
+      downPayment,
+      numberOfMonths,
+      shippingCharges,
+      taxAndRegistrationCharges,
+      dealerFees,
+    };
+    await addCar({ car })
+      .then((res) => {
+        console.log(res.statusText);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -421,7 +468,7 @@ const AddCar = (props) => {
                   </Grid>
                 </Box>
               </Grid>
-              <Grid item xs={12} md={12}>
+              {/* <Grid item xs={12} md={12}>
                 <Typography variant="h5" component="h3" align="center">
                   Images
                 </Typography>
@@ -429,45 +476,14 @@ const AddCar = (props) => {
               <Grid item xs={12} className={classes.featuresBox}>
                 <Box>
                   <Grid container spacing={3}>
-                    <Grid item md={9}>
-                      <TextField
-                        variant="outlined"
-                        label="Extended Feature"
-                        fullWidth
-                        size="small"
-                        value={extendedFeature.value}
-                        onChange={(e) => {
-                          setExtendedFeature({ value: e.target.value });
-                        }}
-                      />
-                    </Grid>
-                    <Grid item md={3}>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        fullWidth
-                        onClick={handleExtendedFeaturesAdd}
-                      >
-                        Add
-                      </Button>
-                    </Grid>
-                    <Grid item xs={12}>
-                      {extendedFeatures.map((feature, index) => (
-                        <Chip
-                          label={feature}
-                          onDelete={() => {
-                            var features = [...extendedFeatures];
-                            features = features.filter((e) => e !== feature);
-                            setExtendedFeatures(features);
-                          }}
-                          className={classes.chipMargin}
-                          color="primary"
-                        />
-                      ))}
-                    </Grid>
+                    <DropzoneArea
+                      acceptedFiles={["image/*"]}
+                      dropzoneText={"Drag and drop an image here or click"}
+                      onChange={(files) => setImages({ selectedFiles: files })}
+                    />
                   </Grid>
                 </Box>
-              </Grid>
+              </Grid> */}
 
               <Grid item xs={12} md={12}>
                 <Typography variant="h5" component="h3" align="center">
@@ -566,6 +582,17 @@ const AddCar = (props) => {
                 />
               </Grid>
             </Grid>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              className={classes.submitButton}
+              onClick={(e) => {
+                handleSubmit(e);
+              }}
+            >
+              Submit
+            </Button>
           </CardContent>
         </Card>
       </main>
