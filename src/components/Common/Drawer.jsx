@@ -23,9 +23,15 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       width: drawerWidth,
       flexShrink: 0,
+      backgroundColor: "#00b7fa",
     },
   },
+  white: {
+    color: "white",
+  },
   drawerPaper: {
+    backgroundColor: "#00b7fa",
+    color: "white",
     width: drawerWidth,
   }, // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
@@ -51,19 +57,19 @@ const Drawer = (props) => {
       <List>
         <ListItem button component={Link} to="/adminDashboard">
           <ListItemIcon>
-            <DashboardRoundedIcon />
+            <DashboardRoundedIcon className={classes.white} />
           </ListItemIcon>
           <ListItemText primary="Dashboard" />
         </ListItem>
         <ListItem button component={Link} to="/TradeSellAdmin">
           <ListItemIcon>
-            <DashboardRoundedIcon />
+            <DashboardRoundedIcon className={classes.white} />
           </ListItemIcon>
           <ListItemText primary="Trade/Sell Requests" />
         </ListItem>
         <ListItem button onClick={handleOfficesClick}>
           <ListItemIcon>
-            <BusinessRoundedIcon />
+            <BusinessRoundedIcon className={classes.white} />
           </ListItemIcon>
           <ListItemText primary="Cars" />
           {carOpen ? <ExpandLess /> : <ExpandMore />}
@@ -77,7 +83,7 @@ const Drawer = (props) => {
               to="/addCar"
             >
               <ListItemIcon>
-                <LibraryAddRoundedIcon />
+                <LibraryAddRoundedIcon className={classes.white} />
               </ListItemIcon>
               <ListItemText primary="Add Car" />
             </ListItem>
@@ -88,7 +94,7 @@ const Drawer = (props) => {
               to="/viewCars"
             >
               <ListItemIcon>
-                <LibraryAddRoundedIcon />
+                <LibraryAddRoundedIcon className={classes.white} />
               </ListItemIcon>
               <ListItemText primary="View Cars" />
             </ListItem>

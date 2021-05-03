@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 const useStyles = makeStyles({
   root: {
     // minWidth: 275,
+    borderRadius: "12px",
+    padding: "6px",
   },
   bullet: {
     display: "inline-block",
@@ -23,9 +25,15 @@ const useStyles = makeStyles({
     marginBottom: 12,
   },
   checkButton: {
-    backgroundColor: "#00bbff",
+    backgroundColor: "#00b7fa",
     paddingLeft: "5px",
     paddingRight: "5px",
+  },
+  mainColor: {
+    color: "#00b7fa",
+  },
+  greenColor: {
+    color: "green",
   },
 });
 
@@ -43,7 +51,7 @@ export default function SellTradeCard(props) {
         >
           {props.sellOrTrade}
         </Typography>
-        <Typography variant="h5" component="h2">
+        <Typography variant="h5" component="h2" className={classes.mainColor}>
           {props.carMakeModel}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">

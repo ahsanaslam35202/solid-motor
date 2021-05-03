@@ -22,8 +22,8 @@ const Footer = () => {
                 <a className="w-100 d-block" href="./">
                   Home
                 </a>
-                <a className="w-100 d-block" href="./about-us">
-                  About Us
+                <a className="w-100 d-block" href="./search Cars">
+                  Search Cars
                 </a>
                 <a className="w-100 d-block" href="./sell-trade car">
                   Sell Car

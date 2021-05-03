@@ -35,7 +35,9 @@ const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   cardHeading: {
     textAlign: "center",
-    fontSize: "36px !important",
+    fontSize: "42px !important",
+    marginTop: "20px",
+    color: "#00b7fa",
   },
   featuresBox: {
     boxShadow: "2px 7px 12px 7px rgba(56,74,76,0.05)",
@@ -57,6 +59,12 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "30px",
     padding: " 10px 30px",
     backgroundColor: "#00b7fa",
+  },
+  DisplayCard: {
+    color: "#9fe5ff",
+  },
+  mainColor: {
+    color: "#00b7fa",
   },
 }));
 
@@ -97,10 +105,12 @@ const SellTradeDetails = (props) => {
         <ToolBar />
 
         <Card>
-          <CardHeader
-            title="Add Car"
-            className={classes.cardHeading}
-          ></CardHeader>
+          <Typography className={classes.cardHeading}>
+            {" "}
+            {sellTrade.sellOrTrade} Car Request{" "}
+          </Typography>
+          <CardHeader></CardHeader>
+
           <Divider />
           <CardContent>
             <Grid container spacing={3}>
@@ -108,6 +118,7 @@ const SellTradeDetails = (props) => {
                 <DisplayCard
                   title={"Car Vin Number"}
                   value={sellTrade.vinNumber}
+                  className={classes.DisplayCard}
                 />
               </Grid>
               <Grid item md={4}>
@@ -178,7 +189,7 @@ const SellTradeDetails = (props) => {
                 component="h2"
                 gutterBottom
                 align="center"
-                className={classes.estimated_price}
+                className={`${classes.estimated_price} ${classes.mainColor}`}
               >
                 Give Estimated Price
               </Typography>

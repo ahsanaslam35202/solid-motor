@@ -32,9 +32,11 @@ const PreQualified = () => {
                   Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
                   maecenas accumsan lacus vel facilisis.
                 </p>
-                <button className="btn btn-primary main-button" type="button">
-                  <strong>Get Pre Qualitied</strong>
-                </button>
+                <a href="sellrequest">
+                  <button className="btn btn-primary main-button" type="button">
+                    <strong>Sell Or Trade Your Car</strong>
+                  </button>
+                </a>
               </div>
             </div>
             <div className="col-md-6 header-img mobile-mt-50">
@@ -295,7 +297,7 @@ const PreQualified = () => {
               </div>
             </div>
             <div className="col-md-6 d-flex align-items-center mobile-mt-50">
-              <form className="contact-form" method="post">
+              <form className="contact-form">
                 <h2 className="text-center h1-black">Send Us a Message</h2>
                 <div className="form-group mt-80">
                   <input
@@ -334,9 +336,7 @@ const PreQualified = () => {
                   />
                 </div>
                 <div className="form-group text-center">
-                  <button className="btn btn-primary main-button" type="submit">
-                    SEND
-                  </button>
+                  <button className="btn btn-primary main-button">SEND</button>
                 </div>
               </form>
             </div>
