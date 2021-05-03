@@ -18,6 +18,7 @@ import TopBar from "../Common/TopBar";
 import ToolBar from "../Common/ToolBar";
 import Drawer from "../Common/Drawer";
 import { getCars } from "../../services/carsService";
+import { getBuyRequests } from "../../services/buyRequestsService";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -58,17 +59,17 @@ const useStyles = makeStyles((theme) => ({
 const BuyCarView = () => {
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  //   const [cars, setCars] = React.useState([]);
+  const [buyRequests, setBuyRequests] = React.useState([]);
 
-  //   const getCarsData = async () => {
-  //     const { data } = await getCars();
-  //     const cars = [...data];
-  //     setCars(cars);
-  //   };
+  const getBuyRequestsData = async () => {
+    const { data } = await getBuyRequests();
+    const requests = [...data];
+    setBuyRequests(requests);
+  };
 
-  //   React.useEffect(() => {
-  //     getCarsData();
-  //   }, []);
+  React.useEffect(() => {
+    getBuyRequestsData();
+  }, []);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -81,47 +82,49 @@ const BuyCarView = () => {
       <main className={classes.content}>
         <ToolBar />
         <Grid container spacing={3}>
-          <Grid item md={3}>
-            <Card className={classes.root}>
-              <CardHeader
-                titleTypographyProps={{ variant: "subtitle2" }}
-                subheaderTypographyProps={{ variant: "body2" }}
-                title={"Offered Down Payment: "}
-                subheader={"Offered CashDown: "}
-              />
-              <CardMedia
-                className={classes.media}
-                image="assets/img/car%20guide.png"
-                title="Car Image"
-              />
-              <CardContent>
-                <Typography
-                  variant="h"
-                  color="textSecondary"
-                  component="subtitle2"
-                >
-                  {"Car Name"}
-                </Typography>
-                <br />
-                <Typography
-                  variant="h"
-                  color="textSecondary"
-                  component="subtitle2"
-                >
-                  {"Car Total Price"}
-                </Typography>
-                <br />
-                <Typography
-                  variant="h"
-                  className={classes.card_subtitle}
-                  color="textSecondary"
-                  component="subtitle2"
-                >
-                  {"Buyer Name"}
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
+          {buyRequests.map((buyRequest, index) => (
+            <Grid item md={3}>
+              <Card className={classes.root}>
+                <CardHeader
+                  titleTypographyProps={{ variant: "subtitle2" }}
+                  subheaderTypographyProps={{ variant: "body2" }}
+                  title={"$" + buyRequest.downPayment}
+                  subheader={"$" + buyRequest.monthlyPayment}
+                />
+                <CardMedia
+                  className={classes.media}
+                  image="assets/img/car%20guide.png"
+                  title="Car Image"
+                />
+                <CardContent>
+                  <Typography
+                    variant="h"
+                    color="textSecondary"
+                    component="subtitle2"
+                  >
+                    {buyRequest.car[0].make + " " + buyRequest.car[0].model}
+                  </Typography>
+                  <br />
+                  <Typography
+                    variant="h"
+                    color="textSecondary"
+                    component="subtitle2"
+                  >
+                    ${buyRequest.car[0].price}
+                  </Typography>
+                  <br />
+                  <Typography
+                    variant="h"
+                    className={classes.card_subtitle}
+                    color="textSecondary"
+                    component="subtitle2"
+                  >
+                    {buyRequest.user[0].firstName}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
         </Grid>
       </main>
     </div>

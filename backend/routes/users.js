@@ -9,7 +9,6 @@ var validateUserLoginMW = require("../middlewares/authUserLog");
 
 router.get("/", async (req, res, next) => {
   let user = await User.find();
-
   res.send(user[0]._id);
 });
 

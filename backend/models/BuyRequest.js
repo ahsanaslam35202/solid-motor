@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Joi = require("joi");
 
-var sellTradeSchema = mongoose.Schema({
+var buyRequestSchema = mongoose.Schema({
   carId: mongoose.Types.ObjectId,
   userId: mongoose.Types.ObjectId,
   downPayment: Number,
@@ -11,5 +11,5 @@ var sellTradeSchema = mongoose.Schema({
   annualIncome: Number,
 });
 
-var SellTrade = mongoose.model("SellTrade", sellTradeSchema);
-module.exports.SellTrade = SellTrade;
+var BuyRequest = mongoose.model("BuyRequest", buyRequestSchema);
+module.exports.BuyRequest = BuyRequest;

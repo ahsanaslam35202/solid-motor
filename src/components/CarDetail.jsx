@@ -7,6 +7,7 @@ import Navbar2 from "./Navbar2";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { getTradeIn } from "../services/sellTradeService";
+import { addBuyRequest } from "../services/buyRequestsService";
 
 function useForceUpdate() {
   const [value, setValue] = React.useState(0); // integer state
@@ -24,6 +25,8 @@ const CarDetail = (props) => {
   const [downPayment, setDownPayment] = React.useState(0);
   const [carPrice, setCarPrice] = React.useState(0);
   const [numberOfMonths, setNumberOfMonths] = React.useState(0);
+  const [creditScore, setCreditScore] = React.useState(780);
+  const [annualIncome, setAnnualIncome] = React.useState(30000);
   const [tradeInCredit, setTradeInCredit] = React.useState(0);
   const { car } = props.location.state;
 
@@ -65,8 +68,22 @@ const CarDetail = (props) => {
     setMonthlyPayment(e.target.value);
     setDownPayment(carPrice - e.target.value * numberOfMonths);
   };
-  const handleRequestSubmit = () => {
-    console.log("Redirect");
+  const handleRequestSubmit = async (e) => {
+    e.preventDefault();
+    const user = getloggedinuser();
+    const userId = user._id;
+    const carId = car._id;
+    await addBuyRequest({
+      carId,
+      userId,
+      downPayment,
+      monthlyPayment,
+      numberOfMonths,
+      creditScore,
+      annualIncome,
+    }).then(() => {
+      console.log("Request Send Successfully !");
+    });
   };
 
   return (
@@ -320,13 +337,13 @@ const CarDetail = (props) => {
                           {/* <label>Annual Income?</label> */}
                           <select>
                             <optgroup label="Your Annual Income">
-                              <option value={12}>$30,000+</option>
-                              <option value={13}>$40,000+</option>
-                              <option value={14}>$50,000+</option>
-                              <option value={15}>$60,000+</option>
-                              <option value={16}>$80,000+</option>
-                              <option value={17}>$120,000+</option>
-                              <option value={18}>$150,000+</option>
+                              <option value={30000}>$30,000+</option>
+                              <option value={40000}>$40,000+</option>
+                              <option value={50000}>$50,000+</option>
+                              <option value={60000}>$60,000+</option>
+                              <option value={80000}>$80,000+</option>
+                              <option value={120000}>$120,000+</option>
+                              <option value={150000}>$150,000+</option>
                             </optgroup>
                           </select>
                         </div>
@@ -564,14 +581,15 @@ const CarDetail = (props) => {
                     </p>
                   </div>
                 </div>
-                <Link
-                  to="thankyou"
+                <button
                   className="btn btn-primary summary-button"
                   type="button"
-                  // onClick={handleRequestSubmit}
+                  onClick={(e) => {
+                    handleRequestSubmit(e);
+                  }}
                 >
                   GET STARTED
-                </Link>
+                </button>
               </div>
             </div>
           </div>
