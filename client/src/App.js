@@ -22,6 +22,7 @@ import TradeSellAdmin from "./components/Admin/TradeSellAdmin";
 import SellTradeDetails from "./components/Admin/SellTradeDetails";
 import BuyCarDetails from "./components/Admin/BuyCarDetails";
 import BuyCarView from "./components/Admin/BuyCarView";
+import AdminLogin from "./components/Admin/AdminLogin";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
         <Route exact path="/TradeSellAdmin" component={TradeSellAdmin}></Route>
         <Route exact path="/buy car details" component={BuyCarDetails}></Route>
         <Route exact path="/buy car requests" component={BuyCarView}></Route>
+        <Route exact path="/adminlogin" component={AdminLogin}></Route>
         <Route
           exact
           path="/sellTradeDetails"

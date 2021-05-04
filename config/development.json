@@ -1,5 +1,4 @@
 {
-    "db": "mongodb://localhost/SolidMotors",
-    "jwt": "SomeKey"
-  }
-  
+  "db": "mongodb://localhost/SolidMotors",
+  "jwt": "SomeKey"
+}
