@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
+const morgan = require("morgan");
 const express = require("express");
 const app = express();
 
@@ -10,6 +11,7 @@ const sellTrades = require("./routes/sellTrades");
 const buyRequests = require("./routes/buyRequests");
 const admin = require("./routes/admin");
 
+app.use(morgan("dev"));
 app.use(cors());
 app.use(express.json());
 //
