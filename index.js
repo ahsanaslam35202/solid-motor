@@ -31,7 +31,7 @@ mongoose
     }
   )
   .then(() => console.log("Db connected"))
-  .catch((err) => console.log("Could not connect to mongodb"));
+  .catch((err) => console.log(err));
 
 app.use(express.static(path.join(__dirname, "client/build")));
 
