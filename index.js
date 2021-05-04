@@ -22,11 +22,14 @@ app.use("/api/sellTrades", sellTrades);
 app.use("/api/buyRequests", buyRequests);
 
 mongoose
-  .connect("mongodb://localhost/SolidMotors", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-  })
+  .connect(
+    "mongodb://ahsan_aslam35202:bugatti91@solid-motor-shard-00-00.l4fou.mongodb.net:27017,solid-motor-shard-00-01.l4fou.mongodb.net:27017,solid-motor-shard-00-02.l4fou.mongodb.net:27017/test?replicaSet=atlas-nuokeq-shard-0&ssl=true&authSource=admin",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    }
+  )
   .then(() => console.log("Db connected"))
   .catch((err) => console.log("Could not connect to mongodb"));
 
