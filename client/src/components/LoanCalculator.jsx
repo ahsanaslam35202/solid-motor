@@ -28,7 +28,16 @@ const LoanCalculator = () => {
 
   React.useEffect(() => {
     monthlyPaymentUpdate();
-  }, []);
+    affordPriceUpdate();
+  }, [
+    months,
+    creditScore,
+    carCost,
+    downPayment,
+    monthlyPayment,
+    affordPrice,
+    estimatedMonthlyPaymemt,
+  ]);
 
   var commision = 0;
   var pendingPayment = 0;
@@ -97,22 +106,27 @@ const LoanCalculator = () => {
   }
 
   function monthlyPaymentUpdate() {
-    calCommision();
-    pendingPayment = carCost - downPayment;
-    carPrice = pendingPayment / months;
-    carPrice = carPrice * (1 + commision / 100);
-    setMonthlyPayment(Math.ceil(carPrice));
+    if (carCost >= 10000 && downPayment >= 500) {
+      calCommision();
+      pendingPayment = carCost - downPayment;
+      carPrice = pendingPayment / months;
+      carPrice = carPrice * (1 + commision / 100);
+      setMonthlyPayment(Math.ceil(carPrice));
+    }
   }
 
-  function totalAffordPrice() {
-    calCommision();
-    var tfp = 0;
-    console.log(commision);
-    tfp = estimatedMonthlyPaymemt * months;
-    console.log(tfp);
-    tfp = tfp * (1 + commision / 100);
-    tfp = tfp + downPayment;
-    setAffordPrice(Math.ceil(tfp));
+  function affordPriceUpdate() {
+    if (estimatedMonthlyPaymemt >= 100 && downPayment >= 500) {
+      console.log(estimatedMonthlyPaymemt);
+      calCommision();
+      var tfp = 0;
+      console.log(commision);
+      tfp = estimatedMonthlyPaymemt * months;
+      console.log(tfp);
+      tfp = tfp * (1 + commision / 100);
+      tfp = tfp + downPayment;
+      setAffordPrice(Math.ceil(tfp));
+    }
   }
 
   return (
@@ -260,7 +274,7 @@ const LoanCalculator = () => {
                               placeholder="100"
                               onChange={(e) => {
                                 setEstimatedMonthlyPayment(e.target.value);
-                                totalAffordPrice();
+                                affordPriceUpdate();
                               }}
                             />
                           </div>
@@ -269,7 +283,7 @@ const LoanCalculator = () => {
                             <select
                               onChange={(e) => {
                                 setCreditScore(e.target.value);
-                                totalAffordPrice();
+                                affordPriceUpdate();
                               }}
                               className="form-control loan-input"
                             >
@@ -286,7 +300,7 @@ const LoanCalculator = () => {
                             <select
                               onChange={(e) => {
                                 setMonths(e.target.value);
-                                totalAffordPrice();
+                                affordPriceUpdate();
                               }}
                               className="form-control loan-input"
                             >
@@ -309,7 +323,7 @@ const LoanCalculator = () => {
                               placeholder="500"
                               onChange={(e) => {
                                 setDownpayment(e.target.value);
-                                totalAffordPrice();
+                                affordPriceUpdate();
                               }}
                             />
                           </div>

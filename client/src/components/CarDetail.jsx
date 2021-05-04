@@ -58,15 +58,15 @@ const CarDetail = (props) => {
 
   const handleMonthsChange = (e) => {
     setNumberOfMonths(e.target.value);
-    setMonthlyPayment((carPrice - downPayment) / e.target.value);
+    setMonthlyPayment(Math.ceil((carPrice - downPayment) / e.target.value));
   };
   const handleDownPaymentChange = (e) => {
     setDownPayment(e.target.value);
-    setMonthlyPayment((carPrice - e.target.value) / numberOfMonths);
+    setMonthlyPayment(Math.ceil((carPrice - e.target.value) / numberOfMonths));
   };
   const handleMonthlyPaymentChange = (e) => {
     setMonthlyPayment(e.target.value);
-    setDownPayment(carPrice - e.target.value * numberOfMonths);
+    setDownPayment(Math.ceil(carPrice - e.target.value * numberOfMonths));
   };
   const handleRequestSubmit = async (e) => {
     e.preventDefault();
