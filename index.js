@@ -23,7 +23,7 @@ app.use("/api/buyRequests", buyRequests);
 
 mongoose
   .connect(
-    "mongodb+srv://ahsan_aslam35202:bugatti91@solid-motor.l4fou.mongodb.net/test",
+    "mongodb://ahsan_aslam35202:bugatti91@solid-motor-shard-00-00.l4fou.mongodb.net:27017,solid-motor-shard-00-01.l4fou.mongodb.net:27017,solid-motor-shard-00-02.l4fou.mongodb.net:27017/test?replicaSet=atlas-nuokeq-shard-0&ssl=true&authSource=admin",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
