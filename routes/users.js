@@ -55,6 +55,7 @@ router.post("/login", validateUserLoginMW, async (req, res) => {
     req.body.password.value,
     userData.password
   );
+  console.log("Bcrypt done");
   if (!password) return res.status(400).send("Wrong password");
   console.log(userData.fname);
 
