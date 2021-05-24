@@ -217,4 +217,11 @@
   .top-cars {
     padding-left: 10%;
   }
+  .header {
+    background: url("../../assets/img/Header-mobile.jpg") bottom / cover;
+    height: 95vh;
+    width: 100%;
+    font-weight: 500;
+    overflow: hidden;
+  }
 }

@@ -25,24 +25,20 @@ const Login = (props) => {
                 <strong>Do Not Have An Account?&nbsp;</strong>
               </h1>
               <div className="d-flex justify-content-center">
-                <a href="./signup"></a>
-                <button
-                  className="btn btn-primary sign-in-button"
-                  type="button"
-                >
-                  Signup
-                </button>
+                <a href="./signup">
+                  <button
+                    className="btn btn-primary sign-in-button"
+                    type="button"
+                  >
+                    Signup
+                  </button>
+                </a>
               </div>
             </div>
           </div>
           <div className="col-md-6 d-flex align-items-center">
             <div className="container mb-auto">
-              <form
-                className="border rounded shadow regForm"
-                id="regForm"
-                method="post"
-                data-toggle="modal"
-              >
+              <form className="border rounded shadow regForm" id="regForm">
                 <div
                   style={{
                     textAlign: "center",
@@ -50,10 +46,10 @@ const Login = (props) => {
                     opacity: 0,
                   }}
                 >
-                  <span className="step" />
-                  <span className="step" />
+                  <span className="" />
+                  <span className="" />
                 </div>
-                <div className="tab" style={{ textAlign: "center" }}>
+                <div className="" style={{ textAlign: "center" }}>
                   <h5 className="text-center mt-30">Login Here</h5>
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed

@@ -96,3 +96,22 @@
 .wd-minus-220 {
   margin-left: -200%;
 }
+
+@media only screen and (max-width: 768px) {
+  .drop-bar {
+    width: 95%;
+    padding: 0px 0px;
+  }
+
+  .navbar-nav .dropdown-menu {
+    position: static;
+    float: none;
+    width: 100%;
+  }
+  .cars-row-container {
+    margin-top: 30px;
+  }
+  .wd-minus-220 {
+    margin-left: 0;
+  }
+}

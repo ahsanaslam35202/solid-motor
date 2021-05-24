@@ -10,7 +10,7 @@ function useForceUpdate() {
   return () => setValue((value) => value + 1); // update the state to force render
 }
 
-const Signup = () => {
+const Signup = (props) => {
   const forceUpdate = useForceUpdate();
   const handleLogout = async (e) => {
     await logout();
@@ -235,7 +235,7 @@ const Signup = () => {
       password,
       phoneNumber,
     }).then(() => {
-      console.log("Redirect to login");
+      props.history.push("/");
     });
   };
 

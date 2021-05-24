@@ -15,6 +15,11 @@
   left: 20px;
 }
 
+.car-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #00bbff;
+}
 .car-name {
   font-size: 48px;
   font-weight: 700;
@@ -216,6 +221,19 @@
   margin-bottom: 0px;
 }
 
+.info-badge-container {
+  display: flex;
+  align-items: flex-start;
+}
+.dek-ml20 {
+  margin-left: 20px;
+}
+.ab-on-desktop {
+  position: absolute !important;
+  top: 20px;
+  right: 20px;
+}
+
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
   .details-tab-container {
@@ -244,5 +262,31 @@
   .summary-header-sub-heading {
     font-size: 16px;
     color: #00bbff;
+  }
+  .info-badge-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .dek-ml20 {
+    margin-left: 5px;
+  }
+  .car-header-info-container {
+    position: relative;
+  }
+  .ab-on-desktop {
+    position: relative !important;
+  }
+  .car-header-container {
+    height: auto !important;
+    padding-bottom: 30px;
+    margin-bottom: 50px;
+  }
+  .car-name {
+    font-size: 24px;
+    margin-left: 45px;
+  }
+  .car-title {
+    font-size: 32px;
   }
 }

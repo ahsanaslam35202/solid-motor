@@ -8,6 +8,9 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { getTradeIn } from "../services/sellTradeService";
 import { addBuyRequest } from "../services/buyRequestsService";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import CarCarouselImage from "./CarCarouselImage";
 
 function useForceUpdate() {
   const [value, setValue] = React.useState(0); // integer state
@@ -38,9 +41,14 @@ const CarDetail = (props) => {
 
   const getTradeInCredit = async () => {
     const user = getloggedinuser();
-    const userId = user._id;
-    const { data } = await getTradeIn(userId);
-    setTradeInCredit(data.estimatedPrice);
+    if (user) {
+      const userId = user._id;
+      const { data } = await getTradeIn(userId);
+
+      setTradeInCredit(data.estimatedPrice);
+    } else {
+      setTradeInCredit(0);
+    }
   };
 
   React.useEffect(() => {
@@ -86,6 +94,26 @@ const CarDetail = (props) => {
     });
   };
 
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 4,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 4,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1.5,
+    },
+  };
+
   return (
     <>
       {isLoggedin() ? <Navbar2 handleLogout={handleLogout} /> : <Navbar />}
@@ -93,18 +121,232 @@ const CarDetail = (props) => {
         <div className="car-header-container">
           <img className="w-100" src="assets/img/car.png" />
           <div className="car-header-info-container">
-            <h1 className="car-name">
+            <h1 className="car-title">
               {car.modelYear} {car.make} {car.model}
             </h1>
             <h1 className="miles-driven">{car.milesDriven} Miles</h1>
           </div>
-          <div style={{ position: "absolute", top: "20px", right: "20px" }}>
+          <div className="ab-on-desktop">
             <h1 className="car-name">
               <strong>${car.price}</strong>
             </h1>
           </div>
         </div>
-        <div className="container mt-200">
+
+        <div
+          className="d-flex justify-content-around align-items-center"
+          style={{
+            marginRight: "8%",
+            marginLeft: "8%",
+            marginTop: "30px",
+            borderRadius: "16px",
+            background: "rgba(12,189,255,0.29)",
+            paddingLeft: "20px",
+            paddingRight: "20px",
+            paddingBottom: "0px",
+            paddingTop: "15px",
+          }}
+        >
+          <div className="info-badge-container">
+            <img
+              src="assets/img/view.svg"
+              style={{ width: "24px", marginTop: "5px" }}
+            />
+            <div className="dek-ml20">
+              <h1 style={{ fontSize: "24px" }}>325</h1>
+              <p>Views all Time</p>
+            </div>
+          </div>
+          <div className="info-badge-container">
+            <img
+              src="assets/img/heart.svg"
+              style={{ width: "24px", marginTop: "5px" }}
+            />
+            <div className="dek-ml20">
+              <h1 style={{ fontSize: "24px" }}>24</h1>
+              <p>people liked this car</p>
+            </div>
+          </div>
+          <div className="info-badge-container">
+            <img
+              src="assets/img/heart.svg"
+              style={{ width: "24px", marginTop: "5px" }}
+            />
+            <div className="dek-ml20">
+              <h1 style={{ fontSize: "24px" }}>wishlist</h1>
+              <p>add to wishlist</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-80">
+          <Carousel
+            // removeArrowOnDeviceType={["tablet", "mobile"]}
+            responsive={responsive}
+          >
+            <CarCarouselImage />
+            <CarCarouselImage />
+            <CarCarouselImage />
+            <CarCarouselImage />
+            <CarCarouselImage />
+            <CarCarouselImage />
+            <CarCarouselImage />
+            <CarCarouselImage />
+            <CarCarouselImage />
+            <CarCarouselImage />
+          </Carousel>
+        </div>
+
+        <div className="container mt-120 mobile-mt50 ">
+          <h1 className="w-100 text-center details-heading" />
+          <div className="row">
+            <div className="col-md-4">
+              <div
+                className="d-flex flex-column justify-content-center"
+                style={{
+                  padding: "30px",
+                  background: "rgba(255,255,255,0)",
+                  borderRadius: "12px",
+                }}
+              >
+                <div
+                  className="d-flex justify-content-center align-items-center"
+                  style={{
+                    width: "80px",
+                    minHeight: "80px",
+                    borderRadius: "8px",
+                    background: "rgba(0,187,255,0.27)",
+                  }}
+                >
+                  <img
+                    src="assets/img/sedan-car-front.svg"
+                    style={{ width: "36px", filter: "invert(18%)" }}
+                  />
+                </div>
+                <h1
+                  style={{
+                    fontSize: "20px",
+                    marginTop: "20px",
+                    fontWeight: 600,
+                    color: "#2c2c2c",
+                  }}
+                >
+                  Accident Free
+                </h1>
+                <p style={{ marginTop: "10px", fontSize: "14px" }}>
+                  Lorem Ipisum DOlor every cars&nbsp;
+                  <br />
+                  Sit a met Blef.
+                  <br />
+                </p>
+                <img
+                  src="assets/img/fax.png"
+                  style={{ width: "90px", marginBottom: "10px" }}
+                />
+                <button
+                  className="btn btn-primary"
+                  type="button"
+                  style={{ background: "#00bbff", borderWidth: "0px" }}
+                >
+                  View Report
+                </button>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div
+                className="d-flex flex-column justify-content-center"
+                style={{
+                  padding: "30px",
+                  background: "rgba(255,255,255,0)",
+                  borderRadius: "12px",
+                }}
+              >
+                <div
+                  className="d-flex justify-content-center align-items-center"
+                  style={{
+                    width: "80px",
+                    minHeight: "80px",
+                    borderRadius: "8px",
+                    background: "rgba(0,187,255,0.27)",
+                  }}
+                >
+                  <img
+                    src="assets/img/wallet-filled-money-tool.svg"
+                    style={{ width: "36px", filter: "invert(19%)" }}
+                  />
+                </div>
+                <h1
+                  style={{
+                    fontSize: "20px",
+                    marginTop: "20px",
+                    fontWeight: 600,
+                    color: "#2c2c2c",
+                  }}
+                >
+                  7 Day Money Back&nbsp;
+                  <br />
+                  Quarrenty
+                </h1>
+                <p style={{ marginTop: "10px", fontSize: "14px" }}>
+                  Lorem Ipisum DOlor every cars&nbsp;
+                  <br />
+                  Sit a met Blef.
+                  <br />
+                </p>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div
+                className="d-flex flex-column justify-content-center"
+                style={{
+                  padding: "30px",
+                  background: "rgba(255,255,255,0)",
+                  borderRadius: "12px",
+                }}
+              >
+                <div
+                  className="d-flex justify-content-center align-items-center"
+                  style={{
+                    width: "80px",
+                    minHeight: "80px",
+                    borderRadius: "8px",
+                    background: "rgba(0,187,255,0.27)",
+                  }}
+                >
+                  <img
+                    src="assets/img/brochure.svg"
+                    style={{ width: "36px", filter: "invert(21%)" }}
+                  />
+                </div>
+                <h1
+                  style={{
+                    fontSize: "20px",
+                    marginTop: "20px",
+                    fontWeight: 600,
+                    color: "#2c2c2c",
+                  }}
+                >
+                  Brochure
+                </h1>
+                <p style={{ marginTop: "10px", fontSize: "14px" }}>
+                  Lorem Ipisum DOlor every cars&nbsp;
+                  <br />
+                  Sit a met Blef.
+                  <br />
+                </p>
+                <button
+                  className="btn btn-primary"
+                  type="button"
+                  style={{ background: "#00bbff", borderWidth: "0px" }}
+                >
+                  View Brochure
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="container mt-200 mobile-mt50">
           <h1 className="w-100 text-center details-heading">Vehicle Details</h1>
           <div className="row">
             <div className="col-md-12 d-flex justify-content-center mt-50">
@@ -357,7 +599,7 @@ const CarDetail = (props) => {
                             <input
                               type="number"
                               className="range-number-input"
-                              value={monthlyPayment}
+                              value={Math.ceil(monthlyPayment)}
                               onChange={(e) => {
                                 handleMonthlyPaymentChange(e);
                               }}
@@ -368,8 +610,8 @@ const CarDetail = (props) => {
                           className="border rounded range-input"
                           type="range"
                           value={monthlyPayment}
-                          min={(carPrice - carPrice * 0.8) / 72}
-                          max={(carPrice - carPrice * 0.2) / 36}
+                          min={Math.ceil((carPrice - carPrice * 0.8) / 72)}
+                          max={Math.ceil((carPrice - carPrice * 0.2) / 36)}
                           onChange={(e) => {
                             handleMonthlyPaymentChange(e);
                           }}
@@ -384,7 +626,7 @@ const CarDetail = (props) => {
                             <input
                               type="number"
                               className="range-number-input"
-                              value={downPayment}
+                              value={Math.ceil(downPayment)}
                               onChange={(e) => {
                                 handleDownPaymentChange(e);
                               }}
@@ -394,13 +636,13 @@ const CarDetail = (props) => {
                         <input
                           className="border rounded range-input"
                           type="range"
-                          value={downPayment}
-                          min={carPrice * 0.2}
-                          max={carPrice * 0.8}
+                          value={Math.ceil(downPayment)}
+                          min={Math.ceil(carPrice * 0.2)}
+                          max={Math.ceil(carPrice * 0.8)}
                           onChange={(e) => {
                             handleDownPaymentChange(e);
                           }}
-                          step={carPrice / 20}
+                          step={Math.ceil(carPrice / 20)}
                         />
                       </div>
                       <div className="row">
@@ -496,7 +738,7 @@ const CarDetail = (props) => {
                 <div className="d-flex justify-content-center summary-header">
                   <div className="w-50">
                     <h1 className="summary-header-heading">
-                      ${monthlyPayment}
+                      ${Math.ceil(monthlyPayment)}
                     </h1>
                     <h1 className="summary-header-sub-heading">
                       Estimated Monthly Payment
@@ -504,7 +746,9 @@ const CarDetail = (props) => {
                   </div>
                   <div className="d-flex justify-content-end w-50">
                     <div>
-                      <h1 className="summary-header-heading">${downPayment}</h1>
+                      <h1 className="summary-header-heading">
+                        ${Math.ceil(downPayment)}
+                      </h1>
                       <h1 className="summary-header-sub-heading">Cash Down</h1>
                     </div>
                   </div>
@@ -514,7 +758,7 @@ const CarDetail = (props) => {
                     <p>VEHICLE PRICE</p>
                   </div>
                   <div className="d-flex justify-content-end w-40">
-                    <p>${car.price}</p>
+                    <p>${Math.ceil(car.price)}</p>
                   </div>
                 </div>
                 <div className="d-flex summary-card-price-detail">
@@ -594,7 +838,7 @@ const CarDetail = (props) => {
             </div>
           </div>
         </div>
-        <div className="mt-200">
+        {/* <div className="mt-200">
           <div className="row mt-0">
             <div className="col-md-6 bg-main">
               <p className="car-guide-subsection-info">
@@ -614,6 +858,66 @@ const CarDetail = (props) => {
               </p>
             </div>
             <div className="col-md-6 car-guide-img">
+              <span />
+            </div>
+          </div>
+        </div> */}
+
+        <div className="mt-200">
+          <div className="row">
+            <div
+              className="col-md-6 bg-main"
+              style={{
+                paddingTop: "50px",
+                paddingBottom: "50px",
+                paddingLeft: "50px",
+                paddingRight: "50px",
+              }}
+            >
+              <h1 style={{ fontWeight: 700, color: "rgb(255,255,255)" }}>
+                SolidMotors 150+ Points Inspection
+              </h1>
+              <p
+                style={{
+                  height: "auto",
+                  color: "rgb(255,255,255)",
+                  marginTop: "30px",
+                }}
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
+                ipsum suspendisse ultrices gravida. Risus commodo viverra
+                maecenas accumsan lacus vel facilisis.&nbsp;
+                <br />
+                Lorem ipsum dolor sit amet,&nbsp;
+                <br />
+              </p>
+              <ul id="inspection-list" style={{ color: "rgb(255,255,255)" }}>
+                <li style={{ marginTop: "30px" }}>
+                  Lorem ipsum dolor sit amet, consectetur&nbsp;
+                  <br />
+                </li>
+                <li style={{ marginTop: "10px" }}>
+                  Lorem ipsum dolor sit amet, consectetur&nbsp;
+                  <br />
+                </li>
+                <li style={{ marginTop: "10px" }}>
+                  Lorem ipsum dolor sit amet, consectetur&nbsp;
+                  <br />
+                </li>
+                <li style={{ marginTop: "10px" }}>
+                  Lorem ipsum dolor sit amet, consectetur&nbsp;
+                  <br />
+                </li>
+              </ul>
+            </div>
+            <div
+              className="col-md-6 car-guide-img"
+              style={{
+                background:
+                  'url("assets/img/mechanic-holding-digital-tablet.jpg") center / cover',
+              }}
+            >
               <span />
             </div>
           </div>
