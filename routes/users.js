@@ -38,32 +38,35 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", validateUserLoginMW, async (req, res) => {
-  console.log(req.body);
-  let userData = await User.findOne({
-    email: req.body.email.value,
-  })
-    .then(() => {
-      console.log("ok");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  console.log(req.body.email);
+  let userData = await User.findOne(
+    {
+      email: "uzairahmad227848@gmail.com",
+    },
+    (err, estab) => {
+      if (err) {
+        return res.send(err);
+      }
+      console.log("inside the function: " + estab.name);
+      // what ever proccing you need to do with result do here and finally return res
+      res.json(estab);
+    }
+  );
   console.log(userData);
   if (!userData)
     return res.status(400).send("Sorry, user with this email not found.");
   console.log("Bcrypt done");
 
-  let password = await bcrypt.compare(
-    req.body.password.value,
-    userData.password
-  );
+  let password = await bcrypt.compare(req.body.password, userData.password);
   if (!password) return res.status(400).send("Wrong password");
-  console.log(userData.fname);
+  console.log(userData.firstName);
 
   let token = jwt.sign(
-    { _id: userData._id, name: userData.firstName, role: userData.role },
+    { _id: userData._id, name: userData.firstName },
     config.get("jwt")
   );
+
+  console.log(token);
 
   let user2 = jwt.verify(token, config.get("jwt"));
   return res.send({ ok: "login successfull", token, user2 });

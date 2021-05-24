@@ -3,8 +3,8 @@ import { Redirect } from "react-router";
 import { userLogin, userSignup } from "./../services/userService";
 
 const Login = (props) => {
-  const [email, setEmail] = React.useState({ value: "", error: "" });
-  const [password, setPassword] = React.useState({ value: "", error: "" });
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
   const handleLogin = async (e) => {
     await userLogin({
@@ -60,9 +60,9 @@ const Login = (props) => {
                       className="form-control"
                       type="text"
                       placeholder="Email"
-                      value={email.value}
+                      value={email}
                       onChange={(e) => {
-                        setEmail({ value: e.target.value });
+                        setEmail(e.target.value);
                       }}
                       required
                     />
@@ -72,9 +72,9 @@ const Login = (props) => {
                       className="form-control"
                       type="password"
                       placeholder="Password"
-                      value={password.value}
+                      value={password}
                       onChange={(e) => {
-                        setPassword({ value: e.target.value });
+                        setPassword(e.target.value);
                       }}
                       required
                     />

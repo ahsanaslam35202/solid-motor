@@ -28,6 +28,12 @@ const CarSearch = () => {
   const [engineTypes, setEngineTypes] = React.useState([]);
   const [colors, setColors] = React.useState([]);
   const [fuelTypes, setFuelTypes] = React.useState([]);
+  const [maxDownPayment, setMaxDownPayment] = React.useState(100000);
+  const [maxPrice, setMaxPrice] = React.useState(100000);
+  const [minYear, setMinYear] = React.useState(
+    parseInt(new Date().getFullYear()) - 15
+  );
+  const [maxMiles, setMaxMiles] = React.useState(500000);
   const [filterFn, setFilterFn] = React.useState({
     fn: (items) => {
       return items;
@@ -41,143 +47,142 @@ const CarSearch = () => {
     setUpdatedCars(cars);
   };
 
-  const handleMakeFilter = () => {
-    console.log("Handle Make");
-    if (makes.length > 0) {
-      var results = cars.filter((obj) => {
-        return makes.includes(obj.make);
-      });
-      const data = [...results];
-      console.log(data);
-      setUpdatedCars(data);
-      console.log(updatedCars);
-    } else {
-      setUpdatedCars(cars);
-    }
-  };
+  // const handleMakeFilter = () => {
+  //   console.log("Handle Make");
+  //   if (makes.length > 0) {
+  //     var results = cars.filter((obj) => {
+  //       return makes.includes(obj.make);
+  //     });
+  //     const data = [...results];
+  //     console.log(data);
+  //     setUpdatedCars(data);
+  //     handleBodyTypeFilter(data);
+  //   } else {
+  //     setUpdatedCars(cars);
+  //   }
+  // };
 
-  const handleBodyTypeFilter = (data) => {
-    console.log(data);
-    var results = data.filter((obj) => {
-      return bodyTypes.includes(obj.body);
-    });
+  // const handleBodyTypeFilter = (data) => {
+  //   var results = data.filter((obj) => {
+  //     return bodyTypes.includes(obj.body);
+  //   });
 
-    console.log(results);
+  //   console.log(results);
 
-    const data2 = [...results];
-    console.log(data2);
-    setUpdatedCars(data2);
-  };
+  //   const data2 = [...results];
+  //   console.log(data2);
+  //   setUpdatedCars(data2);
+  // };
 
-  const handleTransmissionFilter = () => {
-    if (
-      makes.length == 0 &&
-      bodyTypes.length == 0 &&
-      driveTrains.length == 0 &&
-      engineTypes.length == 0 &&
-      colors.length == 0 &&
-      fuelTypes.length == 0
-    ) {
-      var results = cars.filter((obj) => {
-        return transmissions.includes(obj.transmission);
-      });
-    } else {
-      var results = updatedCars.filter((obj) => {
-        return transmissions.includes(obj.transmission);
-      });
-    }
+  // const handleTransmissionFilter = () => {
+  //   if (
+  //     makes.length == 0 &&
+  //     bodyTypes.length == 0 &&
+  //     driveTrains.length == 0 &&
+  //     engineTypes.length == 0 &&
+  //     colors.length == 0 &&
+  //     fuelTypes.length == 0
+  //   ) {
+  //     var results = cars.filter((obj) => {
+  //       return transmissions.includes(obj.transmission);
+  //     });
+  //   } else {
+  //     var results = updatedCars.filter((obj) => {
+  //       return transmissions.includes(obj.transmission);
+  //     });
+  //   }
 
-    const data = [...results];
-    setUpdatedCars(data);
-  };
+  //   const data = [...results];
+  //   setUpdatedCars(data);
+  // };
 
-  const handleDriveTrainFilter = () => {
-    if (
-      makes.length == 0 &&
-      bodyTypes.length == 0 &&
-      transmissions.length == 0 &&
-      engineTypes.length == 0 &&
-      colors.length == 0 &&
-      fuelTypes.length == 0
-    ) {
-      var results = cars.filter((obj) => {
-        return driveTrains.includes(obj.driveTrain);
-      });
-    } else {
-      var results = updatedCars.filter((obj) => {
-        return driveTrains.includes(obj.driveTrain);
-      });
-    }
+  // const handleDriveTrainFilter = () => {
+  //   if (
+  //     makes.length == 0 &&
+  //     bodyTypes.length == 0 &&
+  //     transmissions.length == 0 &&
+  //     engineTypes.length == 0 &&
+  //     colors.length == 0 &&
+  //     fuelTypes.length == 0
+  //   ) {
+  //     var results = cars.filter((obj) => {
+  //       return driveTrains.includes(obj.driveTrain);
+  //     });
+  //   } else {
+  //     var results = updatedCars.filter((obj) => {
+  //       return driveTrains.includes(obj.driveTrain);
+  //     });
+  //   }
 
-    const data = [...results];
-    setUpdatedCars(data);
-  };
+  //   const data = [...results];
+  //   setUpdatedCars(data);
+  // };
 
-  const handleEngineTypeFilter = () => {
-    console.log(engineTypes);
-    if (
-      makes.length == 0 &&
-      bodyTypes.length == 0 &&
-      transmissions.length == 0 &&
-      driveTrains.length == 0 &&
-      colors.length == 0 &&
-      fuelTypes.length == 0
-    ) {
-      var results = cars.filter((obj) => {
-        return engineTypes.includes(obj.engineType);
-      });
-    } else {
-      var results = updatedCars.filter((obj) => {
-        return engineTypes.includes(obj.engineType);
-      });
-    }
-    const data = [...results];
-    setUpdatedCars(data);
-  };
+  // const handleEngineTypeFilter = () => {
+  //   console.log(engineTypes);
+  //   if (
+  //     makes.length == 0 &&
+  //     bodyTypes.length == 0 &&
+  //     transmissions.length == 0 &&
+  //     driveTrains.length == 0 &&
+  //     colors.length == 0 &&
+  //     fuelTypes.length == 0
+  //   ) {
+  //     var results = cars.filter((obj) => {
+  //       return engineTypes.includes(obj.engineType);
+  //     });
+  //   } else {
+  //     var results = updatedCars.filter((obj) => {
+  //       return engineTypes.includes(obj.engineType);
+  //     });
+  //   }
+  //   const data = [...results];
+  //   setUpdatedCars(data);
+  // };
 
-  const handleColorFilter = () => {
-    if (
-      makes.length == 0 &&
-      transmissions.length == 0 &&
-      driveTrains.length == 0 &&
-      engineTypes.length == 0 &&
-      colors.length == 0 &&
-      fuelTypes.length == 0
-    ) {
-      var results = updatedCars.filter((obj) => {
-        return colors.includes(obj.exteriorColor);
-      });
-    } else {
-      var results = cars.filter((obj) => {
-        return colors.includes(obj.exteriorColor);
-      });
-    }
+  // const handleColorFilter = () => {
+  //   if (
+  //     makes.length == 0 &&
+  //     transmissions.length == 0 &&
+  //     driveTrains.length == 0 &&
+  //     engineTypes.length == 0 &&
+  //     colors.length == 0 &&
+  //     fuelTypes.length == 0
+  //   ) {
+  //     var results = updatedCars.filter((obj) => {
+  //       return colors.includes(obj.exteriorColor);
+  //     });
+  //   } else {
+  //     var results = cars.filter((obj) => {
+  //       return colors.includes(obj.exteriorColor);
+  //     });
+  //   }
 
-    const data = [...results];
-    setUpdatedCars(data);
-  };
+  //   const data = [...results];
+  //   setUpdatedCars(data);
+  // };
 
-  const handleFuelTypeFilter = () => {
-    if (
-      makes.length == 0 &&
-      bodyTypes.length == 0 &&
-      transmissions.length == 0 &&
-      driveTrains.length == 0 &&
-      engineTypes.length == 0 &&
-      colors.length == 0
-    ) {
-      var results = updatedCars.filter((obj) => {
-        return fuelTypes.includes(obj.body);
-      });
-    } else {
-      var results = cars.filter((obj) => {
-        return fuelTypes.includes(obj.body);
-      });
-    }
+  // const handleFuelTypeFilter = () => {
+  //   if (
+  //     makes.length == 0 &&
+  //     bodyTypes.length == 0 &&
+  //     transmissions.length == 0 &&
+  //     driveTrains.length == 0 &&
+  //     engineTypes.length == 0 &&
+  //     colors.length == 0
+  //   ) {
+  //     var results = updatedCars.filter((obj) => {
+  //       return fuelTypes.includes(obj.body);
+  //     });
+  //   } else {
+  //     var results = cars.filter((obj) => {
+  //       return fuelTypes.includes(obj.body);
+  //     });
+  //   }
 
-    const data = [...results];
-    setUpdatedCars(data);
-  };
+  //   const data = [...results];
+  //   setUpdatedCars(data);
+  // };
 
   const handleFilters = () => {
     if (
@@ -189,13 +194,83 @@ const CarSearch = () => {
       colors.length > 0 ||
       fuelTypes.length > 0
     ) {
-      handleMakeFilter();
+      let data = [...updatedCars];
+      if (makes.length > 0) {
+        var results = cars.filter((obj) => {
+          return makes.includes(obj.make);
+        });
+        data = [...results];
+      }
 
       if (bodyTypes.length > 0) {
-        handleBodyTypeFilter();
-        console.log(updatedCars);
-        console.log(bodyTypes);
+        var results = data.filter((obj) => {
+          return bodyTypes.includes(obj.body);
+        });
+        data = [...results];
       }
+
+      if (transmissions.length > 0) {
+        var results = data.filter((obj) => {
+          return transmissions.includes(obj.transmission);
+        });
+        data = [...results];
+      }
+
+      if (driveTrains.length > 0) {
+        var results = data.filter((obj) => {
+          return driveTrains.includes(obj.driveTrain);
+        });
+        data = [...results];
+      }
+
+      if (engineTypes.length > 0) {
+        var results = data.filter((obj) => {
+          return engineTypes.includes(obj.engineType);
+        });
+        data = [...results];
+      }
+
+      if (colors.length > 0) {
+        var results = data.filter((obj) => {
+          return colors.includes(obj.exteriorColor);
+        });
+        data = [...results];
+      }
+
+      if (fuelTypes.length > 0) {
+        var results = data.filter((obj) => {
+          return fuelTypes.includes(obj.fuelType);
+        });
+        data = [...results];
+      }
+
+      var results = data.filter((obj) => {
+        return obj.year <= minYear;
+      });
+      data = [...results];
+
+      var results = data.filter((obj) => {
+        return obj.downPayment >= maxDownPayment;
+      });
+      data = [...results];
+
+      var results = data.filter((obj) => {
+        return obj.price >= maxPrice;
+      });
+      data = [...results];
+
+      var results = data.filter((obj) => {
+        return obj.milesDriven >= maxMiles;
+      });
+      data = [...results];
+
+      setUpdatedCars(data);
+
+      // if (bodyTypes.length > 0) {
+      //   handleBodyTypeFilter(data);
+      //   console.log(updatedCars);
+      //   console.log(bodyTypes);
+      // }
       // if (transmissions.length > 0) {
       //   handleTransmissionFilter();
       //   console.log(updatedCars);
@@ -226,19 +301,7 @@ const CarSearch = () => {
   }, []);
 
   React.useEffect(() => {
-    console.log("Handle Make");
-    if (makes.length > 0) {
-      var results = cars.filter((obj) => {
-        return makes.includes(obj.make);
-      });
-      const data = [...results];
-      console.log(data);
-      handleBodyTypeFilter(data);
-      setUpdatedCars(data);
-      console.log(updatedCars);
-    } else {
-      setUpdatedCars(cars);
-    }
+    handleFilters();
   }, [
     makes,
     bodyTypes,
@@ -247,7 +310,15 @@ const CarSearch = () => {
     engineTypes,
     colors,
     fuelTypes,
+    minYear,
+    maxMiles,
+    maxPrice,
+    maxDownPayment,
   ]);
+
+  React.useEffect(() => {
+    console.log(updatedCars);
+  }, [updatedCars]);
 
   const handleSearch = (e) => {
     let target = e.target;
@@ -339,14 +410,18 @@ const CarSearch = () => {
                                   >
                                     Downpayment
                                   </h1>
-                                  <input
-                                    type="number"
-                                    className="price-card-price-input"
-                                  />
+                                  <h5>{maxDownPayment}</h5>
                                 </div>
                                 <input
                                   type="range"
                                   className="price-card-range"
+                                  min={10000}
+                                  max={100000}
+                                  step={500}
+                                  value={maxDownPayment}
+                                  onChange={(e) => {
+                                    setMaxDownPayment(e.target.value);
+                                  }}
                                 />
                                 <h1 className="price-card-heading">
                                   Solid Motors Car Finance
@@ -378,14 +453,18 @@ const CarSearch = () => {
                                   >
                                     Car Price
                                   </h1>
-                                  <input
-                                    type="number"
-                                    className="price-card-price-input"
-                                  />
+                                  <h5>{maxPrice}</h5>
                                 </div>
                                 <input
                                   type="range"
                                   className="price-card-range"
+                                  min={10000}
+                                  max={100000}
+                                  step={500}
+                                  value={maxPrice}
+                                  onChange={(e) => {
+                                    setMaxPrice(e.target.value);
+                                  }}
                                 />
                                 <h1 className="price-card-heading">
                                   Solid Motors Trade in Offer
@@ -695,11 +774,19 @@ const CarSearch = () => {
                                   >
                                     Year
                                   </h1>
+                                  <h5>{minYear}</h5>
                                 </div>
-                                {/* <input
+                                <input
                                   type="range"
                                   className="price-card-range"
-                                /> */}
+                                  min={parseInt(new Date().getFullYear()) - 15}
+                                  max={parseInt(new Date().getFullYear())}
+                                  step={1}
+                                  value={minYear}
+                                  onChange={(e) => {
+                                    setMinYear(e.target.value);
+                                  }}
+                                />
                                 {/* <div className={classes.root}>
                                   <Typography id="range-slider" gutterBottom>
                                     Temperature range
@@ -727,16 +814,17 @@ const CarSearch = () => {
                                     className="w-50 price-card-heading"
                                     style={{ marginTop: "5px" }}
                                   >
-                                    Milage
+                                    Miles Driven
                                   </h1>
-                                  <input
+                                  <h5>0</h5>
+                                  {/* <input
                                     type="number"
                                     style={{
                                       marginTop: "3px",
                                       marginBottom: "-10px",
                                     }}
                                     className="price-card-price-input"
-                                  />
+                                  /> */}
                                 </div>
                                 <input
                                   type="range"
@@ -854,51 +942,51 @@ const CarSearch = () => {
                             <a
                               onClick={(e) => {
                                 var carEngineTypes = [...engineTypes];
-                                if (carEngineTypes.includes("2 cylinder")) {
+                                if (carEngineTypes.includes("2 Cylinder")) {
                                   const index =
-                                    carEngineTypes.indexOf("2 cylinder");
+                                    carEngineTypes.indexOf("2 Cylinder");
                                   if (index > -1) {
                                     carEngineTypes.splice(index, 1);
                                   }
-                                } else carEngineTypes.push("2 cylinder");
+                                } else carEngineTypes.push("2 Cylinder");
                                 setEngineTypes(carEngineTypes);
                               }}
                             >
-                              2 cylinder
+                              2 Cylinder
                             </a>
                           </div>
                           <div className="drop-car-make-model">
                             <a
                               onClick={(e) => {
                                 var carEngineTypes = [...engineTypes];
-                                if (carEngineTypes.includes("4 cylinder")) {
+                                if (carEngineTypes.includes("4 Cylinder")) {
                                   const index =
-                                    carEngineTypes.indexOf("4 cylinder");
+                                    carEngineTypes.indexOf("4 Cylinder");
                                   if (index > -1) {
                                     carEngineTypes.splice(index, 1);
                                   }
-                                } else carEngineTypes.push("4 cylinder");
+                                } else carEngineTypes.push("4 Cylinder");
                                 setEngineTypes(carEngineTypes);
                               }}
                             >
-                              4 cylinder
+                              4 Cylinder
                             </a>
                           </div>
                           <div className="drop-car-make-model">
                             <a
                               onClick={(e) => {
                                 var carEngineTypes = [...engineTypes];
-                                if (carEngineTypes.includes("6 cylinder")) {
+                                if (carEngineTypes.includes("6 Cylinder")) {
                                   const index =
-                                    carEngineTypes.indexOf("6 cylinder");
+                                    carEngineTypes.indexOf("6 Cylinder");
                                   if (index > -1) {
                                     carEngineTypes.splice(index, 1);
                                   }
-                                } else carEngineTypes.push("6 cylinder");
+                                } else carEngineTypes.push("6 Cylinder");
                                 setEngineTypes(carEngineTypes);
                               }}
                             >
-                              6 cylinder
+                              6 Cylinder
                             </a>
                           </div>
                         </div>
@@ -1026,7 +1114,7 @@ const CarSearch = () => {
         {/*    END Filter */}
         <div className="cars-row-container mobile-mt50">
           <div id="car-row" className="row mt-0">
-            {filterFn.fn(cars).map((item, index) => (
+            {filterFn.fn(updatedCars).map((item, index) => (
               <CarCard
                 key={index}
                 id={item._id}
