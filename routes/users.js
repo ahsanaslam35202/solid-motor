@@ -48,6 +48,7 @@ router.post("/login", validateUserLoginMW, async (req, res) => {
     .catch((err) => {
       console.log(err);
     });
+  console.log(userData);
   if (!userData)
     return res.status(400).send("Sorry, user with this email not found.");
   console.log("Bcrypt done");
