@@ -274,7 +274,11 @@ const LoanCalculator = () => {
                     <div className="tab-pane" role="tabpanel" id="tab-2">
                       <div className="form-container">
                         <form method="post">
-                          <h2 className="text-center price">${affordPrice}+</h2>
+                          <h2 className="text-center price">
+                            {affordPrice == "N/A"
+                              ? "Not Available"
+                              : "$" + affordPrice}
+                          </h2>
                           <div className="form-group mt-30">
                             <label>Estimated Monthly payment</label>
                             <input

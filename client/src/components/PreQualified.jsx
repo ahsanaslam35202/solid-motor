@@ -73,7 +73,7 @@ const PreQualified = (props) => {
                   </div>
                   <div className="col-md-6">
                     <div className="why-us-img23">
-                      <img className="w-100" src="assets/img/why%202.png" />
+                      <img className="w-100" src="assets/img/why2.png" />
                     </div>
                   </div>
                 </div>
