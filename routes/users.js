@@ -41,7 +41,13 @@ router.post("/login", validateUserLoginMW, async (req, res) => {
   console.log(req.body);
   let userData = await User.findOne({
     email: req.body.email.value,
-  });
+  })
+    .then(() => {
+      console.log(userData);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   if (!userData)
     return res.status(400).send("Sorry, user with this email not found.");
 
