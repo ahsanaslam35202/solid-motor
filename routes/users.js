@@ -43,7 +43,7 @@ router.post("/login", validateUserLoginMW, async (req, res) => {
     email: req.body.email.value,
   })
     .then(() => {
-      console.log(userData);
+      console.log("ok");
     })
     .catch((err) => {
       console.log(err);
