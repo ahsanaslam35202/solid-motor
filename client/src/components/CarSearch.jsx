@@ -192,7 +192,8 @@ const CarSearch = () => {
       driveTrains.length > 0 ||
       engineTypes.length > 0 ||
       colors.length > 0 ||
-      fuelTypes.length > 0
+      fuelTypes.length > 0 ||
+      minYear
     ) {
       let data = [...updatedCars];
       if (makes.length > 0) {
@@ -244,53 +245,27 @@ const CarSearch = () => {
         data = [...results];
       }
 
-      var results = data.filter((obj) => {
-        return obj.year <= minYear;
+      var results = data.filter(function (el) {
+        return el.modelYear >= minYear;
       });
       data = [...results];
 
       var results = data.filter((obj) => {
-        return obj.downPayment >= maxDownPayment;
+        return obj.downPayment <= maxDownPayment;
       });
       data = [...results];
 
       var results = data.filter((obj) => {
-        return obj.price >= maxPrice;
+        return obj.price <= maxPrice;
       });
       data = [...results];
 
       var results = data.filter((obj) => {
-        return obj.milesDriven >= maxMiles;
+        return obj.milesDriven <= maxMiles;
       });
       data = [...results];
 
       setUpdatedCars(data);
-
-      // if (bodyTypes.length > 0) {
-      //   handleBodyTypeFilter(data);
-      //   console.log(updatedCars);
-      //   console.log(bodyTypes);
-      // }
-      // if (transmissions.length > 0) {
-      //   handleTransmissionFilter();
-      //   console.log(updatedCars);
-      // }
-      // if (driveTrains.length > 0) {
-      //   handleDriveTrainFilter();
-      //   console.log(updatedCars);
-      // }
-      // if (engineTypes.length > 0) {
-      //   handleEngineTypeFilter();
-      //   console.log(updatedCars);
-      // }
-      // if (colors.length > 0) {
-      //   handleColorFilter();
-      //   console.log(updatedCars);
-      // }
-      // if (fuelTypes.length > 0) {
-      //   handleFuelTypeFilter();
-      //   console.log(updatedCars);
-      // }
     } else {
       setUpdatedCars(cars);
     }
@@ -785,6 +760,7 @@ const CarSearch = () => {
                                   value={minYear}
                                   onChange={(e) => {
                                     setMinYear(e.target.value);
+                                    console.log(minYear);
                                   }}
                                 />
                                 {/* <div className={classes.root}>
