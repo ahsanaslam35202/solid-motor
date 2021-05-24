@@ -48,6 +48,7 @@ router.post("/login", validateUserLoginMW, async (req, res) => {
     .catch((err) => {
       console.log(err);
     });
+  console.log("Bcrypt done");
   if (!userData)
     return res.status(400).send("Sorry, user with this email not found.");
 
@@ -55,7 +56,6 @@ router.post("/login", validateUserLoginMW, async (req, res) => {
     req.body.password.value,
     userData.password
   );
-  console.log("Bcrypt done");
   if (!password) return res.status(400).send("Wrong password");
   console.log(userData.fname);
 
