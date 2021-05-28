@@ -3,9 +3,9 @@ import React from "react";
 const CarCarouselImage = (props) => {
   const { image, vin } = props;
   const url =
-    "http://localhost:4000/api/cars/images/" + vin + "/otherImages/" + image;
+    "http://localhost:3000/api/cars/images/" + vin + "/otherImages/" + image;
   const bgUrl =
-    'url("http://localhost:4000/api/cars/images/' +
+    'url("http://localhost:3000/api/cars/images/' +
     vin +
     "/otherImages/" +
     image +

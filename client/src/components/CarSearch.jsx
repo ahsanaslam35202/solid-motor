@@ -47,7 +47,7 @@ const CarSearch = () => {
     const cars = [...data];
     setCars(cars);
     setUpdatedCars(cars);
-    var { data } = await axios.get("http://localhost:4000/api/cars/images/a");
+    var { data } = await axios.get("http://localhost:3000/api/cars/images/a");
     console.log(data);
     setDisplayImage(data);
   };
