@@ -247,17 +247,35 @@ const AddCar = (props) => {
                   </Typography>
                 </Grid>
                 <Grid item xs={12} md={4}>
-                  <TextField
+                  <FormControl
                     variant="outlined"
-                    label="Make"
-                    fullWidth
+                    className={classes.formControl}
                     size="small"
-                    value={make.value}
-                    onChange={(e) => {
-                      setMake({ value: e.target.value });
-                    }}
-                    error={make.error}
-                  />
+                    fullWidth
+                  >
+                    <InputLabel id="demo-simple-select-outlined-label">
+                      Make
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-outlined-label"
+                      id="demo-simple-select-outlined"
+                      value={make.value}
+                      onChange={(e) => {
+                        setMake({ value: e.target.value });
+                      }}
+                      label="Make"
+                    >
+                      <MenuItem value="Toyota">Toyota</MenuItem>
+                      <MenuItem value="Audi">Audi</MenuItem>
+                      <MenuItem value="Nissan">Nissan</MenuItem>
+                      <MenuItem value="Mercedes">Mercedes</MenuItem>
+                      <MenuItem value="Honda">Honda</MenuItem>
+                      <MenuItem value="Kia">Kia</MenuItem>
+                      <MenuItem value="MG">MG</MenuItem>
+                      <MenuItem value="BMW">BMW</MenuItem>
+                      <MenuItem value="Dodge">Dodge</MenuItem>
+                    </Select>
+                  </FormControl>
                 </Grid>
                 <Grid item xs={12} md={4}>
                   <TextField
@@ -289,16 +307,29 @@ const AddCar = (props) => {
                   </Typography>
                 </Grid>
                 <Grid item xs={12} md={3}>
-                  <TextField
+                  <FormControl
                     variant="outlined"
-                    label="Fuel"
-                    fullWidth
+                    className={classes.formControl}
                     size="small"
-                    value={fuel.value}
-                    onChange={(e) => {
-                      setFuel({ value: e.target.value });
-                    }}
-                  />
+                    fullWidth
+                  >
+                    <InputLabel id="demo-simple-select-outlined-label">
+                      Fuel
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-outlined-label"
+                      id="demo-simple-select-outlined"
+                      value={fuel.value}
+                      onChange={(e) => {
+                        setFuel({ value: e.target.value });
+                      }}
+                      label="Fuel"
+                    >
+                      <MenuItem value="GAS">GAS</MenuItem>
+                      <MenuItem value="Hybrid">Hybrid</MenuItem>
+                      <MenuItem value="Electric">Electric</MenuItem>
+                    </Select>
+                  </FormControl>
                 </Grid>
                 <Grid item xs={12} md={3}>
                   <TextField
@@ -313,16 +344,31 @@ const AddCar = (props) => {
                   />
                 </Grid>
                 <Grid item xs={12} md={3}>
-                  <TextField
+                  <FormControl
                     variant="outlined"
-                    label="Body"
-                    fullWidth
+                    className={classes.formControl}
                     size="small"
-                    value={body.value}
-                    onChange={(e) => {
-                      setBody({ value: e.target.value });
-                    }}
-                  />
+                    fullWidth
+                  >
+                    <InputLabel id="demo-simple-select-outlined-label">
+                      Body Type
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-outlined-label"
+                      id="demo-simple-select-outlined"
+                      value={body.value}
+                      onChange={(e) => {
+                        setBody({ value: e.target.value });
+                      }}
+                      label="Body Type"
+                    >
+                      <MenuItem value="SUV">SUV</MenuItem>
+                      <MenuItem value="Sedan">Sedan</MenuItem>
+                      <MenuItem value="Hatchback">Hatchback</MenuItem>
+                      <MenuItem value="Convertible">Convertible</MenuItem>
+                      <MenuItem value="Coupe">Coupe</MenuItem>
+                    </Select>
+                  </FormControl>
                 </Grid>
                 <Grid item xs={12} md={3}>
                   <TextField
@@ -361,16 +407,30 @@ const AddCar = (props) => {
                   />
                 </Grid>
                 <Grid item xs={12} md={3}>
-                  <TextField
+                  <FormControl
                     variant="outlined"
-                    label="Engine Type"
-                    fullWidth
+                    className={classes.formControl}
                     size="small"
-                    value={engineType.value}
-                    onChange={(e) => {
-                      setEngineType({ value: e.target.value });
-                    }}
-                  />
+                    fullWidth
+                  >
+                    <InputLabel id="demo-simple-select-outlined-label">
+                      Engine Type
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-outlined-label"
+                      id="demo-simple-select-outlined"
+                      value={engineType.value}
+                      onChange={(e) => {
+                        setEngineType({ value: e.target.value });
+                      }}
+                      label="Engine Type"
+                    >
+                      <MenuItem value="2 Cylinder">2 Cylinder</MenuItem>
+                      <MenuItem value="4 Cylinder">4 Cylinder</MenuItem>
+                      <MenuItem value="6 Cylinder">6 Cylinder</MenuItem>
+                      <MenuItem value="8 Cylinder">8 Cylinder</MenuItem>
+                    </Select>
+                  </FormControl>
                 </Grid>
                 <Grid item xs={12} md={3}>
                   <TextField
@@ -385,31 +445,57 @@ const AddCar = (props) => {
                   />
                 </Grid>
                 <Grid item xs={12} md={3}>
-                  <TextField
+                  <FormControl
                     variant="outlined"
-                    label="Transmission"
-                    fullWidth
+                    className={classes.formControl}
                     size="small"
-                    value={transmission.value}
-                    onChange={(e) => {
-                      setTransmission({ value: e.target.value });
-                    }}
-                  />
+                    fullWidth
+                  >
+                    <InputLabel id="demo-simple-select-outlined-label">
+                      Transmission
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-outlined-label"
+                      id="demo-simple-select-outlined"
+                      value={transmission.value}
+                      onChange={(e) => {
+                        setTransmission({ value: e.target.value });
+                      }}
+                      label="Transmission"
+                    >
+                      <MenuItem value="Automatic">Automatic</MenuItem>
+                      <MenuItem value="Manual">Manual</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12} md={3}>
+                  <FormControl
+                    variant="outlined"
+                    className={classes.formControl}
+                    size="small"
+                    fullWidth
+                  >
+                    <InputLabel id="demo-simple-select-outlined-label">
+                      Drive Train
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-outlined-label"
+                      id="demo-simple-select-outlined"
+                      value={driveTrain.value}
+                      onChange={(e) => {
+                        setDriveTrain({ value: e.target.value });
+                      }}
+                      label="Drive Train"
+                    >
+                      <MenuItem value="FWD">FWD</MenuItem>
+                      <MenuItem value="AWD">AWD</MenuItem>
+                      <MenuItem value="RWD">RWD</MenuItem>
+                    </Select>
+                  </FormControl>
                 </Grid>
                 <Grid item xs={12} md={3}>
                   <TextField
-                    variant="outlined"
-                    label="Drive Train"
-                    fullWidth
-                    size="small"
-                    value={driveTrain.value}
-                    onChange={(e) => {
-                      setDriveTrain({ value: e.target.value });
-                    }}
-                  />
-                </Grid>
-                <Grid item xs={12} md={3}>
-                  <TextField
+                    type="Number"
                     variant="outlined"
                     label="Doors"
                     fullWidth
@@ -422,6 +508,7 @@ const AddCar = (props) => {
                 </Grid>
                 <Grid item xs={12} md={3}>
                   <TextField
+                    type="Number"
                     variant="outlined"
                     label="Number Of Keys"
                     fullWidth
@@ -446,6 +533,7 @@ const AddCar = (props) => {
                 </Grid>
                 <Grid item xs={12} md={3}>
                   <TextField
+                    type="Number"
                     variant="outlined"
                     label="Stock"
                     fullWidth
@@ -470,6 +558,7 @@ const AddCar = (props) => {
                 </Grid>
                 <Grid item xs={12} md={3}>
                   <TextField
+                    type="Number"
                     variant="outlined"
                     label="MPG"
                     fullWidth

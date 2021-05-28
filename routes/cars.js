@@ -119,6 +119,7 @@ router.post(
       shippingCharges: req.body.shippingCharges,
       taxAndRegistrationCharges: req.body.taxAndRegistrationCharges,
       dealerFees: req.body.dealerFees,
+      views: 0,
     });
 
     car = await car
