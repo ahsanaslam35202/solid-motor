@@ -1,12 +1,31 @@
 .car-header-container {
-  height: 550px;
+  height: auto;
   background: #ffffff;
   border-radius: 12px;
   position: relative;
   margin: 0px;
-  margin-right: 8%;
-  margin-left: 8%;
-  margin-top: 50px;
+  margin-right: 3%;
+  margin-left: 3%;
+  margin-top: 20px;
+}
+.car-info-container {
+  margin-right: 3%;
+  margin-left: 3%;
+}
+.wd-50 {
+  width: 50%;
+}
+.heart-container {
+  width: 40px;
+  height: 40px;
+  margin-left: 20px;
+  background: rgba(108, 207, 255, 0.32);
+  border-radius: 4px;
+  min-width: auto;
+}
+.heart-container:hover {
+  opacity: 0.6;
+  cursor: pointer;
 }
 
 .car-header-info-container {
@@ -14,9 +33,16 @@
   top: 20px;
   left: 20px;
 }
+.car-title-container {
+  align-items: center;
+}
+.car-price-container {
+  width: 100%;
+  justify-content: flex-end !important;
+}
 
 .car-title {
-  font-size: 48px;
+  font-size: 36px;
   font-weight: 700;
   color: #00bbff;
 }
@@ -30,7 +56,11 @@
   font-size: 24px;
   font-weight: 700;
 }
-
+.price {
+  font-weight: 700;
+  color: "#00bbff";
+  font-size: "36px";
+}
 .details-heading {
   font-size: 42px;
   font-weight: 700;
@@ -101,6 +131,7 @@
 .tab-info-container {
   padding: 20px;
   background: white;
+  border-radius: 0px 0px 16px 16px;
 }
 
 #finance-select select {
@@ -252,6 +283,8 @@
 
   .car-finance-summary-container {
     display: block;
+    padding-left: 0px;
+    padding-right: 0px;
   }
   .summary-header-heading {
     font-size: 24px;
@@ -280,7 +313,7 @@
   .car-header-container {
     height: auto !important;
     padding-bottom: 30px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
   }
   .car-name {
     font-size: 24px;
@@ -288,5 +321,19 @@
   }
   .car-title {
     font-size: 32px;
+  }
+  .miles-driven {
+    font-size: 18px;
+  }
+  .car-title-container {
+    align-items: flex-start;
+  }
+  .car-price-container {
+    justify-content: flex-start !important;
+  }
+  .price {
+    font-weight: 700;
+    color: "#00bbff";
+    font-size: "24px";
   }
 }

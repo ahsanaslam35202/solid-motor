@@ -48,7 +48,7 @@ const Home = (props) => {
         >
           <div className="d-flex w-100 align-items-center justify-content-around ">
             <p style={{ marginBottom: "0px", color: "white", fontWeight: 600 }}>
-              Call Us for any Question
+              Questions ? Call us!
             </p>
             <a
               href="tel:(469) 929-6161"
@@ -120,11 +120,10 @@ const Home = (props) => {
           </div>
         </div>
         <header className="w-100 text-center header">
-          <h1 className="header-title">SOLIDMOTORS</h1>
+          <h1 className="header-title">Buy a car with peace of mind</h1>
           <p className="header-para">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
-            ipsum&nbsp;ut labore et dolore magna aliqu
+            we offer reliable cars and an easy buying experience, get
+            pre-qualified in 30 seconds!
             <br />
             <br />
           </p>
@@ -153,25 +152,24 @@ const Home = (props) => {
           </div>
         </header>
 
-        <div className="mt-180 mobile-mt50 ">
+        <div className="mt-80 mobile-mt50 ">
           <div className="container">
             <div className="row" style={{ paddingLeft: "10px" }}>
-              <div className="col-md-6">
-                <h1 className="h1-black">
+              <div className="col-md-12 d-flex justify-content-center">
+                {/* <h1 className="h1-black">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                </h1>
+                </h1> */}
+                <img src="assets/img/care.png" className="care-img" alt="" />
               </div>
-              <div className="col-md-6">
-                <p className="main-color mobile-mt50">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Quis ipsum suspendisse ultrices gravida.
+              <div className="col-md-12">
+                <p className=" h3-black main-color mobile-mt50 w-100 text-center">
+                  included with Each Vehicle
                 </p>
               </div>
             </div>
           </div>
         </div>
-        <div className="dektop-d-none">
+        <div className="mt-100 mobile-mt50">
           <Carousel
             removeArrowOnDeviceType={["tablet", "mobile"]}
             style={{ paddingLeft: "20px" }}
@@ -198,10 +196,7 @@ const Home = (props) => {
                   }}
                 >
                   <h1 style={{ fontSize: "24px" }}>
-                    <strong>
-                      Lorem ipsum, repudiandae deleniti id expedita optio
-                      soluta!
-                    </strong>
+                    <strong>Happy customers !</strong>
                   </h1>
                 </div>
               </div>
@@ -214,9 +209,9 @@ const Home = (props) => {
                 }}
               >
                 <div className="feature-card">
-                  <div className="f2-img" />
+                  <div className="corolla-2020" />
                   <h1 className="w-100 text-center feature-card-heading">
-                    <strong>TEST DRIVE FACILITY</strong>
+                    <strong>2020 Toyota Corolla</strong>
                   </h1>
                 </div>
               </div>
@@ -229,9 +224,9 @@ const Home = (props) => {
                 }}
               >
                 <div className="feature-card">
-                  <div className="f2-img" />
+                  <div className="dodge-2019" />
                   <h1 className="w-100 text-center feature-card-heading">
-                    <strong>TEST DRIVE FACILITY</strong>
+                    <strong>2019 Dodge Charger</strong>
                   </h1>
                 </div>
               </div>
@@ -244,9 +239,9 @@ const Home = (props) => {
                 }}
               >
                 <div className="feature-card">
-                  <div className="f2-img" />
+                  <div className="maxima-2017" />
                   <h1 className="w-100 text-center feature-card-heading">
-                    <strong>TEST DRIVE FACILITY</strong>
+                    <strong>2017 Nissan Maxima</strong>
                   </h1>
                 </div>
               </div>
@@ -259,9 +254,39 @@ const Home = (props) => {
                 }}
               >
                 <div className="feature-card">
-                  <div className="f2-img" />
+                  <div className="corolla-2019" />
                   <h1 className="w-100 text-center feature-card-heading">
-                    <strong>TEST DRIVE FACILITY</strong>
+                    <strong>2019 Toyota Corolla</strong>
+                  </h1>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div
+                style={{
+                  width: "90%",
+                  marginRight: "30px",
+                }}
+              >
+                <div className="feature-card">
+                  <div className="altima-2020" />
+                  <h1 className="w-100 text-center feature-card-heading">
+                    <strong>2020 Nissan Altima</strong>
+                  </h1>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div
+                style={{
+                  width: "90%",
+                  marginRight: "30px",
+                }}
+              >
+                <div className="feature-card">
+                  <div className="charger-2019" />
+                  <h1 className="w-100 text-center feature-card-heading">
+                    <strong>2019 Dodge Charger</strong>
                   </h1>
                 </div>
               </div>
@@ -269,7 +294,7 @@ const Home = (props) => {
           </Carousel>
         </div>
 
-        <div className="mt-180 mobile-mt50 mobile-d-none">
+        {/* <div className="mt-100 mobile-mt50 mobile-d-none">
           <div className="container">
             <div className="row">
               <div className="col-md-3">
@@ -306,58 +331,11 @@ const Home = (props) => {
               </div>
             </div>
           </div>
-        </div>
-        <div className="mt-180">
-          <h1 className="w-100 text-center h1-black">
-            THE NEW WAY TO BUY A CAR
-          </h1>
-          <div className="container" style={{ marginTop: "100px" }}>
-            <img className="w-100" src="assets/img/New%20way.png" />
-          </div>
-          <h1 className="w-100 text-center h3-black mt-100 mobile-d-none">
-            Lorem ipsum dolor sit amet, <br />
-            consectetur adipiscing
-          </h1>
-          <p className="w-100 text-center new-way-para">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
-            ipsum suspendisse Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-            aliqua. Quis ipsum suspendisse Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit,&nbsp;
-          </p>
-          <div className="mt-15 check-point-container">
-            <div className="w-100 d-flex justify-content-center mt-15">
-              <img className="new-way-point-icon" src="assets/img/check.svg" />
-              <p className="h4-black">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-              </p>
-            </div>
-            <div className="w-100 d-flex justify-content-center mt-15">
-              <img className="new-way-point-icon" src="assets/img/check.svg" />
-              <p className="h4-black">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-              </p>
-            </div>
-            <div className="w-100 d-flex justify-content-center mt-15">
-              <img className="new-way-point-icon" src="assets/img/check.svg" />
-              <p className="h4-black">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-              </p>
-            </div>
-          </div>
-          <div className="w-100 d-flex justify-content-center mt-80">
-            <a href="search cars">
-              <button className="btn btn-primary main-button" type="button">
-                <strong>Search Car</strong>
-              </button>
-            </a>
-          </div>
-        </div>
+        </div> */}
 
         <div className="mt-200">
           <div className="container">
-            <h1 className="w-100 text-center h1-black">WHY US</h1>
+            <h1 className="w-100 text-center h1-black">WHY US ?</h1>
           </div>
           <div className="dektop-d-none mt-50">
             <Carousel
@@ -382,12 +360,12 @@ const Home = (props) => {
                       </div>
                     </div>
                     <h1 className="w-100 text-center home-why-us-card-heading">
-                      7 Day Test to Own
+                      Call to schedule a test drive any time
                     </h1>
                     <p className="text-center home-why-us-card-para">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Quis ipsum suspendisse ultrices
+                      Before making any commitments to the car you want to know
+                      how it drives and feels, you can call and schedule at any
+                      time.
                     </p>
                   </div>
                 </div>
@@ -409,12 +387,10 @@ const Home = (props) => {
                       </div>
                     </div>
                     <h1 className="w-100 text-center home-why-us-card-heading">
-                      7 Day Test to Own
+                      Fast Approvals
                     </h1>
                     <p className="text-center home-why-us-card-para">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Quis ipsum suspendisse ultrices
+                      Get pre-qualified in 30 seconds with our Loan Calculator.
                     </p>
                   </div>
                 </div>
@@ -444,17 +420,17 @@ const Home = (props) => {
                       </div>
                     </div>
                     <h1 className="w-100 text-center home-why-us-card-heading">
-                      7 Day Test to Own
+                      Certified Pre-Owned Vehicles
                     </h1>
                     <p className="text-center home-why-us-card-para">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Quis ipsum suspendisse ultrices
+                      At Solid Motors we believe in quality and not quantity
+                      that's why we take our time to ensure everything is
+                      running properly on a vehicle before listing ot for sale.
                     </p>
                   </div>
                 </div>
               </div>
-              <div>
+              {/* <div>
                 <div
                   style={{
                     width: "90%",
@@ -480,7 +456,7 @@ const Home = (props) => {
                     </p>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </Carousel>
           </div>
           <div className="row mt-50 home-why-us-card-container mobile-d-none">
@@ -572,6 +548,61 @@ const Home = (props) => {
           </div>
         </div>
 
+        <div className="mt-180">
+          <h1
+            className="w-100 text-center h1-black"
+            style={{ fontSize: "32px" }}
+          >
+            Get the car you want and the term you want!
+          </h1>
+          <div className="container" style={{ marginTop: "100px" }}>
+            <img className="w-100" src="assets/img/New%20way.png" />
+          </div>
+          {/* <h1 className="w-100 text-center h3-black mt-100 mobile-d-none">
+            Lorem ipsum dolor sit amet, <br />
+            consectetur adipiscing
+          </h1> */}
+          <p className="w-100 text-center new-way-para">
+            At Solid Motors we take out time to ensure you're getting the car
+            you love for the term you love, our finance team works very hard to
+            ensure your satisfaction with our lenders&nbsp;
+          </p>
+          <div className="mt-15 check-point-container d-flex justify-content-center">
+            <div>
+              <div className="w-100 d-flex justify-content-start mt-15">
+                <img
+                  className="new-way-point-icon"
+                  src="assets/img/check.svg"
+                />
+                <p className="h4-black">
+                  360 Inside and outside view of each car.
+                </p>
+              </div>
+              <div className="w-100 d-flex justify-content-start mt-15">
+                <img
+                  className="new-way-point-icon"
+                  src="assets/img/check.svg"
+                />
+                <p className="h4-black">carfax report on each car</p>
+              </div>
+              <div className="w-100 d-flex justify-content-start mt-15">
+                <img
+                  className="new-way-point-icon"
+                  src="assets/img/check.svg"
+                />
+                <p className="h4-black">pre-qualified in 30 seconds.</p>
+              </div>
+            </div>
+          </div>
+          <div className="w-100 d-flex justify-content-center mt-80">
+            <a href="search cars">
+              <button className="btn btn-primary main-button" type="button">
+                <strong>Search Car</strong>
+              </button>
+            </a>
+          </div>
+        </div>
+
         <div className="mt-180 mobile-mt50 sell-or-trade-container">
           <div className="container">
             <div className="row">
@@ -579,18 +610,37 @@ const Home = (props) => {
                 <h1 className="h1-black mobile-text-center">
                   SELL OR TRADE YOUR CAR
                 </h1>
-                <h1 className="sell-or-trade-sub-heading">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing
+                <h1
+                  className="sell-or-trade-sub-heading"
+                  style={{ color: "red" }}
+                >
+                  $3,000 OVER KBB FOR YOUR TRADE
                 </h1>
-                <p className="mt-30">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  <br />
-                  <br />
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor.
-                  <br />
-                </p>
+                <div className="mt-30 check-point-container d-flex justify-content-start">
+                  <div>
+                    <div className="w-100 d-flex justify-content-start mt-15">
+                      <img
+                        className="new-way-point-icon"
+                        src="assets/img/check.svg"
+                      />
+                      <p className="h4-black">$3000 Over KBB for your Trade</p>
+                    </div>
+                    <div className="w-100 d-flex justify-content-start mt-15">
+                      <img
+                        className="new-way-point-icon"
+                        src="assets/img/check.svg"
+                      />
+                      <p className="h4-black">Get an Instant Cash Offer</p>
+                    </div>
+                    <div className="w-100 d-flex justify-content-start mt-15">
+                      <img
+                        className="new-way-point-icon"
+                        src="assets/img/check.svg"
+                      />
+                      <p className="h4-black">Get a Check</p>
+                    </div>
+                  </div>
+                </div>
                 <div className="w-100 mt-80 mobile-flex-center">
                   <a href="sell">
                     <button
@@ -639,60 +689,77 @@ const Home = (props) => {
           >
             Solid Motor Car Tools
           </h1>
-          <div className="row mt-50">
-            <div className="col-md-4">
+          <div className="row mt-80 d-flex">
+            <div className="wd-33">
               <a href="/search cars" className="tool-card">
-                <div className="feature-card">
-                  <div
-                    className="f2-img"
-                    style={{
-                      background: 'url("assets/img/cars-finder.jpg")',
-                      backgroundSize: "cover",
-                    }}
-                  />
-                  <h1 className="w-100 text-center feature-card-heading">
-                    <strong>Car Finder</strong>
-                  </h1>
-                </div>
-              </a>
-            </div>
-            <div className="col-md-4">
-              <a href="/loan calculator" className="tool-card">
-                <div className="feature-card">
-                  <div
-                    className="f2-img"
-                    style={{
-                      background: 'url("assets/img/loan-calulation-tool.jpg")',
-                      backgroundSize: "cover",
-                    }}
-                  />
-                  <h1 className="w-100 text-center feature-card-heading">
-                    <strong>Loan Calculator&nbsp;</strong>
-                  </h1>
-                </div>
-              </a>
-            </div>
+                <div className="d-flex justify-content-center">
+                  <div>
+                    <div className="w-100 d-flex justify-content-center">
+                      <img
+                        src="assets/img/car-search.svg"
+                        style={{ width: "42px" }}
+                        alt=""
+                      />
+                    </div>
 
-            <div className="col-md-4">
-              <a href="/pre-qualified" className="tool-card">
-                <div className="feature-card">
-                  <div
-                    className="f2-img"
-                    style={{
-                      background: 'url("assets/img/trade-in-estmator.jpg")',
-                      backgroundSize: "cover",
-                    }}
-                  />
-                  <h1 className="w-100 text-center feature-card-heading">
-                    <strong>Trade-In Estimator</strong>
-                  </h1>
+                    <h1
+                      className="w-100 text-center feature-card-heading"
+                      style={{ color: "black" }}
+                    >
+                      <strong>Car Finder</strong>
+                    </h1>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div className="wd-33">
+              <a href="/loan calculator" className="tool-card">
+                <div className="d-flex justify-content-center">
+                  <div>
+                    <div className="w-100 d-flex justify-content-center">
+                      <img
+                        src="assets/img/loan-calculator.svg"
+                        style={{ width: "36px" }}
+                        alt=""
+                      />
+                    </div>
+
+                    <h1
+                      className="w-100 text-center feature-card-heading"
+                      style={{ color: "black" }}
+                    >
+                      <strong>Loan Calculator</strong>
+                    </h1>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div className="wd-33">
+              <a href="/trade" className="tool-card">
+                <div className="d-flex justify-content-center">
+                  <div>
+                    <div className="w-100 d-flex justify-content-center">
+                      <img
+                        src="assets/img/car-trade.svg"
+                        style={{ width: "42px" }}
+                        alt=""
+                      />
+                    </div>
+
+                    <h1
+                      className="w-100 text-center feature-card-heading"
+                      style={{ color: "black" }}
+                    >
+                      <strong>Car Trade Estimator</strong>
+                    </h1>
+                  </div>
                 </div>
               </a>
             </div>
           </div>
         </div>
 
-        <div className="mt-200 mobile-mt80 cars-100-container">
+        {/* <div className="mt-200 mobile-mt80 cars-100-container">
           <div className="container">
             <div className="row">
               <div className="col-md-12">
@@ -725,7 +792,7 @@ const Home = (props) => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* <div className="mt-200">
           <div className="container">

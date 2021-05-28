@@ -325,9 +325,6 @@ const PreQualified = (props) => {
                     name="email"
                     placeholder="Email"
                   />
-                  <small className="form-text">
-                    Please enter a correct email address.
-                  </small>
                 </div>
                 <div className="form-group">
                   <input

@@ -108,24 +108,30 @@ body {
   border: none !important;
   font-size: 18px !important;
   font-weight: 500 !important;
+  outline: 0 !important;
+  border: 0 !important;
 }
 
-.main-button:hover {
+.main-button:hover,
+.main-button:focus {
   background-color: #9fe5ff !important;
   color: #141418 !important;
   transition-duration: 0.3s;
+  outline: none !important;
 }
 
-button:hover {
+button:hover,
+button:focus {
   background-color: #9fe5ff !important ;
   color: #141418 !important;
   transition-duration: 0.3s !important;
+  outline: none !important;
+  border: none !important;
 }
-
-/* button a:hover{
-  text-decoration: none;
-  color: #252525;
-} */
+button:active {
+  outline: none !important;
+  border: none !important;
+}
 
 .footer-about-para {
   margin-top: 30px;

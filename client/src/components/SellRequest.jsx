@@ -2,6 +2,7 @@ import React from "react";
 import Footer from "./Footer";
 import { getloggedinuser, isLoggedin, logout } from "../services/userService";
 import { postSellTrade } from "../services/sellTradeService";
+import Modal from "react-modal";
 
 import Navbar from "./Navbar";
 import Navbar2 from "./Navbar2";
@@ -11,40 +12,92 @@ function useForceUpdate() {
   return () => setValue((value) => value + 1); // update the state to force render
 }
 
-const SellRequest = () => {
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    width: "40%",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    padding: 0,
+    borderWidth: "0px",
+    borderRadius: "20px",
+    boder: "none",
+  },
+};
+
+const SellRequest = (props) => {
   const forceUpdate = useForceUpdate();
   const handleLogout = async (e) => {
     await logout();
     forceUpdate();
   };
 
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   const submitCarSell = async (e) => {
-    console.log("Function called");
+
+    if(vinNumber=='' || carMakeModel=='' || carModelYear=='' || drivenMiles=='' || extendedFeatures=='' || carHistory==''){
+      openModal();
+
+    }
+    else{
+      console.log("Function called");
     const user = getloggedinuser();
-    const userId = user._id;
-    await postSellTrade({
-      sellOrTrade,
-      vinNumber,
-      carMakeModel,
-      carModelYear,
-      drivenMiles,
-      fuelType,
-      engineType,
-      transmission,
-      driveTrain,
-      extendedFeatures,
-      carHistory,
-      estimatedPrice,
-      userId,
-    }).then(() => {
-      console.log("Request Send Successfully !");
-    });
+    console.log(user);
+    if(!(user==null)){
+      const userId = user._id;
+      await postSellTrade({
+        sellOrTrade,
+        vinNumber,
+        carMakeModel,
+        carModelYear,
+        drivenMiles,
+        fuelType,
+        engineType,
+        transmission,
+        driveTrain,
+        extendedFeatures,
+        carHistory,
+        estimatedPrice,
+        userId,
+      }).then(() => {
+        console.log("Request Send Successfully !");
+        props.history.push("/sell trade success");
+  
+      }).catch(()=>{
+        setErr_msg("An Error has Occured, Please try again!");
+        openModal();
+      }) ;
+    }
+    else{
+      logout();
+      props.history.push('/login');
+    }
+  
+
+    }
+    
   };
 
   const [sellOrTrade, setSellOrTrade] = React.useState("Trade");
   const [vinNumber, setVinNumber] = React.useState("");
   const [carMakeModel, setCarMakeModel] = React.useState("");
-  const [carModelYear, setCarModelYear] = React.useState();
+  const [carModelYear, setCarModelYear] = React.useState(2018);
   const [drivenMiles, setDrivenMiles] = React.useState();
 
   const [fuelType, setFuelType] = React.useState("Gas");
@@ -55,22 +108,65 @@ const SellRequest = () => {
   const [extendedFeatures, setExtendedFeatures] = React.useState("");
   const [carHistory, setCarHistory] = React.useState("");
   const [estimatedPrice, setEstimatedPrice] = React.useState(0);
+  
+  const [err_msg, setErr_msg] = React.useState("Please Fill Complete Data");
 
   return (
     <>
       {isLoggedin() ? <Navbar2 handleLogout={handleLogout} /> : <Navbar />}
 
       <div>
-        <div x>
+      <div>
+        <Modal
+          isOpen={modalIsOpen}
+          onAfterOpen={afterOpenModal}
+          onRequestClose={closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <div
+            style={{
+              padding: "30px",
+              background: "#6ccfff",
+              borderRadius: "20px",
+              paddingBottom: "70px",
+              width: "100%",
+              height: "50vh",
+            }}
+          >
+            <div className="d-flex justify-content-end">
+              <button
+                className="btn btn-primary"
+                type="button"
+                style={{
+                  background: "rgb(189,221,255)",
+                  color: "rgb(52,52,52)",
+                }}
+                onClick={closeModal}
+              >
+                X
+              </button>
+            </div>
+            <h4
+              className="w-100 text-center thankyou-heading"
+              style={{ fontSize: "24px" }}
+            >
+              {err_msg}
+            </h4>
+          </div>
+        </Modal>
+      </div>
+        <div>
           <div className="row mt-0">
-            <div className="col-md-6">
+            <div className="col-md-6 header-heading-container {
+">
               <div
                 className="container"
-                style={{
-                  paddingTop: "120px",
-                  paddingRight: "50px",
-                  paddingLeft: "50px",
-                }}
+                // style={{
+                //   paddingTop: "120px",
+                //   paddingRight: "50px",
+                //   paddingLeft: "50px",
+                // }}
               >
                 <h1 className="page-title">
                   Sell OR Trade Your Car with Solid Motors
@@ -151,9 +247,12 @@ const SellRequest = () => {
                   <label className="sell-request-label">Car Model Year</label>
                   <input
                     className="form-control sell-request-input"
-                    type="text"
+                    type="number"
                     name="number"
                     placeholder="2019"
+                    min='2000'
+                    max='3000'
+                    value={carModelYear}
                     onChange={(e) => {
                       setCarModelYear(e.target.value);
                     }}

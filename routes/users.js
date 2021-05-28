@@ -41,7 +41,7 @@ router.post("/login", validateUserLoginMW, async (req, res) => {
   console.log(req.body.email);
   let userData = await User.findOne(
     {
-      email: "uzairahmad227848@gmail.com",
+      email: req.body.email,
     },
     (err, estab) => {
       if (err) {

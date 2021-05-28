@@ -118,7 +118,7 @@ const CarDetail = (props) => {
     <>
       {isLoggedin() ? <Navbar2 handleLogout={handleLogout} /> : <Navbar />}
       <div>
-        <div className="car-header-container">
+        {/* <div className="car-header-container">
           <img className="w-100" src="assets/img/car.png" />
           <div className="car-header-info-container">
             <h1 className="car-title">
@@ -131,9 +131,9 @@ const CarDetail = (props) => {
               <strong>${car.price}</strong>
             </h1>
           </div>
-        </div>
+        </div> */}
 
-        <div
+        {/* <div
           className="d-flex justify-content-around align-items-center"
           style={{
             marginRight: "8%",
@@ -177,12 +177,106 @@ const CarDetail = (props) => {
               <p>add to wishlist</p>
             </div>
           </div>
+        </div> */}
+
+        <div className="car-info-container mt-50">
+          <div className="row mt-0">
+            <div className="col-md-6">
+              <div className="d-flex car-title-container">
+                <h1 className="car-title">2019 Honda Camry</h1>
+                <div className="d-flex justify-content-center align-items-center heart-container">
+                  <img
+                    src="assets/img/like_red.svg"
+                    style={{ width: "20px", fill: "red" }}
+                  />
+                </div>
+              </div>
+              <h1 className="miles-driven">24000 Miles</h1>
+            </div>
+            <div className="col-md-6 d-flex car-price-container">
+              <h1 className="price">$54,000</h1>
+            </div>
+          </div>
+        </div>
+
+        <div className="car-header-container">
+          <img src="assets/img/car.png" style={{ width: "100%" }} />
+        </div>
+
+        <div className="container mt-30">
+          <div className="row mt-0 d-flex">
+            <div className="wd-50">
+              <div className="d-flex align-items-center justify-content-center">
+                <div
+                  className="d-flex justify-content-center align-items-center"
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    marginLeft: "20px",
+                    background: "rgba(108,207,255,0.32)",
+                    borderRadius: "4px",
+                    minWidth: "auto",
+                  }}
+                >
+                  <img
+                    src="assets/img/view.svg"
+                    style={{ width: "20px", fill: "red" }}
+                  />
+                </div>
+                <p
+                  style={{
+                    marginBottom: "0px",
+                    marginLeft: "10px",
+                    fontSize: "18px",
+                    color: "#0cbdff",
+                    fontFamily: "Poppins, sans-serif",
+                    fontWeight: 600,
+                  }}
+                >
+                  345 Views
+                </p>
+              </div>
+            </div>
+            <div className="wd-50 d-flex justify-content-center">
+              <div className="d-flex align-items-center">
+                <div
+                  className="d-flex justify-content-center align-items-center"
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    marginLeft: "20px",
+                    background: "rgba(108,207,255,0.32)",
+                    borderRadius: "4px",
+                    minWidth: "auto",
+                  }}
+                >
+                  <img
+                    src="assets/img/heart.svg"
+                    style={{ width: "20px", fill: "red" }}
+                  />
+                </div>
+                <p
+                  style={{
+                    marginBottom: "0px",
+                    marginLeft: "10px",
+                    fontSize: "18px",
+                    color: "#0cbdff",
+                    fontFamily: "Poppins, sans-serif",
+                    fontWeight: 600,
+                  }}
+                >
+                  500 Likes
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="mt-80">
           <Carousel
             // removeArrowOnDeviceType={["tablet", "mobile"]}
             responsive={responsive}
+            removeArrowOnDeviceType={["tablet", "mobile"]}
           >
             <CarCarouselImage />
             <CarCarouselImage />
@@ -200,7 +294,7 @@ const CarDetail = (props) => {
         <div className="container mt-120 mobile-mt50 ">
           <h1 className="w-100 text-center details-heading" />
           <div className="row">
-            <div className="col-md-4">
+            <div className="col-xs-6 col-sm-6 col-md-4 ">
               <div
                 className="d-flex flex-column justify-content-center"
                 style={{
@@ -252,7 +346,7 @@ const CarDetail = (props) => {
                 </button>
               </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-xs-6 col-sm-6 col-md-4 ">
               <div
                 className="d-flex flex-column justify-content-center"
                 style={{
@@ -295,7 +389,7 @@ const CarDetail = (props) => {
                 </p>
               </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-xs-6 col-sm-6 col-md-4 ">
               <div
                 className="d-flex flex-column justify-content-center"
                 style={{
@@ -355,7 +449,7 @@ const CarDetail = (props) => {
                   <li className="nav-item w-50" role="presentation">
                     <a
                       className="nav-link active w-100 text-center tab-link"
-                      role="tab"
+                      role="tabpane1"
                       data-toggle="tab"
                       href="#tab-1"
                     >
@@ -365,11 +459,11 @@ const CarDetail = (props) => {
                   <li className="nav-item w-50" role="presentation">
                     <a
                       className="nav-link w-100 text-center tab-link"
-                      role="tab"
+                      role="tabpane2"
                       data-toggle="tab"
                       href="#tab-2"
                     >
-                      How much can I afford
+                      Warranty
                     </a>
                   </li>
                 </ul>
@@ -476,7 +570,7 @@ const CarDetail = (props) => {
                       </div>
                     </div>
                   </div>
-                  <div className="tab-pane" role="tabpanel" id="tab-2">
+                  <div className="tab-pane" role="tabpane2" id="tab-2">
                     <div className="tab-details-container">
                       <h1 className="h3-black w-100 text-center">Warranty</h1>
                       <p>
@@ -501,7 +595,12 @@ const CarDetail = (props) => {
             <div
               className="row"
               id="expand-area"
-              style={{ height: "100px", overflow: "hidden" }}
+              style={{
+                height: "auto",
+                minHeight: "100px",
+                paddingBottom: "50px",
+                overflow: "hidden",
+              }}
             >
               {car.extendedFeatures.map((item, index) => (
                 <div className="col-md-4 d-flex justify-content-center">
@@ -511,11 +610,11 @@ const CarDetail = (props) => {
                 </div>
               ))}
             </div>
-            <div className="d-flex justify-content-center mt-50">
+            {/* <div className="d-flex justify-content-center mt-50">
               <button className="btn btn-primary main-button" type="button">
                 LOAD MORE
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="mt-200">
@@ -526,7 +625,7 @@ const CarDetail = (props) => {
                   <li className="nav-item w-50" role="presentation">
                     <a
                       className="nav-link active w-100 text-center tabs-link"
-                      role="tab"
+                      role="tabpane3"
                       data-toggle="tab"
                       href="#tab-3"
                     >
@@ -536,7 +635,7 @@ const CarDetail = (props) => {
                   <li className="nav-item w-50" role="presentation">
                     <a
                       className="nav-link w-100 text-center tabs-link"
-                      role="tab"
+                      role="tabpane4"
                       data-toggle="tab"
                       href="#tab-4"
                     >
@@ -545,7 +644,7 @@ const CarDetail = (props) => {
                   </li>
                 </ul>
                 <div className="tab-content">
-                  <div className="tab-pane active" role="tabpanel" id="tab-3">
+                  <div className="tab-pane active" role="tabpane3" id="tab-3">
                     <div className="tab-info-container">
                       <div className="row" id="finance-select">
                         <div className="col-md-4 mt-15">
@@ -684,10 +783,9 @@ const CarDetail = (props) => {
                       </div>
                     </div>
                   </div>
-                  <div className="tab-pane active" role="tabpanel" id="tab-4">
+                  <div className="tab-pane" role="tabpane4" id="tab-4">
                     <div className="tab-info-container">
                       <div className="h3-black w-100 text-center">
-                        {" "}
                         Total Amount in Cash : $54,000
                       </div>
 
@@ -709,7 +807,7 @@ const CarDetail = (props) => {
                             </button>
                           </div>
                         </div>
-                        <div className="col">
+                        <div className="col-md-6">
                           <div className="apply-card mt-30">
                             <h1 className="apply-card-heading">
                               <strong>Carvana Offering Finance</strong>
@@ -864,7 +962,7 @@ const CarDetail = (props) => {
         </div> */}
 
         <div className="mt-200">
-          <div className="row">
+          <div className="row mt-0">
             <div
               className="col-md-6 bg-main"
               style={{

@@ -1,7 +1,7 @@
 .car-searchbar-container {
   padding-right: 5%;
   padding-left: 5%;
-  padding-top: 60px;
+  padding-top: 30px;
 }
 
 .car-searchbar {
@@ -18,7 +18,7 @@
   margin-right: 0px;
   padding-right: 5%;
   padding-left: 5%;
-  margin-top: 100px;
+  margin-top: 70px;
 }
 
 .car-card-container {
@@ -186,5 +186,8 @@
   }
   .car-searchbar-container {
     padding-top: 30px !important;
+  }
+  .mobile-mt-10{
+    margin-top: 10px;
   }
 }

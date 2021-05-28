@@ -16,7 +16,7 @@ const LoanCalculator = () => {
     forceUpdate();
   };
   const [months, setMonths] = React.useState(72);
-  const [creditScore, setCreditScore] = React.useState(750);
+  const [creditScore, setCreditScore] = React.useState(780);
   const [carCost, setCarCost] = React.useState(10000);
   const [downPayment, setDownpayment] = React.useState(1500);
   const [monthlyPayment, setMonthlyPayment] = React.useState("");
@@ -44,72 +44,70 @@ const LoanCalculator = () => {
 
   function calCommision() {
     if (months == 72) {
-      if (creditScore == 750) {
+      if (creditScore == 780) {
         commision = 10;
       }
-      if (creditScore == 700) {
+      if (creditScore == 680) {
         commision = 21;
       }
-      if (creditScore == 600) {
+      if (creditScore == 630) {
         commision = 23;
       }
-      if (creditScore == 599) {
+      if (creditScore == 588) {
         commision = 0;
       }
     }
 
     if (months == 60) {
-      if (creditScore == 750) {
+      if (creditScore == 780) {
         commision = 8;
       }
-      if (creditScore == 700) {
+      if (creditScore == 680) {
         commision = 18;
       }
-      if (creditScore == 600) {
+      if (creditScore == 630) {
         commision = 22;
       }
-      if (creditScore == 599) {
+      if (creditScore == 588) {
         commision = 25;
       }
     }
 
     if (months == 48) {
-      if (creditScore == 750) {
+      if (creditScore == 780) {
         commision = 7.5;
       }
-      if (creditScore == 700) {
+      if (creditScore == 680) {
         commision = 14;
       }
-      if (creditScore == 600) {
+      if (creditScore == 630) {
         commision = 18;
       }
-      if (creditScore == 599) {
+      if (creditScore == 588) {
         commision = 22;
       }
     }
 
     if (months == 36) {
-      if (creditScore == 750) {
+      if (creditScore == 780) {
         commision = 5.2;
       }
-      if (creditScore == 700) {
+      if (creditScore == 680) {
         commision = 10;
       }
-      if (creditScore == 600) {
+      if (creditScore == 630) {
         commision = 16;
       }
-      if (creditScore == 599) {
-        commision = 20;
+      if (creditScore == 588) {
+        commision = 22;
       }
     }
   }
 
   function monthlyPaymentUpdate() {
-    if (carCost >= 2000 && downPayment >= 750) {
-      if (creditScore == 599 && months == 72) {
+    if (carCost >= 10000 && downPayment >= 1500) {
+      if (creditScore == 588 && months == 72) {
         setMonthlyPayment("N/A");
-      } else if (parseInt(downPayment) > parseInt(carCost)) {
-        setMonthlyPayment(0);
       } else {
         calCommision();
         pendingPayment = carCost - downPayment;
@@ -121,23 +119,18 @@ const LoanCalculator = () => {
   }
 
   function affordPriceUpdate() {
-    if (estimatedMonthlyPaymemt >= 100 && downPayment >= 750) {
-      if (creditScore == 599 && months == 72) {
+    if (estimatedMonthlyPaymemt >= 100 && downPayment >= 1500) {
+      if (creditScore == 588 && months == 72) {
         setAffordPrice("N/A");
       } else {
         calCommision();
         var tfp = 0;
+        console.log(commision);
         tfp = estimatedMonthlyPaymemt * months;
-        console.log("Total Payment: " + tfp);
+        console.log(tfp);
         tfp = tfp * (1 + commision / 100);
-        console.log("After Adding Commision: " + tfp);
-
-        tfp = parseInt(tfp) + parseInt(downPayment);
-        if (tfp > 100000) {
-          setAffordPrice(100000);
-        } else {
-          setAffordPrice(Math.ceil(tfp));
-        }
+        tfp = tfp + downPayment;
+        setAffordPrice(Math.ceil(tfp));
       }
     }
   }
@@ -204,22 +197,17 @@ const LoanCalculator = () => {
                               : "$" + monthlyPayment + "/Month"}
                           </h2>
                           <div className="form-group mt-30">
-                            <label>Cost of car I want $10,000 - $100,000</label>
+                            <label>Cost of car I want</label>
                             <input
                               className="form-control loan-input"
                               type="number"
                               name=""
-                              value={carCost}
-                              min="2000"
+                              // value="10000"
+                              min="1000"
                               placeholder="10000"
                               onChange={(e) => {
-                                if (e.target.value > 100000) {
-                                  setCarCost(100000);
-                                  monthlyPaymentUpdate();
-                                } else {
-                                  setCarCost(e.target.value);
-                                  monthlyPaymentUpdate();
-                                }
+                                setCarCost(e.target.value);
+                                monthlyPaymentUpdate();
                               }}
                             />
                           </div>
@@ -232,13 +220,11 @@ const LoanCalculator = () => {
                               }}
                               className="form-control select loan-input"
                             >
-                              <optgroup>
-                                <option value={750}>Excellent: 750+</option>
-                                <option value={700}>Good: 700-749</option>
-                                <option value={600}>Average: 600-699</option>
-                                <option value={599}>
-                                  Below Average: 599 and Below
-                                </option>
+                              <optgroup label="This is a group">
+                                <option value={780}>Excellent: 750+</option>
+                                <option value={680}>Good: 700-749</option>
+                                <option value={630}>Average: 600-699</option>
+                                <option value={588}>Below Average: 599 and Below</option>
                               </optgroup>
                             </select>
                           </div>
@@ -251,7 +237,7 @@ const LoanCalculator = () => {
                               }}
                               className="form-control select loan-input"
                             >
-                              <optgroup>
+                              <optgroup label="This is a group">
                                 <option value={72}>72 Months</option>
                                 <option value={60}>60 Months</option>
                                 <option value={48}>48 Months</option>
@@ -270,13 +256,8 @@ const LoanCalculator = () => {
                               value={downPayment}
                               placeholder="$1500"
                               onChange={(e) => {
-                                if (e.target.value > 100000) {
-                                  setDownpayment(100000);
-                                  monthlyPaymentUpdate();
-                                } else {
-                                  setDownpayment(e.target.value);
-                                  monthlyPaymentUpdate();
-                                }
+                                setDownpayment(e.target.value);
+                                monthlyPaymentUpdate();
                               }}
                             />
                           </div>
@@ -291,6 +272,9 @@ const LoanCalculator = () => {
                         </form>
                       </div>
                     </div>
+
+
+
 
                     {/* +++++++++++++++++++++++++++ TAB 2 */}
                     <div className="tab-pane" role="tabpanel" id="tab-2">
@@ -324,19 +308,19 @@ const LoanCalculator = () => {
                               }}
                               className="form-control loan-input"
                             >
-                              <optgroup>
-                                <option value={750}>Excellent: 750+</option>
-                                <option value={700}>Good: 700-749</option>
-                                <option value={600}>Average: 600-699</option>
-                                <option value={599}>
-                                  Below Average: 599 and Below
-                                </option>
+                              <optgroup label="This is a group">
+                                <option value={780}>Excellent: 750+</option>
+                                <option value={680}>Good: 700-749</option>
+                                <option value={630}>Average: 600-699</option>
+                                <option value={588}>Below Average: 599 and Below</option>
                               </optgroup>
                             </select>
                           </div>
                           <div className="form-group">
                             <label>Choose your loan tearm</label>
                             <select
+                            
+                              
                               onChange={(e) => {
                                 setMonths(e.target.value);
                                 affordPriceUpdate();
@@ -359,16 +343,11 @@ const LoanCalculator = () => {
                               name="name"
                               min="1500"
                               max="100000"
-                              value={downPayment}
+                              // value="1000"
                               placeholder="$1500"
                               onChange={(e) => {
-                                if (e.target.value > 100000) {
-                                  setDownpayment(100000);
-                                  affordPriceUpdate();
-                                } else {
-                                  setDownpayment(e.target.value);
-                                  affordPriceUpdate();
-                                }
+                                setDownpayment(e.target.value);
+                                affordPriceUpdate();
                               }}
                             />
                           </div>
@@ -394,9 +373,8 @@ const LoanCalculator = () => {
             <div className="row mt-0">
               <div className="col-md-6">
                 <p className="main-color">
-                  With approved credit. Taxes and charges are not included in
-                  your estimated amount. This amount may be different than
-                  financing terms after approval.
+                With approved credit.
+Taxes and charges are not included in your estimated amount. This amount may be different than financing terms after approval.
                 </p>
               </div>
               <div className="col-md-6 d-none" />

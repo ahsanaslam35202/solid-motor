@@ -392,11 +392,11 @@ const CarSearch = () => {
                       >
                         Car Price{" "}
                       </a>
-                      <div className="dropdown-menu wd-400">
+                      <div className="dropdown-menu wd-250">
                         <div className="dropdown-container">
                           <div className="row">
-                            <div className="col-md-6">
-                              <div className="price-card">
+                            {/* <div className="col-md-6">
+                              <div className="price-card mobile-mt-10">
                                 <div
                                   className="d-flex w-100"
                                   style={{
@@ -437,9 +437,9 @@ const CarSearch = () => {
                                   Loan Calculator
                                 </button>
                               </div>
-                            </div>
-                            <div className="col">
-                              <div className="price-card">
+                            </div> */}
+                            <div className="col-md-12">
+                              <div className="price-card mobile-mt-10">
                                 <div
                                   className="d-flex w-100"
                                   style={{
@@ -473,12 +473,14 @@ const CarSearch = () => {
                                   Answer a few questions about your car and get
                                   an instant value. This only takes 2 minutes.
                                 </p>
+                                <a href="./trade">
                                 <button
                                   className="btn btn-primary apply-card-button"
                                   type="button"
                                 >
                                   Trade In Your Car
                                 </button>
+                                </a>
                               </div>
                             </div>
                           </div>
@@ -760,7 +762,7 @@ const CarSearch = () => {
                         <div style={{ padding: "15px" }}>
                           <div className="row">
                             <div className="col-md-6">
-                              <div className="price-card">
+                              <div className="price-card mobile-mt-10">
                                 <div
                                   className="d-flex w-100"
                                   style={{
@@ -802,7 +804,7 @@ const CarSearch = () => {
                               </div>
                             </div>
                             <div className="col">
-                              <div className="price-card">
+                              <div className="price-card mobile-mt-10">
                                 <div
                                   className="d-flex w-100"
                                   style={{
