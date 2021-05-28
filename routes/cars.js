@@ -176,4 +176,16 @@ router.delete("/:id", async (req, res) => {
   res.send(car);
 });
 
+router.put("/views/:id", async (req, res) => {
+  const car = await Car.updateOne(
+    { _id: req.params.id },
+    {
+      views: req.body.views,
+    },
+    { new: true }
+  );
+  if (!car) return res.status(404).send("Car not found");
+  res.send(car);
+});
+
 module.exports = router;
