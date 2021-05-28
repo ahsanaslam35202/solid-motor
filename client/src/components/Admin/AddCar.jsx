@@ -99,7 +99,9 @@ const AddCar = (props) => {
   });
   const [extendedFeatures, setExtendedFeatures] = React.useState([]);
   // const [images, setImages] = React.useState([]);
-  const [files, setFiles] = React.useState();
+  const [displayImage, setDisplayImage] = React.useState();
+  const [otherImages, setOtherImages] = React.useState();
+  const [sendImages, setSendImages] = React.useState();
   const [downPayment, setDownPayment] = React.useState({
     value: "",
     error: "",
@@ -130,11 +132,7 @@ const AddCar = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(files);
     const data = new FormData();
-    for (let x = 0; x < files.length; x++) {
-      data.append("file", files[x]);
-    }
     data.append("make", make.value);
     data.append("model", model.value);
     data.append("name", name.value);
@@ -155,6 +153,13 @@ const AddCar = (props) => {
     data.append("vehicleId", vehicleId.value);
     data.append("mpg", mpg.value);
     data.append("extendedFeatures", extendedFeatures.value);
+    data.append("displayImage", displayImage);
+    for (let x = 0; x < otherImages.length; x++) {
+      data.append("otherImages", otherImages[x]);
+    }
+    for (let x = 0; x < sendImages.length; x++) {
+      data.append("sendImages", sendImages[x]);
+    }
     // data.append("images", images);
     data.append("price", price.value);
     data.append("downPayment", downPayment.value);
@@ -540,10 +545,27 @@ const AddCar = (props) => {
                     </Grid> */}
                     <input
                       type="file"
-                      id="file"
+                      id="displayImage"
                       onChange={(event) => {
-                        const files = event.target.files;
-                        setFiles(files);
+                        const displayImage = event.target.files[0];
+                        setDisplayImage(displayImage);
+                      }}
+                    />
+                    <input
+                      type="file"
+                      id="otherImages"
+                      onChange={(event) => {
+                        const otherImages = event.target.files;
+                        setOtherImages(otherImages);
+                      }}
+                      multiple
+                    />
+                    <input
+                      type="file"
+                      id="sendImages"
+                      onChange={(event) => {
+                        const sendImages = event.target.files;
+                        setSendImages(sendImages);
                       }}
                       multiple
                     />

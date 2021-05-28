@@ -10,7 +10,10 @@ const carCard = (props) => {
       >
         <div className="shadow-sm car-card">
           <div className="car-card-img-container">
-            <img className="w-100" src="assets/img/car%20guide.png" />
+            <img
+              className="w-100"
+              src="../../public/1234/displayImage/2678147.jpg"
+            />
           </div>
           <div className="car-card-info-container">
             <div className="d-flex car-card-info-header">
