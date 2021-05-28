@@ -19,3 +19,7 @@ export function addCar(carInput) {
 export function deleteCar(carId) {
   return http.delete(apiEndPoint + "/" + carId);
 }
+
+export function updateViews(carId, views) {
+  return http.put(apiEndPoint + "/views/" + carId, { views });
+}

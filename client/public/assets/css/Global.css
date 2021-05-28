@@ -1,3 +1,10 @@
+.nav2-dropdown {
+  border-radius: 10px !important;
+  border: none;
+  box-shadow: none;
+  margin-top: 10px !important;
+}
+
 .w-60 {
   width: 60%;
 }
@@ -232,7 +239,7 @@ button:active {
     margin-top: 80px;
   }
   .mobile-d-none {
-    display: none;
+    display: none !important;
   }
   .dektop-d-none {
     display: block !important;

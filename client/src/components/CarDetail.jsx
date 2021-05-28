@@ -13,6 +13,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { getTradeIn } from "../services/sellTradeService";
 import { addBuyRequest } from "../services/buyRequestsService";
+import { updateViews } from "../services/carsService";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import CarCarouselImage from "./CarCarouselImage";
@@ -116,6 +117,9 @@ const CarDetail = (props) => {
       props.history.push("/login");
     }
   };
+
+  const views = car.views + 1;
+  updateViews(car._id, views);
 
   const responsive = {
     superLargeDesktop: {
@@ -268,7 +272,7 @@ const CarDetail = (props) => {
                     fontWeight: 600,
                   }}
                 >
-                  345 Views
+                  {views} Views
                 </p>
               </div>
             </div>
@@ -601,6 +605,14 @@ const CarDetail = (props) => {
                   <div className="tab-pane" role="tabpane2" id="tab-2">
                     <div className="tab-details-container">
                       <h1 className="h3-black w-100 text-center">Warranty</h1>
+
+                      <div className="col-md-12 d-flex justify-content-center">
+                        <img
+                          src="assets/img/care.png"
+                          className="care-img"
+                          alt=""
+                        />
+                      </div>
                       <p>
                         Lorem ipsum dolor sit amet consectetur, adipisicing
                         elit. Corporis, assumenda ducimus! Repudiandae
