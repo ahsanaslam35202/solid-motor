@@ -28,7 +28,7 @@ const Home = (props) => {
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 3,
+      items: 3.5,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -333,7 +333,7 @@ const Home = (props) => {
           </div>
         </div> */}
 
-        <div className="mt-200">
+        <div className="mt-150">
           <div className="container">
             <h1 className="w-100 text-center h1-black">WHY US ?</h1>
           </div>
@@ -459,7 +459,10 @@ const Home = (props) => {
               </div> */}
             </Carousel>
           </div>
-          <div className="row mt-50 home-why-us-card-container mobile-d-none">
+          <div
+            className="row home-why-us-card-container mobile-d-none d-flex justify-content-around"
+            style={{ marginTop: "60px", marginRight: "0px", marginLeft: "0px" }}
+          >
             <div className="col-md-3">
               <div className="home-why-us-card">
                 <div className="d-flex justify-content-center">
@@ -471,12 +474,11 @@ const Home = (props) => {
                   </div>
                 </div>
                 <h1 className="w-100 text-center home-why-us-card-heading">
-                  7 Day Test to Own
+                  Call to schedule a test drive any time
                 </h1>
                 <p className="text-center home-why-us-card-para">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Quis ipsum suspendisse ultrices
+                  Before making any commitments to the car you want to know how
+                  it drives and feels, you can call and schedule at any time.
                 </p>
               </div>
             </div>
@@ -488,12 +490,10 @@ const Home = (props) => {
                   </div>
                 </div>
                 <h1 className="w-100 text-center home-why-us-card-heading">
-                  7 Day Test to Own
+                  Fast Approvals
                 </h1>
                 <p className="text-center home-why-us-card-para">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Quis ipsum suspendisse ultrices
+                  Get pre-qualified in 30 seconds with our Loan Calculator.
                 </p>
               </div>
             </div>
@@ -516,16 +516,16 @@ const Home = (props) => {
                   </div>
                 </div>
                 <h1 className="w-100 text-center home-why-us-card-heading">
-                  7 Day Test to Own
+                  Certified Pre-Owned Vehicles
                 </h1>
                 <p className="text-center home-why-us-card-para">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Quis ipsum suspendisse ultrices
+                  At Solid Motors we believe in quality and not quantity that's
+                  why we take our time to ensure everything is running properly
+                  on a vehicle before listing ot for sale.
                 </p>
               </div>
             </div>
-            <div className="col-md-3">
+            {/* <div className="col-md-3">
               <div className="home-why-us-card">
                 <div className="d-flex justify-content-center">
                   <div className="d-flex justify-content-center align-content-center home-why-us-card-icon-container">
@@ -544,7 +544,7 @@ const Home = (props) => {
                   Quis ipsum suspendisse ultrices
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 

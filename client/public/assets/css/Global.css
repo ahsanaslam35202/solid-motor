@@ -232,7 +232,7 @@ button:active {
     margin-top: 80px;
   }
   .mobile-d-none {
-    display: none;
+    display: none !important;
   }
   .dektop-d-none {
     display: block !important;

@@ -449,12 +449,12 @@ const CarSearch = () => {
                                   an instant value. This only takes 2 minutes.
                                 </p>
                                 <a href="./trade">
-                                <button
-                                  className="btn btn-primary apply-card-button"
-                                  type="button"
-                                >
-                                  Trade In Your Car
-                                </button>
+                                  <button
+                                    className="btn btn-primary apply-card-button"
+                                    type="button"
+                                  >
+                                    Trade In Your Car
+                                  </button>
                                 </a>
                               </div>
                             </div>
@@ -1142,7 +1142,7 @@ const CarSearch = () => {
             </div>
           </div>
         </div>
-        <div className="mt-200">
+        {/* <div className="mt-200">
           <div className="row mt-0">
             <div className="col-md-6 bg-main">
               <p className="car-guide-subsection-info">
@@ -1162,6 +1162,65 @@ const CarSearch = () => {
               </p>
             </div>
             <div className="col-md-6 car-guide-img">
+              <span />
+            </div>
+          </div>
+        </div> */}
+        <div className="mt-200">
+          <div className="row mt-0">
+            <div
+              className="col-md-6 bg-main"
+              style={{
+                paddingTop: "50px",
+                paddingBottom: "50px",
+                paddingLeft: "50px",
+                paddingRight: "50px",
+              }}
+            >
+              <h1 style={{ fontWeight: 700, color: "rgb(255,255,255)" }}>
+                SolidMotors 150+ Points Inspection
+              </h1>
+              <p
+                style={{
+                  height: "auto",
+                  color: "rgb(255,255,255)",
+                  marginTop: "30px",
+                }}
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
+                ipsum suspendisse ultrices gravida. Risus commodo viverra
+                maecenas accumsan lacus vel facilisis.&nbsp;
+                <br />
+                Lorem ipsum dolor sit amet,&nbsp;
+                <br />
+              </p>
+              <ul id="inspection-list" style={{ color: "rgb(255,255,255)" }}>
+                <li style={{ marginTop: "30px" }}>
+                  Lorem ipsum dolor sit amet, consectetur&nbsp;
+                  <br />
+                </li>
+                <li style={{ marginTop: "10px" }}>
+                  Lorem ipsum dolor sit amet, consectetur&nbsp;
+                  <br />
+                </li>
+                <li style={{ marginTop: "10px" }}>
+                  Lorem ipsum dolor sit amet, consectetur&nbsp;
+                  <br />
+                </li>
+                <li style={{ marginTop: "10px" }}>
+                  Lorem ipsum dolor sit amet, consectetur&nbsp;
+                  <br />
+                </li>
+              </ul>
+            </div>
+            <div
+              className="col-md-6 car-guide-img"
+              style={{
+                background:
+                  'url("assets/img/mechanic-holding-digital-tablet.jpg") center / cover',
+              }}
+            >
               <span />
             </div>
           </div>

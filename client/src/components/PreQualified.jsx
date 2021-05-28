@@ -44,6 +44,7 @@ const PreQualified = (props) => {
                 <button
                   onClick={request_redirect}
                   className="btn btn-primary main-button"
+                  style={{ marginTop: "30px" }}
                   type="button"
                 >
                   <strong>Sell Or Trade Your Car</strong>

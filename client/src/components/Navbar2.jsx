@@ -1,7 +1,12 @@
 import React from "react";
 import { logout } from "../services/userService";
+import { getloggedinuser, isLoggedin } from "../services/userService";
 
 const Navbar2 = (props) => {
+  const user = getloggedinuser();
+  // const user_name = user.firstname;
+  console.log(user);
+
   return (
     <nav className="navbar navbar-light navbar-expand-md navigation-clean navbar">
       <div className="container">
@@ -43,19 +48,56 @@ const Navbar2 = (props) => {
                 Trade
               </a>
             </li>
-            <li className="nav-item">
+            <li className="nav-item dropdown">
               <a
-                className="nav-link main-color"
-                onClick={props.handleLogout}
-                style={{ fontWeight: 700, color: "#0cbdff", cursor: "pointer" }}
+                aria-expanded="false"
+                data-toggle="dropdown"
+                className="dropdown-toggle nav-link"
+                href="#"
+                style={{ color: "#0cbdff" }}
               >
                 <i
                   className="fa fa-user main-color login-icon"
-                  style={{ padding: "0px 5px 0px 5px" }}
+                  style={{ padding: "0px 5px 0px 5px", color: "#0cbdff" }}
                 />
-                Logout
+                User
               </a>
+              <div className="dropdown-menu">
+                <a
+                  className="nav-link main-color"
+                  href="/user cars"
+                  style={{
+                    fontWeight: 500,
+                    cursor: "pointer",
+                  }}
+                >
+                  Saved cars
+                </a>
+                <a
+                  className="nav-link main-color"
+                  onClick={props.handleLogout}
+                  style={{
+                    fontWeight: 500,
+                    cursor: "pointer",
+                  }}
+                >
+                  Logout
+                </a>
+              </div>
             </li>
+            {/* <li className="nav-item">
+              <a
+              className="nav-link main-color"
+              onClick={props.handleLogout}
+              style={{ fontWeight: 700, color: "#0cbdff", cursor: "pointer" }}
+              >
+              <i
+              className="fa fa-user main-color login-icon"
+              style={{ padding: "0px 5px 0px 5px" }}
+              />
+              Logout
+              </a>
+            </li> */}
           </ul>
         </div>
       </div>
