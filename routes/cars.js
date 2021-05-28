@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const fs = require("fs");
+const path = require("path");
 
 const { promisify } = require("util");
 const pipeline = promisify(require("stream").pipeline);
@@ -10,6 +11,7 @@ const { Car } = require("../models/Car");
 
 router.get("/", async (req, res) => {
   const cars = await Car.find();
+  console.log(cars);
   res.send(cars);
 });
 
@@ -18,6 +20,30 @@ router.get("/:id", async (req, res) => {
   const cars = await Car.findOne({ _id: req.params.id });
   console.log(cars);
   res.send(cars);
+});
+
+router.get("/images/:vin/displayImage/:img", (req, res) => {
+  const vin = req.params.vin;
+  const img = req.params.img;
+  res.sendFile(
+    path.join(__dirname + "/../public/" + vin + "/displayImage/" + img)
+  );
+});
+
+router.get("/images/:vin/otherImages/:img", (req, res) => {
+  const vin = req.params.vin;
+  const img = req.params.img;
+  res.sendFile(
+    path.join(__dirname + "/../public/" + vin + "/otherImages/" + img)
+  );
+});
+
+router.get("/images/:vin/sendImages/:img", (req, res) => {
+  const vin = req.params.vin;
+  const img = req.params.img;
+  res.sendFile(
+    path.join(__dirname + "/../public/" + vin + "/sendImages/" + img)
+  );
 });
 
 var storage = multer.diskStorage({
