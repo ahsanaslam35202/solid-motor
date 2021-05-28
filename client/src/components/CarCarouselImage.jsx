@@ -1,15 +1,23 @@
 import React from "react";
 
-const CarCarouselImage = () => {
+const CarCarouselImage = (props) => {
+  const { image, vin } = props;
+  const url =
+    "http://localhost:4000/api/cars/images/" + vin + "/otherImages/" + image;
+  const bgUrl =
+    'url("http://localhost:4000/api/cars/images/' +
+    vin +
+    "/otherImages/" +
+    image +
+    '") center / cover, var(--blue)';
   return (
     <div style={{ paddingRight: "10px", paddingLeft: "10px" }}>
-      <a data-lightbox="photos" href="assets/img/car-inner.png">
+      <a data-lightbox="photos" href={url}>
         <div
           style={{
             width: "100%",
             height: "250px",
-            background:
-              'url("assets/img/car-inner.png") center / cover, var(--blue)',
+            background: bgUrl,
             borderRadius: "12px",
           }}
         />

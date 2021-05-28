@@ -31,6 +31,7 @@ const CarDetail = (props) => {
   const [creditScore, setCreditScore] = React.useState(780);
   const [annualIncome, setAnnualIncome] = React.useState(30000);
   const [tradeInCredit, setTradeInCredit] = React.useState(0);
+  const [liked, setLiked] = React.useState(0);
   const { car } = props.location.state;
 
   const getCarsData = async () => {
@@ -92,6 +93,17 @@ const CarDetail = (props) => {
     }).then(() => {
       console.log("Request Send Successfully !");
     });
+  };
+
+  const handleLike = () => {
+    if (isLoggedin()) {
+      const user = getloggedinuser();
+      if (user) {
+        const userId = user._id;
+      }
+    } else {
+      props.history.push("/login");
+    }
   };
 
   const responsive = {
@@ -184,11 +196,21 @@ const CarDetail = (props) => {
             <div className="col-md-6">
               <div className="d-flex car-title-container">
                 <h1 className="car-title">2019 Honda Camry</h1>
-                <div className="d-flex justify-content-center align-items-center heart-container">
-                  <img
-                    src="assets/img/like_red.svg"
-                    style={{ width: "20px", fill: "red" }}
-                  />
+                <div
+                  className="d-flex justify-content-center align-items-center heart-container"
+                  onClick={handleLike}
+                >
+                  {liked ? (
+                    <img
+                      src="assets/img/like_red.svg"
+                      style={{ width: "20px", fill: "red" }}
+                    />
+                  ) : (
+                    <img
+                      src="assets/img/like.svg"
+                      style={{ width: "20px", fill: "red" }}
+                    />
+                  )}
                 </div>
               </div>
               <h1 className="miles-driven">24000 Miles</h1>
@@ -278,16 +300,9 @@ const CarDetail = (props) => {
             responsive={responsive}
             removeArrowOnDeviceType={["tablet", "mobile"]}
           >
-            <CarCarouselImage />
-            <CarCarouselImage />
-            <CarCarouselImage />
-            <CarCarouselImage />
-            <CarCarouselImage />
-            <CarCarouselImage />
-            <CarCarouselImage />
-            <CarCarouselImage />
-            <CarCarouselImage />
-            <CarCarouselImage />
+            {car.otherImages.map((image) => (
+              <CarCarouselImage image={image} vin={car.vin} />
+            ))}
           </Carousel>
         </div>
 
