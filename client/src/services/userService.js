@@ -59,3 +59,7 @@ export function logout() {
     return false;
   }
 }
+
+export function likeCar(userId, carId) {
+  return http.put(apiEndPoint + "/likeCar/" + userId, { carId });
+}

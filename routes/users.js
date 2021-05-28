@@ -6,6 +6,7 @@ var config = require("config");
 var jwt = require("jsonwebtoken");
 var validateUserRegMW = require("../middlewares/authUserReg");
 var validateUserLoginMW = require("../middlewares/authUserLog");
+const { Car } = require("../models/Car");
 
 router.get("/", async (req, res, next) => {
   let user = await User.find();
@@ -15,7 +16,6 @@ router.get("/", async (req, res, next) => {
 router.post("/register", async (req, res) => {
   console.log(req.body);
   let newuser = await User.findOne({ email: req.body.email.value });
-  console.log("a");
   if (newuser != null) {
     return res.status(400).send("Sorry, user already exists.");
   }
@@ -59,3 +59,30 @@ router.post("/login", validateUserLoginMW, async (req, res) => {
 });
 
 module.exports = router;
+
+router.put("/likeCar/:id", async (req, res) => {
+  console.log(req.body);
+  const user = await User.updateOne(
+    { _id: req.params.id },
+    {
+      $push: { likedCars: req.body.carId },
+    },
+    { new: true }
+  );
+  if (!user) return res.status(404).send("User not found");
+  res.send(user);
+});
+
+router.get("/likedCars/:id", async (req, res) => {
+  const user = await User.findOne({ _id: req.params.id });
+  var cars = [];
+  user.likedCars.forEach(async (carId) => {
+    console.log(carId);
+    const car = await Car.findOne({ _id: carId }).then((data) => {
+      cars.push(data);
+    });
+  });
+  res.send(cars);
+
+  console.log("Outside");
+});

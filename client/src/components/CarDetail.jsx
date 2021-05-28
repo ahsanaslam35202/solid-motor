@@ -2,7 +2,12 @@ import React from "react";
 import { getCar, getCars } from "../services/carsService";
 import CarCard from "./CarCard";
 import { Link, Redirect } from "react-router-dom";
-import { getloggedinuser, isLoggedin, logout } from "../services/userService";
+import {
+  getloggedinuser,
+  isLoggedin,
+  likeCar,
+  logout,
+} from "../services/userService";
 import Navbar2 from "./Navbar2";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -95,11 +100,17 @@ const CarDetail = (props) => {
     });
   };
 
-  const handleLike = () => {
+  const handleLike = async () => {
+    console.log("yes");
     if (isLoggedin()) {
       const user = getloggedinuser();
       if (user) {
         const userId = user._id;
+        const carId = car._id;
+        console.log(userId);
+        await likeCar(userId, carId).then(() => {
+          setLiked(1);
+        });
       }
     } else {
       props.history.push("/login");
@@ -195,7 +206,9 @@ const CarDetail = (props) => {
           <div className="row mt-0">
             <div className="col-md-6">
               <div className="d-flex car-title-container">
-                <h1 className="car-title">2019 Honda Camry</h1>
+                <h1 className="car-title">
+                  {car.modelYear} {car.make} {car.model}
+                </h1>
                 <div
                   className="d-flex justify-content-center align-items-center heart-container"
                   onClick={handleLike}
@@ -213,10 +226,10 @@ const CarDetail = (props) => {
                   )}
                 </div>
               </div>
-              <h1 className="miles-driven">24000 Miles</h1>
+              <h1 className="miles-driven">{car.milesDriven} Miles</h1>
             </div>
             <div className="col-md-6 d-flex car-price-container">
-              <h1 className="price">$54,000</h1>
+              <h1 className="price">${car.price}</h1>
             </div>
           </div>
         </div>
