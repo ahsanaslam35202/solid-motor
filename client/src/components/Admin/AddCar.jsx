@@ -126,11 +126,13 @@ const AddCar = (props) => {
   const handleExtendedFeaturesAdd = () => {
     const features = [...extendedFeatures];
     features.push(extendedFeature.value);
+    console.log(features);
     setExtendedFeatures(features);
     setExtendedFeature({ value: "", error: "" });
   };
 
   const handleSubmit = async (e) => {
+    console.log(extendedFeatures);
     e.preventDefault();
     const data = new FormData();
     data.append("make", make.value);
@@ -152,7 +154,9 @@ const AddCar = (props) => {
     data.append("stock", stock.value);
     data.append("vehicleId", vehicleId.value);
     data.append("mpg", mpg.value);
-    data.append("extendedFeatures", extendedFeatures.value);
+    for (let x = 0; x < extendedFeatures.length; x++) {
+      data.append("extendedFeatures", extendedFeatures[0]);
+    }
     data.append("displayImage", displayImage);
     for (let x = 0; x < otherImages.length; x++) {
       data.append("otherImages", otherImages[x]);
@@ -167,6 +171,7 @@ const AddCar = (props) => {
     data.append("shippingCharges", shippingCharges.value);
     data.append("taxAndRegistrationCharges", taxAndRegistrationCharges.value);
     data.append("dealerFees", dealerFees.value);
+    console.log(data);
     axios({
       method: "post",
       url: "http://localhost:3000/api/cars/",

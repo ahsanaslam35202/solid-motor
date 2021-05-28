@@ -66,6 +66,7 @@ const CarDetail = (props) => {
   }, []);
   React.useEffect(() => {
     setCarPrice(car.price);
+    console.log(car.extendedFeatures);
     setDownPayment(car.downPayment);
     setMonthlyPayment(car.monthlyPayment);
     setNumberOfMonths(car.numberOfMonths);

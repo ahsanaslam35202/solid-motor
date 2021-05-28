@@ -105,7 +105,7 @@ router.post(
       engineType: req.body.engineType,
       engineCapacity: req.body.engineCapacity,
       transmission: req.body.transmission,
-      driveTrains: req.body.driveTrain,
+      driveTrain: req.body.driveTrain,
       doors: req.body.doors,
       numberOfKeys: req.body.numberOfKeys,
       vin: req.body.vin,
