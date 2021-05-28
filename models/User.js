@@ -12,7 +12,9 @@ var userSchema = mongoose.Schema({
   email: String,
   password: String,
   phoneNumber: String,
+  likedCars: [mongoose.Types.ObjectId],
 });
+
 var User = mongoose.model("User", userSchema);
 
 function validateUser(data) {

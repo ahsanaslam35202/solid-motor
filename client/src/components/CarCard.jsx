@@ -12,7 +12,12 @@ const carCard = (props) => {
           <div className="car-card-img-container">
             <img
               className="w-100"
-              src="../../public/1234/displayImage/2678147.jpg"
+              src={
+                "http://localhost:4000/api/cars/images/" +
+                props.car.vin +
+                "/displayImage/" +
+                props.car.displayImage
+              }
             />
           </div>
           <div className="car-card-info-container">

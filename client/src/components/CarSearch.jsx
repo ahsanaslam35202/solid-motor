@@ -1,4 +1,5 @@
 import { Slider, Typography } from "@material-ui/core";
+import axios from "axios";
 import React from "react";
 import { getCars } from "../services/carsService";
 import { isLoggedin, logout } from "../services/userService";
@@ -21,6 +22,7 @@ const CarSearch = () => {
 
   const [cars, setCars] = React.useState([]);
   const [updatedCars, setUpdatedCars] = React.useState([]);
+  const [displayImage, setDisplayImage] = React.useState([]);
   const [makes, setMakes] = React.useState([]);
   const [bodyTypes, setBodyTypes] = React.useState([]);
   const [transmissions, setTransmissions] = React.useState([]);
@@ -41,10 +43,13 @@ const CarSearch = () => {
   });
 
   const getCarsData = async () => {
-    const { data } = await getCars();
+    var { data } = await getCars();
     const cars = [...data];
     setCars(cars);
     setUpdatedCars(cars);
+    var { data } = await axios.get("http://localhost:4000/api/cars/images/a");
+    console.log(data);
+    setDisplayImage(data);
   };
 
   // const handleMakeFilter = () => {
@@ -1099,6 +1104,7 @@ const CarSearch = () => {
                 car={item}
                 make={item.make}
                 name={item.name}
+                displayImage={displayImage}
                 model={item.model}
                 price={item.price}
                 milesDriven={item.milesDriven}

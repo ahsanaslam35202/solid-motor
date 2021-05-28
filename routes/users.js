@@ -38,24 +38,12 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", validateUserLoginMW, async (req, res) => {
-  console.log(req.body.email);
-  let userData = await User.findOne(
-    {
-      email: req.body.email,
-    },
-    (err, estab) => {
-      if (err) {
-        return res.send(err);
-      }
-      console.log("inside the function: " + estab.name);
-      // what ever proccing you need to do with result do here and finally return res
-      res.json(estab);
-    }
-  );
-  console.log(userData);
+  console.log(req.body);
+  let userData = await User.findOne({
+    email: req.body.email,
+  });
   if (!userData)
     return res.status(400).send("Sorry, user with this email not found.");
-  console.log("Bcrypt done");
 
   let password = await bcrypt.compare(req.body.password, userData.password);
   if (!password) return res.status(400).send("Wrong password");
@@ -65,8 +53,6 @@ router.post("/login", validateUserLoginMW, async (req, res) => {
     { _id: userData._id, name: userData.firstName },
     config.get("jwt")
   );
-
-  console.log(token);
 
   let user2 = jwt.verify(token, config.get("jwt"));
   return res.send({ ok: "login successfull", token, user2 });
