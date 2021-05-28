@@ -588,6 +588,14 @@ const CarDetail = (props) => {
                   <div className="tab-pane" role="tabpane2" id="tab-2">
                     <div className="tab-details-container">
                       <h1 className="h3-black w-100 text-center">Warranty</h1>
+
+                      <div className="col-md-12 d-flex justify-content-center">
+                        <img
+                          src="assets/img/care.png"
+                          className="care-img"
+                          alt=""
+                        />
+                      </div>
                       <p>
                         Lorem ipsum dolor sit amet consectetur, adipisicing
                         elit. Corporis, assumenda ducimus! Repudiandae

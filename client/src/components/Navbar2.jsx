@@ -4,8 +4,9 @@ import { getloggedinuser, isLoggedin } from "../services/userService";
 
 const Navbar2 = (props) => {
   const user = getloggedinuser();
-  // const user_name = user.firstname;
+  const user_name = user.name;
   console.log(user);
+  console.log(user_name);
 
   return (
     <nav className="navbar navbar-light navbar-expand-md navigation-clean navbar">
@@ -60,9 +61,9 @@ const Navbar2 = (props) => {
                   className="fa fa-user main-color login-icon"
                   style={{ padding: "0px 5px 0px 5px", color: "#0cbdff" }}
                 />
-                User
+                {user_name}
               </a>
-              <div className="dropdown-menu">
+              <div className="dropdown-menu nav2-dropdown">
                 <a
                   className="nav-link main-color"
                   href="/user cars"

@@ -134,7 +134,7 @@ const Login = (props) => {
             <div>
               <div className="d-flex justify-content-center">
                 <img
-                  src="assets/img/Logo.png"
+                  src="assets/img/LogoWhite.png"
                   style={{ marginBottom: "10px" }}
                   alt=""
                 />
@@ -177,6 +177,7 @@ const Login = (props) => {
                       type="Email"
                       placeholder="Email"
                       value={email}
+                      required
                       onChange={(e) => {
                         setEmail(e.target.value);
                       }}
@@ -195,6 +196,7 @@ const Login = (props) => {
                   </div>
                   <div className="form-group">
                     <input
+                      required
                       className="form-control"
                       type="password"
                       placeholder="Password"
