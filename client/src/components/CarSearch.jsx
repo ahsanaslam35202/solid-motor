@@ -200,7 +200,7 @@ const CarSearch = () => {
       fuelTypes.length > 0 ||
       minYear
     ) {
-      let data = [...updatedCars];
+      let data = [...cars];
       if (makes.length > 0) {
         var results = cars.filter((obj) => {
           return makes.includes(obj.make);
