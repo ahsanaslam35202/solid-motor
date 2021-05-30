@@ -4,7 +4,7 @@ import { getloggedinuser, isLoggedin } from "../services/userService";
 
 const Navbar2 = (props) => {
   const user = getloggedinuser();
-  const user_name = user.name;
+  const user_name = user.firstName;
   console.log(user);
   console.log(user_name);
 

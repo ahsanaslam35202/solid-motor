@@ -190,6 +190,7 @@ const CarSearch = () => {
   // };
 
   const handleFilters = () => {
+    console.log(fuelTypes);
     if (
       makes.length > 0 ||
       bodyTypes.length > 0 ||
@@ -478,7 +479,14 @@ const CarSearch = () => {
                       </a>
                       <div className="dropdown-menu wd-400">
                         <div className="make-model-container">
-                          <div className="drop-car-make-model">
+                          <div
+                            className="drop-car-make-model"
+                            style={
+                              makes.includes("Toyota")
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
+                                : {}
+                            }
+                          >
                             <a
                               onClick={(e) => {
                                 var carMakes = [...makes];
@@ -494,7 +502,14 @@ const CarSearch = () => {
                               Toyota
                             </a>
                           </div>
-                          <div className="drop-car-make-model">
+                          <div
+                            className="drop-car-make-model"
+                            style={
+                              makes.includes("Audi")
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
+                                : {}
+                            }
+                          >
                             <a
                               onClick={(e) => {
                                 const carMakes = [...makes];
@@ -510,7 +525,14 @@ const CarSearch = () => {
                               Audi
                             </a>
                           </div>
-                          <div className="drop-car-make-model">
+                          <div
+                            className="drop-car-make-model"
+                            style={
+                              makes.includes("Nissan")
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
+                                : {}
+                            }
+                          >
                             <a
                               onClick={(e) => {
                                 const carMakes = [...makes];
@@ -526,7 +548,14 @@ const CarSearch = () => {
                               Nissan
                             </a>
                           </div>
-                          <div className="drop-car-make-model">
+                          <div
+                            className="drop-car-make-model"
+                            style={
+                              makes.includes("Mercedes")
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
+                                : {}
+                            }
+                          >
                             <a
                               onClick={(e) => {
                                 const carMakes = [...makes];
@@ -542,7 +571,14 @@ const CarSearch = () => {
                               Mercedes
                             </a>
                           </div>
-                          <div className="drop-car-make-model">
+                          <div
+                            className="drop-car-make-model"
+                            style={
+                              makes.includes("Honda")
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
+                                : {}
+                            }
+                          >
                             <a
                               onClick={(e) => {
                                 const carMakes = [...makes];
@@ -558,7 +594,14 @@ const CarSearch = () => {
                               Honda
                             </a>
                           </div>
-                          <div className="drop-car-make-model">
+                          <div
+                            className="drop-car-make-model"
+                            style={
+                              makes.includes("Kia")
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
+                                : {}
+                            }
+                          >
                             <a
                               onClick={(e) => {
                                 const carMakes = [...makes];
@@ -574,7 +617,14 @@ const CarSearch = () => {
                               Kia
                             </a>
                           </div>
-                          <div className="drop-car-make-model">
+                          <div
+                            className="drop-car-make-model"
+                            style={
+                              makes.includes("MG")
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
+                                : {}
+                            }
+                          >
                             <a
                               onClick={(e) => {
                                 const carMakes = [...makes];
@@ -590,7 +640,14 @@ const CarSearch = () => {
                               MG
                             </a>
                           </div>
-                          <div className="drop-car-make-model">
+                          <div
+                            className="drop-car-make-model"
+                            style={
+                              makes.includes("BMW")
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
+                                : {}
+                            }
+                          >
                             <a
                               onClick={(e) => {
                                 const carMakes = [...makes];
@@ -606,7 +663,14 @@ const CarSearch = () => {
                               BMW
                             </a>
                           </div>
-                          <div className="drop-car-make-model">
+                          <div
+                            className="drop-car-make-model"
+                            style={
+                              makes.includes("Dodge")
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
+                                : {}
+                            }
+                          >
                             <a
                               onClick={(e) => {
                                 const carMakes = [...makes];
@@ -639,7 +703,14 @@ const CarSearch = () => {
                           id="search-bar-cars"
                           className="make-model-container"
                         >
-                          <div className="drop-car-make-model">
+                          <div
+                            className="drop-car-make-model"
+                            style={
+                              bodyTypes.includes("SUV")
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
+                                : {}
+                            }
+                          >
                             <img src="assets/img/suv1.png" />
                             <a
                               onClick={(e) => {
@@ -656,7 +727,14 @@ const CarSearch = () => {
                               SUV
                             </a>
                           </div>
-                          <div className="drop-car-make-model">
+                          <div
+                            className="drop-car-make-model"
+                            style={
+                              bodyTypes.includes("Sedan")
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
+                                : {}
+                            }
+                          >
                             <img src="assets/img/sedan.png" />
                             <a
                               onClick={(e) => {
@@ -673,7 +751,14 @@ const CarSearch = () => {
                               Sedan
                             </a>
                           </div>
-                          <div className="drop-car-make-model">
+                          <div
+                            className="drop-car-make-model"
+                            style={
+                              bodyTypes.includes("Hatchback")
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
+                                : {}
+                            }
+                          >
                             <img src="assets/img/hatchback.png" />
                             <a
                               onClick={(e) => {
@@ -691,7 +776,14 @@ const CarSearch = () => {
                               Hatchback
                             </a>
                           </div>
-                          <div className="drop-car-make-model">
+                          <div
+                            className="drop-car-make-model"
+                            style={
+                              bodyTypes.includes("Convertible")
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
+                                : {}
+                            }
+                          >
                             <img src="assets/img/convertible.png" />
                             <a
                               onClick={(e) => {
@@ -709,7 +801,14 @@ const CarSearch = () => {
                               Convertible
                             </a>
                           </div>
-                          <div className="drop-car-make-model">
+                          <div
+                            className="drop-car-make-model"
+                            style={
+                              bodyTypes.includes("Coupe")
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
+                                : {}
+                            }
+                          >
                             <img src="assets/img/coupe.png" />
                             <a
                               onClick={(e) => {
@@ -799,7 +898,7 @@ const CarSearch = () => {
                                   >
                                     Miles Driven
                                   </h1>
-                                  <h5>0</h5>
+                                  <h5>{maxMiles}</h5>
                                   {/* <input
                                     type="number"
                                     style={{
@@ -812,6 +911,13 @@ const CarSearch = () => {
                                 <input
                                   type="range"
                                   className="price-card-range"
+                                  min={0}
+                                  max={999999}
+                                  step={1}
+                                  value={maxMiles}
+                                  onChange={(e) => {
+                                    setMaxMiles(e.target.value);
+                                  }}
                                 />
                               </div>
                             </div>
@@ -833,7 +939,14 @@ const CarSearch = () => {
                           <h1 className="price-card-heading w-100">
                             Transmission
                           </h1>
-                          <div className="drop-car-make-model">
+                          <div
+                            className="drop-car-make-model"
+                            style={
+                              transmissions.includes("Manual")
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
+                                : {}
+                            }
+                          >
                             <a
                               onClick={(e) => {
                                 const carTransmissions = [...transmissions];
@@ -850,17 +963,24 @@ const CarSearch = () => {
                               Manual
                             </a>
                           </div>
-                          <div className="drop-car-make-model">
+                          <div
+                            className="drop-car-make-model"
+                            style={
+                              transmissions.includes("Automatic")
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
+                                : {}
+                            }
+                          >
                             <a
                               onClick={(e) => {
                                 const carTransmissions = [...transmissions];
-                                if (carTransmissions.includes("Auto")) {
+                                if (carTransmissions.includes("Automatic")) {
                                   const index =
-                                    carTransmissions.indexOf("Auto");
+                                    carTransmissions.indexOf("Automatic");
                                   if (index > -1) {
                                     carTransmissions.splice(index, 1);
                                   }
-                                } else carTransmissions.push("Auto");
+                                } else carTransmissions.push("Automatic");
                                 setTransmissions(carTransmissions);
                               }}
                             >
@@ -870,7 +990,14 @@ const CarSearch = () => {
                           <h1 className="price-card-heading w-100">
                             Drive Train
                           </h1>
-                          <div className="drop-car-make-model">
+                          <div
+                            className="drop-car-make-model"
+                            style={
+                              driveTrains.includes("FWD")
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
+                                : {}
+                            }
+                          >
                             <a
                               onClick={(e) => {
                                 var carDriveTrains = [...driveTrains];
@@ -886,7 +1013,14 @@ const CarSearch = () => {
                               FWD
                             </a>
                           </div>
-                          <div className="drop-car-make-model">
+                          <div
+                            className="drop-car-make-model"
+                            style={
+                              driveTrains.includes("AWD")
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
+                                : {}
+                            }
+                          >
                             <a
                               onClick={(e) => {
                                 var carDriveTrains = [...driveTrains];
@@ -902,7 +1036,14 @@ const CarSearch = () => {
                               AWD
                             </a>
                           </div>
-                          <div className="drop-car-make-model">
+                          <div
+                            className="drop-car-make-model"
+                            style={
+                              driveTrains.includes("RWD")
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
+                                : {}
+                            }
+                          >
                             <a
                               onClick={(e) => {
                                 var carDriveTrains = [...driveTrains];
@@ -921,7 +1062,14 @@ const CarSearch = () => {
                           <h1 className="price-card-heading w-100">
                             &nbsp;Engine Type
                           </h1>
-                          <div className="drop-car-make-model">
+                          <div
+                            className="drop-car-make-model"
+                            style={
+                              engineTypes.includes("2 Cylinder")
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
+                                : {}
+                            }
+                          >
                             <a
                               onClick={(e) => {
                                 var carEngineTypes = [...engineTypes];
@@ -938,7 +1086,14 @@ const CarSearch = () => {
                               2 Cylinder
                             </a>
                           </div>
-                          <div className="drop-car-make-model">
+                          <div
+                            className="drop-car-make-model"
+                            style={
+                              engineTypes.includes("4 Cylinder")
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
+                                : {}
+                            }
+                          >
                             <a
                               onClick={(e) => {
                                 var carEngineTypes = [...engineTypes];
@@ -955,7 +1110,14 @@ const CarSearch = () => {
                               4 Cylinder
                             </a>
                           </div>
-                          <div className="drop-car-make-model">
+                          <div
+                            className="drop-car-make-model"
+                            style={
+                              engineTypes.includes("6 Cylinder")
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
+                                : {}
+                            }
+                          >
                             <a
                               onClick={(e) => {
                                 var carEngineTypes = [...engineTypes];
@@ -970,6 +1132,30 @@ const CarSearch = () => {
                               }}
                             >
                               6 Cylinder
+                            </a>
+                          </div>
+                          <div
+                            className="drop-car-make-model"
+                            style={
+                              engineTypes.includes("8 Cylinder")
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
+                                : {}
+                            }
+                          >
+                            <a
+                              onClick={(e) => {
+                                var carEngineTypes = [...engineTypes];
+                                if (carEngineTypes.includes("8 Cylinder")) {
+                                  const index =
+                                    carEngineTypes.indexOf("8 Cylinder");
+                                  if (index > -1) {
+                                    carEngineTypes.splice(index, 1);
+                                  }
+                                } else carEngineTypes.push("8 Cylinder");
+                                setEngineTypes(carEngineTypes);
+                              }}
+                            >
+                              8 Cylinder
                             </a>
                           </div>
                         </div>
@@ -1035,7 +1221,14 @@ const CarSearch = () => {
                           <h1 className="price-card-heading w-100">
                             Fuel Type
                           </h1>
-                          <div className="drop-car-make-model">
+                          <div
+                            className="drop-car-make-model"
+                            style={
+                              fuelTypes.includes("Gas")
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
+                                : {}
+                            }
+                          >
                             <a
                               onClick={(e) => {
                                 var carFuelTypes = [...fuelTypes];
@@ -1051,7 +1244,14 @@ const CarSearch = () => {
                               GAS
                             </a>
                           </div>
-                          <div className="drop-car-make-model">
+                          <div
+                            className="drop-car-make-model"
+                            style={
+                              fuelTypes.includes("Hybrid")
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
+                                : {}
+                            }
+                          >
                             <a
                               onClick={(e) => {
                                 var carFuelTypes = [...fuelTypes];
@@ -1067,7 +1267,14 @@ const CarSearch = () => {
                               Hybrid
                             </a>
                           </div>
-                          <div className="drop-car-make-model">
+                          <div
+                            className="drop-car-make-model"
+                            style={
+                              fuelTypes.includes("Electric")
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
+                                : {}
+                            }
+                          >
                             <a
                               onClick={(e) => {
                                 var carFuelTypes = [...fuelTypes];

@@ -330,7 +330,7 @@ const AddCar = (props) => {
                       }}
                       label="Fuel"
                     >
-                      <MenuItem value="GAS">GAS</MenuItem>
+                      <MenuItem value="Gas">GAS</MenuItem>
                       <MenuItem value="Hybrid">Hybrid</MenuItem>
                       <MenuItem value="Electric">Electric</MenuItem>
                     </Select>
