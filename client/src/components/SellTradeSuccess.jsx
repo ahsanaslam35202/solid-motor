@@ -28,7 +28,7 @@ const SellTradeSuccess = () => {
             We have received your Request
           </h1>
           <h1 className="text-center thankyou-subheading">
-        Solid Motor will respond soon!
+            Solid Motor will respond soon!
           </h1>
         </div>
         <div className="w-100 d-flex justify-content-center mt-100">

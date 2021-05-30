@@ -41,6 +41,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   let buyRequest = new BuyRequest({
+    buyType: req.body.buyType,
     carId: req.body.carId,
     userId: req.body.userId,
     downPayment: req.body.downPayment,
@@ -48,6 +49,8 @@ router.post("/", async (req, res) => {
     numberOfMonths: req.body.numberOfMonths,
     creditScore: req.body.creditScore,
     annualIncome: req.body.annualIncome,
+    carPrice: req.body.carPrice,
+    carFinancedPrice: req.body.carFinancedPrice,
   });
 
   buyRequest = await buyRequest

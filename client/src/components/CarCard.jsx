@@ -32,7 +32,10 @@ const carCard = (props) => {
                 <p className="car-card-sub-title">{props.model}</p>
               </div>
               <div className="d-flex justify-content-end car-card-price-div">
-                <h1 className="car-price">${props.price}</h1>
+                {/* <h1 className="car-price">${props.price}</h1> */}
+                <h1 className="car-price">
+                  {/* ${Math.ceil(props.monthlyPayment)}/Mo */}
+                </h1>
               </div>
             </div>
             <div className="d-flex car-card-sub-header">

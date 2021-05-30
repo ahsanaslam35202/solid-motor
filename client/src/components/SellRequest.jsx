@@ -6,12 +6,12 @@ import Modal from "react-modal";
 
 import Navbar from "./Navbar";
 import Navbar2 from "./Navbar2";
+import CallBar from "./CallBar";
 
 function useForceUpdate() {
   const [value, setValue] = React.useState(0); // integer state
   return () => setValue((value) => value + 1); // update the state to force render
 }
-
 
 const customStyles = {
   content: {
@@ -50,48 +50,49 @@ const SellRequest = (props) => {
   }
 
   const submitCarSell = async (e) => {
-
-    if(vinNumber=='' || carMakeModel=='' || carModelYear=='' || drivenMiles=='' || extendedFeatures=='' || carHistory==''){
+    if (
+      vinNumber == "" ||
+      carMakeModel == "" ||
+      carModelYear == "" ||
+      drivenMiles == "" ||
+      extendedFeatures == "" ||
+      carHistory == ""
+    ) {
       openModal();
-
-    }
-    else{
+    } else {
       console.log("Function called");
-    const user = getloggedinuser();
-    console.log(user);
-    if(!(user==null)){
-      const userId = user._id;
-      await postSellTrade({
-        sellOrTrade,
-        vinNumber,
-        carMakeModel,
-        carModelYear,
-        drivenMiles,
-        fuelType,
-        engineType,
-        transmission,
-        driveTrain,
-        extendedFeatures,
-        carHistory,
-        estimatedPrice,
-        userId,
-      }).then(() => {
-        console.log("Request Send Successfully !");
-        props.history.push("/sell trade success");
-  
-      }).catch(()=>{
-        setErr_msg("An Error has Occured, Please try again!");
-        openModal();
-      }) ;
+      const user = getloggedinuser();
+      console.log(user);
+      if (!(user == null)) {
+        const userId = user._id;
+        await postSellTrade({
+          sellOrTrade,
+          vinNumber,
+          carMakeModel,
+          carModelYear,
+          drivenMiles,
+          fuelType,
+          engineType,
+          transmission,
+          driveTrain,
+          extendedFeatures,
+          carHistory,
+          estimatedPrice,
+          userId,
+        })
+          .then(() => {
+            console.log("Request Send Successfully !");
+            props.history.push("/sell trade success");
+          })
+          .catch(() => {
+            setErr_msg("An Error has Occured, Please try again!");
+            openModal();
+          });
+      } else {
+        logout();
+        props.history.push("/login");
+      }
     }
-    else{
-      logout();
-      props.history.push('/login');
-    }
-  
-
-    }
-    
   };
 
   const [sellOrTrade, setSellOrTrade] = React.useState("Trade");
@@ -108,58 +109,61 @@ const SellRequest = (props) => {
   const [extendedFeatures, setExtendedFeatures] = React.useState("");
   const [carHistory, setCarHistory] = React.useState("");
   const [estimatedPrice, setEstimatedPrice] = React.useState(0);
-  
+
   const [err_msg, setErr_msg] = React.useState("Please Fill Complete Data");
 
   return (
     <>
+      <CallBar />
       {isLoggedin() ? <Navbar2 handleLogout={handleLogout} /> : <Navbar />}
 
       <div>
-      <div>
-        <Modal
-          isOpen={modalIsOpen}
-          onAfterOpen={afterOpenModal}
-          onRequestClose={closeModal}
-          style={customStyles}
-          contentLabel="Example Modal"
-        >
-          <div
-            style={{
-              padding: "30px",
-              background: "#6ccfff",
-              borderRadius: "20px",
-              paddingBottom: "70px",
-              width: "100%",
-              height: "50vh",
-            }}
+        <div>
+          <Modal
+            isOpen={modalIsOpen}
+            onAfterOpen={afterOpenModal}
+            onRequestClose={closeModal}
+            style={customStyles}
+            contentLabel="Example Modal"
           >
-            <div className="d-flex justify-content-end">
-              <button
-                className="btn btn-primary"
-                type="button"
-                style={{
-                  background: "rgb(189,221,255)",
-                  color: "rgb(52,52,52)",
-                }}
-                onClick={closeModal}
-              >
-                X
-              </button>
-            </div>
-            <h4
-              className="w-100 text-center thankyou-heading"
-              style={{ fontSize: "24px" }}
+            <div
+              style={{
+                padding: "30px",
+                background: "#6ccfff",
+                borderRadius: "20px",
+                paddingBottom: "70px",
+                width: "100%",
+                height: "50vh",
+              }}
             >
-              {err_msg}
-            </h4>
-          </div>
-        </Modal>
-      </div>
+              <div className="d-flex justify-content-end">
+                <button
+                  className="btn btn-primary"
+                  type="button"
+                  style={{
+                    background: "rgb(189,221,255)",
+                    color: "rgb(52,52,52)",
+                  }}
+                  onClick={closeModal}
+                >
+                  X
+                </button>
+              </div>
+              <h4
+                className="w-100 text-center thankyou-heading"
+                style={{ fontSize: "24px" }}
+              >
+                {err_msg}
+              </h4>
+            </div>
+          </Modal>
+        </div>
         <div>
           <div className="row mt-0">
-            <div className="col-md-6 header-heading-container {
-">
+            <div
+              className="col-md-6 header-heading-container {
+"
+            >
               <div
                 className="container"
                 // style={{
@@ -204,8 +208,8 @@ const SellRequest = (props) => {
                     }}
                   >
                     <optgroup label="Choose Option">
-                      <option value={"Sell"}>Trade</option>
-                      <option value={"Trade"}>Sell</option>
+                      <option value={"Trade"}>Trade</option>
+                      <option value={"Sell"}>Sell</option>
                     </optgroup>
                   </select>
                 </div>
@@ -250,8 +254,8 @@ const SellRequest = (props) => {
                     type="number"
                     name="number"
                     placeholder="2019"
-                    min='2000'
-                    max='3000'
+                    min="2000"
+                    max="3000"
                     value={carModelYear}
                     onChange={(e) => {
                       setCarModelYear(e.target.value);

@@ -3,6 +3,7 @@ import { isLoggedin, logout } from "../services/userService";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import Navbar2 from "./Navbar2";
+import CallBar from "./CallBar";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -41,39 +42,7 @@ const Home = (props) => {
   };
   return (
     <>
-      <div className=" dektop-d-none">
-        <div
-          className="d-flex"
-          style={{ width: "100%", height: "60PX", background: "#0cbdff" }}
-        >
-          <div className="d-flex w-100 align-items-center justify-content-around ">
-            <p style={{ marginBottom: "0px", color: "white", fontWeight: 600 }}>
-              Questions ? Call us!
-            </p>
-            <a
-              href="tel:(469) 929-6161"
-              style={{
-                filter: "invert(0%)",
-                color: "white",
-                fontSize: "16px",
-                fontWeight: 600,
-              }}
-            >
-              <img
-                src="assets/img/phone-call.svg"
-                style={{
-                  maxHeight: "24px",
-                  height: "16px",
-                  filter: "invert(100%)",
-                  marginRight: "5px",
-                  paddingBottom: "1px",
-                }}
-              />
-              (469) 929-6161
-            </a>
-          </div>
-        </div>
-      </div>
+      <CallBar />
       {isLoggedin() ? <Navbar2 handleLogout={handleLogout} /> : <Navbar />}
       <div>
         <div
@@ -196,7 +165,7 @@ const Home = (props) => {
                   }}
                 >
                   <h1 style={{ fontSize: "24px" }}>
-                    <strong>Happy customers !</strong>
+                    <strong>Happy customers!</strong>
                   </h1>
                 </div>
               </div>
@@ -335,7 +304,7 @@ const Home = (props) => {
 
         <div className="mt-150">
           <div className="container">
-            <h1 className="w-100 text-center h1-black">WHY US ?</h1>
+            <h1 className="w-100 text-center h1-black">WHY US?</h1>
           </div>
           <div className="dektop-d-none mt-50">
             <Carousel
@@ -425,7 +394,7 @@ const Home = (props) => {
                     <p className="text-center home-why-us-card-para">
                       At Solid Motors we believe in quality and not quantity
                       that's why we take our time to ensure everything is
-                      running properly on a vehicle before listing ot for sale.
+                      running properly on a vehicle before listing it for sale.
                     </p>
                   </div>
                 </div>
@@ -521,7 +490,7 @@ const Home = (props) => {
                 <p className="text-center home-why-us-card-para">
                   At Solid Motors we believe in quality and not quantity that's
                   why we take our time to ensure everything is running properly
-                  on a vehicle before listing ot for sale.
+                  on a vehicle before listing it for sale.
                 </p>
               </div>
             </div>
@@ -563,7 +532,7 @@ const Home = (props) => {
             consectetur adipiscing
           </h1> */}
           <p className="w-100 text-center new-way-para">
-            At Solid Motors we take out time to ensure you're getting the car
+            At Solid Motors we take our time to ensure you're getting the car
             you love for the term you love, our finance team works very hard to
             ensure your satisfaction with our lenders&nbsp;
           </p>

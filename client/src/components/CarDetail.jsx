@@ -2,6 +2,8 @@ import React from "react";
 import { getCar, getCars } from "../services/carsService";
 import CarCard from "./CarCard";
 import { Link, Redirect } from "react-router-dom";
+import CallBar from "./CallBar";
+
 import {
   getloggedinuser,
   isLoggedin,
@@ -29,16 +31,30 @@ const CarDetail = (props) => {
     await logout();
     forceUpdate();
   };
-  const [cars, setCars] = React.useState([]);
-  const [monthlyPayment, setMonthlyPayment] = React.useState(0);
-  const [downPayment, setDownPayment] = React.useState(0);
-  const [carPrice, setCarPrice] = React.useState(0);
-  const [numberOfMonths, setNumberOfMonths] = React.useState(0);
-  const [creditScore, setCreditScore] = React.useState(780);
-  const [annualIncome, setAnnualIncome] = React.useState(30000);
-  const [tradeInCredit, setTradeInCredit] = React.useState(0);
-  const [liked, setLiked] = React.useState(0);
+
   const { car } = props.location.state;
+  const [buyType, setBuyType] = React.useState("financed");
+  const [cars, setCars] = React.useState([]);
+  const [carPrice, setCarPrice] = React.useState(car.price);
+  const [carFinancedPrice, setCarFinancedPrice] = React.useState(0);
+  const [carPendingAmount, setCarPendingAmout] = React.useState(0);
+  const [downPayment, setDownPayment] = React.useState(0);
+  const [monthlyPayment, setMonthlyPayment] = React.useState(0);
+  const [months, setMonths] = React.useState(72);
+  const [creditScore, setCreditScore] = React.useState(750);
+  const [annualIncome, setAnnualIncome] = React.useState(30000);
+
+  const [APR, setAPR] = React.useState(0);
+  const [tradeInCredit, setTradeInCredit] = React.useState(0);
+
+  const [monthlyMinRange, setMonthlyMinRange] = React.useState(0);
+  const [monthlyMaxRange, setMonthlyMaxRange] = React.useState(0);
+  const [downPaymentMinRange, setDownPaymentMinRange] = React.useState(750);
+  const [downPaymentMaxRange, setDownPaymentMaxRange] = React.useState(0);
+
+  // const [commision, setCommision] = React.useState(10);
+
+  const [liked, setLiked] = React.useState(0);
 
   const getCarsData = async () => {
     const { data } = await getCars();
@@ -51,7 +67,6 @@ const CarDetail = (props) => {
     if (user) {
       const userId = user._id;
       const { data } = await getTradeIn(userId);
-
       setTradeInCredit(data.estimatedPrice);
     } else {
       setTradeInCredit(0);
@@ -66,40 +81,139 @@ const CarDetail = (props) => {
   }, []);
   React.useEffect(() => {
     setCarPrice(car.price);
-    console.log(car.extendedFeatures);
-    setDownPayment(car.downPayment);
-    setMonthlyPayment(car.monthlyPayment);
-    setNumberOfMonths(car.numberOfMonths);
   }, []);
 
-  const handleMonthsChange = (e) => {
-    setNumberOfMonths(e.target.value);
-    setMonthlyPayment(Math.ceil((carPrice - downPayment) / e.target.value));
-  };
+  React.useEffect(() => {
+    var commision = 0;
+    var carPrice2 = carPrice;
+    var carFinancedPrice2 = 0;
+    var downPaymentMaxRange2 = 0;
+    var monthlyMinRange2 = 0;
+    var monthlyMaxRange2 = 0;
+
+    if (months == 72) {
+      if (creditScore == 750) {
+        commision = 10;
+      }
+      if (creditScore == 700) {
+        commision = 21;
+      }
+      if (creditScore == 600) {
+        commision = 23;
+      }
+      if (creditScore == 599) {
+        commision = 0;
+      }
+    }
+
+    if (months == 60) {
+      if (creditScore == 750) {
+        commision = 8;
+      }
+      if (creditScore == 700) {
+        commision = 18;
+      }
+      if (creditScore == 600) {
+        commision = 22;
+      }
+      if (creditScore == 599) {
+        commision = 25;
+      }
+    }
+
+    if (months == 48) {
+      if (creditScore == 750) {
+        commision = 7.5;
+      }
+      if (creditScore == 700) {
+        commision = 14;
+      }
+      if (creditScore == 600) {
+        commision = 18;
+      }
+      if (creditScore == 599) {
+        commision = 22;
+      }
+    }
+
+    if (months == 36) {
+      if (creditScore == 750) {
+        commision = 5.2;
+      }
+      if (creditScore == 700) {
+        commision = 10;
+      }
+      if (creditScore == 600) {
+        commision = 16;
+      }
+      if (creditScore == 599) {
+        commision = 20;
+      }
+    }
+
+    console.log("Commision: " + commision);
+    carFinancedPrice2 = carPrice2 * (1 + commision / 100);
+    console.log("Car Financed Price: " + carFinancedPrice2);
+    downPaymentMaxRange2 = 0.8 * carFinancedPrice2;
+    console.log("DownPayment MAX Range: " + downPaymentMaxRange2);
+    monthlyMinRange2 = (0.2 * carFinancedPrice2) / months;
+    console.log("Monthly MIN RAnge: " + monthlyMinRange2);
+    monthlyMaxRange2 = (carFinancedPrice2 - 750) / months;
+    console.log("Monthly MAX Range: " + monthlyMaxRange2);
+
+    setCarFinancedPrice(carFinancedPrice2);
+    setAPR(commision);
+    setDownPayment(downPaymentMaxRange2);
+    setMonthlyPayment(monthlyMinRange2);
+    setDownPaymentMaxRange(downPaymentMaxRange2);
+    console.log(" DownPayment Max Range: " + downPaymentMaxRange);
+    setMonthlyMinRange(monthlyMinRange2);
+    setMonthlyMaxRange(monthlyMaxRange2);
+  }, [creditScore, months]);
+
   const handleDownPaymentChange = (e) => {
     setDownPayment(e.target.value);
-    setMonthlyPayment(Math.ceil((carPrice - e.target.value) / numberOfMonths));
+    setMonthlyPayment(Math.ceil((carFinancedPrice - e.target.value) / months));
   };
   const handleMonthlyPaymentChange = (e) => {
     setMonthlyPayment(e.target.value);
-    setDownPayment(Math.ceil(carPrice - e.target.value * numberOfMonths));
+    // setDownPayment(Math.ceil(carPrice - e.target.value * months));
+    setDownPayment(Math.ceil(carFinancedPrice - e.target.value * months));
   };
+
   const handleRequestSubmit = async (e) => {
-    e.preventDefault();
-    const user = getloggedinuser();
-    const userId = user._id;
-    const carId = car._id;
-    await addBuyRequest({
-      carId,
-      userId,
-      downPayment,
-      monthlyPayment,
-      numberOfMonths,
-      creditScore,
-      annualIncome,
-    }).then(() => {
-      console.log("Request Send Successfully !");
-    });
+    if (!isLoggedin()) {
+      props.history.push("/login");
+    } else {
+      e.preventDefault();
+      const user = getloggedinuser();
+      const userId = user._id;
+      const carId = car._id;
+
+      console.log("+++++++++++++++++++++++++++++");
+      console.log("Car Total Price: " + carFinancedPrice);
+      console.log("Car Price: " + carPrice);
+      console.log("Loan Term: " + months);
+      console.log("Credit Card Score: " + creditScore);
+      console.log("Monthly Payment: " + monthlyPayment);
+      console.log("DownPayment: " + downPayment);
+      console.log("anual Income: " + annualIncome);
+      await addBuyRequest({
+        buyType,
+        carId,
+        userId,
+        downPayment,
+        monthlyPayment,
+        months,
+        creditScore,
+        annualIncome,
+        carPrice,
+        carFinancedPrice,
+      }).then(() => {
+        console.log("Request Send Successfully !");
+        props.history.push("/thankyou");
+      });
+    }
   };
 
   const handleLike = async () => {
@@ -144,69 +258,9 @@ const CarDetail = (props) => {
 
   return (
     <>
+      <CallBar />
       {isLoggedin() ? <Navbar2 handleLogout={handleLogout} /> : <Navbar />}
       <div>
-        {/* <div className="car-header-container">
-          <img className="w-100" src="assets/img/car.png" />
-          <div className="car-header-info-container">
-            <h1 className="car-title">
-              {car.modelYear} {car.make} {car.model}
-            </h1>
-            <h1 className="miles-driven">{car.milesDriven} Miles</h1>
-          </div>
-          <div className="ab-on-desktop">
-            <h1 className="car-name">
-              <strong>${car.price}</strong>
-            </h1>
-          </div>
-        </div> */}
-
-        {/* <div
-          className="d-flex justify-content-around align-items-center"
-          style={{
-            marginRight: "8%",
-            marginLeft: "8%",
-            marginTop: "30px",
-            borderRadius: "16px",
-            background: "rgba(12,189,255,0.29)",
-            paddingLeft: "20px",
-            paddingRight: "20px",
-            paddingBottom: "0px",
-            paddingTop: "15px",
-          }}
-        >
-          <div className="info-badge-container">
-            <img
-              src="assets/img/view.svg"
-              style={{ width: "24px", marginTop: "5px" }}
-            />
-            <div className="dek-ml20">
-              <h1 style={{ fontSize: "24px" }}>325</h1>
-              <p>Views all Time</p>
-            </div>
-          </div>
-          <div className="info-badge-container">
-            <img
-              src="assets/img/heart.svg"
-              style={{ width: "24px", marginTop: "5px" }}
-            />
-            <div className="dek-ml20">
-              <h1 style={{ fontSize: "24px" }}>24</h1>
-              <p>people liked this car</p>
-            </div>
-          </div>
-          <div className="info-badge-container">
-            <img
-              src="assets/img/heart.svg"
-              style={{ width: "24px", marginTop: "5px" }}
-            />
-            <div className="dek-ml20">
-              <h1 style={{ fontSize: "24px" }}>wishlist</h1>
-              <p>add to wishlist</p>
-            </div>
-          </div>
-        </div> */}
-
         <div className="car-info-container mt-50">
           <div className="row mt-0">
             <div className="col-md-6">
@@ -314,7 +368,6 @@ const CarDetail = (props) => {
 
         <div className="mt-80">
           <Carousel
-            // removeArrowOnDeviceType={["tablet", "mobile"]}
             responsive={responsive}
             removeArrowOnDeviceType={["tablet", "mobile"]}
           >
@@ -358,12 +411,12 @@ const CarDetail = (props) => {
                     color: "#2c2c2c",
                   }}
                 >
-                  Accident Free
+                  Carfax Report
                 </h1>
                 <p style={{ marginTop: "10px", fontSize: "14px" }}>
-                  Lorem Ipisum DOlor every cars&nbsp;
+                  View Carfax report for more details&nbsp;
                   <br />
-                  Sit a met Blef.
+                  Its free!
                   <br />
                 </p>
                 <img
@@ -410,16 +463,21 @@ const CarDetail = (props) => {
                     color: "#2c2c2c",
                   }}
                 >
-                  7 Day Money Back&nbsp;
+                  Affordable monthly payments!&nbsp;
                   <br />
-                  Quarrenty
                 </h1>
                 <p style={{ marginTop: "10px", fontSize: "14px" }}>
-                  Lorem Ipisum DOlor every cars&nbsp;
+                  With approved credit. &nbsp;
                   <br />
-                  Sit a met Blef.
                   <br />
                 </p>
+                <button
+                  className="btn btn-primary"
+                  type="button"
+                  style={{ background: "#00bbff", borderWidth: "0px" }}
+                >
+                  Apply Now
+                </button>
               </div>
             </div>
             <div className="col-xs-6 col-sm-6 col-md-4 ">
@@ -456,9 +514,8 @@ const CarDetail = (props) => {
                   Brochure
                 </h1>
                 <p style={{ marginTop: "10px", fontSize: "14px" }}>
-                  Lorem Ipisum DOlor every cars&nbsp;
+                  More info about this car&nbsp;
                   <br />
-                  Sit a met Blef.
                   <br />
                 </p>
                 <button
@@ -507,6 +564,14 @@ const CarDetail = (props) => {
                         <div className="col-md-6">
                           <div className="details-card">
                             <h1 className="details-card-heading">
+                              Trim Package&nbsp;
+                            </h1>
+                            <p className="details-card-para">{car.model}</p>
+                          </div>
+                        </div>
+                        <div className="col-md-6">
+                          <div className="details-card">
+                            <h1 className="details-card-heading">
                               Engine Type&nbsp;
                             </h1>
                             <p className="details-card-para">
@@ -514,14 +579,14 @@ const CarDetail = (props) => {
                             </p>
                           </div>
                         </div>
+                      </div>
+                      <div className="row">
                         <div className="col-md-6">
                           <div className="details-card">
                             <h1 className="details-card-heading">MPG&nbsp;</h1>
                             <p className="details-card-para">{car.mpg}</p>
                           </div>
                         </div>
-                      </div>
-                      <div className="row">
                         <div className="col-md-6">
                           <div className="details-card">
                             <h1 className="details-card-heading">
@@ -529,6 +594,18 @@ const CarDetail = (props) => {
                             </h1>
                             <p className="details-card-para">
                               {car.exteriorColor}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-6">
+                          <div className="details-card">
+                            <h1 className="details-card-heading">
+                              Interior Color&nbsp;
+                            </h1>
+                            <p className="details-card-para">
+                              {car.interiorColor}
                             </p>
                           </div>
                         </div>
@@ -547,10 +624,10 @@ const CarDetail = (props) => {
                         <div className="col-md-6">
                           <div className="details-card">
                             <h1 className="details-card-heading">
-                              Interior Color&nbsp;
+                              Drive Train&nbsp;
                             </h1>
                             <p className="details-card-para">
-                              {car.interiorColor}
+                              {car.driveTrain}
                             </p>
                           </div>
                         </div>
@@ -570,26 +647,6 @@ const CarDetail = (props) => {
                           <div className="details-card">
                             <h1 className="details-card-heading">VIN&nbsp;</h1>
                             <p className="details-card-para">{car.vin}</p>
-                          </div>
-                        </div>
-                        <div className="col-md-6">
-                          <div className="details-card">
-                            <h1 className="details-card-heading">
-                              Vehicle ID&nbsp;
-                            </h1>
-                            <p className="details-card-para">{car.vehicleId}</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="row">
-                        <div className="col-md-6">
-                          <div className="details-card">
-                            <h1 className="details-card-heading">
-                              Drive Train&nbsp;
-                            </h1>
-                            <p className="details-card-para">
-                              {car.driveTrain}
-                            </p>
                           </div>
                         </div>
                         <div className="col-md-6">
@@ -615,11 +672,13 @@ const CarDetail = (props) => {
                         />
                       </div>
                       <p>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Corporis, assumenda ducimus! Repudiandae
-                        dignissimos repellat perferendis rem eaque repellendus!
-                        Debitis esse veritatis eaque deleniti quo culpa
-                        asperiores consequatur officia ea a!
+                        Enjoy the benefits of a quality, pre-owned vehicle that
+                        includes maintenance benefits similar to that of a new
+                        vehicle! ASE Certified Service Centers have been
+                        carefully screened to ensure they meet our five-star
+                        standards for quality and service, and also that their
+                        certified service will maintain any manufacturer
+                        warranty or extended warranty.
                       </p>
                     </div>
                   </div>
@@ -651,11 +710,6 @@ const CarDetail = (props) => {
                 </div>
               ))}
             </div>
-            {/* <div className="d-flex justify-content-center mt-50">
-              <button className="btn btn-primary main-button" type="button">
-                LOAD MORE
-              </button>
-            </div> */}
           </div>
         </div>
         <div className="mt-200">
@@ -663,7 +717,14 @@ const CarDetail = (props) => {
             <div className="car-finance-container">
               <div>
                 <ul className="nav nav-tabs" role="tablist">
-                  <li className="nav-item w-50" role="presentation">
+                  <li
+                    onClick={() => {
+                      setBuyType("financed");
+                      console.log(buyType);
+                    }}
+                    className="nav-item w-50"
+                    role="presentation"
+                  >
                     <a
                       className="nav-link active w-100 text-center tabs-link"
                       role="tabpane3"
@@ -673,7 +734,14 @@ const CarDetail = (props) => {
                       Estimate Finance
                     </a>
                   </li>
-                  <li className="nav-item w-50" role="presentation">
+                  <li
+                    onClick={() => {
+                      setBuyType("cash");
+                      console.log(buyType);
+                    }}
+                    className="nav-item w-50"
+                    role="presentation"
+                  >
                     <a
                       className="nav-link w-100 text-center tabs-link"
                       role="tabpane4"
@@ -691,9 +759,9 @@ const CarDetail = (props) => {
                         <div className="col-md-4 mt-15">
                           {/* <label>Choose your loan tearm</label> */}
                           <select
-                            value={numberOfMonths}
+                            value={months}
                             onChange={(e) => {
-                              handleMonthsChange(e);
+                              setMonths(e.target.value);
                             }}
                           >
                             <optgroup label="Choose loan term">
@@ -706,18 +774,28 @@ const CarDetail = (props) => {
                         </div>
                         <div className="col-md-4 mt-15">
                           {/* <label>What’s Your credit score ?</label> */}
-                          <select>
-                            <optgroup label="Credit Score">
-                              <option value={780}>Excellent: 780</option>
-                              <option value={680}>Good: 680</option>
-                              <option value={680}>Average: 680</option>
-                              <option value={588}>Below Average: 588</option>
+                          <select
+                            value={creditScore}
+                            onChange={(e) => {
+                              setCreditScore(e.target.value);
+                            }}
+                          >
+                            <optgroup label="Your Credit Score">
+                              <option value={750}>Excellent: 750+</option>
+                              <option value={700}>Good: 700-749</option>
+                              <option value={600}>Average: 600-699</option>
+                              <option value={599}>
+                                Below Average: 599 and Below
+                              </option>
                             </optgroup>
                           </select>
                         </div>
                         <div className="col-md-4 mt-15">
-                          {/* <label>Annual Income?</label> */}
-                          <select>
+                          <select
+                            onChange={(e) => {
+                              setAnnualIncome(e.target.value);
+                            }}
+                          >
                             <optgroup label="Your Annual Income">
                               <option value={30000}>$30,000+</option>
                               <option value={40000}>$40,000+</option>
@@ -739,22 +817,22 @@ const CarDetail = (props) => {
                             <input
                               type="number"
                               className="range-number-input"
+                              disabled
                               value={Math.ceil(monthlyPayment)}
-                              onChange={(e) => {
-                                handleMonthlyPaymentChange(e);
-                              }}
                             />
                           </div>
                         </div>
                         <input
                           className="border rounded range-input"
                           type="range"
-                          value={monthlyPayment}
-                          min={Math.ceil((carPrice - carPrice * 0.8) / 72)}
-                          max={Math.ceil((carPrice - carPrice * 0.2) / 36)}
+                          value={Math.ceil(monthlyPayment)}
+                          min={Math.ceil(monthlyMinRange)}
+                          max={Math.ceil(monthlyMaxRange)}
                           onChange={(e) => {
+                            // setMonthlyPayment(e.target.value);
                             handleMonthlyPaymentChange(e);
                           }}
+                          step={Math.ceil(carPendingAmount / 50)}
                         />
                       </div>
                       <div className="mt-50">
@@ -766,10 +844,8 @@ const CarDetail = (props) => {
                             <input
                               type="number"
                               className="range-number-input"
-                              value={Math.ceil(downPayment)}
-                              onChange={(e) => {
-                                handleDownPaymentChange(e);
-                              }}
+                              value={downPayment}
+                              disabled
                             />
                           </div>
                         </div>
@@ -777,48 +853,56 @@ const CarDetail = (props) => {
                           className="border rounded range-input"
                           type="range"
                           value={Math.ceil(downPayment)}
-                          min={Math.ceil(carPrice * 0.2)}
-                          max={Math.ceil(carPrice * 0.8)}
+                          min={Math.ceil(downPaymentMinRange)}
+                          max={Math.ceil(downPaymentMaxRange)}
                           onChange={(e) => {
+                            // setDownPayment(e.target.value);
                             handleDownPaymentChange(e);
                           }}
-                          step={Math.ceil(carPrice / 20)}
+                          // step={Math.ceil(carPrice / 100)}
+                          step={100}
                         />
                       </div>
                       <div className="row">
                         <div className="col-md-6">
                           <div className="apply-card mt-30">
                             <h1 className="apply-card-heading">
-                              Apply TradeIn Value
+                              Apply For Finance
                             </h1>
                             <p className="apply-card-para">
-                              Answer a few questions about your car and get an
-                              instant value. This only takes 2 minutes.
+                              Get pre-qualified for a loan in <br /> 2 minutes.
+                              <br />
+                              No hit to your credit score!
                             </p>
-                            <button
-                              className="btn btn-primary apply-card-button"
-                              type="button"
-                            >
-                              Apply Tradein
-                            </button>
+                            <a href="/loan calculator">
+                              <button
+                                className="btn btn-primary apply-card-button"
+                                type="button"
+                              >
+                                Get Pre-qualified
+                              </button>
+                            </a>
                           </div>
                         </div>
                         <div className="col">
                           <div className="apply-card mt-30">
                             <h1 className="apply-card-heading">
-                              <strong>Carvana Offering Finance</strong>
+                              <strong>
+                                Got a trade-in? NOW OFFERING $3,000 ABOVE KBB
+                              </strong>
                             </h1>
                             <p className="apply-card-para">
-                              Get pre-qualified for a loan in 2 minutes.
-                              <br />
-                              No hit to your credit score!
+                              Answer a few questions about your car and get an
+                              instant value. This only takes 2 minutes.
                             </p>
-                            <button
-                              className="btn btn-primary apply-card-button"
-                              type="button"
-                            >
-                              <strong>Get PreQualified</strong>
-                            </button>
+                            <a href="/pre-qualified">
+                              <button
+                                className="btn btn-primary apply-card-button"
+                                type="button"
+                              >
+                                <strong>Get Value!</strong>
+                              </button>
+                            </a>
                           </div>
                         </div>
                       </div>
@@ -829,41 +913,46 @@ const CarDetail = (props) => {
                       <div className="h3-black w-100 text-center">
                         Total Amount in Cash : $54,000
                       </div>
-
                       <div className="row">
                         <div className="col-md-6">
                           <div className="apply-card mt-30">
                             <h1 className="apply-card-heading">
-                              Apply TradeIn Value
+                              Apply For Finance
+                            </h1>
+                            <p className="apply-card-para">
+                              Get pre-qualified for a loan in <br /> 2 minutes.
+                              <br />
+                              No hit to your credit score!
+                            </p>
+                            <a href="/loan calculator">
+                              <button
+                                className="btn btn-primary apply-card-button"
+                                type="button"
+                              >
+                                Get Pre-qualified
+                              </button>
+                            </a>
+                          </div>
+                        </div>
+                        <div className="col">
+                          <div className="apply-card mt-30">
+                            <h1 className="apply-card-heading">
+                              <strong>
+                                Got a trade-in? NOW OFFERING $3,000 ABOVE KBB
+                              </strong>
                             </h1>
                             <p className="apply-card-para">
                               Answer a few questions about your car and get an
                               instant value. This only takes 2 minutes.
                             </p>
-                            <button
-                              className="btn btn-primary apply-card-button"
-                              type="button"
-                            >
-                              Apply Tradein
-                            </button>
-                          </div>
-                        </div>
-                        <div className="col-md-6">
-                          <div className="apply-card mt-30">
-                            <h1 className="apply-card-heading">
-                              <strong>Carvana Offering Finance</strong>
-                            </h1>
-                            <p className="apply-card-para">
-                              Get pre-qualified for a loan in 2 minutes.
-                              <br />
-                              No hit to your credit score!
-                            </p>
-                            <button
-                              className="btn btn-primary apply-card-button"
-                              type="button"
-                            >
-                              <strong>Get PreQualified</strong>
-                            </button>
+                            <a href="/pre-qualified">
+                              <button
+                                className="btn btn-primary apply-card-button"
+                                type="button"
+                              >
+                                <strong>Get Value!</strong>
+                              </button>
+                            </a>
                           </div>
                         </div>
                       </div>
@@ -874,7 +963,13 @@ const CarDetail = (props) => {
             </div>
             <div className="summary-conatiner">
               <div className="summary-card">
-                <div className="d-flex justify-content-center summary-header">
+                <div
+                  className={
+                    buyType === "financed"
+                      ? "d-flex justify-content-center summary-header"
+                      : "d-none"
+                  }
+                >
                   <div className="w-50">
                     <h1 className="summary-header-heading">
                       ${Math.ceil(monthlyPayment)}
@@ -892,6 +987,31 @@ const CarDetail = (props) => {
                     </div>
                   </div>
                 </div>
+                {/* +++++++++++++++++++++++++++++++++++ */}
+                <div
+                  className={
+                    buyType === "financed"
+                      ? "d-none"
+                      : "d-flex justify-content-center summary-header"
+                  }
+                >
+                  <div className="w-100">
+                    <h1 className="summary-header-heading w-100 text-center">
+                      $
+                      {Math.ceil(
+                        carPrice +
+                          car.shippingCharges +
+                          car.taxAndRegistrationCharges +
+                          car.dealerFees -
+                          tradeInCredit
+                      )}
+                    </h1>
+                    <h1 className="summary-header-sub-heading w-100 text-center">
+                      Total Price
+                    </h1>
+                  </div>
+                </div>
+                {/* +++++++++++++++++++++++++++++++++ */}
                 <div className="d-flex summary-card-price-detail">
                   <div className="w-60">
                     <p>VEHICLE PRICE</p>
@@ -924,7 +1044,13 @@ const CarDetail = (props) => {
                     <p>${car.dealerFees}</p>
                   </div>
                 </div>
-                <div className="d-flex summary-card-price-detail">
+                <div
+                  className={
+                    buyType === "financed"
+                      ? "d-flex summary-card-price-detail"
+                      : "d-none"
+                  }
+                >
                   <div className="w-60">
                     <p>CASH DOWN</p>
                   </div>
@@ -940,7 +1066,13 @@ const CarDetail = (props) => {
                     <p>${tradeInCredit}</p>
                   </div>
                 </div>
-                <div className="d-flex summary-card-price-detail">
+                <div
+                  className={
+                    buyType === "financed"
+                      ? "d-flex summary-card-price-detail"
+                      : "d-none"
+                  }
+                >
                   <div className="w-60">
                     <p>APR</p>
                   </div>
@@ -948,7 +1080,13 @@ const CarDetail = (props) => {
                     <p>$35,000</p>
                   </div>
                 </div>
-                <div className="d-flex summary-card-price-detail">
+                <div
+                  className={
+                    buyType === "financed"
+                      ? "d-flex summary-card-price-detail"
+                      : "d-none"
+                  }
+                >
                   <div className="w-60">
                     <p>ESTIMATED AMOUNT FINANCED</p>
                   </div>
@@ -977,30 +1115,6 @@ const CarDetail = (props) => {
             </div>
           </div>
         </div>
-        {/* <div className="mt-200">
-          <div className="row mt-0">
-            <div className="col-md-6 bg-main">
-              <p className="car-guide-subsection-info">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
-                ipsum suspendisse ultrices gravida. Risus commodo viverra
-                maecenas accumsan lacus vel facilisis.&nbsp;
-                <br />
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
-                ipsum suspendisse ultrices gravida. Risus commodo viverra
-                maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit
-                amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Quis ipsum
-                suspendisse ultrices gravida. Risus commodo viverra maecenas
-                accumsan lacus vel facilisis.&nbsp;
-              </p>
-            </div>
-            <div className="col-md-6 car-guide-img">
-              <span />
-            </div>
-          </div>
-        </div> */}
 
         <div className="mt-200">
           <div className="row mt-0">
@@ -1014,7 +1128,7 @@ const CarDetail = (props) => {
               }}
             >
               <h1 style={{ fontWeight: 700, color: "rgb(255,255,255)" }}>
-                SolidMotors 150+ Points Inspection
+                Quality over quantity
               </h1>
               <p
                 style={{
@@ -1023,29 +1137,24 @@ const CarDetail = (props) => {
                   marginTop: "30px",
                 }}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
-                ipsum suspendisse ultrices gravida. Risus commodo viverra
-                maecenas accumsan lacus vel facilisis.&nbsp;
+                At Solid Motors, we believe in quality over quantity, that's why
+                we spend time finding the best inventory, all of our vehicles
+                are inspected before and after leaving our lot to ensure safety
+                and quality. &nbsp;
                 <br />
-                Lorem ipsum dolor sit amet,&nbsp;
                 <br />
               </p>
               <ul id="inspection-list" style={{ color: "rgb(255,255,255)" }}>
                 <li style={{ marginTop: "30px" }}>
-                  Lorem ipsum dolor sit amet, consectetur&nbsp;
+                  Inspected by ASE certified mechanics
                   <br />
                 </li>
                 <li style={{ marginTop: "10px" }}>
-                  Lorem ipsum dolor sit amet, consectetur&nbsp;
+                  Low mileage cars&nbsp;
                   <br />
                 </li>
                 <li style={{ marginTop: "10px" }}>
-                  Lorem ipsum dolor sit amet, consectetur&nbsp;
-                  <br />
-                </li>
-                <li style={{ marginTop: "10px" }}>
-                  Lorem ipsum dolor sit amet, consectetur&nbsp;
+                  Hand-picked cars from our extensive research&nbsp;
                   <br />
                 </li>
               </ul>
@@ -1062,7 +1171,7 @@ const CarDetail = (props) => {
           </div>
         </div>
         <div className="cars-row-container">
-          <h1 className="h1-black w-100 text-center  mt-200">Related Cars</h1>
+          <h1 className="h1-black w-100 text-center  mt-200">Similar picks</h1>
           <div id="car-row" className="row mt-100">
             {cars.slice(0, 4).map((item, index) => (
               <CarCard

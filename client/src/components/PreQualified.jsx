@@ -4,6 +4,7 @@ import { isLoggedin, logout } from "../services/userService";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import Navbar2 from "./Navbar2";
+import CallBar from "./CallBar";
 
 function useForceUpdate() {
   const [value, setValue] = React.useState(0); // integer state
@@ -26,6 +27,7 @@ const PreQualified = (props) => {
   }
   return (
     <>
+      <CallBar />
       {isLoggedin() ? <Navbar2 handleLogout={handleLogout} /> : <Navbar />}
       <div>
         <header>
