@@ -1,5 +1,5 @@
 import React from "react";
-import { getCar, getCars } from "../services/carsService";
+import { getCar, getCars, getRelatedCars } from "../services/carsService";
 import CarCard from "./CarCard";
 import { Link, Redirect } from "react-router-dom";
 import {
@@ -40,8 +40,8 @@ const CarDetail = (props) => {
   const [liked, setLiked] = React.useState(0);
   const { car } = props.location.state;
 
-  const getCarsData = async () => {
-    const { data } = await getCars();
+  const getRelatedCarsData = async () => {
+    const { data } = await getRelatedCars(car.make);
     const cars = [...data];
     setCars(cars);
   };
@@ -59,7 +59,7 @@ const CarDetail = (props) => {
   };
 
   React.useEffect(() => {
-    getCarsData();
+    getRelatedCarsData();
   }, []);
   React.useEffect(() => {
     getTradeInCredit();

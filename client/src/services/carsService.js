@@ -12,6 +12,10 @@ export function getCar(carId) {
   return http.get(apiEndPoint + "/" + carId);
 }
 
+export function getRelatedCars(carMake) {
+  return http.get(apiEndPoint + "/related/" + carMake);
+}
+
 export function addCar(carInput) {
   return http.post(apiEndPoint, carInput.car);
 }

@@ -42,10 +42,14 @@ const CarSearch = (props) => {
     },
   });
 
-  const { search } = props.location.state;
+  if (props.location.state) {
+    const { search } = props.location.state;
+  }
 
   React.useEffect(() => {
-    handleSearch(search);
+    if (props.location.state) {
+      handleSearch();
+    }
   }, []);
 
   const getCarsData = async () => {
@@ -322,7 +326,8 @@ const CarSearch = (props) => {
     setMaxPrice(100000);
     setMinYear(parseInt(new Date().getFullYear()) - 15);
     setMaxMiles(500000);
-    let target = e.target || search;
+
+    let target = e.target;
     setFilterFn({
       fn: (items) => {
         if (target.value === "" && search) return items;
