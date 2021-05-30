@@ -7,6 +7,7 @@ import CallBar from "./CallBar";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { Link } from "react-router-dom";
 
 function useForceUpdate() {
   const [value, setValue] = React.useState(0); // integer state
@@ -21,6 +22,7 @@ const Home = (props) => {
     await logout();
     forceUpdate();
   };
+  const [search, setSearch] = React.useState("");
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -69,20 +71,31 @@ const Home = (props) => {
                     type="search"
                     placeholder="Search Car"
                     name="searchbar"
+                    value={search}
+                    onChange={(e) => {
+                      setSearch(e.target.value);
+                    }}
                   />
-                  <button
-                    className="btn btn-success btn-lg"
-                    style={{
-                      paddingRight: "20px",
-                      paddingLeft: "20px",
-                      color: "var(--light)",
-                      background: "#0cbdff",
-                      borderWidth: "0px",
-                      borderRadius: "8px",
+                  <Link
+                    to={{
+                      pathname: "/search cars",
+                      state: { search: search },
                     }}
                   >
-                    Search
-                  </button>
+                    <button
+                      className="btn btn-success btn-lg"
+                      style={{
+                        paddingRight: "20px",
+                        paddingLeft: "20px",
+                        color: "var(--light)",
+                        background: "#0cbdff",
+                        borderWidth: "0px",
+                        borderRadius: "8px",
+                      }}
+                    >
+                      Search
+                    </button>
+                  </Link>
                 </form>
               </div>
             </div>

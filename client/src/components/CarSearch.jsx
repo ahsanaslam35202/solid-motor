@@ -15,7 +15,7 @@ function useForceUpdate() {
   return () => setValue((value) => value + 1); // update the state to force render
 }
 
-const CarSearch = () => {
+const CarSearch = (props) => {
   const forceUpdate = useForceUpdate();
   const handleLogout = async (e) => {
     await logout();
@@ -44,9 +44,23 @@ const CarSearch = () => {
     },
   });
 
+  if (props.location.state) {
+    const { search } = props.location.state;
+  }
+
+  React.useEffect(() => {
+    if (props.location.state) {
+      handleSearch();
+    }
+  }, []);
+
   const getCarsData = async () => {
     var { data } = await getCars();
     const cars = [...data];
+    cars.forEach((car) => {
+      const carName = car.make + " " + car.name;
+      car.carName = carName;
+    });
     setCars(cars);
     setUpdatedCars(cars);
     var { data } = await axios.get("http://localhost:3000/api/cars/images/a");
@@ -304,13 +318,24 @@ const CarSearch = () => {
   }, [updatedCars]);
 
   const handleSearch = (e) => {
+    setMakes([]);
+    setBodyTypes([]);
+    setTransmissions([]);
+    setDriveTrains([]);
+    setEngineTypes([]);
+    setColors([]);
+    setFuelTypes([]);
+    setMaxPrice(100000);
+    setMinYear(parseInt(new Date().getFullYear()) - 15);
+    setMaxMiles(500000);
+
     let target = e.target;
     setFilterFn({
       fn: (items) => {
-        if (target.value === "") return items;
+        if (target.value === "" && search) return items;
         else
           return items.filter((x) =>
-            x.name.toLowerCase().includes(target.value)
+            x.carName.toLowerCase().includes(target.value || search)
           );
       },
     });

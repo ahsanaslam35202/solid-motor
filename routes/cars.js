@@ -15,6 +15,12 @@ router.get("/", async (req, res) => {
   res.send(cars);
 });
 
+router.get("/related/:make", async (req, res) => {
+  const cars = await Car.find({ make: req.params.make });
+  console.log(cars);
+  res.send(cars);
+});
+
 router.get("/:id", async (req, res) => {
   console.log(req.params.id);
   const cars = await Car.findOne({ _id: req.params.id });
@@ -96,6 +102,7 @@ router.post(
       model: req.body.model,
       displayImage: req.files.displayImage[0].originalname,
       otherImages: otherImages,
+      sendImages: sendImages,
       fuel: req.body.fuel,
       milesDriven: req.body.milesDriven,
       body: req.body.body,
