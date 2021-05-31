@@ -9,7 +9,6 @@ import Navbar from "./Navbar";
 import Navbar2 from "./Navbar2";
 import CallBar from "./CallBar";
 
-
 function useForceUpdate() {
   const [value, setValue] = React.useState(0); // integer state
   return () => setValue((value) => value + 1); // update the state to force render
@@ -43,10 +42,7 @@ const CarSearch = (props) => {
       return items;
     },
   });
-
-  if (props.location.state) {
-    const { search } = props.location.state;
-  }
+  const { search } = props.location.state || "";
 
   React.useEffect(() => {
     if (props.location.state) {
@@ -67,143 +63,6 @@ const CarSearch = (props) => {
     console.log(data);
     setDisplayImage(data);
   };
-
-  // const handleMakeFilter = () => {
-  //   console.log("Handle Make");
-  //   if (makes.length > 0) {
-  //     var results = cars.filter((obj) => {
-  //       return makes.includes(obj.make);
-  //     });
-  //     const data = [...results];
-  //     console.log(data);
-  //     setUpdatedCars(data);
-  //     handleBodyTypeFilter(data);
-  //   } else {
-  //     setUpdatedCars(cars);
-  //   }
-  // };
-
-  // const handleBodyTypeFilter = (data) => {
-  //   var results = data.filter((obj) => {
-  //     return bodyTypes.includes(obj.body);
-  //   });
-
-  //   console.log(results);
-
-  //   const data2 = [...results];
-  //   console.log(data2);
-  //   setUpdatedCars(data2);
-  // };
-
-  // const handleTransmissionFilter = () => {
-  //   if (
-  //     makes.length == 0 &&
-  //     bodyTypes.length == 0 &&
-  //     driveTrains.length == 0 &&
-  //     engineTypes.length == 0 &&
-  //     colors.length == 0 &&
-  //     fuelTypes.length == 0
-  //   ) {
-  //     var results = cars.filter((obj) => {
-  //       return transmissions.includes(obj.transmission);
-  //     });
-  //   } else {
-  //     var results = updatedCars.filter((obj) => {
-  //       return transmissions.includes(obj.transmission);
-  //     });
-  //   }
-
-  //   const data = [...results];
-  //   setUpdatedCars(data);
-  // };
-
-  // const handleDriveTrainFilter = () => {
-  //   if (
-  //     makes.length == 0 &&
-  //     bodyTypes.length == 0 &&
-  //     transmissions.length == 0 &&
-  //     engineTypes.length == 0 &&
-  //     colors.length == 0 &&
-  //     fuelTypes.length == 0
-  //   ) {
-  //     var results = cars.filter((obj) => {
-  //       return driveTrains.includes(obj.driveTrain);
-  //     });
-  //   } else {
-  //     var results = updatedCars.filter((obj) => {
-  //       return driveTrains.includes(obj.driveTrain);
-  //     });
-  //   }
-
-  //   const data = [...results];
-  //   setUpdatedCars(data);
-  // };
-
-  // const handleEngineTypeFilter = () => {
-  //   console.log(engineTypes);
-  //   if (
-  //     makes.length == 0 &&
-  //     bodyTypes.length == 0 &&
-  //     transmissions.length == 0 &&
-  //     driveTrains.length == 0 &&
-  //     colors.length == 0 &&
-  //     fuelTypes.length == 0
-  //   ) {
-  //     var results = cars.filter((obj) => {
-  //       return engineTypes.includes(obj.engineType);
-  //     });
-  //   } else {
-  //     var results = updatedCars.filter((obj) => {
-  //       return engineTypes.includes(obj.engineType);
-  //     });
-  //   }
-  //   const data = [...results];
-  //   setUpdatedCars(data);
-  // };
-
-  // const handleColorFilter = () => {
-  //   if (
-  //     makes.length == 0 &&
-  //     transmissions.length == 0 &&
-  //     driveTrains.length == 0 &&
-  //     engineTypes.length == 0 &&
-  //     colors.length == 0 &&
-  //     fuelTypes.length == 0
-  //   ) {
-  //     var results = updatedCars.filter((obj) => {
-  //       return colors.includes(obj.exteriorColor);
-  //     });
-  //   } else {
-  //     var results = cars.filter((obj) => {
-  //       return colors.includes(obj.exteriorColor);
-  //     });
-  //   }
-
-  //   const data = [...results];
-  //   setUpdatedCars(data);
-  // };
-
-  // const handleFuelTypeFilter = () => {
-  //   if (
-  //     makes.length == 0 &&
-  //     bodyTypes.length == 0 &&
-  //     transmissions.length == 0 &&
-  //     driveTrains.length == 0 &&
-  //     engineTypes.length == 0 &&
-  //     colors.length == 0
-  //   ) {
-  //     var results = updatedCars.filter((obj) => {
-  //       return fuelTypes.includes(obj.body);
-  //     });
-  //   } else {
-  //     var results = cars.filter((obj) => {
-  //       return fuelTypes.includes(obj.body);
-  //     });
-  //   }
-
-  //   const data = [...results];
-  //   setUpdatedCars(data);
-  // };
 
   const handleFilters = () => {
     console.log(fuelTypes);
@@ -328,15 +187,23 @@ const CarSearch = (props) => {
     setMaxPrice(100000);
     setMinYear(parseInt(new Date().getFullYear()) - 15);
     setMaxMiles(500000);
-
-    let target = e.target;
+    let target;
+    if (props.location.state) {
+      console.log(search);
+      target = search;
+    } else {
+      target = e.target;
+    }
     setFilterFn({
       fn: (items) => {
-        if (target.value === "" && search) return items;
-        else
+        if (target.value === "" && search === "") return items;
+        else if (props.location.state) {
+          return items.filter((x) => x.carName.toLowerCase().includes(search));
+        } else {
           return items.filter((x) =>
-            x.carName.toLowerCase().includes(target.value || search)
+            x.carName.toLowerCase().includes(target.value.toLowerCase())
           );
+        }
       },
     });
     console.log(filterFn.fn);
@@ -344,7 +211,7 @@ const CarSearch = (props) => {
 
   return (
     <>
-      <CallBar/>
+      <CallBar />
       {isLoggedin() ? <Navbar2 handleLogout={handleLogout} /> : <Navbar />}
       <div>
         <div className="car-searchbar-container">
