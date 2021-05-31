@@ -127,6 +127,9 @@ router.post(
       taxAndRegistrationCharges: req.body.taxAndRegistrationCharges,
       dealerFees: req.body.dealerFees,
       views: 0,
+      likes: 0,
+      brochureLink: req.body.brochureLink,
+      reportLink: req.body.reportLink,
     });
 
     car = await car
@@ -171,6 +174,8 @@ router.put("/:id", async (req, res) => {
       shippingCharges: req.body.shippingCharges,
       taxAndRegistrationCharges: req.body.taxAndRegistrationCharges,
       dealerFees: req.body.dealerFees,
+      brochureLink: req.body.brochureLink,
+      reportLink: req.body.reportLink,
     },
     { new: true }
   );

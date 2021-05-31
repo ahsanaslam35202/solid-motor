@@ -426,6 +426,11 @@ const CarDetail = (props) => {
                   className="btn btn-primary"
                   type="button"
                   style={{ background: "#00bbff", borderWidth: "0px" }}
+                  onClick={() => {
+                    var link = car.reportLink;
+                    console.log(link);
+                    window.open({ link }, "_blank");
+                  }}
                 >
                   View Report
                 </button>

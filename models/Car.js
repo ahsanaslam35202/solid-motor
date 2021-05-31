@@ -45,6 +45,9 @@ var carSchema = mongoose.Schema({
   taxAndRegistrationCharges: Number,
   dealerFees: Number,
   views: Number,
+  likes: Number,
+  reportLink: String,
+  brochureLink: String,
 });
 var Car = mongoose.model("Car", carSchema);
 

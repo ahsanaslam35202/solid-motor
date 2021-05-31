@@ -118,6 +118,11 @@ const AddCar = (props) => {
   const [taxAndRegistrationCharges, setTaxAndRegistrationCharges] =
     React.useState({ value: "", error: "" });
   const [dealerFees, setDealerFees] = React.useState({ value: "", error: "" });
+  const [brochureLink, setBrochureLink] = React.useState({
+    value: "",
+    error: "",
+  });
+  const [reportLink, setReportLink] = React.useState({ value: "", error: "" });
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -171,6 +176,8 @@ const AddCar = (props) => {
     data.append("shippingCharges", shippingCharges.value);
     data.append("taxAndRegistrationCharges", taxAndRegistrationCharges.value);
     data.append("dealerFees", dealerFees.value);
+    data.append("reportLink", reportLink.value);
+    data.append("brochureLink", brochureLink.value);
     console.log(data);
     axios({
       method: "post",
@@ -759,6 +766,32 @@ const AddCar = (props) => {
                     value={dealerFees.value}
                     onChange={(e) => {
                       setDealerFees({ value: e.target.value });
+                    }}
+                  />
+                </Grid>
+                <Grid item xs={12} md={3}>
+                  <TextField
+                    type="text"
+                    variant="outlined"
+                    label="Report Link"
+                    fullWidth
+                    size="small"
+                    value={reportLink.value}
+                    onChange={(e) => {
+                      setReportLink({ value: e.target.value });
+                    }}
+                  />
+                </Grid>
+                <Grid item xs={12} md={3}>
+                  <TextField
+                    type="text"
+                    variant="outlined"
+                    label="Brochure Link"
+                    fullWidth
+                    size="small"
+                    value={brochureLink.value}
+                    onChange={(e) => {
+                      setBrochureLink({ value: e.target.value });
                     }}
                   />
                 </Grid>
