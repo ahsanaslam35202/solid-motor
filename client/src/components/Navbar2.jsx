@@ -5,8 +5,6 @@ import { getloggedinuser, isLoggedin } from "../services/userService";
 const Navbar2 = (props) => {
   const user = getloggedinuser();
   const user_name = user.name;
-  console.log(user);
-  console.log(user_name);
 
   return (
     <nav className="navbar navbar-light navbar-expand-md navigation-clean navbar">

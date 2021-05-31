@@ -161,14 +161,14 @@ const CarDetail = (props) => {
     monthlyMaxRange2 = (carFinancedPrice2 - 750) / months;
     console.log("Monthly MAX Range: " + monthlyMaxRange2);
 
-    setCarFinancedPrice(carFinancedPrice2);
+    setCarFinancedPrice(Math.ceil(carFinancedPrice2));
     setAPR(commision);
-    setDownPayment(downPaymentMaxRange2);
-    setMonthlyPayment(monthlyMinRange2);
-    setDownPaymentMaxRange(downPaymentMaxRange2);
+    setDownPayment(Math.ceil(downPaymentMaxRange2));
+    setMonthlyPayment(Math.ceil(monthlyMinRange2));
+    setDownPaymentMaxRange(Math.ceil(downPaymentMaxRange2));
     console.log(" DownPayment Max Range: " + downPaymentMaxRange);
-    setMonthlyMinRange(monthlyMinRange2);
-    setMonthlyMaxRange(monthlyMaxRange2);
+    setMonthlyMinRange(Math.ceil(monthlyMinRange2));
+    setMonthlyMaxRange(Math.ceil(monthlyMaxRange2));
   }, [creditScore, months]);
 
   const handleDownPaymentChange = (e) => {
@@ -177,7 +177,6 @@ const CarDetail = (props) => {
   };
   const handleMonthlyPaymentChange = (e) => {
     setMonthlyPayment(e.target.value);
-    // setDownPayment(Math.ceil(carPrice - e.target.value * months));
     setDownPayment(Math.ceil(carFinancedPrice - e.target.value * months));
   };
 
@@ -258,7 +257,7 @@ const CarDetail = (props) => {
 
   return (
     <>
-      <CallBar />
+      {/* <CallBar /> */}
       {isLoggedin() ? <Navbar2 handleLogout={handleLogout} /> : <Navbar />}
       <div>
         <div className="car-info-container mt-50">
@@ -266,7 +265,7 @@ const CarDetail = (props) => {
             <div className="col-md-6">
               <div className="d-flex car-title-container">
                 <h1 className="car-title">
-                  {car.modelYear} {car.make} {car.model}
+                  {car.modelYear} {car.make} {car.name}
                 </h1>
                 <div
                   className="d-flex justify-content-center align-items-center heart-container"
@@ -287,9 +286,9 @@ const CarDetail = (props) => {
               </div>
               <h1 className="miles-driven">{car.milesDriven} Miles</h1>
             </div>
-            <div className="col-md-6 d-flex car-price-container">
+            {/* <div className="col-md-6 d-flex car-price-container">
               <h1 className="price">${car.price}</h1>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -427,6 +426,11 @@ const CarDetail = (props) => {
                   className="btn btn-primary"
                   type="button"
                   style={{ background: "#00bbff", borderWidth: "0px" }}
+                  onClick={() => {
+                    var link = car.reportLink;
+                    console.log(link);
+                    window.open({ link }, "_blank");
+                  }}
                 >
                   View Report
                 </button>
@@ -530,7 +534,7 @@ const CarDetail = (props) => {
           </div>
         </div>
 
-        <div className="container mt-200 mobile-mt50">
+        <div className="container mt-150 mobile-mt50">
           <h1 className="w-100 text-center details-heading">Vehicle Details</h1>
           <div className="row">
             <div className="col-md-12 d-flex justify-content-center mt-50">
@@ -702,8 +706,8 @@ const CarDetail = (props) => {
                 overflow: "hidden",
               }}
             >
-              {car.extendedFeatures.map((item, index) => (
-                <div className="col-md-4 d-flex justify-content-center">
+              {car.extendedFeatures.map((item) => (
+                <div className="col-md-4 d-flex justify-content-start">
                   <ul>
                     <li>{item}</li>
                   </ul>
@@ -722,7 +726,7 @@ const CarDetail = (props) => {
                       setBuyType("financed");
                       console.log(buyType);
                     }}
-                    className="nav-item w-50"
+                    className="nav-item w-100"
                     role="presentation"
                   >
                     <a
@@ -734,7 +738,7 @@ const CarDetail = (props) => {
                       Estimate Finance
                     </a>
                   </li>
-                  <li
+                  {/* <li
                     onClick={() => {
                       setBuyType("cash");
                       console.log(buyType);
@@ -750,7 +754,7 @@ const CarDetail = (props) => {
                     >
                       Pay Cash
                     </a>
-                  </li>
+                  </li> */}
                 </ul>
                 <div className="tab-content">
                   <div className="tab-pane active" role="tabpane3" id="tab-3">
@@ -844,7 +848,7 @@ const CarDetail = (props) => {
                             <input
                               type="number"
                               className="range-number-input"
-                              value={downPayment}
+                              value={Math.ceil(downPayment)}
                               disabled
                             />
                           </div>
@@ -1012,14 +1016,14 @@ const CarDetail = (props) => {
                   </div>
                 </div>
                 {/* +++++++++++++++++++++++++++++++++ */}
-                <div className="d-flex summary-card-price-detail">
+                {/* <div className="d-flex summary-card-price-detail">
                   <div className="w-60">
                     <p>VEHICLE PRICE</p>
                   </div>
                   <div className="d-flex justify-content-end w-40">
                     <p>${Math.ceil(car.price)}</p>
                   </div>
-                </div>
+                </div> */}
                 <div className="d-flex summary-card-price-detail">
                   <div className="w-60">
                     <p>SHIPPING</p>
@@ -1066,7 +1070,7 @@ const CarDetail = (props) => {
                     <p>${tradeInCredit}</p>
                   </div>
                 </div>
-                <div
+                {/* <div
                   className={
                     buyType === "financed"
                       ? "d-flex summary-card-price-detail"
@@ -1079,8 +1083,8 @@ const CarDetail = (props) => {
                   <div className="d-flex justify-content-end w-40">
                     <p>$35,000</p>
                   </div>
-                </div>
-                <div
+                </div> */}
+                {/* <div
                   className={
                     buyType === "financed"
                       ? "d-flex summary-card-price-detail"
@@ -1101,7 +1105,7 @@ const CarDetail = (props) => {
                         tradeInCredit}
                     </p>
                   </div>
-                </div>
+                </div> */}
                 <button
                   className="btn btn-primary summary-button"
                   type="button"
