@@ -32,6 +32,7 @@ const CarSearch = (props) => {
   const [colors, setColors] = React.useState([]);
   const [fuelTypes, setFuelTypes] = React.useState([]);
   const [maxDownPayment, setMaxDownPayment] = React.useState(100000);
+  const [maxMonthlyPayment, setMaxMonthlyPayment] = React.useState(3000);
   const [maxPrice, setMaxPrice] = React.useState(100000);
   const [minYear, setMinYear] = React.useState(
     parseInt(new Date().getFullYear()) - 15
@@ -136,8 +137,13 @@ const CarSearch = (props) => {
       });
       data = [...results];
 
+      // var results = data.filter((obj) => {
+      //   return obj.price <= maxPrice;
+      // });
+      // data = [...results];
+
       var results = data.filter((obj) => {
-        return obj.price <= maxPrice;
+        return obj.monthlyPayment <= maxMonthlyPayment;
       });
       data = [...results];
 
@@ -170,6 +176,7 @@ const CarSearch = (props) => {
     maxMiles,
     maxPrice,
     maxDownPayment,
+    maxMonthlyPayment,
   ]);
 
   React.useEffect(() => {
@@ -185,8 +192,9 @@ const CarSearch = (props) => {
     setColors([]);
     setFuelTypes([]);
     setMaxPrice(100000);
+    setMaxMonthlyPayment(3000);
     setMinYear(parseInt(new Date().getFullYear()) - 15);
-    setMaxMiles(500000);
+    setMaxMiles(50000);
     let target;
     if (props.location.state) {
       console.log(search);
@@ -266,7 +274,7 @@ const CarSearch = (props) => {
                         data-toggle="dropdown"
                         href="#"
                       >
-                        Car Price{" "}
+                        Monthly Payment
                       </a>
                       <div className="dropdown-menu wd-250">
                         <div className="dropdown-container">
@@ -314,7 +322,7 @@ const CarSearch = (props) => {
                                 </button>
                               </div>
                             </div> */}
-                            <div className="col-md-12">
+                            {/* <div className="col-md-12">
                               <div className="price-card mobile-mt-10">
                                 <div
                                   className="d-flex w-100"
@@ -340,6 +348,51 @@ const CarSearch = (props) => {
                                   value={maxPrice}
                                   onChange={(e) => {
                                     setMaxPrice(e.target.value);
+                                  }}
+                                />
+                                <h1 className="price-card-heading">
+                                  Solid Motors Trade in Offer
+                                </h1>
+                                <p className="price-card-para">
+                                  Answer a few questions about your car and get
+                                  an instant value. This only takes 2 minutes.
+                                </p>
+                                <a href="./trade">
+                                  <button
+                                    className="btn btn-primary apply-card-button"
+                                    type="button"
+                                  >
+                                    Trade In Your Car
+                                  </button>
+                                </a>
+                              </div>
+                            </div> */}
+                            <div className="col-md-12">
+                              <div className="price-card mobile-mt-10">
+                                <div
+                                  className="d-flex w-100"
+                                  style={{
+                                    justifyContent: "space-between",
+                                    marginBottom: "10px",
+                                  }}
+                                >
+                                  <h1
+                                    className="w-50 price-card-heading"
+                                    style={{ marginTop: "5px" }}
+                                  >
+                                    Max Monthly Payment
+                                  </h1>
+                                  <h5>{maxMonthlyPayment}</h5>
+                                </div>
+                                <input
+                                  type="range"
+                                  className="price-card-range"
+                                  min={100}
+                                  max={3000}
+                                  step={10}
+                                  value={maxMonthlyPayment}
+                                  onChange={(e) => {
+                                    setMaxMonthlyPayment(e.target.value);
                                   }}
                                 />
                                 <h1 className="price-card-heading">
@@ -753,7 +806,7 @@ const CarSearch = (props) => {
                                     className="w-50 price-card-heading"
                                     style={{ marginTop: "5px" }}
                                   >
-                                    Year
+                                    Minumum Year Model
                                   </h1>
                                   <h5>{minYear}</h5>
                                 </div>
@@ -796,7 +849,7 @@ const CarSearch = (props) => {
                                     className="w-50 price-card-heading"
                                     style={{ marginTop: "5px" }}
                                   >
-                                    Miles Driven
+                                    MAX Miles Driven
                                   </h1>
                                   <h5>{maxMiles}</h5>
                                   {/* <input
@@ -811,8 +864,8 @@ const CarSearch = (props) => {
                                 <input
                                   type="range"
                                   className="price-card-range"
-                                  min={0}
-                                  max={999999}
+                                  min={100}
+                                  max={500000}
                                   step={1}
                                   value={maxMiles}
                                   onChange={(e) => {
@@ -1100,7 +1153,7 @@ const CarSearch = (props) => {
                           </div>
                           <div
                             className="drop-car-make-model"
-                            style={{ background: "var(--gray-dark)" }}
+                            style={{ backgroundColor: "#000000" }}
                           >
                             <a
                               onClick={(e) => {
@@ -1116,6 +1169,86 @@ const CarSearch = (props) => {
                               style={{ color: "var(--light)" }}
                             >
                               Black
+                            </a>
+                          </div>
+                          <div
+                            className="drop-car-make-model"
+                            style={{ backgroundColor: "#4d4d4d" }}
+                          >
+                            <a
+                              onClick={(e) => {
+                                var carColors = [...colors];
+                                if (carColors.includes("Grey")) {
+                                  const index = carColors.indexOf("Grey");
+                                  if (index > -1) {
+                                    carColors.splice(index, 1);
+                                  }
+                                } else carColors.push("Grey");
+                                setColors(carColors);
+                              }}
+                              style={{ color: "var(--light)" }}
+                            >
+                              Grey
+                            </a>
+                          </div>
+                          <div
+                            className="drop-car-make-model"
+                            style={{ backgroundColor: "#b5b5b5" }}
+                          >
+                            <a
+                              onClick={(e) => {
+                                var carColors = [...colors];
+                                if (carColors.includes("Silver")) {
+                                  const index = carColors.indexOf("Silver");
+                                  if (index > -1) {
+                                    carColors.splice(index, 1);
+                                  }
+                                } else carColors.push("Silver");
+                                setColors(carColors);
+                              }}
+                              style={{ color: "var(--light)" }}
+                            >
+                              Silver
+                            </a>
+                          </div>
+                          <div
+                            className="drop-car-make-model"
+                            style={{ backgroundColor: "#b51616" }}
+                          >
+                            <a
+                              onClick={(e) => {
+                                var carColors = [...colors];
+                                if (carColors.includes("Red")) {
+                                  const index = carColors.indexOf("Red");
+                                  if (index > -1) {
+                                    carColors.splice(index, 1);
+                                  }
+                                } else carColors.push("Red");
+                                setColors(carColors);
+                              }}
+                              style={{ color: "var(--light)" }}
+                            >
+                              Red
+                            </a>
+                          </div>
+                          <div
+                            className="drop-car-make-model"
+                            style={{ backgroundColor: "#3021d1" }}
+                          >
+                            <a
+                              onClick={(e) => {
+                                var carColors = [...colors];
+                                if (carColors.includes("Blue")) {
+                                  const index = carColors.indexOf("Blue");
+                                  if (index > -1) {
+                                    carColors.splice(index, 1);
+                                  }
+                                } else carColors.push("Blue");
+                                setColors(carColors);
+                              }}
+                              style={{ color: "var(--light)" }}
+                            >
+                              Blue
                             </a>
                           </div>
                           <h1 className="price-card-heading w-100">
@@ -1280,6 +1413,7 @@ const CarSearch = (props) => {
             </div>
           </div>
         </div> */}
+
         <div className="mt-200">
           <div className="row mt-0">
             <div
@@ -1292,7 +1426,7 @@ const CarSearch = (props) => {
               }}
             >
               <h1 style={{ fontWeight: 700, color: "rgb(255,255,255)" }}>
-                SolidMotors 150+ Points Inspection
+                Quality over quantity
               </h1>
               <p
                 style={{
@@ -1301,29 +1435,24 @@ const CarSearch = (props) => {
                   marginTop: "30px",
                 }}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
-                ipsum suspendisse ultrices gravida. Risus commodo viverra
-                maecenas accumsan lacus vel facilisis.&nbsp;
+                At Solid Motors, we believe in quality over quantity, that's why
+                we spend time finding the best inventory, all of our vehicles
+                are inspected before and after leaving our lot to ensure safety
+                and quality. &nbsp;
                 <br />
-                Lorem ipsum dolor sit amet,&nbsp;
                 <br />
               </p>
               <ul id="inspection-list" style={{ color: "rgb(255,255,255)" }}>
                 <li style={{ marginTop: "30px" }}>
-                  Lorem ipsum dolor sit amet, consectetur&nbsp;
+                  Inspected by ASE certified mechanics
                   <br />
                 </li>
                 <li style={{ marginTop: "10px" }}>
-                  Lorem ipsum dolor sit amet, consectetur&nbsp;
+                  Low mileage cars&nbsp;
                   <br />
                 </li>
                 <li style={{ marginTop: "10px" }}>
-                  Lorem ipsum dolor sit amet, consectetur&nbsp;
-                  <br />
-                </li>
-                <li style={{ marginTop: "10px" }}>
-                  Lorem ipsum dolor sit amet, consectetur&nbsp;
+                  Hand-picked cars from our extensive research&nbsp;
                   <br />
                 </li>
               </ul>
