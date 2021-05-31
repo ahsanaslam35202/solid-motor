@@ -1,4 +1,6 @@
 import React from "react";
+import { useEffect, useRef } from "react";
+
 import { getCar, getCars, getRelatedCars } from "../services/carsService";
 import CarCard from "./CarCard";
 import { Link, Redirect } from "react-router-dom";
@@ -31,6 +33,8 @@ const CarDetail = (props) => {
     await logout();
     forceUpdate();
   };
+
+  const myRef = useRef(null);
 
   const { car } = props.location.state;
   const [buyType, setBuyType] = React.useState("financed");
@@ -154,9 +158,9 @@ const CarDetail = (props) => {
     console.log("Commision: " + commision);
     carFinancedPrice2 = carPrice2 * (1 + commision / 100);
     console.log("Car Financed Price: " + carFinancedPrice2);
-    downPaymentMaxRange2 = 0.8 * carFinancedPrice2;
+    downPaymentMaxRange2 = 0.5 * carFinancedPrice2;
     console.log("DownPayment MAX Range: " + downPaymentMaxRange2);
-    monthlyMinRange2 = (0.2 * carFinancedPrice2) / months;
+    monthlyMinRange2 = (0.5 * carFinancedPrice2) / months;
     console.log("Monthly MIN RAnge: " + monthlyMinRange2);
     monthlyMaxRange2 = (carFinancedPrice2 - 750) / months;
     console.log("Monthly MAX Range: " + monthlyMaxRange2);
@@ -429,7 +433,7 @@ const CarDetail = (props) => {
                   onClick={() => {
                     var link = car.reportLink;
                     console.log(link);
-                    window.open({ link }, "_blank");
+                    window.open(`${car.reportLink}`, "_blank");
                   }}
                 >
                   View Report
@@ -479,6 +483,7 @@ const CarDetail = (props) => {
                   className="btn btn-primary"
                   type="button"
                   style={{ background: "#00bbff", borderWidth: "0px" }}
+                  onClick={() => myRef.current.scrollIntoView()}
                 >
                   Apply Now
                 </button>
@@ -526,6 +531,11 @@ const CarDetail = (props) => {
                   className="btn btn-primary"
                   type="button"
                   style={{ background: "#00bbff", borderWidth: "0px" }}
+                  onClick={() => {
+                    var link = car.reportLink;
+                    console.log(link);
+                    window.open(`${car.brochureLink}`, "_blank");
+                  }}
                 >
                   View Brochure
                 </button>
@@ -717,7 +727,7 @@ const CarDetail = (props) => {
           </div>
         </div>
         <div className="mt-200">
-          <div className="car-finance-summary-container">
+          <div ref={myRef} className="car-finance-summary-container">
             <div className="car-finance-container">
               <div>
                 <ul className="nav nav-tabs" role="tablist">
