@@ -155,7 +155,7 @@ const AddCar = (props) => {
     data.append("vehicleId", vehicleId.value);
     data.append("mpg", mpg.value);
     for (let x = 0; x < extendedFeatures.length; x++) {
-      data.append("extendedFeatures", extendedFeatures[0]);
+      data.append("extendedFeatures", extendedFeatures[x]);
     }
     data.append("displayImage", displayImage);
     for (let x = 0; x < otherImages.length; x++) {

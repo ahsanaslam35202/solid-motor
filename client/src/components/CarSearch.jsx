@@ -7,15 +7,13 @@ import CarCard from "./CarCard";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import Navbar2 from "./Navbar2";
-import CallBar from "./CallBar";
-
 
 function useForceUpdate() {
   const [value, setValue] = React.useState(0); // integer state
   return () => setValue((value) => value + 1); // update the state to force render
 }
 
-const CarSearch = (props) => {
+const CarSearch = () => {
   const forceUpdate = useForceUpdate();
   const handleLogout = async (e) => {
     await logout();
@@ -44,23 +42,9 @@ const CarSearch = (props) => {
     },
   });
 
-  if (props.location.state) {
-    const { search } = props.location.state;
-  }
-
-  React.useEffect(() => {
-    if (props.location.state) {
-      handleSearch();
-    }
-  }, []);
-
   const getCarsData = async () => {
     var { data } = await getCars();
     const cars = [...data];
-    cars.forEach((car) => {
-      const carName = car.make + " " + car.name;
-      car.carName = carName;
-    });
     setCars(cars);
     setUpdatedCars(cars);
     var { data } = await axios.get("http://localhost:3000/api/cars/images/a");
@@ -318,24 +302,13 @@ const CarSearch = (props) => {
   }, [updatedCars]);
 
   const handleSearch = (e) => {
-    setMakes([]);
-    setBodyTypes([]);
-    setTransmissions([]);
-    setDriveTrains([]);
-    setEngineTypes([]);
-    setColors([]);
-    setFuelTypes([]);
-    setMaxPrice(100000);
-    setMinYear(parseInt(new Date().getFullYear()) - 15);
-    setMaxMiles(500000);
-
     let target = e.target;
     setFilterFn({
       fn: (items) => {
-        if (target.value === "" && search) return items;
+        if (target.value === "") return items;
         else
           return items.filter((x) =>
-            x.carName.toLowerCase().includes(target.value || search)
+            x.name.toLowerCase().includes(target.value)
           );
       },
     });
@@ -344,7 +317,6 @@ const CarSearch = (props) => {
 
   return (
     <>
-      <CallBar/>
       {isLoggedin() ? <Navbar2 handleLogout={handleLogout} /> : <Navbar />}
       <div>
         <div className="car-searchbar-container">
@@ -511,7 +483,7 @@ const CarSearch = (props) => {
                             className="drop-car-make-model"
                             style={
                               makes.includes("Toyota")
-                                ? { backgroundColor: "#00b7fa", color: "#fff" }
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
                                 : {}
                             }
                           >
@@ -534,7 +506,7 @@ const CarSearch = (props) => {
                             className="drop-car-make-model"
                             style={
                               makes.includes("Audi")
-                                ? { backgroundColor: "#00b7fa", color: "#fff" }
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
                                 : {}
                             }
                           >
@@ -557,7 +529,7 @@ const CarSearch = (props) => {
                             className="drop-car-make-model"
                             style={
                               makes.includes("Nissan")
-                                ? { backgroundColor: "#00b7fa", color: "#fff" }
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
                                 : {}
                             }
                           >
@@ -580,7 +552,7 @@ const CarSearch = (props) => {
                             className="drop-car-make-model"
                             style={
                               makes.includes("Mercedes")
-                                ? { backgroundColor: "#00b7fa", color: "#fff" }
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
                                 : {}
                             }
                           >
@@ -603,7 +575,7 @@ const CarSearch = (props) => {
                             className="drop-car-make-model"
                             style={
                               makes.includes("Honda")
-                                ? { backgroundColor: "#00b7fa", color: "#fff" }
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
                                 : {}
                             }
                           >
@@ -626,7 +598,7 @@ const CarSearch = (props) => {
                             className="drop-car-make-model"
                             style={
                               makes.includes("Kia")
-                                ? { backgroundColor: "#00b7fa", color: "#fff" }
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
                                 : {}
                             }
                           >
@@ -649,7 +621,7 @@ const CarSearch = (props) => {
                             className="drop-car-make-model"
                             style={
                               makes.includes("MG")
-                                ? { backgroundColor: "#00b7fa", color: "#fff" }
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
                                 : {}
                             }
                           >
@@ -672,7 +644,7 @@ const CarSearch = (props) => {
                             className="drop-car-make-model"
                             style={
                               makes.includes("BMW")
-                                ? { backgroundColor: "#00b7fa", color: "#fff" }
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
                                 : {}
                             }
                           >
@@ -695,7 +667,7 @@ const CarSearch = (props) => {
                             className="drop-car-make-model"
                             style={
                               makes.includes("Dodge")
-                                ? { backgroundColor: "#00b7fa", color: "#fff" }
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
                                 : {}
                             }
                           >
@@ -735,10 +707,11 @@ const CarSearch = (props) => {
                             className="drop-car-make-model"
                             style={
                               bodyTypes.includes("SUV")
-                                ? { backgroundColor: "#00b7fa", color: "#fff" }
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
                                 : {}
                             }
                           >
+                            <img src="assets/img/suv1.png" />
                             <a
                               onClick={(e) => {
                                 var carBodyTypes = [...bodyTypes];
@@ -751,8 +724,6 @@ const CarSearch = (props) => {
                                 setBodyTypes(carBodyTypes);
                               }}
                             >
-                              {" "}
-                              <img src="assets/img/suv1.png" />
                               SUV
                             </a>
                           </div>
@@ -760,10 +731,11 @@ const CarSearch = (props) => {
                             className="drop-car-make-model"
                             style={
                               bodyTypes.includes("Sedan")
-                                ? { backgroundColor: "#00b7fa", color: "#fff" }
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
                                 : {}
                             }
                           >
+                            <img src="assets/img/sedan.png" />
                             <a
                               onClick={(e) => {
                                 var carBodyTypes = [...bodyTypes];
@@ -776,8 +748,6 @@ const CarSearch = (props) => {
                                 setBodyTypes(carBodyTypes);
                               }}
                             >
-                              {" "}
-                              <img src="assets/img/sedan.png" />
                               Sedan
                             </a>
                           </div>
@@ -785,10 +755,11 @@ const CarSearch = (props) => {
                             className="drop-car-make-model"
                             style={
                               bodyTypes.includes("Hatchback")
-                                ? { backgroundColor: "#00b7fa", color: "#fff" }
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
                                 : {}
                             }
                           >
+                            <img src="assets/img/hatchback.png" />
                             <a
                               onClick={(e) => {
                                 var carBodyTypes = [...bodyTypes];
@@ -802,8 +773,6 @@ const CarSearch = (props) => {
                                 setBodyTypes(carBodyTypes);
                               }}
                             >
-                              {" "}
-                              <img src="assets/img/hatchback.png" />
                               Hatchback
                             </a>
                           </div>
@@ -811,10 +780,11 @@ const CarSearch = (props) => {
                             className="drop-car-make-model"
                             style={
                               bodyTypes.includes("Convertible")
-                                ? { backgroundColor: "#00b7fa", color: "#fff" }
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
                                 : {}
                             }
                           >
+                            <img src="assets/img/convertible.png" />
                             <a
                               onClick={(e) => {
                                 var carBodyTypes = [...bodyTypes];
@@ -828,8 +798,6 @@ const CarSearch = (props) => {
                                 setBodyTypes(carBodyTypes);
                               }}
                             >
-                              {" "}
-                              <img src="assets/img/convertible.png" />
                               Convertible
                             </a>
                           </div>
@@ -837,10 +805,11 @@ const CarSearch = (props) => {
                             className="drop-car-make-model"
                             style={
                               bodyTypes.includes("Coupe")
-                                ? { backgroundColor: "#00b7fa", color: "#fff" }
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
                                 : {}
                             }
                           >
+                            <img src="assets/img/coupe.png" />
                             <a
                               onClick={(e) => {
                                 var carBodyTypes = [...bodyTypes];
@@ -853,8 +822,6 @@ const CarSearch = (props) => {
                                 setBodyTypes(carBodyTypes);
                               }}
                             >
-                              {" "}
-                              <img src="assets/img/coupe.png" />
                               Coupe
                             </a>
                           </div>
@@ -976,7 +943,7 @@ const CarSearch = (props) => {
                             className="drop-car-make-model"
                             style={
                               transmissions.includes("Manual")
-                                ? { backgroundColor: "#00b7fa", color: "#fff" }
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
                                 : {}
                             }
                           >
@@ -1000,7 +967,7 @@ const CarSearch = (props) => {
                             className="drop-car-make-model"
                             style={
                               transmissions.includes("Automatic")
-                                ? { backgroundColor: "#00b7fa", color: "#fff" }
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
                                 : {}
                             }
                           >
@@ -1027,7 +994,7 @@ const CarSearch = (props) => {
                             className="drop-car-make-model"
                             style={
                               driveTrains.includes("FWD")
-                                ? { backgroundColor: "#00b7fa", color: "#fff" }
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
                                 : {}
                             }
                           >
@@ -1050,7 +1017,7 @@ const CarSearch = (props) => {
                             className="drop-car-make-model"
                             style={
                               driveTrains.includes("AWD")
-                                ? { backgroundColor: "#00b7fa", color: "#fff" }
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
                                 : {}
                             }
                           >
@@ -1073,7 +1040,7 @@ const CarSearch = (props) => {
                             className="drop-car-make-model"
                             style={
                               driveTrains.includes("RWD")
-                                ? { backgroundColor: "#00b7fa", color: "#fff" }
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
                                 : {}
                             }
                           >
@@ -1099,7 +1066,7 @@ const CarSearch = (props) => {
                             className="drop-car-make-model"
                             style={
                               engineTypes.includes("2 Cylinder")
-                                ? { backgroundColor: "#00b7fa", color: "#fff" }
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
                                 : {}
                             }
                           >
@@ -1123,7 +1090,7 @@ const CarSearch = (props) => {
                             className="drop-car-make-model"
                             style={
                               engineTypes.includes("4 Cylinder")
-                                ? { backgroundColor: "#00b7fa", color: "#fff" }
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
                                 : {}
                             }
                           >
@@ -1147,7 +1114,7 @@ const CarSearch = (props) => {
                             className="drop-car-make-model"
                             style={
                               engineTypes.includes("6 Cylinder")
-                                ? { backgroundColor: "#00b7fa", color: "#fff" }
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
                                 : {}
                             }
                           >
@@ -1171,7 +1138,7 @@ const CarSearch = (props) => {
                             className="drop-car-make-model"
                             style={
                               engineTypes.includes("8 Cylinder")
-                                ? { backgroundColor: "#00b7fa", color: "#fff" }
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
                                 : {}
                             }
                           >
@@ -1258,7 +1225,7 @@ const CarSearch = (props) => {
                             className="drop-car-make-model"
                             style={
                               fuelTypes.includes("Gas")
-                                ? { backgroundColor: "#00b7fa", color: "#fff" }
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
                                 : {}
                             }
                           >
@@ -1281,7 +1248,7 @@ const CarSearch = (props) => {
                             className="drop-car-make-model"
                             style={
                               fuelTypes.includes("Hybrid")
-                                ? { backgroundColor: "#00b7fa", color: "#fff" }
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
                                 : {}
                             }
                           >
@@ -1304,7 +1271,7 @@ const CarSearch = (props) => {
                             className="drop-car-make-model"
                             style={
                               fuelTypes.includes("Electric")
-                                ? { backgroundColor: "#00b7fa", color: "#fff" }
+                                ? { backgroundColor: "#2247ab", color: "#fff" }
                                 : {}
                             }
                           >
@@ -1347,7 +1314,7 @@ const CarSearch = (props) => {
                 displayImage={displayImage}
                 model={item.model}
                 price={item.price}
-                // monthlyPayment={monthlyPayment}
+                monthlyPayment={item.monthlyPayment}
                 milesDriven={item.milesDriven}
                 onClick={() => {
                   console.log("a");

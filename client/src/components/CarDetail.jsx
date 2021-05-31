@@ -161,14 +161,14 @@ const CarDetail = (props) => {
     monthlyMaxRange2 = (carFinancedPrice2 - 750) / months;
     console.log("Monthly MAX Range: " + monthlyMaxRange2);
 
-    setCarFinancedPrice(carFinancedPrice2);
+    setCarFinancedPrice(Math.ceil(carFinancedPrice2));
     setAPR(commision);
-    setDownPayment(downPaymentMaxRange2);
-    setMonthlyPayment(monthlyMinRange2);
-    setDownPaymentMaxRange(downPaymentMaxRange2);
+    setDownPayment(Math.ceil(downPaymentMaxRange2));
+    setMonthlyPayment(Math.ceil(monthlyMinRange2));
+    setDownPaymentMaxRange(Math.ceil(downPaymentMaxRange2));
     console.log(" DownPayment Max Range: " + downPaymentMaxRange);
-    setMonthlyMinRange(monthlyMinRange2);
-    setMonthlyMaxRange(monthlyMaxRange2);
+    setMonthlyMinRange(Math.ceil(monthlyMinRange2));
+    setMonthlyMaxRange(Math.ceil(monthlyMaxRange2));
   }, [creditScore, months]);
 
   const handleDownPaymentChange = (e) => {
@@ -177,7 +177,6 @@ const CarDetail = (props) => {
   };
   const handleMonthlyPaymentChange = (e) => {
     setMonthlyPayment(e.target.value);
-    // setDownPayment(Math.ceil(carPrice - e.target.value * months));
     setDownPayment(Math.ceil(carFinancedPrice - e.target.value * months));
   };
 
@@ -258,7 +257,7 @@ const CarDetail = (props) => {
 
   return (
     <>
-      <CallBar />
+      {/* <CallBar /> */}
       {isLoggedin() ? <Navbar2 handleLogout={handleLogout} /> : <Navbar />}
       <div>
         <div className="car-info-container mt-50">
@@ -530,7 +529,7 @@ const CarDetail = (props) => {
           </div>
         </div>
 
-        <div className="container mt-200 mobile-mt50">
+        <div className="container mt-150 mobile-mt50">
           <h1 className="w-100 text-center details-heading">Vehicle Details</h1>
           <div className="row">
             <div className="col-md-12 d-flex justify-content-center mt-50">
@@ -702,8 +701,8 @@ const CarDetail = (props) => {
                 overflow: "hidden",
               }}
             >
-              {car.extendedFeatures.map((item, index) => (
-                <div className="col-md-4 d-flex justify-content-center">
+              {car.extendedFeatures.map((item) => (
+                <div className="col-md-4 d-flex justify-content-start">
                   <ul>
                     <li>{item}</li>
                   </ul>
@@ -844,7 +843,7 @@ const CarDetail = (props) => {
                             <input
                               type="number"
                               className="range-number-input"
-                              value={downPayment}
+                              value={Math.ceil(downPayment)}
                               disabled
                             />
                           </div>

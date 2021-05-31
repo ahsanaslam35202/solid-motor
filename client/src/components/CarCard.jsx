@@ -9,8 +9,18 @@ const carCard = (props) => {
         style={{ textDecoration: "none" }}
       >
         <div className="shadow-sm car-card">
-          <div className="car-card-img-container">
-            <img
+          <div
+            className="car-card-img-container"
+            style={{
+              background:
+                'url("http://localhost:3000/api/cars/images/' +
+                props.car.vin +
+                "/displayImage/" +
+                props.car.displayImage +
+                '") center / cover no-repeat',
+            }}
+          >
+            {/* <img
               className="w-100"
               src={
                 "http://localhost:3000/api/cars/images/" +
@@ -18,7 +28,7 @@ const carCard = (props) => {
                 "/displayImage/" +
                 props.car.displayImage
               }
-            />
+            /> */}
           </div>
           <div className="car-card-info-container">
             <div className="d-flex car-card-info-header">
@@ -34,7 +44,7 @@ const carCard = (props) => {
               <div className="d-flex justify-content-end car-card-price-div">
                 {/* <h1 className="car-price">${props.price}</h1> */}
                 <h1 className="car-price">
-                  {/* ${Math.ceil(props.monthlyPayment)}/Mo */}
+                  ${Math.ceil(props.monthlyPayment)}/Mo
                 </h1>
               </div>
             </div>
