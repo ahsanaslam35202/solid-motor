@@ -141,7 +141,12 @@ const Home = (props) => {
                 {/* <h1 className="h1-black">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 </h1> */}
-                <img src="assets/img/care.png" className="care-img" alt="" />
+                <img
+                  className="safari-child-flex"
+                  src="assets/img/care.png"
+                  className="care-img"
+                  alt=""
+                />
               </div>
               <div className="col-md-12">
                 <p className=" h3-black main-color mobile-mt50 w-100 text-center">
@@ -675,7 +680,7 @@ const Home = (props) => {
             <div className="wd-33">
               <a href="/search cars" className="tool-card">
                 <div className="d-flex justify-content-center">
-                  <div>
+                  <div className="safari-child-flex">
                     <div className="w-100 d-flex justify-content-center">
                       <img
                         src="assets/img/car-search.svg"
@@ -697,7 +702,7 @@ const Home = (props) => {
             <div className="wd-33">
               <a href="/loan calculator" className="tool-card">
                 <div className="d-flex justify-content-center">
-                  <div>
+                  <div className="safari-child-flex">
                     <div className="w-100 d-flex justify-content-center">
                       <img
                         src="assets/img/loan-calculator.svg"
@@ -719,7 +724,7 @@ const Home = (props) => {
             <div className="wd-33">
               <a href="/trade" className="tool-card">
                 <div className="d-flex justify-content-center">
-                  <div>
+                  <div className="safari-child-flex">
                     <div className="w-100 d-flex justify-content-center">
                       <img
                         src="assets/img/car-trade.svg"

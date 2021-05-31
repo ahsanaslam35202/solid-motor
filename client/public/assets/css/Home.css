@@ -9,6 +9,10 @@
   margin-bottom: 30px;
 }
 
+.safari-child-flex {
+  display: flex;
+  align-items: flex-start;
+}
 .header-title {
   margin-top: 180px;
   font-size: 48px;

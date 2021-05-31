@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth;
+}
 .nav2-dropdown {
   border-radius: 10px !important;
   border: none;
