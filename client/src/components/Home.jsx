@@ -146,6 +146,7 @@ const Home = (props) => {
                   src="assets/img/care.png"
                   className="care-img"
                   alt=""
+                  style={{ alignSelf: "start" }}
                 />
               </div>
               <div className="col-md-12">
@@ -679,8 +680,11 @@ const Home = (props) => {
           <div className="row mt-80 d-flex">
             <div className="wd-33">
               <a href="/search cars" className="tool-card">
-                <div className="d-flex justify-content-center">
-                  <div className="safari-child-flex">
+                <div
+                  className="d-flex justify-content-center"
+                  style={{ alignItems: "flex-start" }}
+                >
+                  <div>
                     <div className="w-100 d-flex justify-content-center">
                       <img
                         src="assets/img/car-search.svg"
@@ -701,8 +705,11 @@ const Home = (props) => {
             </div>
             <div className="wd-33">
               <a href="/loan calculator" className="tool-card">
-                <div className="d-flex justify-content-center">
-                  <div className="safari-child-flex">
+                <div
+                  className="d-flex justify-content-center"
+                  style={{ alignItems: "flex-start" }}
+                >
+                  <div>
                     <div className="w-100 d-flex justify-content-center">
                       <img
                         src="assets/img/loan-calculator.svg"
@@ -723,8 +730,11 @@ const Home = (props) => {
             </div>
             <div className="wd-33">
               <a href="/trade" className="tool-card">
-                <div className="d-flex justify-content-center">
-                  <div className="safari-child-flex">
+                <div
+                  className="d-flex justify-content-center"
+                  style={{ alignItems: "flex-start" }}
+                >
+                  <div>
                     <div className="w-100 d-flex justify-content-center">
                       <img
                         src="assets/img/car-trade.svg"

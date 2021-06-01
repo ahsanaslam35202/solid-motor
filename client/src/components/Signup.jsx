@@ -275,9 +275,9 @@ const Signup = (props) => {
               </div>
             </div>
             <div className="col-md-6 d-flex align-items-center">
-              <div className="container mb-auto">
+              <div className="container mb-auto mobile-mt50 mobile-pd0">
                 <form
-                  className="border rounded shadow regForm"
+                  className="border rounded shadow regForm mobile-pd20"
                   id="regForm"
                   method="post"
                   data-toggle="modal"

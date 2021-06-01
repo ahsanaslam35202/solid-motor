@@ -21,6 +21,7 @@ const CarSearch = (props) => {
     forceUpdate();
   };
 
+  const [visible, setVisible] = React.useState(28);
   const [cars, setCars] = React.useState([]);
   const [updatedCars, setUpdatedCars] = React.useState([]);
   const [displayImage, setDisplayImage] = React.useState([]);
@@ -182,6 +183,10 @@ const CarSearch = (props) => {
   React.useEffect(() => {
     console.log(updatedCars);
   }, [updatedCars]);
+
+  const loadMore = () => {
+    setVisible(visible + 28);
+  };
 
   const handleSearch = (e) => {
     setMakes([]);
@@ -1337,23 +1342,26 @@ const CarSearch = (props) => {
         {/*    END Filter */}
         <div className="cars-row-container mobile-mt50">
           <div id="car-row" className="row mt-0">
-            {filterFn.fn(updatedCars).map((item, index) => (
-              <CarCard
-                key={index}
-                id={item._id}
-                car={item}
-                make={item.make}
-                name={item.name}
-                displayImage={displayImage}
-                model={item.model}
-                price={item.price}
-                monthlyPayment={item.monthlyPayment}
-                milesDriven={item.milesDriven}
-                onClick={() => {
-                  console.log("a");
-                }}
-              />
-            ))}
+            {filterFn
+              .fn(updatedCars)
+              .slice(0, visible)
+              .map((item, index) => (
+                <CarCard
+                  key={index}
+                  id={item._id}
+                  car={item}
+                  make={item.make}
+                  name={item.name}
+                  displayImage={displayImage}
+                  model={item.model}
+                  price={item.price}
+                  monthlyPayment={item.monthlyPayment}
+                  milesDriven={item.milesDriven}
+                  onClick={() => {
+                    console.log("a");
+                  }}
+                />
+              ))}
             {/* <CarCard />
           <CarCard />
           <CarCard />
@@ -1363,7 +1371,13 @@ const CarSearch = (props) => {
           <CarCard /> */}
           </div>
           <div className="w-100 d-flex justify-content-center mt-100">
-            <button className="btn btn-primary main-button" type="button">
+            <button
+              className="btn btn-primary main-button"
+              type="button"
+              onClick={() => {
+                loadMore();
+              }}
+            >
               LOAD MORE
             </button>
           </div>

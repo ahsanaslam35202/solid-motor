@@ -149,7 +149,7 @@ const LoanCalculator = () => {
       {isLoggedin() ? <Navbar2 handleLogout={handleLogout} /> : <Navbar />}
       <div>
         <header className="header-container">
-          <div className="container">
+          <div className="container mobile-pd0">
             <div className="row mt-0">
               <div className="col-md-6">
                 <h1 className="page-title white-color">
@@ -165,7 +165,7 @@ const LoanCalculator = () => {
               </div>
               <div
                 id="loan-tabs"
-                className="col-md-6 d-flex justify-content-center"
+                className="col-md-6 d-flex justify-content-center mobile-pd0"
               >
                 <div className="shadow tabs-container">
                   <ul className="nav nav-tabs" role="tablist">
@@ -234,7 +234,7 @@ const LoanCalculator = () => {
                               }}
                               className="form-control select loan-input"
                             >
-                              <optgroup>
+                              <optgroup label="Your Credit Score">
                                 <option value={750}>Excellent: 750+</option>
                                 <option value={700}>Good: 700-749</option>
                                 <option value={600}>Average: 600-699</option>
@@ -253,7 +253,7 @@ const LoanCalculator = () => {
                               }}
                               className="form-control select loan-input"
                             >
-                              <optgroup>
+                              <optgroup label="Choose Loan Term">
                                 <option value={72}>72 Months</option>
                                 <option value={60}>60 Months</option>
                                 <option value={48}>48 Months</option>
@@ -326,7 +326,7 @@ const LoanCalculator = () => {
                               }}
                               className="form-control loan-input"
                             >
-                              <optgroup>
+                              <optgroup label="Your Credit Score">
                                 <option value={750}>Excellent: 750+</option>
                                 <option value={700}>Good: 700-749</option>
                                 <option value={600}>Average: 600-699</option>
@@ -345,7 +345,7 @@ const LoanCalculator = () => {
                               }}
                               className="form-control loan-input"
                             >
-                              <optgroup>
+                              <optgroup label="Choose Loan Term">
                                 <option value={72}>72 Months</option>
                                 <option value={60}>60 Months</option>
                                 <option value={48}>48 Months</option>

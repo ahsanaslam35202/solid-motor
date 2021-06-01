@@ -64,7 +64,7 @@ const Navbar2 = (props) => {
               <div className="dropdown-menu nav2-dropdown">
                 <a
                   className="nav-link main-color"
-                  href="/user cars"
+                  href="/saved cars"
                   style={{
                     fontWeight: 500,
                     cursor: "pointer",

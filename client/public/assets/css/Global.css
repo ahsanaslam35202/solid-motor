@@ -1,3 +1,15 @@
+.custom-Modal {
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 20vh;
+  width: 60%;
+  /* transform: "translate(-50%, -50%)",
+    padding: 0, */
+  border-width: 0px;
+  border-radius: 20px;
+  border: none;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -246,5 +258,24 @@ button:active {
   }
   .dektop-d-none {
     display: block !important;
+  }
+  .mobile-pd0 {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  .mobile-pd20 {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  .custom-Modal {
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 20vh;
+    width: 90%;
+    /* transform: "translate(-50%, -50%)",
+      padding: 0, */
+    border-width: 0px;
+    border-radius: 20px;
+    border: none;
   }
 }

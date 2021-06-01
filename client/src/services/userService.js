@@ -60,6 +60,14 @@ export function logout() {
   }
 }
 
-export function likeCar(userId, carId) {
-  return http.put(apiEndPoint + "/likeCar/" + userId, { carId });
+export function likeCar(userId, likedCars) {
+  return http.put(apiEndPoint + "/likeCar/" + userId, { likedCars });
+}
+
+export function getLikeCars(userId, carId) {
+  return http.get(apiEndPoint + "/likedCars/" + userId);
+}
+
+export function getLikeCarsArray(userId) {
+  return http.get(apiEndPoint + "/likedCarsArray/" + userId);
 }

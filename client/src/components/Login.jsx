@@ -4,22 +4,6 @@ import { userLogin, userSignup } from "./../services/userService";
 import { isLoggedin, logout } from "../services/userService";
 import Modal from "react-modal";
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    width: "40%",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    padding: 0,
-    borderWidth: "0px",
-    borderRadius: "20px",
-    boder: "none",
-  },
-};
-
 const Login = (props) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -92,7 +76,8 @@ const Login = (props) => {
           isOpen={modalIsOpen}
           onAfterOpen={afterOpenModal}
           onRequestClose={closeModal}
-          style={customStyles}
+          className="custom-Modal"
+          // style={customStyles}
           contentLabel="Example Modal"
         >
           <div
@@ -133,11 +118,13 @@ const Login = (props) => {
           <div className="col-md-6 d-flex align-items-center justify-content-center sign-in-container login-left-container">
             <div>
               <div className="d-flex justify-content-center">
-                <img
-                  src="assets/img/LogoWhite.png"
-                  style={{ marginBottom: "10px" }}
-                  alt=""
-                />
+                <a href="/">
+                  <img
+                    src="assets/img/LogoWhite.png"
+                    style={{ marginBottom: "10px" }}
+                    alt=""
+                  />
+                </a>
               </div>
 
               <h1 className="w-100 text-center h1-white">

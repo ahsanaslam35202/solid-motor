@@ -1,6 +1,5 @@
 import React from "react";
 import { useEffect, useRef } from "react";
-
 import { getCar, getCars, getRelatedCars } from "../services/carsService";
 import CarCard from "./CarCard";
 import { Link, Redirect } from "react-router-dom";
@@ -11,6 +10,7 @@ import {
   isLoggedin,
   likeCar,
   logout,
+  getLikeCarsArray,
 } from "../services/userService";
 import Navbar2 from "./Navbar2";
 import Navbar from "./Navbar";
@@ -35,6 +35,7 @@ const CarDetail = (props) => {
   };
 
   const myRef = useRef(null);
+  const myRef2 = useRef(null);
 
   const { car } = props.location.state;
   const [buyType, setBuyType] = React.useState("financed");
@@ -59,6 +60,7 @@ const CarDetail = (props) => {
   // const [commision, setCommision] = React.useState(10);
 
   const [liked, setLiked] = React.useState(0);
+  const [likedArray, setLikedArray] = React.useState([]);
 
   const getRelatedCarsData = async () => {
     const { data } = await getRelatedCars(car.make);
@@ -85,6 +87,9 @@ const CarDetail = (props) => {
   }, []);
   React.useEffect(() => {
     setCarPrice(car.price);
+  }, []);
+  React.useEffect(() => {
+    getlikedarray();
   }, []);
 
   React.useEffect(() => {
@@ -220,19 +225,41 @@ const CarDetail = (props) => {
   };
 
   const handleLike = async () => {
+    if (likedArray.includes(car._id)) {
+      likedArray.pop(car._id);
+      console.log(likedArray);
+    } else {
+      likedArray.push(car._id);
+    }
     console.log("yes");
     if (isLoggedin()) {
       const user = getloggedinuser();
       if (user) {
         const userId = user._id;
-        const carId = car._id;
-        console.log(userId);
-        await likeCar(userId, carId).then(() => {
-          setLiked(1);
+        await likeCar(userId, likedArray).then(() => {
+          if (likedArray.includes(car._id)) {
+            setLiked(1);
+          } else {
+            setLiked(0);
+          }
         });
       }
     } else {
       props.history.push("/login");
+    }
+  };
+
+  const getlikedarray = async () => {
+    if (isLoggedin()) {
+      const user = getloggedinuser();
+      var rray = await getLikeCarsArray(user._id);
+      setLikedArray(rray.data);
+      if (rray.data.includes(car._id)) {
+        setLiked(1);
+      }
+      if (likedArray.includes(car._id)) {
+        setLiked(1);
+      }
     }
   };
 
@@ -263,7 +290,7 @@ const CarDetail = (props) => {
     <>
       {/* <CallBar /> */}
       {isLoggedin() ? <Navbar2 handleLogout={handleLogout} /> : <Navbar />}
-      <div>
+      <div ref={myRef2}>
         <div className="car-info-container mt-50">
           <div className="row mt-0">
             <div className="col-md-6">
@@ -1069,7 +1096,7 @@ const CarDetail = (props) => {
                     <p>CASH DOWN</p>
                   </div>
                   <div className="d-flex justify-content-end w-40">
-                    <p>${car.downPayment}</p>
+                    <p>${downPayment}</p>
                   </div>
                 </div>
                 <div className="d-flex summary-car-price">
@@ -1196,9 +1223,11 @@ const CarDetail = (props) => {
                 name={item.name}
                 model={item.model}
                 price={item.price}
+                monthlyPayment={item.monthlyPayment}
                 milesDriven={item.milesDriven}
                 onClick={() => {
                   console.log("a");
+                  myRef2.current.scrollIntoView();
                 }}
               />
             ))}

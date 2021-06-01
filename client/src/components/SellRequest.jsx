@@ -13,22 +13,6 @@ function useForceUpdate() {
   return () => setValue((value) => value + 1); // update the state to force render
 }
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    width: "40%",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    padding: 0,
-    borderWidth: "0px",
-    borderRadius: "20px",
-    boder: "none",
-  },
-};
-
 const SellRequest = (props) => {
   const forceUpdate = useForceUpdate();
   const handleLogout = async (e) => {
@@ -123,7 +107,8 @@ const SellRequest = (props) => {
             isOpen={modalIsOpen}
             onAfterOpen={afterOpenModal}
             onRequestClose={closeModal}
-            style={customStyles}
+            // style={customStyles}
+            className="custom-Modal"
             contentLabel="Example Modal"
           >
             <div
@@ -159,9 +144,9 @@ const SellRequest = (props) => {
           </Modal>
         </div>
         <div>
-          <div className="row mt-0">
+          <div className="row mt-180 mobile-mt50">
             <div
-              className="col-md-6 header-heading-container {
+              className="col-md-6 header-heading-containerz {
 "
             >
               <div
@@ -183,7 +168,7 @@ const SellRequest = (props) => {
                 </p>
               </div>
             </div>
-            <div className="col-md-6 header-img">
+            <div className="col-md-6 header-img mobile-mt50">
               <span />
             </div>
           </div>

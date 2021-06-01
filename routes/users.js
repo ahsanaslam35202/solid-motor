@@ -30,6 +30,7 @@ router.post("/register", async (req, res) => {
   newuser.email = req.body.email.value;
   newuser.phoneNumber = req.body.phoneNumber.value;
   newuser.password = req.body.password.value;
+  newuser.likedCars = [];
   let salt = await bcrypt.genSalt(10);
   newuser.password = await bcrypt.hash(newuser.password, salt);
   await newuser.save();
@@ -44,6 +45,8 @@ router.post("/login", validateUserLoginMW, async (req, res) => {
   });
   if (!userData)
     return res.status(400).send("Sorry, user with this email not found.");
+
+  let likedCars = userData.likedCars;
 
   let password = await bcrypt.compare(req.body.password, userData.password);
   if (!password) return res.status(400).send("Wrong password");
@@ -65,7 +68,7 @@ router.put("/likeCar/:id", async (req, res) => {
   const user = await User.updateOne(
     { _id: req.params.id },
     {
-      $push: { likedCars: req.body.carId },
+      likedCars: req.body.likedCars,
     },
     { new: true }
   );
@@ -76,13 +79,40 @@ router.put("/likeCar/:id", async (req, res) => {
 router.get("/likedCars/:id", async (req, res) => {
   const user = await User.findOne({ _id: req.params.id });
   var cars = [];
-  user.likedCars.forEach(async (carId) => {
-    console.log(carId);
-    const car = await Car.findOne({ _id: carId }).then((data) => {
-      cars.push(data);
-    });
-  });
-  res.send(cars);
 
+  await Promise.all(
+    user.likedCars.map(async (carId) => {
+      console.log(carId);
+      const car = await Car.findOne({ _id: carId });
+      cars.push(car);
+      console.log(cars);
+    })
+  ).then(() => {
+    res.send(cars);
+  });
+  console.log(cars);
   console.log("Outside");
 });
+
+router.get("/likedCarsArray/:id", async (req, res) => {
+  const user = await User.findOne({ _id: req.params.id });
+  console.log(user.likedCars);
+  res.send(user.likedCars);
+});
+
+// router.get("/likedCars/:id", async (req, res) => {
+//   const user = await User.findOne({ _id: req.params.id });
+//   var cars = [];
+
+//   user.likedCars.forEach(async (carId) => {
+//     console.log(carId);
+//     const car = await Car.findOne({ _id: carId });
+//     cars.push(car);
+//     console.log(cars);
+//   });
+//   const results = await car;
+//   res.send(results);
+
+//   console.log(cars);
+//   console.log("Outside");
+// });

@@ -31,7 +31,7 @@ const Thankyou = () => {
             Solid Motor will contact you soon on your number
           </h1>
         </div>
-        <div className="w-100 d-flex justify-content-center mt-100">
+        <div className="w-100 d-flex justify-content-center mt-100 mobile-mt50">
           <a href="./">
             <button className="btn btn-primary main-button" type="button">
               Back to Home

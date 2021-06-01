@@ -24,6 +24,7 @@ import BuyCarDetails from "./components/Admin/BuyCarDetails";
 import BuyCarView from "./components/Admin/BuyCarView";
 import AdminLogin from "./components/Admin/AdminLogin";
 import SellTradeSuccess from "./components/SellTradeSuccess";
+import SavedCars from "./components/SavedCars";
 
 function App() {
   return (
@@ -49,7 +50,12 @@ function App() {
         <Route exact path="/buy car details" component={BuyCarDetails}></Route>
         <Route exact path="/buy car requests" component={BuyCarView}></Route>
         <Route exact path="/adminlogin" component={AdminLogin}></Route>
-        <Route exact path="/sell trade success" component={SellTradeSuccess}></Route>
+        <Route
+          exact
+          path="/sell trade success"
+          component={SellTradeSuccess}
+        ></Route>
+        <Route exact path="/saved cars" component={SavedCars}></Route>
         <Route
           exact
           path="/sellTradeDetails"
