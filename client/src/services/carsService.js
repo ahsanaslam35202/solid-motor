@@ -27,3 +27,7 @@ export function deleteCar(carId) {
 export function updateViews(carId, views) {
   return http.put(apiEndPoint + "/views/" + carId, { views });
 }
+
+export function updateLikes(carId, likes) {
+  return http.put(apiEndPoint + "/likes/" + carId, { likes });
+}

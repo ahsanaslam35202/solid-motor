@@ -201,4 +201,15 @@ router.put("/views/:id", async (req, res) => {
   res.send(car);
 });
 
+router.put("/likes/:id", async (req, res) => {
+  const car = await Car.updateOne(
+    { _id: req.params.id },
+    {
+      likes: req.body.likes,
+    },
+    { new: true }
+  );
+  if (!car) return res.status(404).send("Car not found");
+  res.send(car);
+});
 module.exports = router;

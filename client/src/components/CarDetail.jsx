@@ -17,7 +17,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { getTradeIn } from "../services/sellTradeService";
 import { addBuyRequest } from "../services/buyRequestsService";
-import { updateViews } from "../services/carsService";
+import { updateViews, updateLikes } from "../services/carsService";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import CarCarouselImage from "./CarCarouselImage";
@@ -238,6 +238,8 @@ const CarDetail = (props) => {
         const userId = user._id;
         await likeCar(userId, likedArray).then(() => {
           if (likedArray.includes(car._id)) {
+            const likes = car.likes + 1;
+            updateLikes(car._id, likes);
             setLiked(1);
           } else {
             setLiked(0);
@@ -389,7 +391,7 @@ const CarDetail = (props) => {
                     fontWeight: 600,
                   }}
                 >
-                  500 Likes
+                  {car.likes} Likes
                 </p>
               </div>
             </div>
