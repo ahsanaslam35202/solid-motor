@@ -73,7 +73,8 @@ const Home = (props) => {
                     name="searchbar"
                     value={search}
                     onChange={(e) => {
-                      setSearch(e.target.value.toLowerCase());
+                      const val = e.target.value.toLowerCase();
+                      setSearch(val);
                     }}
                   />
                   <Link
