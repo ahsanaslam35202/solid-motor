@@ -144,31 +144,21 @@ const SellRequest = (props) => {
           </Modal>
         </div>
         <div>
-          <div className="row mt-180 mobile-mt50">
-            <div
-              className="col-md-6 header-heading-containerz {
-"
-            >
-              <div
-                className="container"
-                // style={{
-                //   paddingTop: "120px",
-                //   paddingRight: "50px",
-                //   paddingLeft: "50px",
-                // }}
-              >
+          <div className="row mt-0">
+            <div className="col-md-6 header-heading-container">
+              <div className="container">
                 <h1 className="page-title">
-                  Sell OR Trade Your Car with Solid Motors
+                  Answer few questions and get Estimated Price.
                 </h1>
                 <p className="mt-50">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                   Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
-                  maecenas accumsan lacus vel facilisis.{" "}
+                  maecenas accumsan lacus vel facilisis.
                 </p>
               </div>
             </div>
-            <div className="col-md-6 header-img mobile-mt50">
+            <div className="col-md-6 header-img mobile-mt-50">
               <span />
             </div>
           </div>
