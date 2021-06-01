@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useRef } from "react";
 
 import { getCar, getCars, getRelatedCars } from "../services/carsService";
-import CarCard from "./CarCard";
+import CarCard2 from "./CarCard2";
 import { Link, Redirect } from "react-router-dom";
 import CallBar from "./CallBar";
 
@@ -1189,7 +1189,7 @@ const CarDetail2 = (props) => {
           <h1 className="h1-black w-100 text-center  mt-200">Similar picks</h1>
           <div id="car-row" className="row mt-100">
             {cars.slice(0, 4).map((item, index) => (
-              <carCard2
+              <CarCard2
                 key={index}
                 id={item._id}
                 car={item}
