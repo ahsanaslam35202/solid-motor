@@ -8,7 +8,7 @@ const CarCarouselImage = (props) => {
     "/otherImages/" +
     image;
   const bgUrl =
-    "http://solid-motor-app.herokuapp.com/api/cars/images/" +
+    'url("http://solid-motor-app.herokuapp.com/api/cars/images/' +
     vin +
     "/otherImages/" +
     image +
