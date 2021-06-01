@@ -24,6 +24,7 @@ import BuyCarDetails from "./components/Admin/BuyCarDetails";
 import BuyCarView from "./components/Admin/BuyCarView";
 import AdminLogin from "./components/Admin/AdminLogin";
 import SellTradeSuccess from "./components/SellTradeSuccess";
+import CarDetail2 from "./components/CarDetails2";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route exact path="/signup" component={Signup}></Route>
         <Route exact path="/login" component={Login}></Route>
         <Route exact path="/carDetails" component={CarDetail}></Route>
+        <Route exact path="/carDetails2" component={CarDetail2}></Route>
         <Route exact path="/thankyou" component={Thankyou}></Route>
         <Route exact path="/car" component={CarDetail}></Route>
         <Route exact path="/adminDashboard" component={Dashboard}></Route>
@@ -49,7 +51,11 @@ function App() {
         <Route exact path="/buy car details" component={BuyCarDetails}></Route>
         <Route exact path="/buy car requests" component={BuyCarView}></Route>
         <Route exact path="/adminlogin" component={AdminLogin}></Route>
-        <Route exact path="/sell trade success" component={SellTradeSuccess}></Route>
+        <Route
+          exact
+          path="/sell trade success"
+          component={SellTradeSuccess}
+        ></Route>
         <Route
           exact
           path="/sellTradeDetails"
