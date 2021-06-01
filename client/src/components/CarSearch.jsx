@@ -23,6 +23,7 @@ const CarSearch = (props) => {
 
   const [visible, setVisible] = React.useState(28);
   const [cars, setCars] = React.useState([]);
+  const [endIndex, setEndIndex] = React.useState(8);
   const [updatedCars, setUpdatedCars] = React.useState([]);
   const [displayImage, setDisplayImage] = React.useState([]);
   const [makes, setMakes] = React.useState([]);
@@ -67,7 +68,7 @@ const CarSearch = (props) => {
   };
 
   const handleFilters = () => {
-    console.log(fuelTypes);
+    console.log(cars);
     if (
       makes.length > 0 ||
       bodyTypes.length > 0 ||
@@ -84,6 +85,7 @@ const CarSearch = (props) => {
           return makes.includes(obj.make);
         });
         data = [...results];
+        console.log(data);
       }
 
       if (bodyTypes.length > 0) {

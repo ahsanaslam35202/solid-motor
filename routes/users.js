@@ -54,10 +54,11 @@ router.post("/login", validateUserLoginMW, async (req, res) => {
 
   let token = jwt.sign(
     { _id: userData._id, name: userData.firstName },
-    config.get("jwt")
+    // config.get("jwt")
+    "SomeKey"
   );
 
-  let user2 = jwt.verify(token, config.get("jwt"));
+  let user2 = jwt.verify(token, "SomeKey");
   return res.send({ ok: "login successfull", token, user2 });
 });
 

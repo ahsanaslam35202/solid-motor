@@ -181,7 +181,7 @@ const AddCar = (props) => {
     console.log(data);
     axios({
       method: "post",
-      url: "http://localhost:3000/api/cars/",
+      url: "http://solid-motor-app.herokuapp.com/api/cars/",
       data: data,
       headers: { "Content-Type": "multipart/form-data" },
     })

@@ -25,6 +25,7 @@ import BuyCarView from "./components/Admin/BuyCarView";
 import AdminLogin from "./components/Admin/AdminLogin";
 import SellTradeSuccess from "./components/SellTradeSuccess";
 import SavedCars from "./components/SavedCars";
+import CarDetail2 from "./components/CarDetails2";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
         <Route exact path="/signup" component={Signup}></Route>
         <Route exact path="/login" component={Login}></Route>
         <Route exact path="/carDetails" component={CarDetail}></Route>
+        <Route exact path="/carDetails2" component={CarDetail2}></Route>
         <Route exact path="/thankyou" component={Thankyou}></Route>
         <Route exact path="/car" component={CarDetail}></Route>
         <Route exact path="/adminDashboard" component={Dashboard}></Route>
