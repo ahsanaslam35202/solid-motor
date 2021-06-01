@@ -686,17 +686,20 @@ const Home = (props) => {
                   style={{ alignItems: "flex-start" }}
                 >
                   <div>
-                    <div className="w-100 d-flex justify-content-center">
+                    <div
+                      className="w-100 d-flex justify-content-center"
+                      style={{ alignSelf: "start" }}
+                    >
                       <img
                         src="assets/img/car-search.svg"
-                        style={{ width: "42px" }}
+                        style={{ width: "42px", alignSelf: "start" }}
                         alt=""
                       />
                     </div>
 
                     <h1
                       className="w-100 text-center feature-card-heading"
-                      style={{ color: "black" }}
+                      style={{ color: "black", alignSelf: "start" }}
                     >
                       <strong>Car Finder</strong>
                     </h1>
@@ -714,14 +717,14 @@ const Home = (props) => {
                     <div className="w-100 d-flex justify-content-center">
                       <img
                         src="assets/img/loan-calculator.svg"
-                        style={{ width: "36px" }}
+                        style={{ width: "36px", alignSelf: "start" }}
                         alt=""
                       />
                     </div>
 
                     <h1
                       className="w-100 text-center feature-card-heading"
-                      style={{ color: "black" }}
+                      style={{ color: "black", alignSelf: "start" }}
                     >
                       <strong>Loan Calculator</strong>
                     </h1>
@@ -739,14 +742,14 @@ const Home = (props) => {
                     <div className="w-100 d-flex justify-content-center">
                       <img
                         src="assets/img/car-trade.svg"
-                        style={{ width: "42px" }}
+                        style={{ width: "42px", alignSelf: "start" }}
                         alt=""
                       />
                     </div>
 
                     <h1
                       className="w-100 text-center feature-card-heading"
-                      style={{ color: "black" }}
+                      style={{ color: "black", alignSelf: "start" }}
                     >
                       <strong>Car Trade Estimator</strong>
                     </h1>
