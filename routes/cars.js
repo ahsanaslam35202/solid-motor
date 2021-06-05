@@ -3,6 +3,7 @@ const router = express.Router();
 const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
+const ObjectsToCsv = require("objects-to-csv");
 
 const { promisify } = require("util");
 const pipeline = promisify(require("stream").pipeline);
@@ -16,19 +17,20 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/csv/", async (req, res) => {
-  let csvContent = "data:text/csv;charset=utf-8,";
-  let header = "Vin Number, Stock, Make, Model, Images";
-  csvContent = csvContent + header;
+  // let csvContent = "data:text/csv;charset=utf-8,";
+  // let header = "Vin Number, Stock, Make, Model, Images";
+  // csvContent = csvContent + header;
 
   const cars = await Car.find();
 
+  let csvContent = [];
   cars.forEach((item) => {
-    let row = [];
+    let row = {};
     let carImages = "";
-    row.push(item.vin);
-    row.push(item.stock);
-    row.push(item.make);
-    row.push(item.name);
+    row.vinNumber = item.vin;
+    row.stock = item.stock;
+    row.make = item.make;
+    row.model = item.name;
     item.sendImages.forEach((item2) => {
       carImages =
         carImages +
@@ -38,8 +40,12 @@ router.get("/csv/", async (req, res) => {
         item2 +
         "|";
     });
-    row.push(carImages);
-    csvContent += row + "\r\n";
+    row.images = carImages;
+    csvContent.push(row);
+    const csv = new ObjectsToCsv(csvContent);
+    await csv.toDisk("./list.csv").then(() => {
+      console.log("Done save csv");
+    });
     console.log(csvContent);
   });
 
