@@ -40,6 +40,7 @@ router.get("/csv/", async (req, res) => {
     });
     row.push(carImages);
     csvContent += row + "\r\n";
+    console.log(csvContent);
   });
 
   var encodedUri = encodeURI(csvContent);
