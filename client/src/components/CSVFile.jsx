@@ -21,59 +21,16 @@ const CSVFile = (props) => {
     });
     setCars(cars);
     var { data } = await axios.get("http://localhost:3000/api/cars/images/a");
-    console.log(data);
     console.log(cars);
-    // setDisplayImage(data);
   };
 
   React.useEffect(() => {
     getCarsData();
   }, []);
 
-  const rows = [
-    ["name1", "city1", "some other info"],
-    ["name2", "city2", "more info"],
-  ];
-
-  let arrayData = [];
-  arrayData[0] = {
-    name: "Sigit",
-    country: "Indonesia",
-    email: "sigit@gmail.com",
-  };
-  arrayData[1] = { name: "Joana", country: "Brazil", email: "Joana@gmail.com" };
-  arrayData[2] = {
-    name: "Albert",
-    country: "Mexico",
-    email: "albert@gmail.com",
-  };
-  arrayData[3] = {
-    name: "Nuuna",
-    country: "South Korea",
-    email: "Nuuna@gmail.com",
-  };
-  arrayData[4] = {
-    name: "Aroon",
-    country: "Irlandia",
-    email: "aroon@gmail.com",
-  };
-
   let csvContent = "data:text/csv;charset=utf-8,";
-
-  //   rows.forEach(function (rowArray) {
-  //     let row = rowArray.join(",");
-  //     csvContent += row + "\r\n";
-  //   });
-
-  //   arrayData.forEach((obj) => {
-  //     let row = [];
-  //     for (key in obj) {
-  //       if (obj.hasOwnProperty(key)) {
-  //         row.push(obj[key]);
-  //       }
-  //     }
-  //     csvContent += row.join(delimiter) + "\n";
-  //   });
+  let header = "Vin Number, Stock, Make, Model, Images";
+  csvContent = csvContent + header;
 
   cars.forEach((item) => {
     let row = [];
@@ -100,10 +57,38 @@ const CSVFile = (props) => {
   var encodedUri = encodeURI(csvContent);
   var link = document.createElement("a");
   link.setAttribute("href", encodedUri);
-  link.setAttribute("download", "my_data.csv");
+  link.setAttribute("download", encodedUri);
   document.body.appendChild(link); // Required for FF
 
   // link.click();
+
+  // const jsftp = require("jsftp");
+
+  // const Ftp = new jsftp({
+  //   host: "swipetospin.exavault.com",
+  //   port: 22, // defaults to 21
+  //   user: "ustssftp_solidmotorsllcser", // defaults to "anonymous"
+  //   pass: "HySfQ8QO", // defaults to "@anonymous"
+  //   debugMode: true, // defaults to "@anonymous"
+  // });
+
+  //   var fs = require('fs');
+  // var Ftp = new JSFtp({
+  //     host: "ftp.some.net",
+  //     port: 21, // defaults to 21
+  //     user: "username", // defaults to "anonymous"
+  //     pass: "pass",
+  //     debugMode: true // defaults to "@anonymous"
+  // });
+
+  // function uploadBegin() {
+  //   exports.UploadToFtP = function (req, res) {
+  //     Ftp.put(encodedUri, "/CSVFile", function (err) {
+  //       if (!err) res.send(200);
+  //       else res.send(err);
+  //     });
+  //   };
+  // }
 
   return (
     <>
@@ -119,6 +104,13 @@ const CSVFile = (props) => {
         >
           Download
         </button>
+        {/* <button
+          onClick={() => {
+            uploadBegin();
+          }}
+        >
+          UploadFile
+        </button> */}
       </div>
     </>
   );

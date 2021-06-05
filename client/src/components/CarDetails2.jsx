@@ -239,9 +239,9 @@ const CarDetail = (props) => {
       carFinancedPrice,
     }).then(() => {
       console.log("Request Send Successfully !");
-      // props.history.push("/thankyou");
-      window.location.href =
-        "https://secure.carsforsale.com/ssfinance.aspx?jesxel=738003";
+      props.history.push("/request-final-form");
+      // window.location.href =
+      //   "https://secure.carsforsale.com/ssfinance.aspx?jesxel=738003";
     });
   };
 
@@ -329,6 +329,9 @@ const CarDetail = (props) => {
               paddingBottom: "70px",
               width: "100%",
               height: "50vh",
+              backgroundColor: "white",
+              borderWidth: "1px",
+              borderColor: "black",
             }}
           >
             <div className="d-flex justify-content-end">
@@ -344,10 +347,8 @@ const CarDetail = (props) => {
                 X
               </button>
             </div>
-            <div className="" style={{ textAlign: "center", color: "white" }}>
-              <h5 className="text-center mt-30" style={{ color: "white" }}>
-                Please Enter Details
-              </h5>
+            <div className="" style={{ textAlign: "center" }}>
+              <h5 className="text-center mt-30">Please Enter Details</h5>
 
               <div className="form-group mt-30">
                 <input
@@ -968,6 +969,11 @@ const CarDetail = (props) => {
                               type="number"
                               className="range-number-input"
                               disabled
+                              style={{
+                                borderColor: "black",
+                                borderWidth: "1px",
+                                color: "black",
+                              }}
                               value={Math.ceil(monthlyPayment)}
                             />
                           </div>
@@ -1013,8 +1019,8 @@ const CarDetail = (props) => {
                           step={10}
                         />
                       </div>
-                      <div className="row">
-                        <div className="col-md-6">
+                      <div className="row mobile-d-none">
+                        {/* <div className="col-md-6">
                           <div className="apply-card mt-30">
                             <h1 className="apply-card-heading">
                               Apply For Finance
@@ -1033,8 +1039,8 @@ const CarDetail = (props) => {
                               </button>
                             </a>
                           </div>
-                        </div>
-                        <div className="col">
+                        </div> */}
+                        <div className="col-md-6">
                           <div className="apply-card mt-30">
                             <h1 className="apply-card-heading">
                               <strong>
@@ -1274,6 +1280,57 @@ const CarDetail = (props) => {
                 >
                   No Hit in your credit Score!
                 </h4> */}
+              </div>
+              <div className="row dektop-d-none">
+                {/* <div className="col-md-6">
+                          <div className="apply-card mt-30">
+                            <h1 className="apply-card-heading">
+                              Apply For Finance
+                            </h1>
+                            <p className="apply-card-para">
+                              Get pre-qualified for a loan in <br /> 2 minutes.
+                              <br />
+                              No hit to your credit score!
+                            </p>
+                            <a href="/loan calculator">
+                              <button
+                                className="btn btn-primary apply-card-button"
+                                type="button"
+                              >
+                                Get Pre-qualified
+                              </button>
+                            </a>
+                          </div>
+                        </div> */}
+                <div className="col-md-6">
+                  <div className="apply-card mt-30">
+                    <h1 className="apply-card-heading">
+                      <strong>
+                        Got a trade-in? NOW OFFERING $3,000 ABOVE KBB
+                      </strong>
+                    </h1>
+                    <p
+                      className=""
+                      style={{
+                        fontSize: "14px",
+                        fontWeight: "400",
+                        color: "black",
+                        marginBottom: "10px",
+                      }}
+                    >
+                      Answer a few questions about your car and get an instant
+                      value. This only takes 2 minutes.
+                    </p>
+                    <a href="/pre-qualified">
+                      <button
+                        className="btn btn-primary apply-card-button"
+                        type="button"
+                      >
+                        <strong>Get Value!</strong>
+                      </button>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
