@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
   res.send(cars);
 });
 
-router.get("/csv/", async (req, res) => {
+router.get("/cs/", async (req, res) => {
   console.log("y");
 });
 
