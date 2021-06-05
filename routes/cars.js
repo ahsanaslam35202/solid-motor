@@ -15,6 +15,10 @@ router.get("/", async (req, res) => {
   res.send(cars);
 });
 
+router.get("/csv/", async (req, res) => {
+  console.log("y");
+});
+
 router.get("/related/:make", async (req, res) => {
   const cars = await Car.find({ make: req.params.make });
   console.log(cars);

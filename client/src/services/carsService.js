@@ -8,6 +8,10 @@ export function getCars() {
   return http.get(apiEndPoint);
 }
 
+export function sendCSV() {
+  return http.get(apiEndPoint + "/csv");
+}
+
 export function getCar(carId) {
   return http.get(apiEndPoint + "/" + carId);
 }
