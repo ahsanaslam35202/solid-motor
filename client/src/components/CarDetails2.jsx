@@ -21,6 +21,7 @@ import { updateViews, updateLikes } from "../services/carsService";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import CarCarouselImage from "./CarCarouselImage";
+import Modal from "react-modal";
 
 function useForceUpdate() {
   const [value, setValue] = React.useState(0); // integer state
@@ -33,7 +34,18 @@ const CarDetail = (props) => {
     await logout();
     forceUpdate();
   };
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
 
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
   const myRef = useRef(null);
   const myRef2 = useRef(null);
 
@@ -43,8 +55,10 @@ const CarDetail = (props) => {
   const [carPrice, setCarPrice] = React.useState(car.price);
   const [carFinancedPrice, setCarFinancedPrice] = React.useState(0);
   const [carPendingAmount, setCarPendingAmout] = React.useState(0);
-  const [downPayment, setDownPayment] = React.useState(0);
-  const [monthlyPayment, setMonthlyPayment] = React.useState(0);
+  const [downPayment, setDownPayment] = React.useState(car.downPayment);
+  const [monthlyPayment, setMonthlyPayment] = React.useState(
+    car.monthlyPayment
+  );
   const [months, setMonths] = React.useState(72);
   const [creditScore, setCreditScore] = React.useState(750);
   const [annualIncome, setAnnualIncome] = React.useState(30000);
@@ -52,17 +66,9 @@ const CarDetail = (props) => {
   const [APR, setAPR] = React.useState(0);
   const [tradeInCredit, setTradeInCredit] = React.useState(0);
 
-  const [monthlyMinRange, setMonthlyMinRange] = React.useState(0);
-  const [monthlyMaxRange, setMonthlyMaxRange] = React.useState(0);
-  const [downPaymentMinRange, setDownPaymentMinRange] = React.useState(750);
-  const [downPaymentMaxRange, setDownPaymentMaxRange] = React.useState(0);
-
-  const [newDownPayment, setNewDownPayment] = React.useState(car.downPayment);
-  const [newMonthlyPayment, setNewMonthlyPayment] = React.useState(
-    car.monthlyPayment
-  );
-
-  // const [commision, setCommision] = React.useState(10);
+  const [userName, setUserName] = React.useState("");
+  const [phoneNo, setPhoneNo] = React.useState("");
+  const [submitButton, setSubmitButton] = React.useState(false);
 
   const [liked, setLiked] = React.useState(0);
   const [likedArray, setLikedArray] = React.useState([]);
@@ -101,9 +107,9 @@ const CarDetail = (props) => {
     var commision = 0;
     var carPrice2 = carPrice;
     var carFinancedPrice2 = 0;
-    var downPaymentMaxRange2 = 0;
-    var monthlyMinRange2 = 0;
-    var monthlyMaxRange2 = 0;
+    // var downPaymentMaxRange2 = 0;
+    // var monthlyMinRange2 = 0;
+    // var monthlyMaxRange2 = 0;
 
     if (months == 72) {
       if (creditScore == 750) {
@@ -168,65 +174,75 @@ const CarDetail = (props) => {
     console.log("Commision: " + commision);
     carFinancedPrice2 = carPrice2 * (1 + commision / 100);
     console.log("Car Financed Price: " + carFinancedPrice2);
-    downPaymentMaxRange2 = 0.5 * carFinancedPrice2;
-    console.log("DownPayment MAX Range: " + downPaymentMaxRange2);
-    monthlyMinRange2 = (0.5 * carFinancedPrice2) / months;
-    console.log("Monthly MIN RAnge: " + monthlyMinRange2);
-    monthlyMaxRange2 = (carFinancedPrice2 - 750) / months;
-    console.log("Monthly MAX Range: " + monthlyMaxRange2);
+    // downPaymentMaxRange2 = 0.5 * carFinancedPrice2;
+    // console.log("DownPayment MAX Range: " + downPaymentMaxRange2);
+    // monthlyMinRange2 = (0.5 * carFinancedPrice2) / months;
+    // console.log("Monthly MIN RAnge: " + monthlyMinRange2);
+    // monthlyMaxRange2 = (carFinancedPrice2 - 750) / months;
+    // console.log("Monthly MAX Range: " + monthlyMaxRange2);
 
     setCarFinancedPrice(Math.ceil(carFinancedPrice2));
     setAPR(commision);
-    setDownPayment(Math.ceil(downPaymentMaxRange2));
-    setMonthlyPayment(Math.ceil(monthlyMinRange2));
-    setDownPaymentMaxRange(Math.ceil(downPaymentMaxRange2));
-    console.log(" DownPayment Max Range: " + downPaymentMaxRange);
-    setMonthlyMinRange(Math.ceil(monthlyMinRange2));
-    setMonthlyMaxRange(Math.ceil(monthlyMaxRange2));
+    // setDownPayment(Math.ceil(downPaymentMaxRange2));
+    // setMonthlyPayment(Math.ceil(monthlyMinRange2));
+    // setDownPaymentMaxRange(Math.ceil(downPaymentMaxRange2));
+    // console.log(" DownPayment Max Range: " + downPaymentMaxRange);
+    // setMonthlyMinRange(Math.ceil(monthlyMinRange2));
+    // setMonthlyMaxRange(Math.ceil(monthlyMaxRange2));
   }, [creditScore, months]);
 
-  const handleDownPaymentChange = (e) => {
-    setDownPayment(e.target.value);
-    setMonthlyPayment(Math.ceil((carFinancedPrice - e.target.value) / months));
-  };
-  const handleMonthlyPaymentChange = (e) => {
-    setMonthlyPayment(e.target.value);
-    setDownPayment(Math.ceil(carFinancedPrice - e.target.value * months));
-  };
+  // const handleDownPaymentChange = (e) => {
+  //   setDownPayment(e.target.value);
+  //   setMonthlyPayment(Math.ceil((carFinancedPrice - e.target.value) / months));
+  // };
+  // const handleMonthlyPaymentChange = (e) => {
+  //   setMonthlyPayment(e.target.value);
+  //   setDownPayment(Math.ceil(carFinancedPrice - e.target.value * months));
+  // };
+
+  function handlePreSubmit() {
+    openModal();
+  }
+
+  function checkSubmitReq(e) {
+    if (userName !== "" && phoneNo !== "") {
+      setSubmitButton(true);
+    }
+  }
 
   const handleRequestSubmit = async (e) => {
-    if (!isLoggedin()) {
-      props.history.push("/login");
-    } else {
-      e.preventDefault();
-      const user = getloggedinuser();
-      const userId = user._id;
-      const carId = car._id;
+    e.preventDefault();
+    // const user = getloggedinuser();
+    // const userId = user._id;
+    const carId = car._id;
 
-      console.log("+++++++++++++++++++++++++++++");
-      console.log("Car Total Price: " + carFinancedPrice);
-      console.log("Car Price: " + carPrice);
-      console.log("Loan Term: " + months);
-      console.log("Credit Card Score: " + creditScore);
-      console.log("Monthly Payment: " + monthlyPayment);
-      console.log("DownPayment: " + downPayment);
-      console.log("anual Income: " + annualIncome);
-      await addBuyRequest({
-        buyType,
-        carId,
-        userId,
-        downPayment,
-        monthlyPayment,
-        months,
-        creditScore,
-        annualIncome,
-        carPrice,
-        carFinancedPrice,
-      }).then(() => {
-        console.log("Request Send Successfully !");
-        props.history.push("/thankyou");
-      });
-    }
+    console.log("+++++++++++++++++++++++++++++");
+    console.log("Car Total Price: " + carFinancedPrice);
+    console.log("Car Price: " + carPrice);
+    console.log("Loan Term: " + months);
+    console.log("Credit Card Score: " + creditScore);
+    console.log("Monthly Payment: " + monthlyPayment);
+    console.log("DownPayment: " + downPayment);
+    console.log("anual Income: " + annualIncome);
+    await addBuyRequest({
+      buyType,
+      carId,
+      userName,
+      phoneNo,
+      // userId,
+      downPayment,
+      monthlyPayment,
+      months,
+      creditScore,
+      annualIncome,
+      carPrice,
+      carFinancedPrice,
+    }).then(() => {
+      console.log("Request Send Successfully !");
+      // props.history.push("/thankyou");
+      window.location.href =
+        "https://secure.carsforsale.com/ssfinance.aspx?jesxel=738003";
+    });
   };
 
   const handleLike = async () => {
@@ -296,9 +312,90 @@ const CarDetail = (props) => {
   return (
     <>
       <CallBar />
+      <div>
+        <Modal
+          isOpen={modalIsOpen}
+          onAfterOpen={afterOpenModal}
+          onRequestClose={closeModal}
+          className="custom-Modal"
+          // style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <div
+            style={{
+              padding: "30px",
+              background: "#6ccfff",
+              borderRadius: "20px",
+              paddingBottom: "70px",
+              width: "100%",
+              height: "50vh",
+            }}
+          >
+            <div className="d-flex justify-content-end">
+              <button
+                className="btn btn-primary"
+                type="button"
+                style={{
+                  background: "rgb(189,221,255)",
+                  color: "rgb(52,52,52)",
+                }}
+                onClick={closeModal}
+              >
+                X
+              </button>
+            </div>
+            <div className="" style={{ textAlign: "center", color: "white" }}>
+              <h5 className="text-center mt-30" style={{ color: "white" }}>
+                Please Enter Details
+              </h5>
+
+              <div className="form-group mt-30">
+                <input
+                  className="form-control"
+                  type="Text"
+                  placeholder="Name"
+                  // value={userName}
+                  required
+                  onChange={(e) => {
+                    setUserName(e.target.value);
+                    checkSubmitReq();
+                  }}
+                  style={{ height: "50px" }}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  required
+                  className="form-control"
+                  type="number"
+                  placeholder="Phone Number"
+                  // value={password}
+                  onChange={(e) => {
+                    setPhoneNo(e.target.value);
+                    checkSubmitReq();
+                  }}
+                  required
+                  style={{ height: "50px" }}
+                />
+              </div>
+              <div className="w-100 d-flex justify-content-end">
+                <button
+                  className="btn btn-primary"
+                  type="button"
+                  disabled={submitButton == false ? true : false}
+                  onClick={handleRequestSubmit}
+                >
+                  Submit Request
+                </button>
+              </div>
+            </div>
+          </div>
+        </Modal>
+      </div>
       {isLoggedin() ? <Navbar2 handleLogout={handleLogout} /> : <Navbar />}
       <div ref={myRef2}>
-        <div className="car-info-container mt-50">
+        <div className="car-info-container mt-30">
           <div className="row mt-0">
             <div className="col-md-6">
               <div className="d-flex car-title-container">
@@ -871,19 +968,19 @@ const CarDetail = (props) => {
                               type="number"
                               className="range-number-input"
                               disabled
-                              value={Math.ceil(newMonthlyPayment)}
+                              value={Math.ceil(monthlyPayment)}
                             />
                           </div>
                         </div>
                         <input
                           className="border rounded range-input"
                           type="range"
-                          value={Math.ceil(newMonthlyPayment)}
-                          min={100}
+                          value={Math.ceil(monthlyPayment)}
+                          min={200}
                           max={800}
                           onChange={(e) => {
                             // setMonthlyPayment(e.target.value);
-                            setNewMonthlyPayment(e.target.value);
+                            setMonthlyPayment(e.target.value);
                           }}
                           step={Math.ceil(carPendingAmount / 50)}
                         />
@@ -897,7 +994,7 @@ const CarDetail = (props) => {
                             <input
                               type="number"
                               className="range-number-input"
-                              value={Math.ceil(newDownPayment)}
+                              value={Math.ceil(downPayment)}
                               disabled
                             />
                           </div>
@@ -905,12 +1002,12 @@ const CarDetail = (props) => {
                         <input
                           className="border rounded range-input"
                           type="range"
-                          value={Math.ceil(newDownPayment)}
+                          value={Math.ceil(downPayment)}
                           min={500}
-                          max={800}
+                          max={10000}
                           onChange={(e) => {
                             // setDownPayment(e.target.value);
-                            setNewDownPayment(e.target.value);
+                            setDownPayment(e.target.value);
                           }}
                           // step={Math.ceil(carPrice / 100)}
                           step={10}
@@ -1025,7 +1122,7 @@ const CarDetail = (props) => {
                 >
                   <div className="w-50">
                     <h1 className="summary-header-heading">
-                      ${Math.ceil(newMonthlyPayment)}
+                      ${Math.ceil(monthlyPayment)}
                     </h1>
                     <h1 className="summary-header-sub-heading">
                       Estimated Monthly Payment
@@ -1034,7 +1131,7 @@ const CarDetail = (props) => {
                   <div className="d-flex justify-content-end w-50">
                     <div>
                       <h1 className="summary-header-heading">
-                        ${Math.ceil(newDownPayment)}
+                        ${Math.ceil(downPayment)}
                       </h1>
                       <h1 className="summary-header-sub-heading">Cash Down</h1>
                     </div>
@@ -1111,7 +1208,10 @@ const CarDetail = (props) => {
                     <p>${downPayment}</p>
                   </div>
                 </div> */}
-                <div className="d-flex summary-car-price">
+                <div
+                  className="d-flex summary-car-price"
+                  style={{ borderWidth: "0px" }}
+                >
                   <div className="w-60">
                     <p>TRADE-IN CREDIT</p>
                   </div>
@@ -1159,12 +1259,12 @@ const CarDetail = (props) => {
                   className="btn btn-primary summary-button"
                   type="button"
                   onClick={(e) => {
-                    handleRequestSubmit(e);
+                    handlePreSubmit(e);
                   }}
                 >
-                  GET STARTED
+                  GET PRE-APPROVED
                 </button>
-                <h4
+                {/* <h4
                   className="w-100 text-center"
                   style={{
                     marginTop: "20px",
@@ -1173,7 +1273,7 @@ const CarDetail = (props) => {
                   }}
                 >
                   No Hit in your credit Score!
-                </h4>
+                </h4> */}
               </div>
             </div>
           </div>
