@@ -9,11 +9,11 @@ const Footer = () => {
             <div className="col-md-6 footer-about">
               <div>
                 <img src="assets/img/Footer%20Logo.png" />
-                <p className="footer-about-para">
+                {/* <p className="footer-about-para">
                   Lorem Ipsum is simply dummy text of the printing and
                   typesetting industry&nbsp;has been the industry's standard
                   dummy text ever since the when an unknown galley.
-                </p>
+                </p> */}
               </div>
             </div>
             <div className="col-md-2 col-sm-6">
