@@ -42,12 +42,12 @@ router.get("/csv/", async (req, res) => {
     });
     row.images = carImages;
     csvContent.push(row);
-    const csv = new ObjectsToCsv(csvContent);
-    await csv.toDisk("./list.csv").then(() => {
-      console.log("Done save csv");
-    });
-    console.log(csvContent);
   });
+  const csv = new ObjectsToCsv(csvContent);
+  await csv.toDisk("./list.csv").then(() => {
+    console.log("Done save csv");
+  });
+  console.log(csvContent);
 
   // var encodedUri = encodeURI(csvContent);
   // var link = document.createElement("a");
