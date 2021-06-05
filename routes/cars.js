@@ -43,11 +43,11 @@ router.get("/csv/", async (req, res) => {
     console.log(csvContent);
   });
 
-  var encodedUri = encodeURI(csvContent);
-  var link = document.createElement("a");
-  link.setAttribute("href", encodedUri);
-  link.setAttribute("download", "my.csv");
-  document.body.appendChild(link);
+  // var encodedUri = encodeURI(csvContent);
+  // var link = document.createElement("a");
+  // link.setAttribute("href", encodedUri);
+  // link.setAttribute("download", "my.csv");
+  // document.body.appendChild(link);
 });
 
 router.get("/related/:make", async (req, res) => {
