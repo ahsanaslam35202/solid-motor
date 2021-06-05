@@ -48,9 +48,7 @@ const CSVFile = (props) => {
         item2 +
         "|";
     });
-
     row.push(carImages);
-
     csvContent += row + "\r\n";
   });
 
@@ -61,9 +59,7 @@ const CSVFile = (props) => {
   document.body.appendChild(link); // Required for FF
 
   // link.click();
-
   // const jsftp = require("jsftp");
-
   // const Ftp = new jsftp({
   //   host: "swipetospin.exavault.com",
   //   port: 22, // defaults to 21
