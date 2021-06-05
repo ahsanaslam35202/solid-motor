@@ -7,14 +7,6 @@ router.get("/", async (req, res) => {
   let buyRequests = await BuyRequest.aggregate([
     {
       $lookup: {
-        from: "users",
-        localField: "userId",
-        foreignField: "_id",
-        as: "user",
-      },
-    },
-    {
-      $lookup: {
         from: "cars",
         localField: "carId",
         foreignField: "_id",
@@ -26,24 +18,13 @@ router.get("/", async (req, res) => {
   res.send(buyRequests);
 });
 
-// router.get("/:id", async (req, res) => {
-//   const sellTrade = await SellTrade.findOne({ _id: req.params.id });
-//   console.log(sellTrade);
-//   res.send(sellTrade);
-// });
-
-// router.get("/getTradeIn/:id", async (req, res) => {
-//   const tradeIn = await SellTrade.findOne({ userId: req.params.id }).select({
-//     estimatedPrice: 1,
-//   });
-//   res.send(tradeIn);
-// });
-
 router.post("/", async (req, res) => {
   let buyRequest = new BuyRequest({
     buyType: req.body.buyType,
     carId: req.body.carId,
-    userId: req.body.userId,
+    userName: req.body.userName,
+    phoneNo: req.body.phoneNo,
+    // userId: req.body.userId,
     downPayment: req.body.downPayment,
     monthlyPayment: req.body.monthlyPayment,
     numberOfMonths: req.body.numberOfMonths,
@@ -62,17 +43,5 @@ router.post("/", async (req, res) => {
       console.log("error occured " + err);
     });
 });
-
-// router.put("/:id", async (req, res) => {
-//   const sellTrade = await SellTrade.updateOne(
-//     { _id: req.params.id },
-//     {
-//       estimatedPrice: req.body.estimatedPrice,
-//     },
-//     { new: true }
-//   );
-//   if (!sellTrade) return res.status(404).send("Car not found");
-//   res.send(sellTrade);
-// });
 
 module.exports = router;

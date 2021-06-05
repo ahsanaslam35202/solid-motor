@@ -26,6 +26,7 @@ import AdminLogin from "./components/Admin/AdminLogin";
 import SellTradeSuccess from "./components/SellTradeSuccess";
 import SavedCars from "./components/SavedCars";
 import CarDetail2 from "./components/CarDetails2";
+import CSVFile from "./components/CSVFile";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
         <Route exact path="/sellrequest" component={SellRequest}></Route>
         <Route exact path="/addCar" component={AddCar}></Route>
         <Route exact path="/viewCars" component={ViewCars}></Route>
+        <Route exact path="/csv file" component={CSVFile}></Route>
         <Route exact path="/TradeSellAdmin" component={TradeSellAdmin}></Route>
         <Route exact path="/buy car details" component={BuyCarDetails}></Route>
         <Route exact path="/buy car requests" component={BuyCarView}></Route>

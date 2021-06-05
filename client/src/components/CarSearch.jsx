@@ -1384,7 +1384,7 @@ const CarSearch = (props) => {
             </button>
           </div>
         </div>
-        <div className="mt-200">
+        {/* <div className="mt-200">
           <div className="container">
             <div className="row">
               <div className="col-md-12">
@@ -1404,7 +1404,7 @@ const CarSearch = (props) => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* <div className="mt-200">
           <div className="row mt-0">
             <div className="col-md-6 bg-main">

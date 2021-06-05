@@ -57,6 +57,11 @@ const CarDetail = (props) => {
   const [downPaymentMinRange, setDownPaymentMinRange] = React.useState(750);
   const [downPaymentMaxRange, setDownPaymentMaxRange] = React.useState(0);
 
+  const [newDownPayment, setNewDownPayment] = React.useState(car.downPayment);
+  const [newMonthlyPayment, setNewMonthlyPayment] = React.useState(
+    car.monthlyPayment
+  );
+
   // const [commision, setCommision] = React.useState(10);
 
   const [liked, setLiked] = React.useState(0);
@@ -290,7 +295,7 @@ const CarDetail = (props) => {
 
   return (
     <>
-      {/* <CallBar /> */}
+      <CallBar />
       {isLoggedin() ? <Navbar2 handleLogout={handleLogout} /> : <Navbar />}
       <div ref={myRef2}>
         <div className="car-info-container mt-50">
@@ -708,10 +713,15 @@ const CarDetail = (props) => {
                       <h1 className="h3-black w-100 text-center">Warranty</h1>
 
                       <div className="col-md-12 d-flex justify-content-center">
+                        {/* <h1 className="h1-black">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                </h1> */}
                         <img
+                          className="safari-child-flex"
                           src="assets/img/care.png"
                           className="care-img"
                           alt=""
+                          style={{ alignSelf: "start" }}
                         />
                       </div>
                       <p>
@@ -861,19 +871,19 @@ const CarDetail = (props) => {
                               type="number"
                               className="range-number-input"
                               disabled
-                              value={Math.ceil(monthlyPayment)}
+                              value={Math.ceil(newMonthlyPayment)}
                             />
                           </div>
                         </div>
                         <input
                           className="border rounded range-input"
                           type="range"
-                          value={Math.ceil(monthlyPayment)}
-                          min={Math.ceil(monthlyMinRange)}
-                          max={Math.ceil(monthlyMaxRange)}
+                          value={Math.ceil(newMonthlyPayment)}
+                          min={100}
+                          max={800}
                           onChange={(e) => {
                             // setMonthlyPayment(e.target.value);
-                            handleMonthlyPaymentChange(e);
+                            setNewMonthlyPayment(e.target.value);
                           }}
                           step={Math.ceil(carPendingAmount / 50)}
                         />
@@ -887,7 +897,7 @@ const CarDetail = (props) => {
                             <input
                               type="number"
                               className="range-number-input"
-                              value={Math.ceil(downPayment)}
+                              value={Math.ceil(newDownPayment)}
                               disabled
                             />
                           </div>
@@ -895,15 +905,15 @@ const CarDetail = (props) => {
                         <input
                           className="border rounded range-input"
                           type="range"
-                          value={Math.ceil(downPayment)}
-                          min={Math.ceil(downPaymentMinRange)}
-                          max={Math.ceil(downPaymentMaxRange)}
+                          value={Math.ceil(newDownPayment)}
+                          min={500}
+                          max={800}
                           onChange={(e) => {
                             // setDownPayment(e.target.value);
-                            handleDownPaymentChange(e);
+                            setNewDownPayment(e.target.value);
                           }}
                           // step={Math.ceil(carPrice / 100)}
-                          step={100}
+                          step={10}
                         />
                       </div>
                       <div className="row">
@@ -1015,7 +1025,7 @@ const CarDetail = (props) => {
                 >
                   <div className="w-50">
                     <h1 className="summary-header-heading">
-                      ${Math.ceil(monthlyPayment)}
+                      ${Math.ceil(newMonthlyPayment)}
                     </h1>
                     <h1 className="summary-header-sub-heading">
                       Estimated Monthly Payment
@@ -1024,7 +1034,7 @@ const CarDetail = (props) => {
                   <div className="d-flex justify-content-end w-50">
                     <div>
                       <h1 className="summary-header-heading">
-                        ${Math.ceil(downPayment)}
+                        ${Math.ceil(newDownPayment)}
                       </h1>
                       <h1 className="summary-header-sub-heading">Cash Down</h1>
                     </div>
@@ -1063,31 +1073,31 @@ const CarDetail = (props) => {
                     <p>${Math.ceil(car.price)}</p>
                   </div>
                 </div> */}
-                <div className="d-flex summary-card-price-detail">
+                {/* <div className="d-flex summary-card-price-detail">
                   <div className="w-60">
                     <p>SHIPPING</p>
                   </div>
                   <div className="d-flex justify-content-end w-40">
                     <p>${car.shippingCharges}</p>
                   </div>
-                </div>
-                <div className="d-flex summary-card-price-detail">
+                </div> */}
+                {/* <div className="d-flex summary-card-price-detail">
                   <div className="w-60">
                     <p>TAX, TITLE & REG</p>
                   </div>
                   <div className="d-flex justify-content-end w-40">
                     <p>${car.taxAndRegistrationCharges}</p>
                   </div>
-                </div>
-                <div className="d-flex summary-card-price-detail">
+                </div> */}
+                {/* <div className="d-flex summary-card-price-detail">
                   <div className="w-60">
                     <p>DEALER FEES</p>
                   </div>
                   <div className="d-flex justify-content-end w-40">
                     <p>${car.dealerFees}</p>
                   </div>
-                </div>
-                <div
+                </div> */}
+                {/* <div
                   className={
                     buyType === "financed"
                       ? "d-flex summary-card-price-detail"
@@ -1100,7 +1110,7 @@ const CarDetail = (props) => {
                   <div className="d-flex justify-content-end w-40">
                     <p>${downPayment}</p>
                   </div>
-                </div>
+                </div> */}
                 <div className="d-flex summary-car-price">
                   <div className="w-60">
                     <p>TRADE-IN CREDIT</p>
@@ -1154,6 +1164,16 @@ const CarDetail = (props) => {
                 >
                   GET STARTED
                 </button>
+                <h4
+                  className="w-100 text-center"
+                  style={{
+                    marginTop: "20px",
+                    color: "white",
+                    fontSize: "18px",
+                  }}
+                >
+                  No Hit in your credit Score!
+                </h4>
               </div>
             </div>
           </div>
