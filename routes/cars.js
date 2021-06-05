@@ -16,7 +16,37 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/csv/", async (req, res) => {
-  console.log("y");
+  let csvContent = "data:text/csv;charset=utf-8,";
+  let header = "Vin Number, Stock, Make, Model, Images";
+  csvContent = csvContent + header;
+
+  const cars = await Car.find();
+
+  cars.forEach((item) => {
+    let row = [];
+    let carImages = "";
+    row.push(item.vin);
+    row.push(item.stock);
+    row.push(item.make);
+    row.push(item.name);
+    item.sendImages.forEach((item2) => {
+      carImages =
+        carImages +
+        "http://solid-motor-app.herokuapp.com/api/cars/images/" +
+        item.vin +
+        "/sendImages/" +
+        item2 +
+        "|";
+    });
+    row.push(carImages);
+    csvContent += row + "\r\n";
+  });
+
+  var encodedUri = encodeURI(csvContent);
+  var link = document.createElement("a");
+  link.setAttribute("href", encodedUri);
+  link.setAttribute("download", "my.csv");
+  document.body.appendChild(link);
 });
 
 router.get("/related/:make", async (req, res) => {
