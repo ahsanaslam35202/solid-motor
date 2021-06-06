@@ -3,6 +3,8 @@ const router = express.Router();
 const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
+const ObjectsToCsv = require("objects-to-csv");
+const jsftp = require("jsftp");
 
 const { promisify } = require("util");
 const pipeline = promisify(require("stream").pipeline);
@@ -13,6 +15,61 @@ router.get("/", async (req, res) => {
   const cars = await Car.find();
   console.log(cars);
   res.send(cars);
+});
+
+router.get("/csv/", async (req, res) => {
+  // let csvContent = "data:text/csv;charset=utf-8,";
+  // let header = "Vin Number, Stock, Make, Model, Images";
+  // csvContent = csvContent + header;
+
+  const cars = await Car.find();
+
+  let csvContent = [];
+  cars.forEach((item) => {
+    let row = {};
+    let carImages = "";
+    row.vinNumber = item.vin;
+    row.stock = item.stock;
+    row.make = item.make;
+    row.model = item.name;
+    item.sendImages.forEach((item2) => {
+      carImages =
+        carImages +
+        "http://solid-motor-app.herokuapp.com/api/cars/images/" +
+        item.vin +
+        "/sendImages/" +
+        item2 +
+        "|";
+    });
+    row.images = carImages;
+    csvContent.push(row);
+  });
+  const csv = new ObjectsToCsv(csvContent);
+  // await csv.toDisk("./list.csv").then(() => {
+  //   console.log("Done save csv");
+  // });
+  // console.log(csvContent);
+
+  // var encodedUri = encodeURI(csvContent);
+  // var link = document.createElement("a");
+  // link.setAttribute("href", encodedUri);
+  // link.setAttribute("download", "my.csv");
+  // document.body.appendChild(link);
+
+  const Ftp = new jsftp({
+    host: "swipetospin.exavault.com",
+    port: 22, // defaults to 21
+    user: "ustssftp_solidmotorsllcser", // defaults to "anonymous"
+    pass: "HySfQ8QO", // defaults to "@anonymous"
+    debugMode: true, // defaults to "@anonymous"
+  });
+
+  console.log(csvContent);
+
+  Ftp.put(csv, "/CSVFile", function (err) {
+    if (!err) res.send(200);
+    else res.send(err);
+  });
 });
 
 router.get("/related/:make", async (req, res) => {
