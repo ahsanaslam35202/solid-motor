@@ -4,6 +4,7 @@ const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
 const ObjectsToCsv = require("objects-to-csv");
+const jsftp = require("jsftp");
 
 const { promisify } = require("util");
 const pipeline = promisify(require("stream").pipeline);
@@ -44,16 +45,31 @@ router.get("/csv/", async (req, res) => {
     csvContent.push(row);
   });
   const csv = new ObjectsToCsv(csvContent);
-  await csv.toDisk("./list.csv").then(() => {
-    console.log("Done save csv");
-  });
-  console.log(csvContent);
+  // await csv.toDisk("./list.csv").then(() => {
+  //   console.log("Done save csv");
+  // });
+  // console.log(csvContent);
 
   // var encodedUri = encodeURI(csvContent);
   // var link = document.createElement("a");
   // link.setAttribute("href", encodedUri);
   // link.setAttribute("download", "my.csv");
   // document.body.appendChild(link);
+
+  const Ftp = new jsftp({
+    host: "swipetospin.exavault.com",
+    port: 22, // defaults to 21
+    user: "ustssftp_solidmotorsllcser", // defaults to "anonymous"
+    pass: "HySfQ8QO", // defaults to "@anonymous"
+    debugMode: true, // defaults to "@anonymous"
+  });
+
+  console.log(csvContent);
+
+  Ftp.put(csv, "/CSVFile", function (err) {
+    if (!err) res.send(200);
+    else res.send(err);
+  });
 });
 
 router.get("/related/:make", async (req, res) => {
