@@ -22,6 +22,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import CarCarouselImage from "./CarCarouselImage";
 import Modal from "react-modal";
+// import ScriptTag from "react-script-tag";
 
 function useForceUpdate() {
   const [value, setValue] = React.useState(0); // integer state
@@ -38,6 +39,8 @@ const CarDetail = (props) => {
   function openModal() {
     setIsOpen(true);
   }
+
+  // <ScriptTag src="http://integrator.swipetospin.com" />;
 
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
