@@ -18,26 +18,47 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/csv/", async (req, res) => {
+  var FTPS = require("ftps");
 
-  var PromiseFtp = require("promise-ftp");
-  var ftp = new PromiseFtp();
+  var ftps = new FTPS({
+    host: "swipetospin.exavault.com", // required
+    username: "stssftp_solidmotorsllc", // Optional. Use empty username for anonymous access.
+    password: "HySfQ8QO", // Required if username is not empty, except when requiresPassword: false
+    protocol: "sftp", // Optional, values : 'ftp', 'sftp', 'ftps', ... default: 'ftp'
+    port: 22, // Optional
+    additionalLftpCommands:
+      'set sftp:connect-program "ssh -a -x -o KexAlgorithms=diffie-hellman-group1-sha1"',
+    // Additional commands to pass to lftp, splitted by ';'
+    requireSSHKey: false,
+  });
+  console.log("hit");
+  console.log(ftps.cd("./"));
+  ftps.cd("/").addFile("./list.csv").exec(console.log);
 
-  ftp
-    .connect({
-      host: "files.000webhost.com",
-      user: "temp-site321",
-      password: "321987654",
-      port: "21",
-    })
-    .then(function (serverMessage) {
-      console.log("Server message: " + serverMessage);
-      return ftp.list("/");
-    })
-    .then(function (list) {
-      console.log("Directory listing:");
-      console.dir(list);
-      return ftp.end();
-    });
+  ftps.put("./list.csv", ["/"]); // alias: addFile
+
+  // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  // var PromiseFtp = require("promise-ftp");
+  // var ftp = new PromiseFtp();
+
+  // ftp
+  //   .connect({
+  //     host: "sftp.swipetospin.exavault.com",
+  //     // protocol: "sftp",
+  //     user: "stssftp_solidmotorsllc",
+  //     password: "HySfQ8QO",
+  //     port: "22",
+  //   })
+  //   .then(function (serverMessage) {
+  //     console.log("Server message: " + serverMessage);
+  //     // return ftp.list("/");
+  //     return ftp.put("./list.csv", "Cars_List.csv");
+  //   })
+  //   .then(function (list) {
+  //     console.log("Directory listing:");
+  //     console.dir(list);
+  //     return ftp.end();
+  //   });
 
   // async function uploadImageToFtp(fileName, path) {
   //   const client = new ftp.Client();
@@ -91,26 +112,21 @@ router.get("/csv/", async (req, res) => {
   // });
   // console.log(csvContent);
 
-  // var encodedUri = encodeURI(csvContent);
-  // var link = document.createElement("a");
-  // link.setAttribute("href", encodedUri);
-  // link.setAttribute("download", "my.csv");
-  // document.body.appendChild(link);
-
   // const Ftp = new jsftp({
-  //   host: "sftp://swipetospin.exavault.com/",
-  //   port: 22, // defaults to 21
+  //   host: "sftp:swipetospin.exavault.com",
+  //   // protocol: "sftp",
+  //   port: "22", // defaults to 21
   //   user: "stssftp_solidmotorsllc", // defaults to "anonymous"
   //   pass: "HySfQ8QO", // defaults to "@anonymous"
   //   debugMode: true, // defaults to "@anonymous"
-  });
+  // });
 
-  console.log(csvContent);
+  // console.log(csvContent);
 
-  Ftp.put(csv, "/CSVFile", function (err) {
-    if (!err) res.send(200);
-    else res.send(err);
-  });
+  // Ftp.put("./list.csv", "/cars.csv", function (err) {
+  //   if (!err) res.send(200);
+  //   else res.send(err);
+  // });
 });
 
 router.get("/related/:make", async (req, res) => {
