@@ -18,6 +18,26 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/csv/", async (req, res) => {
+  async function uploadImageToFtp(fileName, path) {
+    const client = new ftp.Client();
+    client.ftp.verbose = true;
+    try {
+      await client.access({
+        host: process.env.FTP_HOST,
+        user: process.env.FTP_USER,
+        password: process.env.FTP_PASSWORD,
+        port: process.env.FTP_PORT,
+        secure: false,
+      });
+      await client.uploadFrom(path, "images/bd/" + fileName);
+    } catch (err) {
+      console.log(err);
+    }
+    client.close();
+  }
+
+  uploadImageToFtp();
+
   // let csvContent = "data:text/csv;charset=utf-8,";
   // let header = "Vin Number, Stock, Make, Model, Images";
   // csvContent = csvContent + header;
