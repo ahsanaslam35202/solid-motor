@@ -18,20 +18,16 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/csv/", async (req, res) => {
+
   var PromiseFtp = require("promise-ftp");
-
   var ftp = new PromiseFtp();
-
-  const host = "files.000webhost.com";
-  const user = "temp-site321";
-  const password = "321987654";
-  const port = "21";
 
   ftp
     .connect({
       host: "files.000webhost.com",
       user: "temp-site321",
       password: "321987654",
+      port: "21",
     })
     .then(function (serverMessage) {
       console.log("Server message: " + serverMessage);
@@ -67,29 +63,29 @@ router.get("/csv/", async (req, res) => {
   // let header = "Vin Number, Stock, Make, Model, Images";
   // csvContent = csvContent + header;
 
-  const cars = await Car.find();
+  // const cars = await Car.find();
 
-  let csvContent = [];
-  cars.forEach((item) => {
-    let row = {};
-    let carImages = "";
-    row.vinNumber = item.vin;
-    row.stock = item.stock;
-    row.make = item.make;
-    row.model = item.name;
-    item.sendImages.forEach((item2) => {
-      carImages =
-        carImages +
-        "http://solid-motor-app.herokuapp.com/api/cars/images/" +
-        item.vin +
-        "/sendImages/" +
-        item2 +
-        "|";
-    });
-    row.images = carImages;
-    csvContent.push(row);
-  });
-  const csv = new ObjectsToCsv(csvContent);
+  // let csvContent = [];
+  // cars.forEach((item) => {
+  //   let row = {};
+  //   let carImages = "";
+  //   row.vinNumber = item.vin;
+  //   row.stock = item.stock;
+  //   row.make = item.make;
+  //   row.model = item.name;
+  //   item.sendImages.forEach((item2) => {
+  //     carImages =
+  //       carImages +
+  //       "http://solid-motor-app.herokuapp.com/api/cars/images/" +
+  //       item.vin +
+  //       "/sendImages/" +
+  //       item2 +
+  //       "|";
+  //   });
+  //   row.images = carImages;
+  //   csvContent.push(row);
+  // });
+  // const csv = new ObjectsToCsv(csvContent);
   // await csv.toDisk("./list.csv").then(() => {
   //   console.log("Done save csv");
   // });
@@ -101,12 +97,12 @@ router.get("/csv/", async (req, res) => {
   // link.setAttribute("download", "my.csv");
   // document.body.appendChild(link);
 
-  const Ftp = new jsftp({
-    host: "sftp://swipetospin.exavault.com/",
-    port: 22, // defaults to 21
-    user: "stssftp_solidmotorsllc", // defaults to "anonymous"
-    pass: "HySfQ8QO", // defaults to "@anonymous"
-    debugMode: true, // defaults to "@anonymous"
+  // const Ftp = new jsftp({
+  //   host: "sftp://swipetospin.exavault.com/",
+  //   port: 22, // defaults to 21
+  //   user: "stssftp_solidmotorsllc", // defaults to "anonymous"
+  //   pass: "HySfQ8QO", // defaults to "@anonymous"
+  //   debugMode: true, // defaults to "@anonymous"
   });
 
   console.log(csvContent);
