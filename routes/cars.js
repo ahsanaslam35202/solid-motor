@@ -18,25 +18,50 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/csv/", async (req, res) => {
-  async function uploadImageToFtp(fileName, path) {
-    const client = new ftp.Client();
-    client.ftp.verbose = true;
-    try {
-      await client.access({
-        host: process.env.FTP_HOST,
-        user: process.env.FTP_USER,
-        password: process.env.FTP_PASSWORD,
-        port: process.env.FTP_PORT,
-        secure: false,
-      });
-      await client.uploadFrom(path, "images/bd/" + fileName);
-    } catch (err) {
-      console.log(err);
-    }
-    client.close();
-  }
+  var PromiseFtp = require("promise-ftp");
 
-  uploadImageToFtp();
+  var ftp = new PromiseFtp();
+
+  const host = "files.000webhost.com";
+  const user = "temp-site321";
+  const password = "321987654";
+  const port = "21";
+
+  ftp
+    .connect({
+      host: "files.000webhost.com",
+      user: "temp-site321",
+      password: "321987654",
+    })
+    .then(function (serverMessage) {
+      console.log("Server message: " + serverMessage);
+      return ftp.list("/");
+    })
+    .then(function (list) {
+      console.log("Directory listing:");
+      console.dir(list);
+      return ftp.end();
+    });
+
+  // async function uploadImageToFtp(fileName, path) {
+  //   const client = new ftp.Client();
+  //   client.ftp.verbose = true;
+  //   try {
+  //     await client.access({
+  //       host: process.env.FTP_HOST,
+  //       user: process.env.FTP_USER,
+  //       password: process.env.FTP_PASSWORD,
+  //       port: process.env.FTP_PORT,
+  //       secure: false,
+  //     });
+  //     await client.uploadFrom(path, "images/bd/" + fileName);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  //   client.close();
+  // }
+
+  // uploadImageToFtp();
 
   // let csvContent = "data:text/csv;charset=utf-8,";
   // let header = "Vin Number, Stock, Make, Model, Images";

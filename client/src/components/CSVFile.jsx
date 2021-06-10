@@ -20,6 +20,25 @@ const CSVFile = (props) => {
       });
   };
 
+  // import initFTPService from "ftp-service";
+  // import { initDelayService } from "common-services";
+
+  // const delay = await initDelayService({
+  //   log: console.log.bind(console),
+  // });
+  // const jwt = await initFTPService({
+  //   FTP: {
+  //     host: "localhost",
+  //     user: "user",
+  //     pasword: "pwd",
+  //   },
+  //   FTP_CONFIG: { base: "" },
+  //   delay,
+  //   log: console.log.bind(console),
+  // });
+
+  // const files = await ftp.list("/");
+
   // const ftp = require("basic-ftp");
 
   // async function example() {
@@ -43,31 +62,6 @@ const CSVFile = (props) => {
   // }
 
   // example();
-
-  var PromiseFtp = require("promise-ftp");
-
-  var ftp = new PromiseFtp();
-
-  const host = "files.000webhost.com";
-  const user = "temp-site321";
-  const password = "321987654";
-  const port = "21";
-
-  ftp
-    .connect({
-      host: "files.000webhost.com",
-      user: "temp-site321",
-      password: "321987654",
-    })
-    .then(function (serverMessage) {
-      console.log("Server message: " + serverMessage);
-      return ftp.list("/");
-    })
-    .then(function (list) {
-      console.log("Directory listing:");
-      console.dir(list);
-      return ftp.end();
-    });
 
   // let csvContent = "data:text/csv;charset=utf-8,";
   // let header = "Vin Number, Stock, Make, Model, Images";
