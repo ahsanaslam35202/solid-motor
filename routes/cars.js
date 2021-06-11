@@ -18,24 +18,84 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/csv/", async (req, res) => {
-  var FTPS = require("ftps");
+  // let sftp = new Client();
 
-  var ftps = new FTPS({
-    host: "swipetospin.exavault.com", // required
-    username: "stssftp_solidmotorsllc", // Optional. Use empty username for anonymous access.
-    password: "HySfQ8QO", // Required if username is not empty, except when requiresPassword: false
-    protocol: "sftp", // Optional, values : 'ftp', 'sftp', 'ftps', ... default: 'ftp'
-    port: 22, // Optional
-    additionalLftpCommands:
-      'set sftp:connect-program "ssh -a -x -o KexAlgorithms=diffie-hellman-group1-sha1"',
-    // Additional commands to pass to lftp, splitted by ';'
-    requireSSHKey: false,
-  });
-  console.log("hit");
-  console.log(ftps.cd("./"));
-  ftps.cd("/").addFile("./list.csv").exec(console.log);
+  // sftp
+  //   .connect({
+  //     host: "swipetospin.exavault.com",
+  //     port: "22",
+  //     username: "stssftp_solidmotorsllc",
+  //     password: "HySfQ8QO",
+  //   })
+  //   .then(() => {
+  //     client.put("./cars.csv", "/");
+  //   });
+  // .then((data) => {
+  //   console.log(data, "the data info");
+  // })
+  // .catch((err) => {
+  //   console.log(err, "catch error");
+  // });
 
-  ftps.put("./list.csv", ["/"]); // alias: addFile
+  // var SftpUpload = require("sftp-upload"),
+  //   fs = require("fs");
+
+  // var options = {
+  //     host: "swipetospin.exavault.com",
+  //     username: "stssftp_solidmotorsllc",
+  //     password: "HySfQ8QO",
+  //     path: "./cars.csv",
+  //     remoteDir: "/",
+  //     // excludedFolders: ["**/.git", "node_modules"],
+  //     // exclude: [".gitignore", ".vscode/tasks.json"],
+  //     privateKey: fs.readFileSync("key"),
+  //     // passphrase: fs.readFileSync("privateKey_rsa.passphrase"),
+  //     // dryRun: false,
+  //   },
+  //   sftp = new SftpUpload(options);
+
+  // sftp
+  //   .on("error", function (err) {
+  //     throw err;
+  //   })
+  //   .on("uploading", function (progress) {
+  //     console.log("Uploading", progress.file);
+  //     console.log(progress.percent + "% completed");
+  //   })
+  //   .on("completed", function () {
+  //     console.log("Upload Completed");
+  //   })
+  //   .upload();
+
+  // ++++++++++++++++++++++++++++++++++
+  // var FTPS = require("ftps");
+  // var ftps = new FTPS({
+  //   host: "swipetospin.exavault.com", // required
+  //   username: "stssftp_solidmotorsllc", // Optional. Use empty username for anonymous access.
+  //   password: "HySfQ8QO", // Required if username is not empty, except when requiresPassword: false
+  //   protocol: "sftp", // Optional, values : 'ftp', 'sftp', 'ftps', ... default: 'ftp'
+  //   port: 22, // Optional
+
+  //   // Additional commands to pass to lftp, splitted by ';'y
+  //   escape: true, // optional, used for escaping shell characters (space, $, etc.), default: true
+  //   retries: 2, // Optional, defaults to 1 (1 = no retries, 0 = unlimited retries)
+  //   timeout: 10, // Optional, Time before failing a connection attempt. Defaults to 10
+  //   retryInterval: 5, // Optional, Time in seconds between attempts. Defaults to 5
+  //   retryMultiplier: 1, // Optional, Multiplier by which retryInterval is multiplied each time new attempt fails. Defaults to 1
+  //   requiresPassword: true, // Optional, defaults to true
+  //   autoConfirm: true, // Optional, is used to auto confirm ssl questions on sftp or fish protocols, defaults to false
+  //   cwd: "", // Optional, defaults to the directory from where the script is executed
+  //   additionalLftpCommands:
+  //     'set sftp:connect-program "ssh -a -x -o KexAlgorithms=diffie-hellman-group16-sha512"',
+
+  //   requireSSHKey: false,
+  // });
+  // console.log("hit");
+  // console.log(ftps.cd("/"));
+  // ftps.cd("/").addFile("./cars.csv").exec(console.log);
+
+  // ftps.put("./cars.csv", ["/"]); // alias: addFile
+  // ftps.get("/list.csv", ["./hello.csv"]); // download remote file and save to local path (if not given, use same name as remote file), alias: getFile
 
   // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   // var PromiseFtp = require("promise-ftp");
@@ -63,6 +123,12 @@ router.get("/csv/", async (req, res) => {
   // async function uploadImageToFtp(fileName, path) {
   //   const client = new ftp.Client();
   //   client.ftp.verbose = true;
+
+  //   FTP_HOST = "sftp.swipetospin.exavault.com";
+  //   FTP_USER = "stssftp_solidmotorsllc";
+  //   FTP_PASSWORD = "HySfQ8QO";
+  //   FTP_PORT = 22;
+
   //   try {
   //     await client.access({
   //       host: process.env.FTP_HOST,
@@ -71,7 +137,7 @@ router.get("/csv/", async (req, res) => {
   //       port: process.env.FTP_PORT,
   //       secure: false,
   //     });
-  //     await client.uploadFrom(path, "images/bd/" + fileName);
+  //     await client.uploadFrom("./list.csv", "/" + cars.csv);
   //   } catch (err) {
   //     console.log(err);
   //   }
@@ -81,36 +147,59 @@ router.get("/csv/", async (req, res) => {
   // uploadImageToFtp();
 
   // let csvContent = "data:text/csv;charset=utf-8,";
-  // let header = "Vin Number, Stock, Make, Model, Images";
-  // csvContent = csvContent + header;
 
-  // const cars = await Car.find();
+  let csvContent = [];
+  let header = "Vin Number, Stock, Make, Model, Images";
+  csvContent = csvContent + header;
 
-  // let csvContent = [];
-  // cars.forEach((item) => {
-  //   let row = {};
-  //   let carImages = "";
-  //   row.vinNumber = item.vin;
-  //   row.stock = item.stock;
-  //   row.make = item.make;
-  //   row.model = item.name;
-  //   item.sendImages.forEach((item2) => {
-  //     carImages =
-  //       carImages +
-  //       "http://solid-motor-app.herokuapp.com/api/cars/images/" +
-  //       item.vin +
-  //       "/sendImages/" +
-  //       item2 +
-  //       "|";
-  //   });
-  //   row.images = carImages;
-  //   csvContent.push(row);
-  // });
-  // const csv = new ObjectsToCsv(csvContent);
-  // await csv.toDisk("./list.csv").then(() => {
-  //   console.log("Done save csv");
-  // });
-  // console.log(csvContent);
+  const cars = await Car.find();
+
+  cars.forEach((item) => {
+    let row = {};
+    let carImages = "";
+    row.vinNumber = item.vin;
+    row.stock = item.stock;
+    row.make = item.make;
+    row.model = item.name;
+    item.sendImages.forEach((item2) => {
+      carImages =
+        carImages +
+        "http://solid-motor-app.herokuapp.com/api/cars/images/" +
+        item.vin +
+        "/sendImages/" +
+        item2 +
+        "|";
+    });
+    row.images = carImages;
+    csvContent.push(row);
+  });
+  const csv = new ObjectsToCsv(csvContent);
+  await csv.toDisk("./cars.csv").then(() => {
+    console.log("Done save csv");
+  });
+  console.log(csvContent);
+
+  let Client = require("ssh2-sftp-client");
+  let client = new Client();
+  let data = fs.createReadStream("./cars.csv");
+  let remote = "/cars.csv";
+
+  client
+    .connect({
+      host: "swipetospin.exavault.com",
+      port: "22",
+      username: "stssftp_solidmotorsllc",
+      password: "HySfQ8QO",
+    })
+    .then(() => {
+      return client.put(data, remote);
+    })
+    .then(() => {
+      return client.end();
+    })
+    .catch((err) => {
+      console.error(err.message);
+    });
 
   // const Ftp = new jsftp({
   //   host: "sftp:swipetospin.exavault.com",
