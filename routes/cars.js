@@ -146,11 +146,7 @@ router.get("/csv/", async (req, res) => {
 
   // uploadImageToFtp();
 
-  // let csvContent = "data:text/csv;charset=utf-8,";
   let csvContent = [];
-  let header = "Vin Number, Stock, Make, Model, Images";
-  csvContent.push(header);
-
   const cars = await Car.find();
 
   cars.forEach((item) => {
@@ -175,30 +171,29 @@ router.get("/csv/", async (req, res) => {
   const csv = new ObjectsToCsv(csvContent);
   await csv.toDisk("./cars.csv").then(() => {
     console.log("Done save csv");
+    let Client = require("ssh2-sftp-client");
+    let client = new Client();
+    let data = fs.createReadStream("./cars.csv");
+    let remote = "/cars.csv";
+
+    client
+      .connect({
+        host: "swipetospin.exavault.com",
+        port: "22",
+        username: "stssftp_solidmotorsllc",
+        password: "HySfQ8QO",
+      })
+      .then(() => {
+        return client.put(data, remote);
+      })
+      .then(() => {
+        return client.end();
+      })
+      .catch((err) => {
+        console.error(err.message);
+      });
   });
   console.log(csvContent);
-
-  let Client = require("ssh2-sftp-client");
-  let client = new Client();
-  let data = fs.createReadStream("./cars.csv");
-  let remote = "/cars.csv";
-
-  client
-    .connect({
-      host: "swipetospin.exavault.com",
-      port: "22",
-      username: "stssftp_solidmotorsllc",
-      password: "HySfQ8QO",
-    })
-    .then(() => {
-      return client.put(data, remote);
-    })
-    .then(() => {
-      return client.end();
-    })
-    .catch((err) => {
-      console.error(err.message);
-    });
 
   // const Ftp = new jsftp({
   //   host: "sftp:swipetospin.exavault.com",
