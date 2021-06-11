@@ -147,10 +147,9 @@ router.get("/csv/", async (req, res) => {
   // uploadImageToFtp();
 
   // let csvContent = "data:text/csv;charset=utf-8,";
-
   let csvContent = [];
   let header = "Vin Number, Stock, Make, Model, Images";
-  csvContent = csvContent + header;
+  csvContent.push(header);
 
   const cars = await Car.find();
 
