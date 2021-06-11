@@ -169,12 +169,12 @@ router.get("/csv/", async (req, res) => {
     csvContent.push(row);
   });
   const csv = new ObjectsToCsv(csvContent);
-  await csv.toDisk("./cars.csv").then(() => {
+  await csv.toDisk("./solidmotorsllc.csv").then(() => {
     console.log("Done save csv");
     let Client = require("ssh2-sftp-client");
     let client = new Client();
-    let data = fs.createReadStream("./cars.csv");
-    let remote = "/cars.csv";
+    let data = fs.createReadStream("./solidmotorsllc.csv");
+    let remote = "/solidmotorsllc.csv";
 
     client
       .connect({
