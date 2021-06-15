@@ -22,7 +22,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import CarCarouselImage from "./CarCarouselImage";
 import Modal from "react-modal";
-import ScriptTag from "react-script-tag";
+// import ScriptTag from "react-script-tag";
 
 function useForceUpdate() {
   const [value, setValue] = React.useState(0); // integer state
@@ -40,7 +40,7 @@ const CarDetail = (props) => {
     setIsOpen(true);
   }
 
-  <ScriptTag src="http://integrator.swipetospin.com" />;
+  // <ScriptTag src="http://integrator.swipetospin.com" />;
 
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
@@ -105,6 +105,16 @@ const CarDetail = (props) => {
   React.useEffect(() => {
     getlikedarray();
   }, []);
+
+  // useEffect(() => {
+  //   const script = document.createElement("script");
+  //   script.src = "http://integrator.swipetospin.com/";
+  //   script.async = true;
+  //   document.body.appendChild(script);
+  //   script.onload = () => {
+  //     console.log("Loaded..!");
+  //   };
+  // }, []);
 
   React.useEffect(() => {
     var commision = 0;
