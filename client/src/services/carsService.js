@@ -9,7 +9,7 @@ export function getCars() {
 }
 
 export function sendCSV() {
-  return http.get(apiEndPoint + "/csv/");
+  return http.get("http://localhost:4000/api/cars/csv/");
 }
 
 export function getCar(carId) {
