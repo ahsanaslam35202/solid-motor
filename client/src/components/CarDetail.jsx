@@ -322,6 +322,10 @@ const CarDetail = (props) => {
     },
   };
 
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [car.vin]);
+
   return (
     <>
       <CallBar />
@@ -1418,7 +1422,6 @@ const CarDetail = (props) => {
                 monthlyPayment={item.monthlyPayment}
                 milesDriven={item.milesDriven}
                 onClick={() => {
-                  console.log("a");
                   myRef2.current.scrollIntoView();
                 }}
               />

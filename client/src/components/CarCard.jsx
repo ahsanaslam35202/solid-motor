@@ -5,7 +5,7 @@ const carCard = (props) => {
   return (
     <div className="col-md-3 car-card-container">
       <Link
-        to={{ pathname: "/carDetails2", state: { car: props.car } }}
+        to={{ pathname: "/carDetails", state: { car: props.car } }}
         style={{ textDecoration: "none" }}
       >
         <div className="shadow-sm car-card">
