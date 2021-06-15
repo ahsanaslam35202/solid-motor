@@ -156,6 +156,7 @@ router.get("/csv/", async (req, res) => {
     row.stock = item.stock;
     row.make = item.make;
     row.model = item.name;
+    row.status = "Used";
     item.sendImages.forEach((item2) => {
       carImages =
         carImages +
