@@ -132,7 +132,7 @@ const CSVFile = (props) => {
             sendFile();
           }}
         >
-          Download
+          Download File
         </button>
         {/* <button
           onClick={() => {
