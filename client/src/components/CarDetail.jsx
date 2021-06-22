@@ -582,7 +582,7 @@ const CarDetail = (props) => {
                   onClick={() => {
                     var link = car.reportLink;
                     console.log(link);
-                    window.open(`${car.reportLink}`, "_blank");
+                    window.open(`http://www.carfax.com/VehicleHistory/p/Report.cfx?partner=DVW_1&vin=${car.vin}`, "_blank");
                   }}
                 >
                   View Report
