@@ -56,5 +56,5 @@
     "css-loader": "^5.2.1",
     "style-loader": "^2.0.0"
   },
-  "proxy": "http://solid-motor-app.herokuapp.com/"
+  "proxy": "http://localhost:8080"
 }
