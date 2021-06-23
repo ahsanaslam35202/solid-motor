@@ -1,0 +1,281 @@
+.custom-Modal {
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 20vh;
+  width: 60%;
+  /* transform: "translate(-50%, -50%)",
+    padding: 0, */
+  border-width: 0px;
+  border-radius: 20px;
+  border: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+.nav2-dropdown {
+  border-radius: 10px !important;
+  border: none;
+  box-shadow: none;
+  margin-top: 10px !important;
+}
+
+.w-60 {
+  width: 60%;
+}
+
+.w-40 {
+  width: 40%;
+}
+
+.mt-0 {
+  margin: 0px;
+}
+
+.mt-15 {
+  margin-top: 15px;
+}
+
+.mt-30 {
+  margin-top: 30px;
+}
+
+.mt-40 {
+  margin-top: 40px;
+}
+
+.mt-50 {
+  margin-top: 50px;
+}
+
+.mt-60 {
+  margin-top: 60px;
+}
+
+.mt-80 {
+  margin-top: 80px;
+}
+
+.mt-100 {
+  margin-top: 100px;
+}
+
+.mt-120 {
+  margin-top: 120px;
+}
+
+.mt-150 {
+  margin-top: 150px;
+}
+
+.mt-180 {
+  margin-top: 180px;
+}
+
+.mb-300 {
+  margin-bottom: 300px;
+}
+
+.mt-200 {
+  margin-top: 200px;
+}
+
+body {
+  background: #f1f7f9;
+  font-family: Poppins, sans-serif;
+}
+
+.logo {
+  width: 100% !important;
+}
+
+.navbar {
+  font-weight: 500 !important;
+  background: rgba(241, 247, 249, 0) !important;
+}
+
+.navbar-brand {
+  width: 20% !important;
+}
+
+.nav-link:hover .login-icon {
+  color: #252525;
+}
+
+.h1-black {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.main-color {
+  color: #00bbff;
+}
+
+.h3-black {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 36px;
+}
+
+.h4-black {
+  margin-left: 20px;
+  font-weight: 700;
+}
+
+.main-button {
+  height: 50px !important;
+  background-color: #00b7fa !important;
+  padding-left: 40px !important;
+  padding-right: 40px !important;
+  border: none !important;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  outline: 0 !important;
+  border: 0 !important;
+}
+
+.main-button:hover,
+.main-button:focus {
+  background-color: #9fe5ff !important;
+  color: #141418 !important;
+  transition-duration: 0.3s;
+  outline: none !important;
+}
+
+button:hover,
+button:focus {
+  background-color: #9fe5ff !important ;
+  color: #141418 !important;
+  transition-duration: 0.3s !important;
+  outline: none !important;
+  border: none !important;
+}
+button:active {
+  outline: none !important;
+  border: none !important;
+}
+
+.footer-about-para {
+  margin-top: 30px;
+  font-size: 12px;
+}
+
+#footer a {
+  color: #1b1b1b;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.bottom-bar-container {
+  margin-top: 60px;
+  padding-bottom: 30px;
+  font-size: 10px;
+}
+
+.bottom-bar-link {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.bottom-bar-divider {
+  width: 100%;
+  height: 0px;
+  border: 1px dotted rgb(153, 153, 153);
+}
+
+.page-title {
+  font-size: 48px;
+  font-family: Poppins, sans-serif;
+  font-weight: 700;
+}
+
+.h1-white {
+  font-size: 36px;
+  font-weight: 700;
+  color: #f2f5f8;
+}
+
+.bg-main {
+  background: #00bbff;
+}
+
+.white-color {
+  color: #f3fcff;
+}
+.dektop-d-none {
+  display: none !important;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  color: #495057;
+  background-color: #fff !important;
+  border-color: #dee2e6 #dee2e6 #fff;
+}
+.tab-switch-button .nav-link {
+  background-color: rgba(255, 255, 255, 0.55) !important;
+}
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .mobile-text-center {
+    text-align: center;
+  }
+  .mobile-flex-center {
+    display: flex;
+    justify-content: center !important;
+  }
+  .mobile-mt-50 {
+    margin-top: 50px;
+  }
+  .footer-about-para {
+    text-align: center;
+    padding: 10px !important;
+  }
+  .footer-about img {
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+  #footer .col-sm-6 {
+    width: 33% !important;
+  }
+  .footer-link-heading {
+    margin-top: 30px;
+  }
+  .navbar-brand {
+    width: 60% !important;
+  }
+  .logo {
+    width: 100% !important;
+  }
+  .mobile-mt50 {
+    margin-top: 50px;
+  }
+  .mobile-mt80 {
+    margin-top: 80px;
+  }
+  .mobile-d-none {
+    display: none !important;
+  }
+  .dektop-d-none {
+    display: block !important;
+  }
+  .mobile-pd0 {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  .mobile-pd20 {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  .custom-Modal {
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 20vh;
+    width: 90%;
+    /* transform: "translate(-50%, -50%)",
+      padding: 0, */
+    border-width: 0px;
+    border-radius: 20px;
+    border: none;
+  }
+}

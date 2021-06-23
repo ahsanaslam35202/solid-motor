@@ -1,0 +1,76 @@
+.header-container {
+  width: 100%;
+  height: 70vh;
+  background: url("../../assets/img/Loan%20Header.png") center / cover;
+  padding-top: 130px;
+}
+
+.tabs-container {
+  width: 100%;
+}
+
+.tab-switch-button {
+  width: 50%;
+}
+
+.tab-switch-link {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.form-container {
+  width: 100%;
+  background: #ffffff;
+  padding: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-top: 40px;
+  padding-bottom: 10px;
+}
+
+.price {
+  font-size: 48px;
+  font-weight: 700;
+  color: #00bbff;
+}
+
+.form-button {
+  margin-top: 10px;
+  height: 60px;
+  background: #00bbff;
+  border-width: 0px;
+  width: 100%;
+}
+
+.loan-input {
+  height: 60px;
+  border-color: #1f2021;
+}
+
+.loan-page select {
+  height: 60px !important;
+  border-color: #1f2021 !important;
+}
+
+.footer-b-mar {
+  margin-top: 300px;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .header-container {
+    margin-top: 0px;
+  }
+  .extra-note {
+    margin-top: 700px;
+  }
+  .price {
+    font-size: 32px;
+  }
+  .tabs-container {
+    margin-top: 50px;
+  }
+  .footer-b-mar {
+    margin-top: 100px;
+  }
+}
