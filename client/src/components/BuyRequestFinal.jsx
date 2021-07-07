@@ -49,7 +49,6 @@ const BuyRequestFinal = (props) => {
             width="100%"
             height="1260px"
             id="myId"
-            className="scrollbar"
             display="initial"
             position="relative"
           />
