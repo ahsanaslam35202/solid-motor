@@ -94,19 +94,22 @@ const CarDetail = (props) => {
   };
 
   React.useEffect(() => {
-    if(car.monthlyPayment>800){
+    if (car.monthlyPayment > 800) {
       setMonthlyPayment(800);
     }
-    else{
-      setMonthlyPayment(car.monthlyPayment)
-    };
-    if(car.downPayment>10000){
+    if (car.monthlyPayment < 200) {
+      setMonthlyPayment(200);
+    } else {
+      setMonthlyPayment(car.monthlyPayment);
+    }
+    if (car.downPayment > 10000) {
       setDownPayment(10000);
     }
-    else{
-      setDownPayment(car.downPayment)
-    };
-
+    if (car.downPayment < 500) {
+      setDownPayment(500);
+    } else {
+      setDownPayment(car.downPayment);
+    }
   }, []);
 
   React.useEffect(() => {
@@ -244,6 +247,8 @@ const CarDetail = (props) => {
     // const user = getloggedinuser();
     // const userId = user._id;
     const carId = car._id;
+    const dpm = downPayment[0];
+    const mmp = monthlyPayment[0];
 
     console.log("+++++++++++++++++++++++++++++");
     console.log("Car Total Price: " + carFinancedPrice);
@@ -259,8 +264,8 @@ const CarDetail = (props) => {
       userName,
       phoneNo,
       // userId,
-      downPayment,
-      monthlyPayment,
+      dpm,
+      mmp,
       months,
       creditScore,
       annualIncome,
@@ -598,7 +603,10 @@ const CarDetail = (props) => {
                   onClick={() => {
                     var link = car.reportLink;
                     console.log(link);
-                    window.open(`http://www.carfax.com/VehicleHistory/p/Report.cfx?partner=DVW_1&vin=${car.vin}`, "_blank");
+                    window.open(
+                      `http://www.carfax.com/VehicleHistory/p/Report.cfx?partner=DVW_1&vin=${car.vin}`,
+                      "_blank"
+                    );
                   }}
                 >
                   View Report
@@ -1014,69 +1022,72 @@ const CarDetail = (props) => {
                         {/* ++++++++++++++++++++++++++++++++++++++++ */}
 
                         <Range
-          values={[monthlyPayment]}
-          step={10}
-          min={200}
-          max={800}
-          onChange={(values) => {setMonthlyPayment(values)}}
-          renderTrack={({ props, children }) => (
-            <div
-              onMouseDown={props.onMouseDown}
-              onTouchStart={props.onTouchStart}
-              style={{
-                ...props.style,
-                height: "36px",
-                display: "flex",
-                width: "100%"
-              }}
-            >
-              <div
-                ref={props.ref}
-                style={{
-                  height: "5px",
-                  width: "100%",
-                  borderRadius: "4px",
-                  background: getTrackBackground({
-                    values: [monthlyPayment],
-                    colors: ["#548BF4", "#ccc"],
-                    min: 200,
-                    max: 800
-                  }),
-                  alignSelf: "center"
-                }}
-              >
-                {children}
-              </div>
-            </div>
-          )}
-          renderThumb={({ props, isDragged }) => (
-            <div
-              {...props}
-              style={{
-                ...props.style,
-                height: "24px",
-                width: "24px",
-                borderRadius: "42px",
-                backgroundColor: "#548BF4",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                boxShadow: "0px 2px 6px #AAA"
-              }}
-            >
-              <div
-                style={{
-                  height: "10px",
-                  width: "1px",
-                  backgroundColor: isDragged ? "#548BF4" : "#CCC"
-                }}
-              />
-            </div>
-          )}
-        />
+                          values={[monthlyPayment]}
+                          step={10}
+                          min={200}
+                          max={800}
+                          onChange={(values) => {
+                            setMonthlyPayment(values);
+                          }}
+                          renderTrack={({ props, children }) => (
+                            <div
+                              onMouseDown={props.onMouseDown}
+                              onTouchStart={props.onTouchStart}
+                              style={{
+                                ...props.style,
+                                height: "36px",
+                                display: "flex",
+                                width: "100%",
+                              }}
+                            >
+                              <div
+                                ref={props.ref}
+                                style={{
+                                  height: "5px",
+                                  width: "100%",
+                                  borderRadius: "4px",
+                                  background: getTrackBackground({
+                                    values: [monthlyPayment],
+                                    colors: ["#548BF4", "#ccc"],
+                                    min: 200,
+                                    max: 800,
+                                  }),
+                                  alignSelf: "center",
+                                }}
+                              >
+                                {children}
+                              </div>
+                            </div>
+                          )}
+                          renderThumb={({ props, isDragged }) => (
+                            <div
+                              {...props}
+                              style={{
+                                ...props.style,
+                                height: "24px",
+                                width: "24px",
+                                borderRadius: "42px",
+                                backgroundColor: "#548BF4",
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                boxShadow: "0px 2px 6px #AAA",
+                              }}
+                            >
+                              <div
+                                style={{
+                                  height: "10px",
+                                  width: "1px",
+                                  backgroundColor: isDragged
+                                    ? "#548BF4"
+                                    : "#CCC",
+                                }}
+                              />
+                            </div>
+                          )}
+                        />
 
-      {/* ++++++++++++++++++++++++++++++++++++++++++++++ */}
- 
+                        {/* ++++++++++++++++++++++++++++++++++++++++++++++ */}
                       </div>
                       <div className="mt-50">
                         <div className="row">
@@ -1095,67 +1106,71 @@ const CarDetail = (props) => {
 
                         {/* 6++++++++++++++++++++++++++++++++++++++++ */}
                         <Range
-          values={[downPayment]}
-          step={100}
-          min={500}
-          max={10000}
-          onChange={(values) => {setDownPayment(values)}}
-          renderTrack={({ props, children }) => (
-            <div
-              onMouseDown={props.onMouseDown}
-              onTouchStart={props.onTouchStart}
-              style={{
-                ...props.style,
-                height: "36px",
-                display: "flex",
-                width: "100%"
-              }}
-            >
-              <div
-                ref={props.ref}
-                style={{
-                  height: "5px",
-                  width: "100%",
-                  borderRadius: "4px",
-                  background: getTrackBackground({
-                    values: [downPayment],
-                    colors: ["#548BF4", "#ccc"],
-                    min: 500,
-                    max: 10000
-                  }),
-                  alignSelf: "center"
-                }}
-              >
-                {children}
-              </div>
-            </div>
-          )}
-          renderThumb={({ props, isDragged }) => (
-            <div
-              {...props}
-              style={{
-                ...props.style,
-                height: "24px",
-                width: "24px",
-                borderRadius: "42px",
-                backgroundColor: "#548BF4",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                boxShadow: "0px 2px 6px #AAA"
-              }}
-            >
-              <div
-                style={{
-                  height: "10px",
-                  width: "1px",
-                  backgroundColor: isDragged ? "#548BF4" : "#CCC"
-                }}
-              />
-            </div>
-          )}
-        />
-        {/* ++++++++++++++++++++++++++++++++++++++++++++ */}
+                          values={[downPayment]}
+                          step={100}
+                          min={500}
+                          max={10000}
+                          onChange={(values) => {
+                            setDownPayment(values);
+                          }}
+                          renderTrack={({ props, children }) => (
+                            <div
+                              onMouseDown={props.onMouseDown}
+                              onTouchStart={props.onTouchStart}
+                              style={{
+                                ...props.style,
+                                height: "36px",
+                                display: "flex",
+                                width: "100%",
+                              }}
+                            >
+                              <div
+                                ref={props.ref}
+                                style={{
+                                  height: "5px",
+                                  width: "100%",
+                                  borderRadius: "4px",
+                                  background: getTrackBackground({
+                                    values: [downPayment],
+                                    colors: ["#548BF4", "#ccc"],
+                                    min: 500,
+                                    max: 10000,
+                                  }),
+                                  alignSelf: "center",
+                                }}
+                              >
+                                {children}
+                              </div>
+                            </div>
+                          )}
+                          renderThumb={({ props, isDragged }) => (
+                            <div
+                              {...props}
+                              style={{
+                                ...props.style,
+                                height: "24px",
+                                width: "24px",
+                                borderRadius: "42px",
+                                backgroundColor: "#548BF4",
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                boxShadow: "0px 2px 6px #AAA",
+                              }}
+                            >
+                              <div
+                                style={{
+                                  height: "10px",
+                                  width: "1px",
+                                  backgroundColor: isDragged
+                                    ? "#548BF4"
+                                    : "#CCC",
+                                }}
+                              />
+                            </div>
+                          )}
+                        />
+                        {/* ++++++++++++++++++++++++++++++++++++++++++++ */}
                       </div>
                       <div className="row mobile-d-none">
                         {/* <div className="col-md-6">
