@@ -49,6 +49,7 @@ const BuyRequestFinal = (props) => {
             width="100%"
             height="1260px"
             id="myId"
+            className="border-0"
             display="initial"
             position="relative"
           />
