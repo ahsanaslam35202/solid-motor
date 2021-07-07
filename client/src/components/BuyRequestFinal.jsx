@@ -19,6 +19,14 @@ const BuyRequestFinal = (props) => {
     forceUpdate();
   };
 
+  React.useEffect(() => {
+    var iframe = document.getElementById("myId");
+    iframe.onload = function () {
+      iframe.style.height =
+        iframe.contentWindow.document.body.scrollHeight + "px";
+    };
+  }, []);
+
   return (
     <>
       <CallBar />
@@ -35,15 +43,17 @@ const BuyRequestFinal = (props) => {
             </div>
           </div>
         </header>
-        <Iframe
-          url="https://dwssecuredforms.dealercenter.net/CreditApplication/index/14634185?themecolor=4ecaff&formtype=l&frameId=dws_frame_0&standalone=true&ls=Our"
-          width="100%"
-          height="Auto"
-          id="myId"
-          // className="myClassname"
-          display="initial"
-          position="relative"
-        />
+        <div className="container">
+          <Iframe
+            url="https://dwssecuredforms.dealercenter.net/CreditApplication/index/14634185?themecolor=4ecaff&formtype=l&frameId=dws_frame_0&standalone=true&ls=Our"
+            width="100%"
+            height="auto"
+            id="myId"
+            // className="myClassname"
+            display="initial"
+            position="relative"
+          />
+        </div>
       </div>
       <Footer />
     </>
