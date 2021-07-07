@@ -22,6 +22,8 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import CarCarouselImage from "./CarCarouselImage";
 import Modal from "react-modal";
+import { Range, getTrackBackground } from "react-range";
+
 // import ScriptTag from "react-script-tag";
 
 function useForceUpdate() {
@@ -58,10 +60,8 @@ const CarDetail = (props) => {
   const [carPrice, setCarPrice] = React.useState(car.price);
   const [carFinancedPrice, setCarFinancedPrice] = React.useState(0);
   const [carPendingAmount, setCarPendingAmout] = React.useState(0);
-  const [downPayment, setDownPayment] = React.useState(car.downPayment);
-  const [monthlyPayment, setMonthlyPayment] = React.useState(
-    car.monthlyPayment
-  );
+  const [downPayment, setDownPayment] = React.useState(500);
+  const [monthlyPayment, setMonthlyPayment] = React.useState(200);
   const [months, setMonths] = React.useState(72);
   const [creditScore, setCreditScore] = React.useState(750);
   const [annualIncome, setAnnualIncome] = React.useState(30000);
@@ -92,6 +92,22 @@ const CarDetail = (props) => {
       setTradeInCredit(0);
     }
   };
+
+  React.useEffect(() => {
+    if(car.monthlyPayment>800){
+      setMonthlyPayment(800);
+    }
+    else{
+      setMonthlyPayment(car.monthlyPayment)
+    };
+    if(car.downPayment>10000){
+      setDownPayment(10000);
+    }
+    else{
+      setDownPayment(car.downPayment)
+    };
+
+  }, []);
 
   React.useEffect(() => {
     getRelatedCarsData();
@@ -995,18 +1011,72 @@ const CarDetail = (props) => {
                             />
                           </div>
                         </div>
-                        <input
-                          className="border rounded range-input"
-                          type="range"
-                          value={Math.ceil(monthlyPayment)}
-                          min={200}
-                          max={800}
-                          onChange={(e) => {
-                            // setMonthlyPayment(e.target.value);
-                            setMonthlyPayment(e.target.value);
-                          }}
-                          step={Math.ceil(carPendingAmount / 50)}
-                        />
+                        {/* ++++++++++++++++++++++++++++++++++++++++ */}
+
+                        <Range
+          values={[monthlyPayment]}
+          step={10}
+          min={200}
+          max={800}
+          onChange={(values) => {setMonthlyPayment(values)}}
+          renderTrack={({ props, children }) => (
+            <div
+              onMouseDown={props.onMouseDown}
+              onTouchStart={props.onTouchStart}
+              style={{
+                ...props.style,
+                height: "36px",
+                display: "flex",
+                width: "100%"
+              }}
+            >
+              <div
+                ref={props.ref}
+                style={{
+                  height: "5px",
+                  width: "100%",
+                  borderRadius: "4px",
+                  background: getTrackBackground({
+                    values: [monthlyPayment],
+                    colors: ["#548BF4", "#ccc"],
+                    min: 200,
+                    max: 800
+                  }),
+                  alignSelf: "center"
+                }}
+              >
+                {children}
+              </div>
+            </div>
+          )}
+          renderThumb={({ props, isDragged }) => (
+            <div
+              {...props}
+              style={{
+                ...props.style,
+                height: "24px",
+                width: "24px",
+                borderRadius: "42px",
+                backgroundColor: "#548BF4",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                boxShadow: "0px 2px 6px #AAA"
+              }}
+            >
+              <div
+                style={{
+                  height: "10px",
+                  width: "1px",
+                  backgroundColor: isDragged ? "#548BF4" : "#CCC"
+                }}
+              />
+            </div>
+          )}
+        />
+
+      {/* ++++++++++++++++++++++++++++++++++++++++++++++ */}
+ 
                       </div>
                       <div className="mt-50">
                         <div className="row">
@@ -1022,19 +1092,70 @@ const CarDetail = (props) => {
                             />
                           </div>
                         </div>
-                        <input
-                          className="border rounded range-input"
-                          type="range"
-                          value={Math.ceil(downPayment)}
-                          min={500}
-                          max={10000}
-                          onChange={(e) => {
-                            // setDownPayment(e.target.value);
-                            setDownPayment(e.target.value);
-                          }}
-                          // step={Math.ceil(carPrice / 100)}
-                          step={10}
-                        />
+
+                        {/* 6++++++++++++++++++++++++++++++++++++++++ */}
+                        <Range
+          values={[downPayment]}
+          step={100}
+          min={500}
+          max={10000}
+          onChange={(values) => {setDownPayment(values)}}
+          renderTrack={({ props, children }) => (
+            <div
+              onMouseDown={props.onMouseDown}
+              onTouchStart={props.onTouchStart}
+              style={{
+                ...props.style,
+                height: "36px",
+                display: "flex",
+                width: "100%"
+              }}
+            >
+              <div
+                ref={props.ref}
+                style={{
+                  height: "5px",
+                  width: "100%",
+                  borderRadius: "4px",
+                  background: getTrackBackground({
+                    values: [downPayment],
+                    colors: ["#548BF4", "#ccc"],
+                    min: 500,
+                    max: 10000
+                  }),
+                  alignSelf: "center"
+                }}
+              >
+                {children}
+              </div>
+            </div>
+          )}
+          renderThumb={({ props, isDragged }) => (
+            <div
+              {...props}
+              style={{
+                ...props.style,
+                height: "24px",
+                width: "24px",
+                borderRadius: "42px",
+                backgroundColor: "#548BF4",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                boxShadow: "0px 2px 6px #AAA"
+              }}
+            >
+              <div
+                style={{
+                  height: "10px",
+                  width: "1px",
+                  backgroundColor: isDragged ? "#548BF4" : "#CCC"
+                }}
+              />
+            </div>
+          )}
+        />
+        {/* ++++++++++++++++++++++++++++++++++++++++++++ */}
                       </div>
                       <div className="row mobile-d-none">
                         {/* <div className="col-md-6">
