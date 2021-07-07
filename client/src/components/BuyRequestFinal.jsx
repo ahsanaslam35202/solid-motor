@@ -19,6 +19,14 @@ const BuyRequestFinal = (props) => {
     forceUpdate();
   };
 
+  React.useEffect(() => {
+    var iframe = document.getElementById("myId");
+    iframe.onload = function () {
+      iframe.style.height =
+        iframe.contentWindow.document.body.scrollHeight + "px";
+    };
+  }, []);
+
   return (
     <>
       <CallBar />
