@@ -41,7 +41,7 @@ function App() {
         <Route exact path="/account" component={Signup}></Route>
         <Route exact path="/signup" component={Signup}></Route>
         <Route exact path="/login" component={Login}></Route>
-        <Route exact path="/carDetails" component={CarDetail}></Route>
+        <Route exact path="/carDetails/:id" component={CarDetail}></Route>
         <Route exact path="/thankyou" component={Thankyou}></Route>
         <Route exact path="/car" component={CarDetail}></Route>
         <Route exact path="/adminDashboard" component={Dashboard}></Route>
