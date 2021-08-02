@@ -52,6 +52,7 @@ function App() {
         <Route exact path="/car" component={CarDetail}></Route>
         <Route exact path="/adminDashboard" component={Dashboard}></Route>
         <Route exact path="/sellrequest" component={SellRequest}></Route>
+        <Route exact path="/buy-requests" component={BuyCarView}></Route>
         <Route exact path="/addCar" component={AddCar}></Route>
         <Route exact path="/viewCars" component={ViewCars}></Route>
         <Route exact path="/csv file" component={CSVFile}></Route>

@@ -11,6 +11,8 @@ import {
   IconButton,
   Typography,
 } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
@@ -54,6 +56,11 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     marginTop: "10px",
   },
+  checkButton: {
+    backgroundColor: "#00b7fa",
+    paddingLeft: "5px",
+    paddingRight: "5px",
+  },
 }));
 
 const BuyCarView = () => {
@@ -88,8 +95,8 @@ const BuyCarView = () => {
                 <CardHeader
                   titleTypographyProps={{ variant: "subtitle2" }}
                   subheaderTypographyProps={{ variant: "body2" }}
-                  title={"$" + buyRequest.downPayment}
-                  subheader={"$" + buyRequest.monthlyPayment}
+                  title={"Customer: " + buyRequest.userName}
+                  subheader={"Phone: " + buyRequest.phoneNo}
                 />
                 <CardMedia
                   className={classes.media}
@@ -102,7 +109,8 @@ const BuyCarView = () => {
                     color="textSecondary"
                     component="subtitle2"
                   >
-                    {buyRequest.car[0].make + " " + buyRequest.car[0].model}
+                    {/* {buyRequest.car[0].make + " " + buyRequest.car[0].model} */}
+                    {"Credit Score: " + buyRequest.creditScore}
                   </Typography>
                   <br />
                   <Typography
@@ -110,17 +118,34 @@ const BuyCarView = () => {
                     color="textSecondary"
                     component="subtitle2"
                   >
-                    ${buyRequest.car[0].price}
+                    {"Annual Income: $" + buyRequest.annualIncome}
                   </Typography>
                   <br />
                   <Typography
                     variant="h"
-                    className={classes.card_subtitle}
                     color="textSecondary"
                     component="subtitle2"
                   >
-                    {buyRequest.user[0].firstName}
+                    {"DownPayment: $" + buyRequest.downPayment}
                   </Typography>
+                  <br />
+                  <Typography
+                    variant="h"
+                    color="textSecondary"
+                    component="subtitle2"
+                  >
+                    {"Monthly Payment: $" + buyRequest.monthlyPayment}
+                  </Typography>
+                  <br />
+                  <br />
+                  <a href={"/carDetails/"+ buyRequest.car[0].vin} >
+                  <Button className={classes.checkButton} size="small">
+            View Car
+          </Button>
+                  </a>
+                  {console.log(buyRequest.car[0].vin)}
+                  
+
                 </CardContent>
               </Card>
             </Grid>
