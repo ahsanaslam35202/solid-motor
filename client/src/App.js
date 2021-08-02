@@ -27,6 +27,12 @@ import SellTradeSuccess from "./components/SellTradeSuccess";
 import SavedCars from "./components/SavedCars";
 import CSVFile from "./components/CSVFile";
 import BuyRequestFinal from "./components/BuyRequestFinal";
+import Articles from "./components/Articles";
+import Article1 from "./components/Article1";
+import Article2 from "./components/Article2";
+import Article3 from "./components/Article3";
+import Article4 from "./components/Article4";
+import Article5 from "./components/Article5";
 
 function App() {
   return (
@@ -49,6 +55,12 @@ function App() {
         <Route exact path="/addCar" component={AddCar}></Route>
         <Route exact path="/viewCars" component={ViewCars}></Route>
         <Route exact path="/csv file" component={CSVFile}></Route>
+        <Route exact path="/articles" component={Articles}></Route>
+        <Route exact path="/Used Cars For Sale in Garland,TX" component={Article1}></Route>
+        <Route exact path="/Used sedans for sale near me" component={Article2}></Route>
+        <Route exact path="/Used lexus suv for sale near me" component={Article3}></Route>
+        <Route exact path="/Cheap used pickup trucks for sale near me" component={Article4}></Route>
+        <Route exact path="/used coupe for sale near me" component={Article5}></Route>
         <Route
           exact
           path="/request-final-form"

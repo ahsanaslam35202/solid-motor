@@ -35,12 +35,12 @@ const Navbar = () => {
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/sell">
-                Sell
+                Sell/Trade
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="trade">
-                Trade
+              <a className="nav-link" href="articles">
+                Articles
               </a>
             </li>
             {isLoggedin ? (
