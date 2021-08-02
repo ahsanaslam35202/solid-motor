@@ -221,7 +221,7 @@ router.get("/related/:make", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   console.log(req.params.id);
-  const cars = await Car.findOne({ _id: req.params.id });
+  const cars = await Car.findOne({ vin: req.params.id });
   console.log(cars);
   res.send(cars);
 });

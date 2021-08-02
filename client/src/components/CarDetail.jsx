@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useRef } from "react";
 import { getCar, getCars, getRelatedCars } from "../services/carsService";
 import CarCard from "./CarCard";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useParams } from "react-router-dom";
 import CallBar from "./CallBar";
 
 import {
@@ -54,10 +54,12 @@ const CarDetail = (props) => {
   const myRef = useRef(null);
   const myRef2 = useRef(null);
 
-  const { car } = props.location.state;
+  const { id } = useParams();
+  // const { car } = props.location.state;
   const [buyType, setBuyType] = React.useState("financed");
   const [cars, setCars] = React.useState([]);
-  const [carPrice, setCarPrice] = React.useState(car.price);
+  const [carData, setCarData] = React.useState([]);
+  const [carPrice, setCarPrice] = React.useState(0);
   const [carFinancedPrice, setCarFinancedPrice] = React.useState(0);
   const [carPendingAmount, setCarPendingAmout] = React.useState(0);
   const [downPayment, setDownPayment] = React.useState(500);
@@ -65,6 +67,8 @@ const CarDetail = (props) => {
   const [months, setMonths] = React.useState(72);
   const [creditScore, setCreditScore] = React.useState(750);
   const [annualIncome, setAnnualIncome] = React.useState(30000);
+
+  const [extendedFeatures, setExtendedFeatures] = React.useState([]);
 
   const [APR, setAPR] = React.useState(0);
   const [tradeInCredit, setTradeInCredit] = React.useState(0);
@@ -76,24 +80,30 @@ const CarDetail = (props) => {
   const [liked, setLiked] = React.useState(0);
   const [likedArray, setLikedArray] = React.useState([]);
 
-  const getRelatedCarsData = async () => {
-    const { data } = await getRelatedCars(car.make);
-    const cars = [...data];
-    setCars(cars);
-  };
+  // const getRelatedCarsData = async () => {
+  //   const { data } = await getRelatedCars(car.make);
+  //   const cars = [...data];
+  //   setCars(cars);
+  // };
 
-  const getTradeInCredit = async () => {
-    const user = getloggedinuser();
-    if (user) {
-      const userId = user._id;
-      const { data } = await getTradeIn(userId);
-      setTradeInCredit(data.estimatedPrice);
-    } else {
-      setTradeInCredit(0);
-    }
-  };
+  // const getTradeInCredit = async () => {
+  //   const user = getloggedinuser();
+  //   if (user) {
+  //     const userId = user._id;
+  //     const { data } = await getTradeIn(userId);
+  //     setTradeInCredit(data.estimatedPrice);
+  //   } else {
+  //     setTradeInCredit(0);
+  //   }
+  // };
 
-  React.useEffect(() => {
+  const setAllData = async (id) => {
+    var { data } = await getCar(id);
+    //Set Car Data
+    const car = data;
+    setCarData(data);
+    setExtendedFeatures(car.extendedFeatures);
+
     if (car.monthlyPayment > 800) {
       setMonthlyPayment(800);
     }
@@ -110,20 +120,50 @@ const CarDetail = (props) => {
     } else {
       setDownPayment(car.downPayment);
     }
-  }, []);
+
+    var { data } = await getRelatedCars(car.make);
+    const relatedCars = [...data];
+    setCars(relatedCars);
+
+    const user = getloggedinuser();
+    if (user) {
+      const userId = user._id;
+      var { data } = await getTradeIn(userId);
+      setTradeInCredit(data.estimatedPrice);
+    } else {
+      setTradeInCredit(0);
+    }
+
+    setCarPrice(car.price);
+
+    if (isLoggedin()) {
+      const user = getloggedinuser();
+      var rray = await getLikeCarsArray(user._id);
+      setLikedArray(rray.data);
+      if (rray.data.includes(car._id)) {
+        setLiked(1);
+      }
+      if (likedArray.includes(car._id)) {
+        setLiked(1);
+      }
+    }
+  };
+
+  // React.useEffect(() => {}, []);
 
   React.useEffect(() => {
-    getRelatedCarsData();
+    setAllData(id);
+    // getRelatedCarsData();
   }, []);
-  React.useEffect(() => {
-    getTradeInCredit();
-  }, []);
-  React.useEffect(() => {
-    setCarPrice(car.price);
-  }, []);
-  React.useEffect(() => {
-    getlikedarray();
-  }, []);
+  // React.useEffect(() => {
+  // getTradeInCredit();
+  // }, []);
+  // React.useEffect(() => {
+  //   setCarPrice(car.price);
+  // }, []);
+  // React.useEffect(() => {
+  //   getlikedarray();
+  // }, []);
 
   // useEffect(() => {
   //   const script = document.createElement("script");
@@ -203,9 +243,7 @@ const CarDetail = (props) => {
       }
     }
 
-    console.log("Commision: " + commision);
     carFinancedPrice2 = carPrice2 * (1 + commision / 100);
-    console.log("Car Financed Price: " + carFinancedPrice2);
     // downPaymentMaxRange2 = 0.5 * carFinancedPrice2;
     // console.log("DownPayment MAX Range: " + downPaymentMaxRange2);
     // monthlyMinRange2 = (0.5 * carFinancedPrice2) / months;
@@ -246,7 +284,7 @@ const CarDetail = (props) => {
     e.preventDefault();
     // const user = getloggedinuser();
     // const userId = user._id;
-    const carId = car._id;
+    const carId = carData._id;
     const dpm = downPayment[0];
     const mmp = monthlyPayment[0];
 
@@ -280,11 +318,11 @@ const CarDetail = (props) => {
   };
 
   const handleLike = async () => {
-    if (likedArray.includes(car._id)) {
-      likedArray.pop(car._id);
+    if (likedArray.includes(carData._id)) {
+      likedArray.pop(carData._id);
       console.log(likedArray);
     } else {
-      likedArray.push(car._id);
+      likedArray.push(carData._id);
     }
     console.log("yes");
     if (isLoggedin()) {
@@ -292,9 +330,9 @@ const CarDetail = (props) => {
       if (user) {
         const userId = user._id;
         await likeCar(userId, likedArray).then(() => {
-          if (likedArray.includes(car._id)) {
-            const likes = car.likes + 1;
-            updateLikes(car._id, likes);
+          if (likedArray.includes(carData._id)) {
+            const likes = carData.likes + 1;
+            updateLikes(carData._id, likes);
             setLiked(1);
           } else {
             setLiked(0);
@@ -311,17 +349,17 @@ const CarDetail = (props) => {
       const user = getloggedinuser();
       var rray = await getLikeCarsArray(user._id);
       setLikedArray(rray.data);
-      if (rray.data.includes(car._id)) {
+      if (rray.data.includes(carData._id)) {
         setLiked(1);
       }
-      if (likedArray.includes(car._id)) {
+      if (likedArray.includes(carData._id)) {
         setLiked(1);
       }
     }
   };
 
-  const views = car.views + 1;
-  updateViews(car._id, views);
+  const views = carData.views + 1;
+  updateViews(carData._id, views);
 
   const responsive = {
     superLargeDesktop: {
@@ -345,7 +383,7 @@ const CarDetail = (props) => {
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
-  }, [car.vin]);
+  }, [carData.vin]);
 
   return (
     <>
@@ -439,7 +477,7 @@ const CarDetail = (props) => {
             <div className="col-md-6">
               <div className="d-flex car-title-container">
                 <h1 className="car-title">
-                  {car.modelYear} {car.make} {car.name}
+                  {carData.modelYear} {carData.make} {carData.name}
                 </h1>
                 <div
                   className="d-flex justify-content-center align-items-center heart-container"
@@ -447,18 +485,18 @@ const CarDetail = (props) => {
                 >
                   {liked ? (
                     <img
-                      src="assets/img/like_red.svg"
+                      src="../assets/img/like_red.svg"
                       style={{ width: "20px", fill: "red" }}
                     />
                   ) : (
                     <img
-                      src="assets/img/like.svg"
+                      src="../assets/img/like.svg"
                       style={{ width: "20px", fill: "red" }}
                     />
                   )}
                 </div>
               </div>
-              <h1 className="miles-driven">{car.milesDriven} Miles</h1>
+              <h1 className="miles-driven">{carData.milesDriven} Miles</h1>
             </div>
             {/* <div className="col-md-6 d-flex car-price-container">
               <h1 className="price">${car.price}</h1>
@@ -467,7 +505,7 @@ const CarDetail = (props) => {
         </div>
 
         <div className="car-header-container">
-          <img src="assets/img/car.png" style={{ width: "100%" }} />
+          <img src="../assets/img/car.png" style={{ width: "100%" }} />
         </div>
 
         <div className="container mt-30">
@@ -486,7 +524,7 @@ const CarDetail = (props) => {
                   }}
                 >
                   <img
-                    src="assets/img/view.svg"
+                    src="../assets/img/view.svg"
                     style={{ width: "20px", fill: "red" }}
                   />
                 </div>
@@ -518,7 +556,7 @@ const CarDetail = (props) => {
                   }}
                 >
                   <img
-                    src="assets/img/heart.svg"
+                    src="../assets/img/heart.svg"
                     style={{ width: "20px", fill: "red" }}
                   />
                 </div>
@@ -532,14 +570,14 @@ const CarDetail = (props) => {
                     fontWeight: 600,
                   }}
                 >
-                  {car.likes} Likes
+                  {carData.likes} Likes
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-80">
+        {/* <div className="mt-80">
           <Carousel
             responsive={responsive}
             removeArrowOnDeviceType={["tablet", "mobile"]}
@@ -548,7 +586,7 @@ const CarDetail = (props) => {
               <CarCarouselImage image={image} vin={car.vin} />
             ))}
           </Carousel>
-        </div>
+        </div> */}
 
         <div className="container mt-120 mobile-mt50 ">
           <h1 className="w-100 text-center details-heading" />
@@ -572,7 +610,7 @@ const CarDetail = (props) => {
                   }}
                 >
                   <img
-                    src="assets/img/sedan-car-front.svg"
+                    src="../assets/img/sedan-car-front.svg"
                     style={{ width: "36px", filter: "invert(18%)" }}
                   />
                 </div>
@@ -593,7 +631,7 @@ const CarDetail = (props) => {
                   <br />
                 </p>
                 <img
-                  src="assets/img/fax.png"
+                  src="../assets/img/fax.png"
                   style={{ width: "90px", marginBottom: "10px" }}
                 />
                 <button
@@ -601,10 +639,10 @@ const CarDetail = (props) => {
                   type="button"
                   style={{ background: "#00bbff", borderWidth: "0px" }}
                   onClick={() => {
-                    var link = car.reportLink;
+                    var link = carData.reportLink;
                     console.log(link);
                     window.open(
-                      `http://www.carfax.com/VehicleHistory/p/Report.cfx?partner=DVW_1&vin=${car.vin}`,
+                      `http://www.carfax.com/VehicleHistory/p/Report.cfx?partner=DVW_1&vin=${carData.vin}`,
                       "_blank"
                     );
                   }}
@@ -632,7 +670,7 @@ const CarDetail = (props) => {
                   }}
                 >
                   <img
-                    src="assets/img/wallet-filled-money-tool.svg"
+                    src="../assets/img/wallet-filled-money-tool.svg"
                     style={{ width: "36px", filter: "invert(19%)" }}
                   />
                 </div>
@@ -681,7 +719,7 @@ const CarDetail = (props) => {
                   }}
                 >
                   <img
-                    src="assets/img/brochure.svg"
+                    src="../assets/img/brochure.svg"
                     style={{ width: "36px", filter: "invert(21%)" }}
                   />
                 </div>
@@ -705,9 +743,9 @@ const CarDetail = (props) => {
                   type="button"
                   style={{ background: "#00bbff", borderWidth: "0px" }}
                   onClick={() => {
-                    var link = car.reportLink;
+                    var link = carData.reportLink;
                     console.log(link);
-                    window.open(`${car.brochureLink}`, "_blank");
+                    window.open(`${carData.brochureLink}`, "_blank");
                   }}
                 >
                   View Brochure
@@ -753,7 +791,7 @@ const CarDetail = (props) => {
                             <h1 className="details-card-heading">
                               Trim Package&nbsp;
                             </h1>
-                            <p className="details-card-para">{car.model}</p>
+                            <p className="details-card-para">{carData.model}</p>
                           </div>
                         </div>
                         <div className="col-md-6">
@@ -762,7 +800,7 @@ const CarDetail = (props) => {
                               Engine Type&nbsp;
                             </h1>
                             <p className="details-card-para">
-                              {car.engineType}
+                              {carData.engineType}
                             </p>
                           </div>
                         </div>
@@ -771,7 +809,7 @@ const CarDetail = (props) => {
                         <div className="col-md-6">
                           <div className="details-card">
                             <h1 className="details-card-heading">MPG&nbsp;</h1>
-                            <p className="details-card-para">{car.mpg}</p>
+                            <p className="details-card-para">{carData.mpg}</p>
                           </div>
                         </div>
                         <div className="col-md-6">
@@ -780,7 +818,7 @@ const CarDetail = (props) => {
                               Exterior Color&nbsp;
                             </h1>
                             <p className="details-card-para">
-                              {car.exteriorColor}
+                              {carData.exteriorColor}
                             </p>
                           </div>
                         </div>
@@ -792,7 +830,7 @@ const CarDetail = (props) => {
                               Interior Color&nbsp;
                             </h1>
                             <p className="details-card-para">
-                              {car.interiorColor}
+                              {carData.interiorColor}
                             </p>
                           </div>
                         </div>
@@ -802,7 +840,7 @@ const CarDetail = (props) => {
                               Transmission&nbsp;
                             </h1>
                             <p className="details-card-para">
-                              {car.transmission}
+                              {carData.transmission}
                             </p>
                           </div>
                         </div>
@@ -814,7 +852,7 @@ const CarDetail = (props) => {
                               Drive Train&nbsp;
                             </h1>
                             <p className="details-card-para">
-                              {car.driveTrain}
+                              {carData.driveTrain}
                             </p>
                           </div>
                         </div>
@@ -824,7 +862,7 @@ const CarDetail = (props) => {
                               Number of Keys&nbsp;
                             </h1>
                             <p className="details-card-para">
-                              {car.numberOfKeys}
+                              {carData.numberOfKeys}
                             </p>
                           </div>
                         </div>
@@ -833,7 +871,7 @@ const CarDetail = (props) => {
                         <div className="col-md-6">
                           <div className="details-card">
                             <h1 className="details-card-heading">VIN&nbsp;</h1>
-                            <p className="details-card-para">{car.vin}</p>
+                            <p className="details-card-para">{carData.vin}</p>
                           </div>
                         </div>
                         <div className="col-md-6">
@@ -841,7 +879,7 @@ const CarDetail = (props) => {
                             <h1 className="details-card-heading">
                               Stock #&nbsp;
                             </h1>
-                            <p className="details-card-para">{car.stock}</p>
+                            <p className="details-card-para">{carData.stock}</p>
                           </div>
                         </div>
                       </div>
@@ -857,7 +895,7 @@ const CarDetail = (props) => {
                 </h1> */}
                         <img
                           className="safari-child-flex"
-                          src="assets/img/care.png"
+                          src="../assets/img/care.png"
                           className="care-img"
                           alt=""
                           style={{ alignSelf: "start" }}
@@ -894,7 +932,7 @@ const CarDetail = (props) => {
                 overflow: "hidden",
               }}
             >
-              {car.extendedFeatures.map((item) => (
+              {extendedFeatures.map((item) => (
                 <div className="col-md-4 d-flex justify-content-start">
                   <ul>
                     <li>{item}</li>
@@ -1309,9 +1347,9 @@ const CarDetail = (props) => {
                       $
                       {Math.ceil(
                         carPrice +
-                          car.shippingCharges +
-                          car.taxAndRegistrationCharges +
-                          car.dealerFees -
+                          carData.shippingCharges +
+                          carData.taxAndRegistrationCharges +
+                          carData.dealerFees -
                           tradeInCredit
                       )}
                     </h1>
@@ -1536,7 +1574,7 @@ const CarDetail = (props) => {
               className="col-md-6 car-guide-img"
               style={{
                 background:
-                  'url("assets/img/mechanic-holding-digital-tablet.jpg") center / cover',
+                  'url("../assets/img/mechanic-holding-digital-tablet.jpg") center / cover',
               }}
             >
               <span />

@@ -6,7 +6,7 @@ const carCard = (props) => {
     <div className="col-md-3 car-card-container">
       <Link
         to={{
-          pathname: "/carDetails/5YFBURHE4HP679225",
+          pathname: `/carDetails/${props.car.vin}`,
           state: { car: props.car },
         }}
         style={{ textDecoration: "none" }}
