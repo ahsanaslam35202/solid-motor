@@ -100,6 +100,12 @@ const Drawer = (props) => {
             </ListItem>
           </List>
         </Collapse>
+        <ListItem button component={Link} to="/buy-requests">
+          <ListItemIcon>
+            <DashboardRoundedIcon className={classes.white} />
+          </ListItemIcon>
+          <ListItemText primary="Buy Requests" />
+        </ListItem>
       </List>
       <Divider />
     </>
