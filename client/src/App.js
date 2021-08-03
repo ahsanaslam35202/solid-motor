@@ -69,7 +69,6 @@ function App() {
         ></Route>
         <Route exact path="/TradeSellAdmin" component={TradeSellAdmin}></Route>
         <Route exact path="/buy car details" component={BuyCarDetails}></Route>
-        <Route exact path="/buy car requests" component={BuyCarView}></Route>
         <Route exact path="/adminlogin" component={AdminLogin}></Route>
         <Route
           exact
