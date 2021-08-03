@@ -43,7 +43,8 @@ const Navbar = () => {
                 Articles
               </a>
             </li> */}
-            <li className="nav-item dropdown"><a aria-expanded="false" data-toggle="dropdown" className="dropdown-toggle nav-link" href="/articles">Articles </a>
+            <li className="nav-item dropdown">
+              <a aria-expanded="false" data-toggle="dropdown" className="dropdown-toggle nav-link" href="/articles">Articles </a>
               <div className="dropdown-menu">
                 <a className="dropdown-item" href="/Used-Cars-For-Sale-in-Garland-TX">Used cars for sale in Garland</a>
                 <a className="dropdown-item" href="/Used-sedans-for-sale-near-me">Used sedans for sale near me</a>
