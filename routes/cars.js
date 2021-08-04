@@ -220,9 +220,7 @@ router.get("/related/:make", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  console.log(req.params.id);
   const cars = await Car.findOne({ vin: req.params.id });
-  console.log(cars);
   res.send(cars);
 });
 
@@ -280,8 +278,6 @@ router.post(
   async (req, res) => {
     var otherImages = [];
     var sendImages = [];
-    console.log(req.body);
-    console.log(req.files);
 
     const { files } = req;
     for (let x = 0; x < files.otherImages.length; x++) {
@@ -293,7 +289,6 @@ router.post(
     const monthlyPayment =
       (parseInt(req.body.price) - parseInt(req.body.downPayment)) /
       parseInt(req.body.numberOfMonths);
-    console.log(monthlyPayment);
     let car = new Car({
       make: req.body.make,
       name: req.body.name,
@@ -320,6 +315,7 @@ router.post(
       extendedFeatures: req.body.extendedFeatures,
       downPayment: req.body.downPayment,
       monthlyPayment: monthlyPayment,
+      numberOfMonths: req.body.numberOfMonths,
       price: req.body.price,
       shippingCharges: req.body.shippingCharges,
       taxAndRegistrationCharges: req.body.taxAndRegistrationCharges,
@@ -342,43 +338,48 @@ router.post(
 );
 
 router.put("/:id", async (req, res) => {
-  const car = await Car.updateOne(
-    { _id: req.params.id },
-    {
-      make: req.body.make,
-      name: req.body.name,
-      model: req.body.model,
-      images: req.body.images,
-      fuel: req.body.fuel,
-      milesDriven: req.body.milesDriven,
-      body: req.body.body,
-      modelYear: req.body.modelYear,
-      exteriorColor: req.body.exteriorColor,
-      interiorColor: req.body.interiorColor,
-      engineType: req.body.engineType,
-      engineCapacity: req.body.engineCapacity,
-      transmission: req.body.transmission,
-      driveTrains: req.body.driveTrains,
-      doors: req.body.doors,
-      numberOfKeys: req.body.numberOfKeys,
-      vin: req.body.vin,
-      stock: req.body.stock,
-      vehicleId: req.body.vehicleId,
-      mpg: req.body.mpg,
-      extendedFeatures: req.body.extendedFeatures,
-      downPayment: req.body.downPayment,
-      monthlyPayment: req.body.monthlyPayment,
-      price: req.body.price,
-      shippingCharges: req.body.shippingCharges,
-      taxAndRegistrationCharges: req.body.taxAndRegistrationCharges,
-      dealerFees: req.body.dealerFees,
-      brochureLink: req.body.brochureLink,
-      reportLink: req.body.reportLink,
-    },
-    { new: true }
-  );
-  if (!car) return res.status(404).send("Car not found");
-  res.send(car);
+  console.log(req.body);
+  // const monthlyPayment =
+  //   (parseInt(req.body.price) - parseInt(req.body.downPayment)) /
+  //   parseInt(req.body.numberOfMonths);
+  // const car = await Car.updateOne(
+  //   { _id: req.params.id },
+  //   {
+  //     make: req.body.make,
+  //     name: req.body.name,
+  //     model: req.body.model,
+  //     fuel: req.body.fuel,
+  //     milesDriven: req.body.milesDriven,
+  //     body: req.body.body,
+  //     modelYear: req.body.modelYear,
+  //     exteriorColor: req.body.exteriorColor,
+  //     interiorColor: req.body.interiorColor,
+  //     engineType: req.body.engineType,
+  //     engineCapacity: req.body.engineCapacity,
+  //     transmission: req.body.transmission,
+  //     driveTrain: req.body.driveTrain,
+  //     doors: req.body.doors,
+  //     numberOfKeys: req.body.numberOfKeys,
+  //     vin: req.body.vin,
+  //     stock: req.body.stock,
+  //     vehicleId: req.body.vehicleId,
+  //     mpg: req.body.mpg,
+  //     extendedFeatures: req.body.extendedFeatures,
+  //     downPayment: req.body.downPayment,
+  //     monthlyPayment: monthlyPayment,
+  //     numberOfMonths: req.body.numberOfMonths,
+  //     price: req.body.price,
+  //     shippingCharges: req.body.shippingCharges,
+  //     taxAndRegistrationCharges: req.body.taxAndRegistrationCharges,
+  //     dealerFees: req.body.dealerFees,
+  //     brochureLink: req.body.brochureLink,
+  //     reportLink: req.body.reportLink,
+  //   },
+  //   { new: true }
+  // );
+  // if (!car) return res.status(404).send("Car not found");
+  // console.log("Done");
+  // res.send(car);
 });
 
 router.delete("/:id", async (req, res) => {

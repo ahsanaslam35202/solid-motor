@@ -49,11 +49,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AdminLogin(props) {
   const classes = useStyles();
-  const [email, setEmail] = React.useState({ value: "", error: "" });
-  const [password, setPassword] = React.useState({ value: "", error: "" });
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    console.log(password);
     await adminLogin({
       email,
       password,
@@ -79,10 +80,9 @@ export default function AdminLogin(props) {
             required
             fullWidth
             label="Email Address"
-            autoComplete="email"
-            value={email.value}
+            value={email}
             onChange={(e) => {
-              setEmail({ value: e.target.value });
+              setEmail(e.target.value);
             }}
             autoFocus
           />
@@ -93,10 +93,9 @@ export default function AdminLogin(props) {
             fullWidth
             label="Password"
             type="password"
-            autoComplete="current-password"
-            value={password.value}
+            value={password}
             onChange={(e) => {
-              setPassword({ value: e.target.password.value });
+              setPassword(e.target.value);
             }}
           />
           <FormControlLabel

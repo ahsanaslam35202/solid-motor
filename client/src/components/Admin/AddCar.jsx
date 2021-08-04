@@ -55,7 +55,10 @@ const useStyles = makeStyles((theme) => ({
 
 const AddCar = (props) => {
   const classes = useStyles();
+  const { location } = props;
+  const car = location.state.car;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [edit, setEdit] = React.useState(false);
   const [make, setMake] = React.useState({ value: "", error: "" });
   const [name, setName] = React.useState({ value: "", error: "" });
   const [model, setModel] = React.useState({ value: "", error: "" });
@@ -136,6 +139,38 @@ const AddCar = (props) => {
     setExtendedFeature({ value: "", error: "" });
   };
 
+  React.useEffect(() => {
+    setEdit(true);
+    setMake({ value: car.make });
+    setModel({ value: car.model });
+    setName({ value: car.name });
+    setFuel({ value: car.fuel });
+    setMilesDriven({ value: car.milesDriven });
+    setBody({ value: car.body });
+    setModelYear({ value: car.modelYear });
+    setExteriorColor({ value: car.exteriorColor });
+    setInteriorColor({ value: car.interiorColor });
+    setEngineType({ value: car.engineType });
+    setEngineCapacity({ value: car.engineCapacity });
+    setTransmission({ value: car.transmission });
+    setDriveTrain({ value: car.driveTrain });
+    setDoors({ value: car.doors });
+    setNumberOfKeys({ value: car.numberOfKeys });
+    setVin({ value: car.vin });
+    setStock({ value: car.stock });
+    setVehicleId({ value: car.vehicleId });
+    setMpg({ value: car.mpg });
+    setExtendedFeatures(car.extendedFeatures);
+    setPrice({ value: car.price });
+    setDownPayment({ value: car.downPayment });
+    setNumberOfMonths({ value: car.numberOfMonths });
+    setShippingCharges({ value: car.shippingCharges });
+    setTaxAndRegistrationCharges({ value: car.taxAndRegistrationCharges });
+    setDealerFees({ value: car.dealerFees });
+    setReportLink({ value: car.reportLink });
+    setBrochureLink({ value: car.brochureLink });
+  }, []);
+
   const handleSubmit = async (e) => {
     console.log(extendedFeatures);
     e.preventDefault();
@@ -162,12 +197,14 @@ const AddCar = (props) => {
     for (let x = 0; x < extendedFeatures.length; x++) {
       data.append("extendedFeatures", extendedFeatures[x]);
     }
-    data.append("displayImage", displayImage);
-    for (let x = 0; x < otherImages.length; x++) {
-      data.append("otherImages", otherImages[x]);
-    }
-    for (let x = 0; x < sendImages.length; x++) {
-      data.append("sendImages", sendImages[x]);
+    if (edit === false) {
+      data.append("displayImage", displayImage);
+      for (let x = 0; x < otherImages.length; x++) {
+        data.append("otherImages", otherImages[x]);
+      }
+      for (let x = 0; x < sendImages.length; x++) {
+        data.append("sendImages", sendImages[x]);
+      }
     }
     // data.append("images", images);
     data.append("price", price.value);
@@ -178,19 +215,33 @@ const AddCar = (props) => {
     data.append("dealerFees", dealerFees.value);
     data.append("reportLink", reportLink.value);
     data.append("brochureLink", brochureLink.value);
-    console.log(data);
-    axios({
-      method: "post",
-      url: "http://solid-motor-app.herokuapp.com/api/cars/",
-      data: data,
-      headers: { "Content-Type": "multipart/form-data" },
-    })
-      .then((res) => {
-        console.log(res);
+
+    if (edit === false) {
+      axios({
+        method: "post",
+        url: "http://www.solidmotors.com/api/cars/",
+        data: data,
+        headers: { "Content-Type": "multipart/form-data" },
       })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      axios({
+        method: "put",
+        url: "http://www.solidmotors.com/api/cars/" + car._id,
+        data: data,
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
     // axios
     //   .post("http://localhost:3000/api/cars/", data)
     //   .then((res) => {
@@ -246,7 +297,7 @@ const AddCar = (props) => {
         <ToolBar />
         <Card>
           <CardHeader
-            title="Add Car"
+            title={edit === false ? "Add Car" : "Edit Car"}
             className={classes.cardHeading}
           ></CardHeader>
           <Divider />
@@ -614,6 +665,7 @@ const AddCar = (props) => {
                       <Grid item xs={12}>
                         {extendedFeatures.map((feature, index) => (
                           <Chip
+                            key={index}
                             label={feature}
                             onDelete={() => {
                               var features = [...extendedFeatures];
