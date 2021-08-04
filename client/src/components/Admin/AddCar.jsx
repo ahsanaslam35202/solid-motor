@@ -56,7 +56,8 @@ const useStyles = makeStyles((theme) => ({
 const AddCar = (props) => {
   const classes = useStyles();
   const { location } = props;
-  const car = location.state.car;
+  var car;
+  if (location.state) car = location.state.car;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [edit, setEdit] = React.useState(false);
   const [make, setMake] = React.useState({ value: "", error: "" });
@@ -140,35 +141,37 @@ const AddCar = (props) => {
   };
 
   React.useEffect(() => {
-    setEdit(true);
-    setMake({ value: car.make });
-    setModel({ value: car.model });
-    setName({ value: car.name });
-    setFuel({ value: car.fuel });
-    setMilesDriven({ value: car.milesDriven });
-    setBody({ value: car.body });
-    setModelYear({ value: car.modelYear });
-    setExteriorColor({ value: car.exteriorColor });
-    setInteriorColor({ value: car.interiorColor });
-    setEngineType({ value: car.engineType });
-    setEngineCapacity({ value: car.engineCapacity });
-    setTransmission({ value: car.transmission });
-    setDriveTrain({ value: car.driveTrain });
-    setDoors({ value: car.doors });
-    setNumberOfKeys({ value: car.numberOfKeys });
-    setVin({ value: car.vin });
-    setStock({ value: car.stock });
-    setVehicleId({ value: car.vehicleId });
-    setMpg({ value: car.mpg });
-    setExtendedFeatures(car.extendedFeatures);
-    setPrice({ value: car.price });
-    setDownPayment({ value: car.downPayment });
-    setNumberOfMonths({ value: car.numberOfMonths });
-    setShippingCharges({ value: car.shippingCharges });
-    setTaxAndRegistrationCharges({ value: car.taxAndRegistrationCharges });
-    setDealerFees({ value: car.dealerFees });
-    setReportLink({ value: car.reportLink });
-    setBrochureLink({ value: car.brochureLink });
+    if (car) {
+      setEdit(true);
+      setMake({ value: car.make });
+      setModel({ value: car.model });
+      setName({ value: car.name });
+      setFuel({ value: car.fuel });
+      setMilesDriven({ value: car.milesDriven });
+      setBody({ value: car.body });
+      setModelYear({ value: car.modelYear });
+      setExteriorColor({ value: car.exteriorColor });
+      setInteriorColor({ value: car.interiorColor });
+      setEngineType({ value: car.engineType });
+      setEngineCapacity({ value: car.engineCapacity });
+      setTransmission({ value: car.transmission });
+      setDriveTrain({ value: car.driveTrain });
+      setDoors({ value: car.doors });
+      setNumberOfKeys({ value: car.numberOfKeys });
+      setVin({ value: car.vin });
+      setStock({ value: car.stock });
+      setVehicleId({ value: car.vehicleId });
+      setMpg({ value: car.mpg });
+      setExtendedFeatures(car.extendedFeatures);
+      setPrice({ value: car.price });
+      setDownPayment({ value: car.downPayment });
+      setNumberOfMonths({ value: car.numberOfMonths });
+      setShippingCharges({ value: car.shippingCharges });
+      setTaxAndRegistrationCharges({ value: car.taxAndRegistrationCharges });
+      setDealerFees({ value: car.dealerFees });
+      setReportLink({ value: car.reportLink });
+      setBrochureLink({ value: car.brochureLink });
+    }
   }, []);
 
   const handleSubmit = async (e) => {
