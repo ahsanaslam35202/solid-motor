@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ViewCars = () => {
+const ViewCars = (props) => {
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [cars, setCars] = React.useState([]);
@@ -112,7 +112,14 @@ const ViewCars = () => {
                 </CardContent>
                 <CardActions disableSpacing>
                   <IconButton aria-label="add to favorites">
-                    <EditIcon />
+                    <EditIcon
+                      onClick={() =>
+                        props.history.push({
+                          pathname: "/addCar",
+                          state: { car },
+                        })
+                      }
+                    />
                   </IconButton>
                   <IconButton
                     onClick={() => {
