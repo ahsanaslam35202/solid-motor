@@ -4,6 +4,8 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 import Navbar2 from "./Navbar2";
 import CallBar from "./CallBar";
+import { Helmet } from "react-helmet";
+
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -44,6 +46,11 @@ const Home = (props) => {
   };
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <meta name="google-site-verification" content="deWvECQN_MAMu4qNG3Yp6PzJ8GRIjASp11HhDxRXeRY" />
+
+      </Helmet>
       <CallBar />
       {isLoggedin() ? <Navbar2 handleLogout={handleLogout} /> : <Navbar />}
       <div>

@@ -52,15 +52,16 @@ function App() {
         <Route exact path="/car" component={CarDetail}></Route>
         <Route exact path="/adminDashboard" component={Dashboard}></Route>
         <Route exact path="/sellrequest" component={SellRequest}></Route>
+        <Route exact path="/buy-requests" component={BuyCarView}></Route>
         <Route exact path="/addCar" component={AddCar}></Route>
         <Route exact path="/viewCars" component={ViewCars}></Route>
         <Route exact path="/csv file" component={CSVFile}></Route>
         <Route exact path="/articles" component={Articles}></Route>
-        <Route exact path="/Used Cars For Sale in Garland,TX" component={Article1}></Route>
-        <Route exact path="/Used sedans for sale near me" component={Article2}></Route>
-        <Route exact path="/Used lexus suv for sale near me" component={Article3}></Route>
-        <Route exact path="/Cheap used pickup trucks for sale near me" component={Article4}></Route>
-        <Route exact path="/used coupe for sale near me" component={Article5}></Route>
+        <Route exact path="/Used-Cars-For-Sale-in-Garland-TX" component={Article1}></Route>
+        <Route exact path="/Used-sedans-for-sale-near-me" component={Article2}></Route>
+        <Route exact path="/Used-lexus-suv-for-sale-near-me" component={Article3}></Route>
+        <Route exact path="/Cheap-used-pickup-trucks-for-sale-near-me" component={Article4}></Route>
+        <Route exact path="/used-coupe-for-sale-near-me" component={Article5}></Route>
         <Route
           exact
           path="/request-final-form"
@@ -68,7 +69,6 @@ function App() {
         ></Route>
         <Route exact path="/TradeSellAdmin" component={TradeSellAdmin}></Route>
         <Route exact path="/buy car details" component={BuyCarDetails}></Route>
-        <Route exact path="/buy car requests" component={BuyCarView}></Route>
         <Route exact path="/adminlogin" component={AdminLogin}></Route>
         <Route
           exact
