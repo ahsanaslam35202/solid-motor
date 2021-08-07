@@ -9,6 +9,11 @@ import {
   Hidden,
   Collapse,
 } from "@material-ui/core";
+import { FaCar } from "react-icons/fa";
+import { AiFillFileText } from "react-icons/ai";
+import { FaEye } from "react-icons/fa";
+import { FaHandsHelping } from "react-icons/fa";
+
 import DashboardRoundedIcon from "@material-ui/icons/DashboardRounded";
 import BusinessRoundedIcon from "@material-ui/icons/BusinessRounded";
 import LibraryAddRoundedIcon from "@material-ui/icons/LibraryAddRounded";
@@ -26,9 +31,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#00b7fa",
     },
   },
-  white: {
-    color: "white",
-  },
+
   drawerPaper: {
     backgroundColor: "#00b7fa",
     color: "white",
@@ -38,6 +41,12 @@ const useStyles = makeStyles((theme) => ({
   nested: {
     paddingLeft: theme.spacing(4),
   },
+  icon: {
+    fontSize: '24px',
+    color: "white",
+
+
+  }
 }));
 
 const Drawer = (props) => {
@@ -57,19 +66,19 @@ const Drawer = (props) => {
       <List>
         <ListItem button component={Link} to="/adminDashboard">
           <ListItemIcon>
-            <DashboardRoundedIcon className={classes.white} />
+            <DashboardRoundedIcon className={classes.icon} />
           </ListItemIcon>
           <ListItemText primary="Dashboard" />
         </ListItem>
         <ListItem button component={Link} to="/TradeSellAdmin">
           <ListItemIcon>
-            <DashboardRoundedIcon className={classes.white} />
+            <AiFillFileText className={classes.icon} />
           </ListItemIcon>
           <ListItemText primary="Trade/Sell Requests" />
         </ListItem>
         <ListItem button onClick={handleOfficesClick}>
           <ListItemIcon>
-            <BusinessRoundedIcon className={classes.white} />
+            <FaCar className={classes.icon} />
           </ListItemIcon>
           <ListItemText primary="Cars" />
           {carOpen ? <ExpandLess /> : <ExpandMore />}
@@ -83,7 +92,7 @@ const Drawer = (props) => {
               to="/addCar"
             >
               <ListItemIcon>
-                <LibraryAddRoundedIcon className={classes.white} />
+                <LibraryAddRoundedIcon className={classes.icon} />
               </ListItemIcon>
               <ListItemText primary="Add Car" />
             </ListItem>
@@ -94,7 +103,7 @@ const Drawer = (props) => {
               to="/viewCars"
             >
               <ListItemIcon>
-                <LibraryAddRoundedIcon className={classes.white} />
+                <FaEye className={classes.icon} />
               </ListItemIcon>
               <ListItemText primary="View Cars" />
             </ListItem>
@@ -102,7 +111,7 @@ const Drawer = (props) => {
         </Collapse>
         <ListItem button component={Link} to="/buy-requests">
           <ListItemIcon>
-            <DashboardRoundedIcon className={classes.white} />
+            <FaHandsHelping className={classes.icon} />
           </ListItemIcon>
           <ListItemText primary="Buy Requests" />
         </ListItem>
