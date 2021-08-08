@@ -24,6 +24,10 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
   },
+
+  MuiAppBar: {
+    backgroundColor: "#00b7fa",
+  },
   menuButton: {
     marginRight: theme.spacing(2),
     [theme.breakpoints.up("sm")]: {
@@ -157,7 +161,7 @@ const TopBar = (props) => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar position="fixed" className={classes.appBar} style={{ background: '#00b7fa' }}>
         <Toolbar>
           <IconButton
             color="inherit"

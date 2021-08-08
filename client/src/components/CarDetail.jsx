@@ -37,7 +37,7 @@ const CarDetail = (props) => {
     await logout();
     forceUpdate();
   };
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [modalIsOpen, setIsOpen] = React.useState(true);
   function openModal() {
     setIsOpen(true);
   }
@@ -498,9 +498,9 @@ const CarDetail = (props) => {
               </div>
               <h1 className="miles-driven">{carData.milesDriven} Miles</h1>
             </div>
-            {/* <div className="col-md-6 d-flex car-price-container">
-              <h1 className="price">${car.price}</h1>
-            </div> */}
+            <div className="col-md-6 d-flex car-price-container">
+              <h1 className="price">${carData.price}</h1>
+            </div>
           </div>
         </div>
 
@@ -1347,10 +1347,10 @@ const CarDetail = (props) => {
                       $
                       {Math.ceil(
                         carPrice +
-                          carData.shippingCharges +
-                          carData.taxAndRegistrationCharges +
-                          carData.dealerFees -
-                          tradeInCredit
+                        carData.shippingCharges +
+                        carData.taxAndRegistrationCharges +
+                        carData.dealerFees -
+                        tradeInCredit
                       )}
                     </h1>
                     <h1 className="summary-header-sub-heading w-100 text-center">
@@ -1359,39 +1359,39 @@ const CarDetail = (props) => {
                   </div>
                 </div>
                 {/* +++++++++++++++++++++++++++++++++ */}
-                {/* <div className="d-flex summary-card-price-detail">
+                <div className="d-flex summary-card-price-detail">
                   <div className="w-60">
                     <p>VEHICLE PRICE</p>
                   </div>
                   <div className="d-flex justify-content-end w-40">
-                    <p>${Math.ceil(car.price)}</p>
+                    <p>${Math.ceil(carData.price)}</p>
                   </div>
-                </div> */}
-                {/* <div className="d-flex summary-card-price-detail">
+                </div>
+                <div className="d-flex summary-card-price-detail">
                   <div className="w-60">
                     <p>SHIPPING</p>
                   </div>
                   <div className="d-flex justify-content-end w-40">
-                    <p>${car.shippingCharges}</p>
+                    <p>${carData.shippingCharges}</p>
                   </div>
-                </div> */}
-                {/* <div className="d-flex summary-card-price-detail">
+                </div>
+                <div className="d-flex summary-card-price-detail">
                   <div className="w-60">
                     <p>TAX, TITLE & REG</p>
                   </div>
                   <div className="d-flex justify-content-end w-40">
-                    <p>${car.taxAndRegistrationCharges}</p>
+                    <p>${carData.taxAndRegistrationCharges}</p>
                   </div>
-                </div> */}
-                {/* <div className="d-flex summary-card-price-detail">
+                </div>
+                <div className="d-flex summary-card-price-detail">
                   <div className="w-60">
                     <p>DEALER FEES</p>
                   </div>
                   <div className="d-flex justify-content-end w-40">
-                    <p>${car.dealerFees}</p>
+                    <p>${carData.dealerFees}</p>
                   </div>
-                </div> */}
-                {/* <div
+                </div>
+                <div
                   className={
                     buyType === "financed"
                       ? "d-flex summary-card-price-detail"
@@ -1404,7 +1404,7 @@ const CarDetail = (props) => {
                   <div className="d-flex justify-content-end w-40">
                     <p>${downPayment}</p>
                   </div>
-                </div> */}
+                </div>
                 <div
                   className="d-flex summary-car-price"
                   style={{ borderWidth: "0px" }}

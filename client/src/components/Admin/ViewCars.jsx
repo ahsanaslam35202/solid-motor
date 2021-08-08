@@ -19,6 +19,8 @@ import ToolBar from "../Common/ToolBar";
 import Drawer from "../Common/Drawer";
 import { deleteCar, getCars } from "../../services/carsService";
 
+import { sendCSV } from '../../services/carsService';
+
 const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
@@ -69,6 +71,7 @@ const ViewCars = (props) => {
   const handleDelete = async (carId) => {
     await deleteCar(carId).then(() => {
       getCarsData();
+      sendCSV();
     });
   };
 

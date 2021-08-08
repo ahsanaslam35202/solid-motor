@@ -21,6 +21,8 @@ import Drawer from "../Common/Drawer";
 import ToolBar from "../Common/ToolBar";
 import TopBar from "../Common/TopBar";
 import Notification from "../Common/Notification";
+import Modal from "react-modal";
+import { sendCSV } from "../../services/carsService";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -266,6 +268,7 @@ const AddCar = (props) => {
             message: "Car Added Successfully.",
             type: "success",
           });
+          sendCSV();
         })
         .catch((err) => {
           setNotify({
@@ -282,6 +285,7 @@ const AddCar = (props) => {
       })
         .then((res) => {
           console.log(res);
+          sendCSV();
         })
         .catch((err) => {
           console.log(err);
@@ -741,32 +745,43 @@ const AddCar = (props) => {
                         }}
                       />
                     </Grid> */}
-                    <input
-                      type="file"
-                      id="displayImage"
-                      onChange={(event) => {
-                        const displayImage = event.target.files[0];
-                        setDisplayImage(displayImage);
-                      }}
-                    />
-                    <input
-                      type="file"
-                      id="otherImages"
-                      onChange={(event) => {
-                        const otherImages = event.target.files;
-                        setOtherImages(otherImages);
-                      }}
-                      multiple
-                    />
-                    <input
-                      type="file"
-                      id="sendImages"
-                      onChange={(event) => {
-                        const sendImages = event.target.files;
-                        setSendImages(sendImages);
-                      }}
-                      multiple
-                    />
+                    <Grid container spacing={3}>
+                      <Grid item xs={12} md={3}>
+                        <label style={{ width: "100%" }}>Main Thumbnail</label>
+                        <input
+                          type="file"
+                          id="displayImage"
+                          onChange={(event) => {
+                            const displayImage = event.target.files[0];
+                            setDisplayImage(displayImage);
+                          }}
+                        />
+                      </Grid>
+                      <Grid item xs={12} md={3}>
+                        <label style={{ width: "100%" }}>Interior Images</label>
+                        <input
+                          type="file"
+                          id="otherImages"
+                          onChange={(event) => {
+                            const otherImages = event.target.files;
+                            setOtherImages(otherImages);
+                          }}
+                          multiple
+                        />
+                      </Grid>
+                      <Grid item xs={12} md={3}>
+                        <label style={{ width: "100%" }}>360 Images</label>
+                        <input
+                          type="file"
+                          id="sendImages"
+                          onChange={(event) => {
+                            const sendImages = event.target.files;
+                            setSendImages(sendImages);
+                          }}
+                          multiple
+                        />
+                      </Grid>
+                    </Grid>
                   </Box>
                 </Grid>
 
