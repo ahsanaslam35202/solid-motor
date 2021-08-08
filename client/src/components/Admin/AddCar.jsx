@@ -16,17 +16,13 @@ import {
   Typography,
 } from "@material-ui/core";
 import axios from "axios";
-import { DropzoneArea } from "material-ui-dropzone";
 import React from "react";
-import { addCar } from "../../services/carsService";
 import Drawer from "../Common/Drawer";
 import ToolBar from "../Common/ToolBar";
 import TopBar from "../Common/TopBar";
+import Notification from "../Common/Notification";
 import Modal from "react-modal";
-
 import { sendCSV } from "../../services/carsService";
-
-
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -59,7 +55,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AddCar = (props) => {
-
   const classes = useStyles();
   const { location } = props;
   var car;
@@ -133,6 +128,12 @@ const AddCar = (props) => {
     error: "",
   });
   const [reportLink, setReportLink] = React.useState({ value: "", error: "" });
+
+  const [notify, setNotify] = React.useState({
+    isOpen: false,
+    message: "",
+    type: "",
+  });
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -233,11 +234,48 @@ const AddCar = (props) => {
         headers: { "Content-Type": "multipart/form-data" },
       })
         .then((res) => {
-          console.log(res);
+          setEdit(false);
+          setMake({ value: "" });
+          setModel({ value: "" });
+          setName({ value: "" });
+          setFuel({ value: "" });
+          setMilesDriven({ value: "" });
+          setBody({ value: "" });
+          setModelYear({ value: "" });
+          setExteriorColor({ value: "" });
+          setInteriorColor({ value: "" });
+          setEngineType({ value: "" });
+          setEngineCapacity({ value: "" });
+          setTransmission({ value: "" });
+          setDriveTrain({ value: "" });
+          setDoors({ value: "" });
+          setNumberOfKeys({ value: "" });
+          setVin({ value: "" });
+          setStock({ value: "" });
+          setVehicleId({ value: "" });
+          setMpg({ value: "" });
+          setExtendedFeatures([]);
+          setPrice({ value: "" });
+          setDownPayment({ value: "" });
+          setNumberOfMonths({ value: "" });
+          setShippingCharges({ value: "" });
+          setTaxAndRegistrationCharges({ value: "" });
+          setDealerFees({ value: "" });
+          setReportLink({ value: "" });
+          setBrochureLink({ value: "" });
+          setNotify({
+            isOpen: true,
+            message: "Car Added Successfully.",
+            type: "success",
+          });
           sendCSV();
         })
         .catch((err) => {
-          console.log(err);
+          setNotify({
+            isOpen: true,
+            message: "Error adding car. Please try again.",
+            type: "warning",
+          });
         });
     } else {
       axios({
@@ -301,9 +339,6 @@ const AddCar = (props) => {
   };
 
   return (
-
-
-
     <div className={classes.container}>
       <TopBar handleDrawerToggle={handleDrawerToggle} />
       <Drawer mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
@@ -712,10 +747,7 @@ const AddCar = (props) => {
                     </Grid> */}
                     <Grid container spacing={3}>
                       <Grid item xs={12} md={3}>
-
-                        <label style={{ width: '100%' }} >
-                          Main Thumbnail
-                        </label>
+                        <label style={{ width: "100%" }}>Main Thumbnail</label>
                         <input
                           type="file"
                           id="displayImage"
@@ -726,10 +758,7 @@ const AddCar = (props) => {
                         />
                       </Grid>
                       <Grid item xs={12} md={3}>
-
-                        <label style={{ width: '100%' }} >
-                          Interior Images
-                        </label>
+                        <label style={{ width: "100%" }}>Interior Images</label>
                         <input
                           type="file"
                           id="otherImages"
@@ -741,10 +770,7 @@ const AddCar = (props) => {
                         />
                       </Grid>
                       <Grid item xs={12} md={3}>
-
-                        <label style={{ width: '100%' }} >
-                          360 Images
-                        </label>
+                        <label style={{ width: "100%" }}>360 Images</label>
                         <input
                           type="file"
                           id="sendImages"
@@ -757,7 +783,6 @@ const AddCar = (props) => {
                       </Grid>
                     </Grid>
                   </Box>
-
                 </Grid>
 
                 <Grid item xs={12} md={12}>
@@ -898,6 +923,7 @@ const AddCar = (props) => {
           </CardContent>
         </Card>
       </main>
+      <Notification notify={notify} setNotify={setNotify}></Notification>
     </div>
   );
 };
