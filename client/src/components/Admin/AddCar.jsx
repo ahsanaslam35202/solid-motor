@@ -22,6 +22,8 @@ import { addCar } from "../../services/carsService";
 import Drawer from "../Common/Drawer";
 import ToolBar from "../Common/ToolBar";
 import TopBar from "../Common/TopBar";
+import Modal from "react-modal";
+
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -54,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AddCar = (props) => {
+
   const classes = useStyles();
   const { location } = props;
   var car;
@@ -293,6 +296,9 @@ const AddCar = (props) => {
   };
 
   return (
+
+
+
     <div className={classes.container}>
       <TopBar handleDrawerToggle={handleDrawerToggle} />
       <Drawer mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
