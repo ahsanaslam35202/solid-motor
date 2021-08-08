@@ -216,7 +216,7 @@ button:active {
   background-color: rgba(255, 255, 255, 0.55) !important;
 }
 .iframe-height{
-  height: 500px;
+  height: 1000px;
 }
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
@@ -282,7 +282,7 @@ button:active {
     border: none;
   }
   .iframe-height{
-    height: 1200px;
+    height: 2000px;
   }
 }
 
