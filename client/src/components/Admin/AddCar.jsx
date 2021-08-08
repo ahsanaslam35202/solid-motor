@@ -24,6 +24,9 @@ import ToolBar from "../Common/ToolBar";
 import TopBar from "../Common/TopBar";
 import Modal from "react-modal";
 
+import { sendCSV } from "../../services/carsService";
+
+
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -231,6 +234,7 @@ const AddCar = (props) => {
       })
         .then((res) => {
           console.log(res);
+          sendCSV();
         })
         .catch((err) => {
           console.log(err);
@@ -243,6 +247,7 @@ const AddCar = (props) => {
       })
         .then((res) => {
           console.log(res);
+          sendCSV();
         })
         .catch((err) => {
           console.log(err);
