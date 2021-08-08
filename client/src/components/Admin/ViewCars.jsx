@@ -19,7 +19,7 @@ import ToolBar from "../Common/ToolBar";
 import Drawer from "../Common/Drawer";
 import { deleteCar, getCars } from "../../services/carsService";
 
-import { sendCSV } from '../../services/carsService';
+import { sendCSV } from "../../services/carsService";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -105,7 +105,12 @@ const ViewCars = (props) => {
                 />
                 <CardMedia
                   className={classes.media}
-                  image="assets/img/car%20guide.png"
+                  image={
+                    "http://solid-motor-app.herokuapp.com/api/cars/images/" +
+                    car.vin +
+                    "/displayImage/" +
+                    car.displayImage
+                  }
                   title="Car Image"
                 />
                 <CardContent>
