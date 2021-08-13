@@ -98,6 +98,7 @@ const AddCar = (props) => {
   const [stock, setStock] = React.useState({ value: "", error: "" });
   const [vehicleId, setVehicleId] = React.useState({ value: "", error: "" });
   const [mpg, setMpg] = React.useState({ value: "", error: "" });
+  const [mpgHW, setMpgHW] = React.useState({ value: "", error: "" });
   const [extendedFeature, setExtendedFeature] = React.useState({
     value: "",
     error: "",
@@ -169,6 +170,7 @@ const AddCar = (props) => {
       setStock({ value: car.stock });
       setVehicleId({ value: car.vehicleId });
       setMpg({ value: car.mpg });
+      setMpgHW({ value: car.mpgHW });
       setExtendedFeatures(car.extendedFeatures);
       setPrice({ value: car.price });
       setDownPayment({ value: car.downPayment });
@@ -204,6 +206,7 @@ const AddCar = (props) => {
     data.append("stock", stock.value);
     data.append("vehicleId", vehicleId.value);
     data.append("mpg", mpg.value);
+    data.append("mpgHW", mpgHW.value);
     for (let x = 0; x < extendedFeatures.length; x++) {
       data.append("extendedFeatures", extendedFeatures[x]);
     }
@@ -254,6 +257,7 @@ const AddCar = (props) => {
           setStock({ value: "" });
           setVehicleId({ value: "" });
           setMpg({ value: "" });
+          setMpgHW({ value: "" });
           setExtendedFeatures([]);
           setPrice({ value: "" });
           setDownPayment({ value: "" });
@@ -678,6 +682,19 @@ const AddCar = (props) => {
                     value={mpg.value}
                     onChange={(e) => {
                       setMpg({ value: e.target.value });
+                    }}
+                  />
+                </Grid>
+                <Grid item xs={12} md={3}>
+                  <TextField
+                    type="Number"
+                    variant="outlined"
+                    label="MPG HighWay"
+                    fullWidth
+                    size="small"
+                    value={mpgHW.value}
+                    onChange={(e) => {
+                      setMpgHW({ value: e.target.value });
                     }}
                   />
                 </Grid>

@@ -37,6 +37,8 @@ const CarDetail = (props) => {
     await logout();
     forceUpdate();
   };
+
+
   const [modalIsOpen, setIsOpen] = React.useState(false);
   function openModal() {
     setIsOpen(true);

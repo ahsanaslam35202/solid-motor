@@ -187,6 +187,7 @@ router.post(
       stock: req.body.stock,
       vehicleId: req.body.vehicleId,
       mpg: req.body.mpg,
+      mpgHW: req.body.mpgHW,
       extendedFeatures: req.body.extendedFeatures,
       downPayment: req.body.downPayment,
       monthlyPayment: monthlyPayment,

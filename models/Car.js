@@ -33,6 +33,7 @@ var carSchema = mongoose.Schema({
   stock: Number,
   vehicleId: String,
   mpg: Number,
+  mpgHW: Number,
   displayImage: String,
   otherImages: [String],
   sendImages: [String],
