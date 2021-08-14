@@ -3,12 +3,12 @@ import React from "react";
 const CarCarouselImage = (props) => {
   const { image, vin } = props;
   const url =
-    "http://solid-motor-app.herokuapp.com/api/cars/images/" +
+    "http://solidmotors.com/api/cars/images/" +
     vin +
     "/otherImages/" +
     image;
   const bgUrl =
-    'url("http://solid-motor-app.herokuapp.com/api/cars/images/' +
+    'url("http://solidmotors.com/api/cars/images/' +
     vin +
     "/otherImages/" +
     image +

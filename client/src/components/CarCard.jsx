@@ -16,7 +16,7 @@ const carCard = (props) => {
             className="car-card-img-container"
             style={{
               background:
-                'url("http://solid-motor-app.herokuapp.com/api/cars/images/' +
+                'url("http://solidmotors.com/api/cars/images/' +
                 props.car.vin +
                 "/displayImage/" +
                 props.car.displayImage +

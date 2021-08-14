@@ -63,7 +63,7 @@ const CarSearch = (props) => {
     setCars(cars);
     setUpdatedCars(cars);
     var { data } = await axios.get(
-      "http://solid-motor-app.herokuapp.com/api/cars/images/a"
+      "http://solidmotors.com/api/cars/images/a"
     );
     console.log(data);
     setDisplayImage(data);
@@ -1361,7 +1361,7 @@ const CarSearch = (props) => {
                   price={item.price}
                   monthlyPayment={item.monthlyPayment}
                   milesDriven={item.milesDriven}
-                  onClick={() => {}}
+                  onClick={() => { }}
                 />
               ))}
             {/* <CarCard />

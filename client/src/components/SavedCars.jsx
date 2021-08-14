@@ -29,7 +29,7 @@ const SavedCars = (props) => {
 
     setCars(cars);
     var { data } = await axios.get(
-      "http://solid-motor-app.herokuapp.com/api/cars/images/a"
+      "http://solidmotors.com/api/cars/images/a"
     );
     console.log(data);
     setDisplayImage(data);

@@ -780,7 +780,7 @@ const CarDetail = (props) => {
                       data-toggle="tab"
                       href="#tab-2"
                     >
-                      Warranty
+                      Maintenance Plan
                     </a>
                   </li>
                 </ul>
@@ -889,7 +889,7 @@ const CarDetail = (props) => {
                   </div>
                   <div className="tab-pane" role="tabpane2" id="tab-2">
                     <div className="tab-details-container">
-                      <h1 className="h3-black w-100 text-center">Warranty</h1>
+                      <h1 className="h3-black w-100 text-center">Maintenance Plan</h1>
 
                       <div className="col-md-12 d-flex justify-content-center">
                         {/* <h1 className="h1-black">
@@ -1237,7 +1237,7 @@ const CarDetail = (props) => {
                           <div className="apply-card mt-30">
                             <h1 className="apply-card-heading">
                               <strong>
-                                Got a trade-in? NOW OFFERING $3,000 ABOVE KBB
+                                Got a trade-in?
                               </strong>
                             </h1>
                             <p className="apply-card-para">
@@ -1287,7 +1287,7 @@ const CarDetail = (props) => {
                           <div className="apply-card mt-30">
                             <h1 className="apply-card-heading">
                               <strong>
-                                Got a trade-in? NOW OFFERING $3,000 ABOVE KBB
+                                Got a trade-in?
                               </strong>
                             </h1>
                             <p className="apply-card-para">
@@ -1369,14 +1369,14 @@ const CarDetail = (props) => {
                     <p>${Math.ceil(carData.price)}</p>
                   </div>
                 </div>
-                <div className="d-flex summary-card-price-detail">
+                {/* <div className="d-flex summary-card-price-detail">
                   <div className="w-60">
                     <p>SHIPPING</p>
                   </div>
                   <div className="d-flex justify-content-end w-40">
                     <p>${carData.shippingCharges}</p>
                   </div>
-                </div>
+                </div> */}
                 <div className="d-flex summary-card-price-detail">
                   <div className="w-60">
                     <p>TAX, TITLE & REG</p>
@@ -1499,7 +1499,7 @@ const CarDetail = (props) => {
                   <div className="apply-card mt-30">
                     <h1 className="apply-card-heading">
                       <strong>
-                        Got a trade-in? NOW OFFERING $3,000 ABOVE KBB
+                        Got a trade-in?
                       </strong>
                     </h1>
                     <p

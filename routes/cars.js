@@ -32,7 +32,7 @@ router.get("/csv/", async (req, res) => {
     item.sendImages.forEach((item2) => {
       carImages =
         carImages +
-        "http://solid-motor-app.herokuapp.com/api/cars/images/" +
+        "http://solidmotors.com/api/cars/images/" +
         item.vin +
         "/sendImages/" +
         item2 +

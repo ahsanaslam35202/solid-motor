@@ -106,7 +106,7 @@ const ViewCars = (props) => {
                 <CardMedia
                   className={classes.media}
                   image={
-                    "http://solid-motor-app.herokuapp.com/api/cars/images/" +
+                    "http://solidmotors.com/api/cars/images/" +
                     car.vin +
                     "/displayImage/" +
                     car.displayImage
