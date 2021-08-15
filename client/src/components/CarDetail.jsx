@@ -105,21 +105,24 @@ const CarDetail = (props) => {
     const car = data;
     setCarData(data);
     setExtendedFeatures(car.extendedFeatures);
+    setCarPrice(carData.price);
 
     if (car.monthlyPayment > 800) {
       setMonthlyPayment(800);
     }
-    if (car.monthlyPayment < 200) {
+    else if (car.monthlyPayment < 200) {
       setMonthlyPayment(200);
     } else {
       setMonthlyPayment(car.monthlyPayment);
     }
+
     if (car.downPayment > 10000) {
       setDownPayment(10000);
     }
-    if (car.downPayment < 500) {
+    else if (car.downPayment < 500) {
       setDownPayment(500);
-    } else {
+    }
+    else {
       setDownPayment(car.downPayment);
     }
 
@@ -806,12 +809,16 @@ const CarDetail = (props) => {
                             </p>
                           </div>
                         </div>
-                      </div>
-                      <div className="row">
                         <div className="col-md-6">
                           <div className="details-card">
                             <h1 className="details-card-heading">MPG&nbsp;</h1>
                             <p className="details-card-para">{carData.mpg}</p>
+                          </div>
+                        </div>
+                        <div className="col-md-6">
+                          <div className="details-card">
+                            <h1 className="details-card-heading">MPG HighWay&nbsp;</h1>
+                            <p className="details-card-para">{carData.mpgHW}</p>
                           </div>
                         </div>
                         <div className="col-md-6">
@@ -824,8 +831,6 @@ const CarDetail = (props) => {
                             </p>
                           </div>
                         </div>
-                      </div>
-                      <div className="row">
                         <div className="col-md-6">
                           <div className="details-card">
                             <h1 className="details-card-heading">
@@ -846,8 +851,6 @@ const CarDetail = (props) => {
                             </p>
                           </div>
                         </div>
-                      </div>
-                      <div className="row">
                         <div className="col-md-6">
                           <div className="details-card">
                             <h1 className="details-card-heading">
@@ -868,8 +871,6 @@ const CarDetail = (props) => {
                             </p>
                           </div>
                         </div>
-                      </div>
-                      <div className="row">
                         <div className="col-md-6">
                           <div className="details-card">
                             <h1 className="details-card-heading">VIN&nbsp;</h1>

@@ -47,7 +47,7 @@ const carCard = (props) => {
               <div className="d-flex justify-content-end car-card-price-div">
                 {/* <h1 className="car-price">${props.price}</h1> */}
                 <h1 className="car-price">
-                  ${Math.ceil(props.price)}
+                  ${Math.ceil(props.price).toLocaleString()}
                 </h1>
               </div>
             </div>
