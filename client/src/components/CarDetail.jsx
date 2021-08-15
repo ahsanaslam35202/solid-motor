@@ -24,7 +24,6 @@ import CarCarouselImage from "./CarCarouselImage";
 import Modal from "react-modal";
 import { Range, getTrackBackground } from "react-range";
 
-// import ScriptTag from "react-script-tag";
 
 function useForceUpdate() {
   const [value, setValue] = React.useState(0); // integer state
@@ -61,6 +60,7 @@ const CarDetail = (props) => {
   const [buyType, setBuyType] = React.useState("financed");
   const [cars, setCars] = React.useState([]);
   const [carData, setCarData] = React.useState([]);
+  const [carPriceDisplay, setCarPriceDisplay] = React.useState(0);
   const [carPrice, setCarPrice] = React.useState(0);
   const [carFinancedPrice, setCarFinancedPrice] = React.useState(0);
   const [carPendingAmount, setCarPendingAmout] = React.useState(0);
@@ -105,7 +105,9 @@ const CarDetail = (props) => {
     const car = data;
     setCarData(data);
     setExtendedFeatures(car.extendedFeatures);
-    setCarPrice(carData.price);
+    setCarPriceDisplay(car.price.toLocaleString());
+
+
 
     if (car.monthlyPayment > 800) {
       setMonthlyPayment(800);
@@ -504,7 +506,7 @@ const CarDetail = (props) => {
               <h1 className="miles-driven">{carData.milesDriven} Miles</h1>
             </div>
             <div className="col-md-6 d-flex car-price-container">
-              <h1 className="price">${carData.price}</h1>
+              <h1 className="price">${carPriceDisplay}</h1>
             </div>
           </div>
         </div>
