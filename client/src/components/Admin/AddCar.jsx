@@ -449,6 +449,7 @@ const AddCar = (props) => {
                 </Grid>
                 <Grid item xs={12} md={3}>
                   <TextField
+                    type="Number"
                     variant="outlined"
                     label="Miles Driven"
                     fullWidth
@@ -488,6 +489,7 @@ const AddCar = (props) => {
                 </Grid>
                 <Grid item xs={12} md={3}>
                   <TextField
+                    type="Number"
                     variant="outlined"
                     label="Model Year"
                     fullWidth
