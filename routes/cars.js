@@ -70,22 +70,6 @@ router.get("/csv/", async (req, res) => {
       });
   });
   console.log(csvContent);
-
-  // const Ftp = new jsftp({
-  //   host: "sftp:swipetospin.exavault.com",
-  //   // protocol: "sftp",
-  //   port: "22", // defaults to 21
-  //   user: "stssftp_solidmotorsllc", // defaults to "anonymous"
-  //   pass: "HySfQ8QO", // defaults to "@anonymous"
-  //   debugMode: true, // defaults to "@anonymous"
-  // });
-
-  // console.log(csvContent);
-
-  // Ftp.put("./list.csv", "/cars.csv", function (err) {
-  //   if (!err) res.send(200);
-  //   else res.send(err);
-  // });
 });
 
 router.get("/related/:make", async (req, res) => {
@@ -154,13 +138,13 @@ router.post(
     var otherImages = [];
     var sendImages = [];
 
-    const { files } = req;
-    for (let x = 0; x < files.otherImages.length; x++) {
-      otherImages.push(files.otherImages[x].originalname);
-    }
-    for (let x = 0; x < files.sendImages.length; x++) {
-      sendImages.push(files.sendImages[x].originalname);
-    }
+    // const { files } = req;
+    // for (let x = 0; x < files.otherImages.length; x++) {
+    //   otherImages.push(files.otherImages[x].originalname);
+    // }
+    // for (let x = 0; x < files.sendImages.length; x++) {
+    //   sendImages.push(files.sendImages[x].originalname);
+    // }
     const monthlyPayment =
       (parseInt(req.body.price) - parseInt(req.body.downPayment)) /
       parseInt(req.body.numberOfMonths);

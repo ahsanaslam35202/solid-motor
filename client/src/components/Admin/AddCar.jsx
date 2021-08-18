@@ -105,9 +105,9 @@ const AddCar = (props) => {
   });
   const [extendedFeatures, setExtendedFeatures] = React.useState([]);
   // const [images, setImages] = React.useState([]);
-  const [displayImage, setDisplayImage] = React.useState();
-  const [otherImages, setOtherImages] = React.useState();
-  const [sendImages, setSendImages] = React.useState();
+  const [displayImage, setDisplayImage] = React.useState([]);
+  // const [otherImages, setOtherImages] = React.useState([]);
+  // const [sendImages, setSendImages] = React.useState([]);
   const [downPayment, setDownPayment] = React.useState({
     value: "",
     error: "",
@@ -212,12 +212,12 @@ const AddCar = (props) => {
     }
     if (edit === false) {
       data.append("displayImage", displayImage);
-      for (let x = 0; x < otherImages.length; x++) {
-        data.append("otherImages", otherImages[x]);
-      }
-      for (let x = 0; x < sendImages.length; x++) {
-        data.append("sendImages", sendImages[x]);
-      }
+      // for (let x = 0; x < otherImages.length; x++) {
+      //   data.append("otherImages", otherImages[x]);
+      // }
+      // for (let x = 0; x < sendImages.length; x++) {
+      //   data.append("sendImages", sendImages[x]);
+      // }
     }
     // data.append("images", images);
     data.append("price", price.value);
@@ -776,7 +776,7 @@ const AddCar = (props) => {
                           }}
                         />
                       </Grid>
-                      <Grid item xs={12} md={3}>
+                      {/* <Grid item xs={12} md={3}>
                         <label style={{ width: "100%" }}>Interior Images</label>
                         <input
                           type="file"
@@ -787,8 +787,8 @@ const AddCar = (props) => {
                           }}
                           multiple
                         />
-                      </Grid>
-                      <Grid item xs={12} md={3}>
+                      </Grid> */}
+                      {/* <Grid item xs={12} md={3}>
                         <label style={{ width: "100%" }}>360 Images</label>
                         <input
                           type="file"
@@ -799,7 +799,7 @@ const AddCar = (props) => {
                           }}
                           multiple
                         />
-                      </Grid>
+                      </Grid> */}
                     </Grid>
                   </Box>
                 </Grid>
