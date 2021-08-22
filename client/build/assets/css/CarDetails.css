@@ -1,5 +1,5 @@
 .car-header-container {
-  height: auto;
+  height: 120vh;
   background: #ffffff;
   border-radius: 12px;
   position: relative;
@@ -7,6 +7,11 @@
   margin-right: 3%;
   margin-left: 3%;
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
 }
 .car-info-container {
   margin-right: 3%;

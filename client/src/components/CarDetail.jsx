@@ -512,7 +512,8 @@ const CarDetail = (props) => {
         </div>
 
         <div className="car-header-container">
-          <img src="../assets/img/car.png" style={{ width: "100%" }} />
+          <img src="../assets/img/loading.gif" style={{ width: "180px", height: '150px' }} />
+          <h2>Loading 360 View Images</h2>
         </div>
 
         <div className="container mt-30">
