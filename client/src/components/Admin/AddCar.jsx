@@ -381,15 +381,91 @@ const AddCar = (props) => {
                       }}
                       label="Make"
                     >
-                      <MenuItem value="Toyota">Toyota</MenuItem>
+                      <MenuItem value="Abarth">Abarth</MenuItem>
+                      <MenuItem value="Acura">Acura</MenuItem>
+                      <MenuItem value="Alfa Romeo">Alfa Romeo</MenuItem>
+                      <MenuItem value="Aston Martin">Aston Martin</MenuItem>
                       <MenuItem value="Audi">Audi</MenuItem>
-                      <MenuItem value="Nissan">Nissan</MenuItem>
-                      <MenuItem value="Mercedes">Mercedes</MenuItem>
-                      <MenuItem value="Honda">Honda</MenuItem>
-                      <MenuItem value="Kia">Kia</MenuItem>
-                      <MenuItem value="MG">MG</MenuItem>
+
+                      <MenuItem value="Bentley">Bentley</MenuItem>
                       <MenuItem value="BMW">BMW</MenuItem>
+                      <MenuItem value="Buick">Buick</MenuItem>
+
+                      <MenuItem value="Cadillac">Cadillac</MenuItem>
+                      <MenuItem value="Chevrolet">Chevrolet</MenuItem>
+                      <MenuItem value="Chrysler">Chrysler</MenuItem>
+                      <MenuItem value="Citroen">Citroen</MenuItem>
+
+                      <MenuItem value="Dacia">Dacia</MenuItem>
                       <MenuItem value="Dodge">Dodge</MenuItem>
+
+                      <MenuItem value="Ferrari">Ferrari</MenuItem>
+                      <MenuItem value="Fiat">Fiat</MenuItem>
+                      <MenuItem value="Ford">Ford</MenuItem>
+                      <MenuItem value="GMC">GMC</MenuItem>
+
+                      <MenuItem value="Honda">Honda</MenuItem>
+                      <MenuItem value="Hummer">Hummer</MenuItem>
+                      <MenuItem value="Hyundai">Hyundai</MenuItem>
+
+                      <MenuItem value="Infiniti">Infiniti</MenuItem>
+                      <MenuItem value="Isuzu">Isuzu</MenuItem>
+                      <MenuItem value="Jaguar">Jaguar</MenuItem>
+
+                      <MenuItem value="Jeep">Jeep</MenuItem>
+
+                      <MenuItem value="Kia">Kia</MenuItem>
+
+                      <MenuItem value="Lamborghini">Lamborghini</MenuItem>
+                      <MenuItem value="Lancia">Lancia</MenuItem>
+                      <MenuItem value="Land Rover">Land Rover</MenuItem>
+                      <MenuItem value="Lincoln">Lincoln</MenuItem>
+                      <MenuItem value="Lotus">Lotus</MenuItem>
+
+                      <MenuItem value="Maserati">Maserati</MenuItem>
+                      <MenuItem value="Mazda">Mazda</MenuItem>
+                      <MenuItem value="Mercedes">Mercedes</MenuItem>
+                      <MenuItem value="Mercury">Mercury</MenuItem>
+                      <MenuItem value="Mini">Mini</MenuItem>
+                      <MenuItem value="Mitsubishi">Mitsubishi</MenuItem>
+                      <MenuItem value="MG">MG</MenuItem>
+
+
+                      <MenuItem value="Nissan">Nissan</MenuItem>
+
+                      <MenuItem value="Opel">Opel</MenuItem>
+
+                      <MenuItem value="Peugeot">Peugeot</MenuItem>
+                      <MenuItem value="Pontiac">Pontiac</MenuItem>
+                      <MenuItem value="Porsche">Porsche</MenuItem>
+
+                      <MenuItem value="Ram">Ram</MenuItem>
+                      <MenuItem value="Renault">Renault</MenuItem>
+
+                      <MenuItem value="Saab">Saab</MenuItem>
+                      <MenuItem value="Saturn">Saturn</MenuItem>
+                      <MenuItem value="Scion">Scion</MenuItem>
+                      <MenuItem value="Seat">Seat</MenuItem>
+                      <MenuItem value="Skoda">Skoda</MenuItem>
+                      <MenuItem value="Smart">Smart</MenuItem>
+                      <MenuItem value="SsangYong">SsangYong</MenuItem>
+                      <MenuItem value="Subaru">Subaru</MenuItem>
+                      <MenuItem value="Suzuki">Suzuki</MenuItem>
+
+                      <MenuItem value="Tesla">Tesla</MenuItem>
+                      <MenuItem value="Toyota">Toyota</MenuItem>
+
+                      <MenuItem value="Volkswagen">Volkswagen</MenuItem>
+                      <MenuItem value="Volvo">Volvo</MenuItem>
+                      <MenuItem value="Wiesmann">Wiesmann</MenuItem>
+
+
+
+
+
+
+
+
                     </Select>
                   </FormControl>
                 </Grid>
